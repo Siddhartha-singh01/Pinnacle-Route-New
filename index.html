@@ -610,12 +610,21 @@ button, input, select, textarea { font-family: var(--font-body); }
   color: var(--gold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  transition: gap var(--transition);
+  text-decoration: none;
+  cursor: pointer;
+  transition: gap var(--transition), color var(--transition);
 }
-.service-card:hover .service-link { gap: 0.7rem; }
+
+.service-link:hover {
+  color: var(--soft-gold);
+}
+
+.service-card:hover .service-link {
+  gap: 0.7rem;
+}
 
 /* ============================================================
    AI AUTOMATION SECTION
