@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Automation Solutions — Pinnacle Route</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0D0D0D;--bg2:#161616;--card:#1C1C1C;--ivory:#F5F5F0;
+  --gold:#C6A972;--gold-hover:#D4BC8A;--muted:#888880;--graphite:#2A2A2A;
+  --blue:#4D8DFF;--border:rgba(198,169,114,0.18);--border-subtle:rgba(255,255,255,0.06);
+  --font-head:'Cormorant Garamond',serif;--font-body:'DM Sans',sans-serif;
+  --transition:0.35s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ivory);font-family:var(--font-body);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button,input,select,textarea{font-family:var(--font-body);}
+
+.container{width:100%;max-width:1240px;margin:0 auto;padding:0 2rem;}
+.section{padding:7rem 0;}
+.section-label{display:inline-block;font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:0.35rem 0.9rem;border-radius:2rem;margin-bottom:1.5rem;background:rgba(198,169,114,0.06);}
+.section-title{font-family:var(--font-head);font-size:clamp(2.4rem,4vw,3.8rem);font-weight:500;line-height:1.15;color:var(--ivory);letter-spacing:-0.01em;margin-bottom:1.2rem;}
+.section-sub{font-size:1.05rem;color:var(--muted);max-width:580px;line-height:1.75;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}.reveal-delay-2{transition-delay:0.2s;}.reveal-delay-3{transition-delay:0.3s;}.reveal-delay-4{transition-delay:0.4s;}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;border-radius:3px;font-size:0.9rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;border:none;transition:var(--transition);}
+.btn-gold{background:var(--gold);color:#0D0D0D;}
+.btn-gold:hover{background:var(--gold-hover);transform:translateY(-1px);box-shadow:0 8px 32px rgba(198,169,114,0.28);}
+.btn-outline{background:transparent;color:var(--ivory);border:1px solid var(--border);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-1px);}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 0;transition:background 0.4s,padding 0.3s;}
+#nav.scrolled{background:rgba(13,13,13,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-subtle);padding:0.85rem 0;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:var(--font-head);font-size:1.5rem;font-weight:600;color:var(--ivory);}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:0.88rem;color:var(--muted);transition:color var(--transition);}
+.nav-links a:hover{color:var(--ivory);}
+.nav-cta{padding:0.6rem 1.4rem;background:var(--gold);color:#0D0D0D;border-radius:3px;font-size:0.82rem;font-weight:600;letter-spacing:0.04em;transition:var(--transition);white-space:nowrap;}
+.nav-cta:hover{background:var(--gold-hover);box-shadow:0 4px 20px rgba(198,169,114,0.3);}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-toggle span{width:24px;height:1.5px;background:var(--ivory);transition:var(--transition);display:block;}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(13,13,13,0.97);backdrop-filter:blur(20px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:var(--font-head);font-size:2.2rem;color:var(--ivory);transition:color var(--transition);}
+.mobile-menu a:hover{color:var(--gold);}
+.mobile-menu .nav-cta{font-family:var(--font-body);font-size:1rem;padding:0.85rem 2rem;}
+.mobile-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;font-size:1.8rem;color:var(--muted);cursor:pointer;}
+
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--muted);margin-bottom:2rem;}
+.breadcrumb a{color:var(--muted);transition:color var(--transition);}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb span{color:var(--gold);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:6rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 70% 60% at 60% 40%,rgba(77,141,255,0.09) 0%,transparent 65%),
+  radial-gradient(ellipse 40% 50% at 15% 70%,rgba(198,169,114,0.06) 0%,transparent 60%),
+  linear-gradient(rgba(198,169,114,0.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(198,169,114,0.025) 1px,transparent 1px);
+background-size:100%,100%,60px 60px,60px 60px;}
+.hero-content{max-width:720px;position:relative;z-index:2;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.68rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);margin-bottom:1.8rem;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:20px;height:1px;background:var(--blue);opacity:0.5;}
+.hero-title{font-family:var(--font-head);font-size:clamp(3.2rem,6vw,5.8rem);font-weight:500;line-height:1.06;letter-spacing:-0.025em;margin-bottom:1.8rem;}
+.hero-title em{font-style:italic;color:var(--blue);}
+.hero-sub{font-size:1.12rem;color:var(--muted);line-height:1.8;margin-bottom:2.8rem;max-width:580px;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem;}
+.hero-metrics{display:flex;gap:2.5rem;flex-wrap:wrap;}
+.hero-metric{}
+.hero-metric-val{font-family:var(--font-head);font-size:2.4rem;font-weight:600;color:var(--ivory);line-height:1;}
+.hero-metric-val span{color:var(--blue);}
+.hero-metric-label{font-size:0.78rem;color:var(--muted);margin-top:0.2rem;}
+
+/* FLOW VISUAL - large hero decoration */
+.hero-visual{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:520px;opacity:0.35;pointer-events:none;}
+.flow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.flow-mini{background:var(--card);border:1px solid var(--border-subtle);border-radius:8px;padding:1rem;font-size:0.7rem;color:var(--muted);}
+.flow-mini-title{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);margin-bottom:0.4rem;}
+.flow-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);display:inline-block;margin-right:0.3rem;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:0.4;}50%{opacity:1;}}
+
+/* WHAT WE AUTOMATE */
+.automate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
+.automate-card{background:var(--bg2);border:1px solid var(--border-subtle);border-radius:10px;padding:2rem 1.8rem;transition:var(--transition);position:relative;overflow:hidden;}
+.automate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),transparent);opacity:0;transition:opacity var(--transition);}
+.automate-card:hover::before{opacity:1;}
+.automate-card:hover{border-color:rgba(77,141,255,0.25);transform:translateY(-3px);background:var(--card);}
+.automate-icon{width:46px;height:46px;border-radius:10px;background:rgba(77,141,255,0.1);border:1px solid rgba(77,141,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.3rem;}
+.automate-title{font-family:var(--font-head);font-size:1.25rem;font-weight:500;color:var(--ivory);margin-bottom:0.6rem;}
+.automate-desc{font-size:0.86rem;color:var(--muted);line-height:1.72;}
+
+/* HOW IT WORKS */
+#how-it-works{background:var(--bg2);}
+.steps-visual{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem;position:relative;}
+.steps-visual::before{content:'';position:absolute;top:2.5rem;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--border),transparent);}
+.step-item{text-align:center;padding:0 1.2rem;position:relative;z-index:1;}
+.step-circle{width:50px;height:50px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 1.3rem;font-family:var(--font-head);font-size:1.1rem;color:var(--blue);font-weight:500;transition:var(--transition);}
+.step-item:hover .step-circle{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 0 24px rgba(77,141,255,0.35);}
+.step-title{font-family:var(--font-head);font-size:1.1rem;font-weight:500;color:var(--ivory);margin-bottom:0.5rem;}
+.step-desc{font-size:0.82rem;color:var(--muted);line-height:1.7;}
+
+/* TECH STACK */
+.tech-grid{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;}
+.tech-pill{padding:0.6rem 1.2rem;background:var(--card);border:1px solid var(--border-subtle);border-radius:6px;font-size:0.82rem;color:var(--muted);transition:var(--transition);}
+.tech-pill:hover{border-color:var(--border);color:var(--ivory);}
+
+/* OUTCOMES */
+#outcomes{background:var(--bg);}
+.outcomes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3.5rem;}
+.outcome-card{background:var(--bg2);border:1px solid var(--border-subtle);border-radius:10px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:var(--transition);}
+.outcome-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.outcome-metric{font-family:var(--font-head);font-size:3rem;font-weight:600;color:var(--blue);line-height:1;min-width:90px;}
+.outcome-text{}
+.outcome-title{font-size:0.95rem;font-weight:500;color:var(--ivory);margin-bottom:0.35rem;}
+.outcome-desc{font-size:0.84rem;color:var(--muted);line-height:1.65;}
+
+/* USE CASES */
+#use-cases{background:var(--bg2);}
+.use-cases-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3.5rem;}
+.use-case{background:var(--card);border:1px solid var(--border-subtle);border-radius:10px;padding:1.8rem 2rem;transition:var(--transition);}
+.use-case:hover{border-color:var(--border);transform:translateY(-2px);}
+.use-case-industry{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);margin-bottom:0.8rem;}
+.use-case-title{font-family:var(--font-head);font-size:1.2rem;font-weight:500;color:var(--ivory);margin-bottom:0.6rem;}
+.use-case-desc{font-size:0.85rem;color:var(--muted);line-height:1.7;}
+.use-case-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;}
+.use-case-tag{font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border-subtle);padding:0.2rem 0.55rem;border-radius:3px;}
+
+/* FAQ */
+#faq{background:var(--bg);}
+.faq-list{max-width:780px;margin:3rem auto 0;}
+.faq-item{border-bottom:1px solid var(--border-subtle);overflow:hidden;}
+.faq-q{width:100%;text-align:left;background:none;border:none;color:var(--ivory);font-size:1rem;font-weight:500;padding:1.5rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color var(--transition);}
+.faq-q:hover{color:var(--gold);}
+.faq-icon{font-size:1.2rem;color:var(--gold);flex-shrink:0;transition:transform 0.3s ease;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;}
+.faq-item.open .faq-a{max-height:200px;}
+.faq-a p{font-size:0.9rem;color:var(--muted);line-height:1.75;padding-bottom:1.5rem;}
+
+/* CTA SECTION */
+#cta-section{background:var(--bg2);text-align:center;padding:7rem 0;position:relative;overflow:hidden;}
+#cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 50%,rgba(77,141,255,0.06) 0%,transparent 70%);}
+.cta-title{font-family:var(--font-head);font-size:clamp(2.4rem,4vw,4rem);font-weight:500;line-height:1.15;margin-bottom:1.2rem;position:relative;}
+.cta-title em{font-style:italic;color:var(--gold);}
+.cta-sub{font-size:1rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;line-height:1.75;position:relative;}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3rem 0 2rem;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{font-family:var(--font-head);font-size:1.4rem;font-weight:600;color:var(--ivory);}
+.footer-logo span{color:var(--gold);}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.85rem;color:var(--muted);transition:color var(--transition);}
+.footer-links a:hover{color:var(--ivory);}
+.footer-copy{font-size:0.78rem;color:var(--muted);}
+.footer-copy span{color:var(--gold);}
+
+/* BACK LINK */
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:var(--muted);transition:color var(--transition);margin-bottom:2rem;}
+.back-link:hover{color:var(--gold);}
+
+@media(max-width:900px){
+  .automate-grid{grid-template-columns:repeat(2,1fr);}
+  .steps-visual{grid-template-columns:repeat(2,1fr);gap:2rem;}
+  .steps-visual::before{display:none;}
+  .outcomes-grid{grid-template-columns:1fr;}
+  .use-cases-list{grid-template-columns:1fr;}
+  .nav-links,.nav-cta{display:none;}
+  .nav-toggle{display:flex;}
+}
+@media(max-width:580px){
+  .automate-grid{grid-template-columns:1fr;}
+  .hero-metrics{flex-direction:column;gap:1.2rem;}
+  .hero-actions{flex-direction:column;}
+  .steps-visual{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Pinnacle<span>Route</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#solutions">Solutions</a></li>
+        <li><a href="index.html#case-studies">Case Studies</a></li>
+        <li><a href="index.html#process">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:1.5rem;">
+        <a href="index.html#contact" class="nav-cta">Book Strategy Call</a>
+        <div class="nav-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="menuClose">✕</button>
+  <a href="index.html#services" class="ml">Services</a>
+  <a href="index.html#solutions" class="ml">Solutions</a>
+  <a href="index.html#case-studies" class="ml">Case Studies</a>
+  <a href="index.html#contact" class="ml">Contact</a>
+  <a href="index.html#contact" class="nav-cta">Book Strategy Call</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="back-link reveal" onclick="history.back()">← Back to Services</div>
+      <div class="breadcrumb reveal">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>AI & Automation Solutions</span>
+      </div>
+      <div class="hero-eyebrow reveal">AI Intelligence Layer</div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        Automate the Work.<br><em>Scale the Business.</em>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        We design and deploy intelligent AI automation systems that eliminate repetitive work, qualify leads at scale, support customers 24/7, and surface insights that help your team make faster, better decisions.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="index.html#contact" class="btn btn-gold">Book Free Strategy Session →</a>
+        <a href="#use-cases" class="btn btn-outline">See Use Cases</a>
+      </div>
+      <div class="hero-metrics reveal reveal-delay-4">
+        <div class="hero-metric">
+          <div class="hero-metric-val"><span>40–70%</span></div>
+          <div class="hero-metric-label">Reduction in manual workload</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hero-metric-val"><span>3.2×</span></div>
+          <div class="hero-metric-label">More qualified lead follow-ups</div>
+        </div>
+        <div class="hero-metric">
+          <div class="hero-metric-val"><span>24/7</span></div>
+          <div class="hero-metric-label">Always-on customer support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE AUTOMATE -->
+<section class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Automation Coverage</div>
+      <h2 class="section-title">Every Layer of Your Business,<br>Intelligently Automated</h2>
+      <p class="section-sub">From the first touchpoint with a prospect to post-sale reporting, we identify and automate the high-friction moments that cost your team time and your business money.</p>
+    </div>
+    <div class="automate-grid">
+      <div class="automate-card reveal">
+        <div class="automate-icon">⚡</div>
+        <div class="automate-title">AI Lead Qualification</div>
+        <p class="automate-desc">Score and qualify every incoming lead using AI — capturing intent signals, asking intelligent follow-up questions, and routing high-value prospects to your sales team instantly.</p>
+      </div>
+      <div class="automate-card reveal reveal-delay-1">
+        <div class="automate-icon">💬</div>
+        <div class="automate-title">AI Customer Support</div>
+        <p class="automate-desc">Deploy conversational AI assistants across WhatsApp, web chat, and email that resolve tier-1 queries, handle FAQs, and escalate complex cases — without adding headcount.</p>
+      </div>
+      <div class="automate-card reveal reveal-delay-2">
+        <div class="automate-icon">🔄</div>
+        <div class="automate-title">Workflow Automation</div>
+        <p class="automate-desc">Connect your existing tools — CRMs, ERPs, project management, finance software — into unified automated workflows that eliminate manual data entry and cross-team handoffs.</p>
+      </div>
+      <div class="automate-card reveal">
+        <div class="automate-icon">📊</div>
+        <div class="automate-title">CRM & Sales Automation</div>
+        <p class="automate-desc">Auto-update CRM records from form submissions, calls, and emails. Trigger nurture sequences, send follow-up reminders, and keep your pipeline clean without manual effort.</p>
+      </div>
+      <div class="automate-card reveal reveal-delay-1">
+        <div class="automate-icon">🎯</div>
+        <div class="automate-title">AI Sales Systems</div>
+        <p class="automate-desc">Build outbound and inbound AI-assisted sales pipelines with personalised messaging, automated proposals, and real-time deal intelligence for your sales team.</p>
+      </div>
+      <div class="automate-card reveal reveal-delay-2">
+        <div class="automate-icon">📈</div>
+        <div class="automate-title">Business Intelligence</div>
+        <p class="automate-desc">Aggregate data from every tool in your stack into a single executive dashboard — with AI-generated summaries, anomaly alerts, and performance insights delivered on schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Our Approach</div>
+      <h2 class="section-title">How We Build Your Automation System</h2>
+      <p class="section-sub" style="margin:0 auto;">Every automation project follows a structured process designed to minimise risk and maximise measurable impact from day one.</p>
+    </div>
+    <div class="steps-visual">
+      <div class="step-item reveal">
+        <div class="step-circle">01</div>
+        <div class="step-title">Audit & Map</div>
+        <p class="step-desc">We map every workflow, tool, and manual process in your business to find the highest-value automation opportunities.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-circle">02</div>
+        <div class="step-title">Design Architecture</div>
+        <p class="step-desc">Design the automation logic, data flows, AI model selection, and integration architecture before writing a single line of code.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-circle">03</div>
+        <div class="step-title">Build & Integrate</div>
+        <p class="step-desc">Develop, test, and connect your automation system to your existing stack with clean, maintainable logic and proper error handling.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-3">
+        <div class="step-circle">04</div>
+        <div class="step-title">Monitor & Improve</div>
+        <p class="step-desc">Track automation performance, identify failure points, and continuously tune your systems to improve accuracy and throughput over time.</p>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2" style="margin-top:4rem;">
+      <div class="section-label">Technology Stack</div>
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1rem;">We select the right tools for your scale, budget, and complexity:</p>
+      <div class="tech-grid">
+        <div class="tech-pill">OpenAI / GPT-4o</div>
+        <div class="tech-pill">Anthropic Claude</div>
+        <div class="tech-pill">Make.com</div>
+        <div class="tech-pill">n8n</div>
+        <div class="tech-pill">Zapier</div>
+        <div class="tech-pill">WhatsApp Business API</div>
+        <div class="tech-pill">Twilio</div>
+        <div class="tech-pill">LangChain</div>
+        <div class="tech-pill">Pinecone / Vector DBs</div>
+        <div class="tech-pill">Python / FastAPI</div>
+        <div class="tech-pill">Node.js</div>
+        <div class="tech-pill">Supabase / Firebase</div>
+        <div class="tech-pill">Google Workspace APIs</div>
+        <div class="tech-pill">HubSpot / Salesforce APIs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section id="outcomes" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Measured Results</div>
+      <h2 class="section-title">Outcomes You Can Take<br>to Your Board</h2>
+      <p class="section-sub">Our automation systems are built around business metrics, not vanity indicators. Every project is measured against outcomes that matter.</p>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal">
+        <div class="outcome-metric">40%</div>
+        <div class="outcome-text">
+          <div class="outcome-title">Average reduction in operational costs</div>
+          <div class="outcome-desc">By eliminating manual data entry, repetitive customer queries, and cross-team handoffs, businesses consistently see 40%+ cost reduction within 90 days of deployment.</div>
+        </div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-metric">3×</div>
+        <div class="outcome-text">
+          <div class="outcome-title">Faster lead response and qualification</div>
+          <div class="outcome-desc">AI qualification systems respond to leads in under 60 seconds, score intent automatically, and deliver only sales-ready prospects to your team — tripling follow-up efficiency.</div>
+        </div>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-metric">24/7</div>
+        <div class="outcome-text">
+          <div class="outcome-title">Customer support without additional staff</div>
+          <div class="outcome-desc">Deployed AI assistants handle tier-1 support, product queries, and order tracking around the clock — with seamless escalation when human expertise is needed.</div>
+        </div>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-metric">8×</div>
+        <div class="outcome-text">
+          <div class="outcome-title">ROI within the first 6 months</div>
+          <div class="outcome-desc">Most clients recover their automation investment within 6 months through time saved, headcount stabilisation, and improved conversion from qualified leads.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases" class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Industry Applications</div>
+      <h2 class="section-title">Automation That Works<br>Across Every Sector</h2>
+    </div>
+    <div class="use-cases-list">
+      <div class="use-case reveal">
+        <div class="use-case-industry">Real Estate</div>
+        <div class="use-case-title">AI Lead Scoring & WhatsApp Qualification</div>
+        <p class="use-case-desc">Incoming leads from 99acres, MagicBricks, and website forms are automatically scored, followed up via WhatsApp AI, and routed to the right sales agent based on property interest and budget signals.</p>
+        <div class="use-case-tags"><span class="use-case-tag">Lead Scoring</span><span class="use-case-tag">WhatsApp AI</span><span class="use-case-tag">CRM Sync</span></div>
+      </div>
+      <div class="use-case reveal reveal-delay-1">
+        <div class="use-case-industry">eCommerce & Retail</div>
+        <div class="use-case-title">Order Fulfilment & Support Automation</div>
+        <p class="use-case-desc">Automate order confirmations, shipping updates, return requests, and customer queries — reducing support ticket volume by 60% while improving customer satisfaction scores.</p>
+        <div class="use-case-tags"><span class="use-case-tag">Order Automation</span><span class="use-case-tag">AI Support Bot</span><span class="use-case-tag">Returns Flow</span></div>
+      </div>
+      <div class="use-case reveal">
+        <div class="use-case-industry">Professional Services</div>
+        <div class="use-case-title">Client Onboarding & Reporting Automation</div>
+        <p class="use-case-desc">Automatically onboard new clients with structured data collection, contract generation, and kickoff scheduling — then deliver weekly AI-generated performance reports without manual effort.</p>
+        <div class="use-case-tags"><span class="use-case-tag">Onboarding Flows</span><span class="use-case-tag">AI Reports</span><span class="use-case-tag">Scheduling</span></div>
+      </div>
+      <div class="use-case reveal reveal-delay-1">
+        <div class="use-case-industry">SaaS & Technology</div>
+        <div class="use-case-title">Trial Conversion & Churn Prevention</div>
+        <p class="use-case-desc">AI models monitor trial usage patterns, identify at-risk users, trigger personalised in-app messages and email sequences, and alert customer success teams to high-value expansion opportunities.</p>
+        <div class="use-case-tags"><span class="use-case-tag">Behavioural AI</span><span class="use-case-tag">Churn Detection</span><span class="use-case-tag">Lifecycle Automation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section" style="background:var(--bg2);">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Questions About AI Automation</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">Do I need to replace my existing tools to implement automation?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No. We design automation systems that integrate with your existing stack — CRMs, ERPs, communication tools, and databases. Our approach is additive, not disruptive. We connect, enhance, and automate what you already have.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">How long does a typical automation project take to deploy?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Simple workflow automation can be live in 2–3 weeks. Full AI systems with custom models, multi-channel integrations, and dashboards typically take 6–12 weeks. We always begin with a quick-win deployment to demonstrate value early.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">What if the AI makes mistakes or misqualifies a lead?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Every system we build includes human oversight checkpoints, confidence thresholds, and fallback logic. Low-confidence cases are routed to a human reviewer automatically. AI is designed to assist, not replace, your team's judgment.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Is my business data safe when using AI systems?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes. We implement data handling best practices including encryption at rest and in transit, minimal data retention policies, and role-based access controls. We never use your business data to train shared AI models.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">What is the minimum budget required for an automation project?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Our automation projects start from ₹1.5 Lakhs for focused single-workflow automations. Full AI system builds with multiple integrations and custom models are scoped from ₹5 Lakhs upwards depending on complexity.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" style="margin:0 auto 2rem;display:table;">Start Automating</div>
+      <h2 class="cta-title">Ready to Eliminate<br><em>Manual Work for Good?</em></h2>
+      <p class="cta-sub">Book a free 45-minute strategy session. We'll map your current workflows, identify your top automation opportunities, and show you what an AI-powered version of your operations could look like.</p>
+      <div class="cta-actions">
+        <a href="index.html#contact" class="btn btn-gold">Book Free Strategy Session →</a>
+        <a href="index.html#services" class="btn btn-outline">Explore All Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">Pinnacle<span>Route</span></a>
+      <div class="footer-links">
+        <a href="service-ai-automation.html">AI Automation</a>
+        <a href="service-ecommerce.html">eCommerce</a>
+        <a href="service-mobile-app.html">Mobile Apps</a>
+        <a href="service-custom-software.html">Custom Software</a>
+        <a href="service-crm-erp.html">CRM & ERP</a>
+        <a href="service-saas.html">SaaS</a>
+        <a href="service-uiux.html">UI/UX Design</a>
+      </div>
+      <div class="footer-copy">© 2026 <span>Pinnacle Route</span>. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.ml,.mobile-menu .nav-cta').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
