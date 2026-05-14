@@ -10,7 +10,7 @@ declare(strict_types=1);
 const SMTP_HOST = 'smtp.gmail.com';
 const SMTP_PORT = 465;
 const SMTP_USERNAME = 'info@pinnacleroute.com';
-const SMTP_PASSWORD = 'Legender@2029';
+const SMTP_PASSWORD = 'rqrrwlsbxdikmgww';
 const MAIL_TO = 'info@pinnacleroute.com';
 const MAIL_FROM_NAME = 'Pinnacle Route';
 
