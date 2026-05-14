@@ -2009,12 +2009,10 @@ footer {
       </div>
 
       <div class="contact-form-wrap reveal reveal-delay-1">
-        <form class="contact-form" id="contactForm" action="https://formsubmit.co/info@pinnacleroute.com" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="New Pinnacle Route Strategy Session Inquiry">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" id="formNextUrl" value="">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <form class="contact-form" id="contactForm" action="contact-submit.php" method="POST" novalidate>
+          <input type="hidden" name="subject" value="New Pinnacle Route Strategy Session Inquiry">
+          <input type="hidden" name="redirect_success" value="index.html?submitted=true#contact">
+          <input type="text" name="website_confirm" style="display:none" tabindex="-1" autocomplete="off">
           <div id="formContent">
             <div class="form-grid">
               <div class="form-group" id="fg-name">
@@ -2232,10 +2230,6 @@ if (statsSection) statsObserver.observe(statsSection);
 
 /* --- FORM VALIDATION + EMAIL SUBMISSION --- */
 const contactForm = document.getElementById('contactForm');
-const formNextUrl = document.getElementById('formNextUrl');
-if (formNextUrl) {
-  formNextUrl.value = window.location.origin + window.location.pathname + '?submitted=true#contact';
-}
 
 if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
   document.getElementById('formContent').style.display = 'none';
