@@ -2228,17 +2228,12 @@ const statsObserver = new IntersectionObserver((entries) => {
 const statsSection = document.getElementById('stats');
 if (statsSection) statsObserver.observe(statsSection);
 
-/* --- FORM VALIDATION + EMAIL SUBMISSION --- */
+/* --- FORM VALIDATION + HOSTINGER PHP SUBMISSION --- */
 const contactForm = document.getElementById('contactForm');
 
-if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
-  document.getElementById('formContent').style.display = 'none';
-  const success = document.getElementById('formSuccess');
-  success.classList.add('show');
-  success.style.display = 'block';
-}
+contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-contactForm.addEventListener('submit', (event) => {
   const fields = [
     { id: 'f-name', fg: 'fg-name', test: v => v.trim().length > 1 },
     { id: 'f-company', fg: 'fg-company', test: v => v.trim().length > 1 },
@@ -2270,8 +2265,39 @@ contactForm.addEventListener('submit', (event) => {
   }
 
   if (!valid) {
-    event.preventDefault();
     document.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea')?.focus();
+    return;
+  }
+
+  const submitButton = document.getElementById('formSubmit');
+  const originalText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Sending request...';
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) {
+      throw new Error(result.message || 'The request could not be sent.');
+    }
+
+    contactForm.reset();
+    document.getElementById('formContent').style.display = 'none';
+    const success = document.getElementById('formSuccess');
+    success.classList.add('show');
+    success.style.display = 'block';
+  } catch (error) {
+    alert(error.message + ' Please email info@pinnacleroute.com or message us on WhatsApp.');
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalText;
   }
 });
 

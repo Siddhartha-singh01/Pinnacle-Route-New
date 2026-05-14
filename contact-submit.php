@@ -1,8 +1,11 @@
 <?php
 declare(strict_types=1);
 
-// Pinnacle Route contact form handler.
-// Requires PHP with OpenSSL enabled and outbound SMTP access to smtp.gmail.com:465.
+// Pinnacle Route contact form handler for Hostinger Web Hosting.
+// Requires PHP with OpenSSL enabled and outbound SMTP access.
+// If info@pinnacleroute.com is a Hostinger Email mailbox, use:
+// const SMTP_HOST = 'smtp.hostinger.com';
+// const SMTP_PORT = 465;
 
 const SMTP_HOST = 'smtp.gmail.com';
 const SMTP_PORT = 465;
@@ -19,7 +22,23 @@ function field(string $key): string {
     return isset($_POST[$key]) ? clean_value((string) $_POST[$key]) : '';
 }
 
+function wants_json(): bool {
+    $accept = $_SERVER['HTTP_ACCEPT'] ?? '';
+    $requestedWith = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
+    return stripos($accept, 'application/json') !== false || strtolower($requestedWith) === 'xmlhttprequest';
+}
+
+function respond_json(bool $ok, string $message, int $code = 200): void {
+    http_response_code($code);
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode(['ok' => $ok, 'message' => $message]);
+    exit;
+}
+
 function fail(string $message, int $code = 400): void {
+    if (wants_json()) {
+        respond_json(false, $message, $code);
+    }
     http_response_code($code);
     echo '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">';
     echo '<title>Submission Error — Pinnacle Route</title>';
@@ -140,6 +159,10 @@ try {
 } catch (Throwable $e) {
     error_log('Pinnacle Route contact form error: ' . $e->getMessage());
     fail('We could not send the inquiry right now. Please email info@pinnacleroute.com or message us on WhatsApp.', 500);
+}
+
+if (wants_json()) {
+    respond_json(true, 'Your inquiry has been sent successfully.');
 }
 
 $redirect = field('redirect_success') ?: 'index.html?submitted=true#contact';
