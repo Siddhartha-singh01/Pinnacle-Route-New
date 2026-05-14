@@ -1061,6 +1061,10 @@ button, input, select, textarea { font-family: var(--font-body); }
   cursor: pointer;
 }
 .contact-method:hover { border-color: var(--border); }
+.contact-method:focus-visible {
+  outline: 2px solid rgba(198,169,114,0.45);
+  outline-offset: 3px;
+}
 .method-icon {
   width: 36px; height: 36px;
   border-radius: 7px;
@@ -1449,7 +1453,7 @@ footer {
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -1980,60 +1984,65 @@ footer {
         <p class="contact-sub">Book a free strategy session and we'll help you uncover opportunities across automation, software, customer experience, and growth systems tailored to your business.</p>
 
         <div class="contact-methods">
-          <div class="contact-method">
+          <a class="contact-method" id="whatsappContact" href="https://wa.me/919621391943?text=Hi%20Pinnacle%20Route%2C%20I%20would%20like%20to%20book%20a%20free%20strategy%20session." target="_blank" rel="noopener">
             <div class="method-icon wa">💬</div>
             <div>
               <div class="method-label">WhatsApp</div>
               <div class="method-val">Chat with us directly</div>
             </div>
-          </div>
-          <div class="contact-method">
+          </a>
+          <a class="contact-method" href="mailto:info@pinnacleroute.com">
             <div class="method-icon em">✉️</div>
             <div>
               <div class="method-label">Email</div>
               <div class="method-val">info@pinnacleroute.com</div>
             </div>
-          </div>
-          <div class="contact-method">
+          </a>
+          <a class="contact-method" id="calendlyContact" href="https://calendly.com/pinnacleroute-info/30min" target="_blank" rel="noopener">
             <div class="method-icon ca">📅</div>
             <div>
               <div class="method-label">Book a Call</div>
               <div class="method-val">Schedule via Calendly →</div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
       <div class="contact-form-wrap reveal reveal-delay-1">
-        <div class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/info@pinnacleroute.com" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New Pinnacle Route Strategy Session Inquiry">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" id="formNextUrl" value="">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div id="formContent">
             <div class="form-grid">
               <div class="form-group" id="fg-name">
                 <label class="form-label">Full Name *</label>
-                <input class="form-input" id="f-name" type="text" placeholder="Your name">
+                <input class="form-input" id="f-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
                 <div class="form-error">Please enter your name.</div>
               </div>
               <div class="form-group" id="fg-company">
                 <label class="form-label">Company / Business *</label>
-                <input class="form-input" id="f-company" type="text" placeholder="Your company">
+                <input class="form-input" id="f-company" name="company" type="text" placeholder="Your company" autocomplete="organization" required>
                 <div class="form-error">Please enter your company name.</div>
               </div>
               <div class="form-group" id="fg-email">
                 <label class="form-label">Email Address *</label>
-                <input class="form-input" id="f-email" type="email" placeholder="you@company.com">
+                <input class="form-input" id="f-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
                 <div class="form-error">Please enter a valid email.</div>
               </div>
               <div class="form-group">
                 <label class="form-label">Phone / WhatsApp</label>
-                <input class="form-input" id="f-phone" type="tel" placeholder="+91 XXXXX XXXXX">
+                <input class="form-input" id="f-phone" name="phone_whatsapp" type="tel" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
               </div>
               <div class="form-group">
                 <label class="form-label">Website</label>
-                <input class="form-input" id="f-website" type="url" placeholder="https://yoursite.com">
+                <input class="form-input" id="f-website" name="website" type="url" placeholder="https://yoursite.com" autocomplete="url">
               </div>
               <div class="form-group" id="fg-type">
                 <label class="form-label">Project Type *</label>
-                <select class="form-select" id="f-type">
+                <select class="form-select" id="f-type" name="project_type" required>
                   <option value="">Select project type</option>
                   <option>AI Automation</option>
                   <option>Website / eCommerce</option>
@@ -2048,7 +2057,7 @@ footer {
               </div>
               <div class="form-group">
                 <label class="form-label">Budget Range</label>
-                <select class="form-select" id="f-budget">
+                <select class="form-select" id="f-budget" name="budget_range">
                   <option value="">Select budget range</option>
                   <option>Under ₹1 Lakh</option>
                   <option>₹1 Lakh – ₹3 Lakhs</option>
@@ -2059,7 +2068,7 @@ footer {
               </div>
               <div class="form-group">
                 <label class="form-label">Timeline</label>
-                <select class="form-select" id="f-timeline">
+                <select class="form-select" id="f-timeline" name="timeline">
                   <option value="">Select timeline</option>
                   <option>ASAP — Under 4 weeks</option>
                   <option>1–3 months</option>
@@ -2070,18 +2079,18 @@ footer {
               </div>
               <div class="form-group full" id="fg-challenge">
                 <label class="form-label">Main Business Challenge *</label>
-                <textarea class="form-textarea" id="f-challenge" placeholder="Describe your biggest operational challenge, what you're trying to solve, or what outcome you're aiming for…"></textarea>
+                <textarea class="form-textarea" id="f-challenge" name="main_business_challenge" placeholder="Describe your biggest operational challenge, what you're trying to solve, or what outcome you're aiming for…" required></textarea>
                 <div class="form-error">Please briefly describe your challenge.</div>
               </div>
             </div>
-            <button class="form-submit" id="formSubmit" type="button">Get Free Strategy Session →</button>
+            <button class="form-submit" id="formSubmit" type="submit">Get Free Strategy Session →</button>
           </div>
           <div class="form-success" id="formSuccess">
             <div class="success-icon">✓</div>
             <div class="success-title">Request Received</div>
             <p class="success-text">Thank you for reaching out. A member of our team will review your submission and be in touch within 24 hours to schedule your strategy session.</p>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -2152,7 +2161,7 @@ footer {
         <div class="footer-contact-item">💬 WhatsApp: +91 96213 91943</div>
         <div class="footer-contact-item">📍 India</div>
         <div style="margin-top:1rem;">
-          <a href="#contact" class="btn btn-gold" style="padding:0.6rem 1.2rem;font-size:0.8rem;">Book a Call →</a>
+          <a href="https://calendly.com/pinnacleroute-info/30min" target="_blank" rel="noopener" class="btn btn-gold" style="padding:0.6rem 1.2rem;font-size:0.8rem;">Book a Call →</a>
         </div>
       </div>
     </div>
@@ -2221,8 +2230,21 @@ const statsObserver = new IntersectionObserver((entries) => {
 const statsSection = document.getElementById('stats');
 if (statsSection) statsObserver.observe(statsSection);
 
-/* --- FORM VALIDATION --- */
-document.getElementById('formSubmit').addEventListener('click', () => {
+/* --- FORM VALIDATION + EMAIL SUBMISSION --- */
+const contactForm = document.getElementById('contactForm');
+const formNextUrl = document.getElementById('formNextUrl');
+if (formNextUrl) {
+  formNextUrl.value = window.location.origin + window.location.pathname + '?submitted=true#contact';
+}
+
+if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
+  document.getElementById('formContent').style.display = 'none';
+  const success = document.getElementById('formSuccess');
+  success.classList.add('show');
+  success.style.display = 'block';
+}
+
+contactForm.addEventListener('submit', (event) => {
   const fields = [
     { id: 'f-name', fg: 'fg-name', test: v => v.trim().length > 1 },
     { id: 'f-company', fg: 'fg-company', test: v => v.trim().length > 1 },
@@ -2243,11 +2265,19 @@ document.getElementById('formSubmit').addEventListener('click', () => {
     }
   });
 
-  if (valid) {
-    document.getElementById('formContent').style.display = 'none';
-    const success = document.getElementById('formSuccess');
-    success.classList.add('show');
-    success.style.display = 'block';
+  const website = document.getElementById('f-website');
+  if (website.value.trim()) {
+    try {
+      new URL(website.value.trim());
+    } catch {
+      website.closest('.form-group')?.classList.add('error');
+      valid = false;
+    }
+  }
+
+  if (!valid) {
+    event.preventDefault();
+    document.querySelector('.form-group.error input, .form-group.error select, .form-group.error textarea')?.focus();
   }
 });
 
