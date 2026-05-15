@@ -1129,6 +1129,18 @@ button, input, select, textarea { font-family: var(--font-body); }
 .form-group.error .form-input,
 .form-group.error .form-select,
 .form-group.error .form-textarea { border-color: rgba(255,95,87,0.4); }
+.form-captcha {
+  margin: 0.6rem 0 1rem;
+  min-height: 78px;
+}
+.form-status {
+  display: none;
+  margin-top: 0.9rem;
+  color: #FF5F57;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+.form-status.show { display: block; }
 .form-submit {
   width: 100%;
   padding: 1rem;
@@ -2009,9 +2021,8 @@ footer {
       </div>
 
       <div class="contact-form-wrap reveal reveal-delay-1">
-        <form class="contact-form" id="contactForm" action="contact-submit.php" method="POST" novalidate>
+        <form class="contact-form" id="contactForm" action="https://main-backend-eta.vercel.app/api/contact" method="POST" novalidate>
           <input type="hidden" name="subject" value="New Pinnacle Route Strategy Session Inquiry">
-          <input type="hidden" name="redirect_success" value="index.html?submitted=true#contact">
           <input type="text" name="website_confirm" style="display:none" tabindex="-1" autocomplete="off">
           <div id="formContent">
             <div class="form-grid">
@@ -2081,7 +2092,11 @@ footer {
                 <div class="form-error">Please briefly describe your challenge.</div>
               </div>
             </div>
+            <div class="form-captcha">
+              <div class="g-recaptcha" data-sitekey="6LfdYVYrAAAAADuAW-DHihyUwvCQRIUWXWdL5r2V"></div>
+            </div>
             <button class="form-submit" id="formSubmit" type="submit">Get Free Strategy Session →</button>
+            <p class="form-status" id="formStatus" role="alert"></p>
           </div>
           <div class="form-success" id="formSuccess">
             <div class="success-icon">✓</div>
@@ -2174,6 +2189,7 @@ footer {
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 /* --- NAV SCROLL --- */
 const nav = document.getElementById('nav');
@@ -2228,11 +2244,19 @@ const statsObserver = new IntersectionObserver((entries) => {
 const statsSection = document.getElementById('stats');
 if (statsSection) statsObserver.observe(statsSection);
 
-/* --- FORM VALIDATION + HOSTINGER PHP SUBMISSION --- */
+/* --- FORM VALIDATION + SECURE API SUBMISSION --- */
 const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+function setFormStatus(message = '') {
+  if (!formStatus) return;
+  formStatus.textContent = message;
+  formStatus.classList.toggle('show', Boolean(message));
+}
 
 contactForm.addEventListener('submit', async (event) => {
   event.preventDefault();
+  setFormStatus();
 
   const fields = [
     { id: 'f-name', fg: 'fg-name', test: v => v.trim().length > 1 },
@@ -2269,32 +2293,71 @@ contactForm.addEventListener('submit', async (event) => {
     return;
   }
 
+  if (document.querySelector('input[name="website_confirm"]').value.trim() !== '') {
+    return;
+  }
+
+  const recaptchaToken = window.grecaptcha?.getResponse() || '';
+  if (!recaptchaToken) {
+    setFormStatus('Please complete the captcha and try again.');
+    return;
+  }
+
   const submitButton = document.getElementById('formSubmit');
   const originalText = submitButton.textContent;
   submitButton.disabled = true;
   submitButton.textContent = 'Sending request...';
 
   try {
+    const name = document.getElementById('f-name').value.trim();
+    const company = document.getElementById('f-company').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const websiteUrl = document.getElementById('f-website').value.trim();
+    const projectType = document.getElementById('f-type').value;
+    const budget = document.getElementById('f-budget').value || 'Not provided';
+    const timeline = document.getElementById('f-timeline').value || 'Not provided';
+    const challenge = document.getElementById('f-challenge').value.trim();
+    const message = [
+      'Strategy Session Request',
+      `Company / Business: ${company}`,
+      `Website: ${websiteUrl || 'Not provided'}`,
+      `Project Type: ${projectType}`,
+      `Budget Range: ${budget}`,
+      `Timeline: ${timeline}`,
+      '',
+      'Main Business Challenge:',
+      challenge,
+    ].join('\n');
+
     const response = await fetch(contactForm.action, {
       method: 'POST',
-      body: new FormData(contactForm),
       headers: {
         'Accept': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-      }
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        message,
+        token: recaptchaToken
+      })
     });
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || !result.ok) {
+    if (!response.ok || result.ok === false) {
       throw new Error(result.message || 'The request could not be sent.');
     }
 
     contactForm.reset();
+    window.grecaptcha?.reset();
     document.getElementById('formContent').style.display = 'none';
     const success = document.getElementById('formSuccess');
     success.classList.add('show');
     success.style.display = 'block';
   } catch (error) {
-    alert(error.message + ' Please email info@pinnacleroute.com or message us on WhatsApp.');
+    window.grecaptcha?.reset();
+    setFormStatus(`${error.message} Please email info@pinnacleroute.com or message us on WhatsApp.`);
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = originalText;
