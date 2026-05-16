@@ -503,7 +503,7 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
 <script>
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
-document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('open'));
 document.getElementById('menuClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
 document.querySelectorAll('.ml,.mobile-menu .nav-cta').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
 const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}}),{threshold:0.1});
