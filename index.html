@@ -1204,12 +1204,16 @@ button, input, select, textarea { font-family: var(--font-body); }
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
+  text-align: left;
   padding: 1rem 1.2rem;
   background: var(--card);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   transition: var(--transition);
   cursor: pointer;
+  color: inherit;
+  font-family: inherit;
 }
 .contact-method:hover { border-color: var(--border); }
 .contact-method:focus-visible {
@@ -2263,27 +2267,27 @@ footer {
         <p class="contact-sub">Book a free strategy session and we'll help you uncover opportunities across automation, software, customer experience, and growth systems tailored to your business.</p>
 
         <div class="contact-methods">
-          <a class="contact-method" id="whatsappContact" href="https://wa.me/919621391943?text=Hi%20Pinnacle%20Route%2C%20I%20would%20like%20to%20book%20a%20free%20strategy%20session." target="_blank" rel="noopener">
+          <button class="contact-method" id="whatsappContact" type="button" data-contact-action="whatsapp">
             <div class="method-icon wa">💬</div>
             <div>
               <div class="method-label">WhatsApp</div>
               <div class="method-val">Chat with us directly</div>
             </div>
-          </a>
-          <a class="contact-method" href="mailto:info@pinnacleroute.com">
+          </button>
+          <button class="contact-method" type="button" data-contact-action="email">
             <div class="method-icon em">✉️</div>
             <div>
               <div class="method-label">Email</div>
               <div class="method-val">info@pinnacleroute.com</div>
             </div>
-          </a>
-          <a class="contact-method" id="calendlyContact" href="https://calendly.com/pinnacleroute-info/30min" target="_blank" rel="noopener">
+          </button>
+          <button class="contact-method" id="calendlyContact" type="button" data-contact-action="calendly">
             <div class="method-icon ca">📅</div>
             <div>
               <div class="method-label">Book a Call</div>
               <div class="method-val">Schedule via Calendly →</div>
             </div>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -2635,6 +2639,19 @@ contactForm.addEventListener('submit', async (event) => {
 document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
   input.addEventListener('input', () => {
     input.closest('.form-group')?.classList.remove('error');
+  });
+});
+
+/* --- CLEAN CONTACT ACTIONS --- */
+const contactActions = {
+  whatsapp: () => window.open('https://wa.me/919621391943?text=Hi%20Pinnacle%20Route%2C%20I%20would%20like%20to%20book%20a%20free%20strategy%20session.', '_blank', 'noopener'),
+  email: () => { window.location.href = 'mailto:info@pinnacleroute.com'; },
+  calendly: () => window.open('https://calendly.com/pinnacleroute-info/30min', '_blank', 'noopener')
+};
+
+document.querySelectorAll('[data-contact-action]').forEach(button => {
+  button.addEventListener('click', () => {
+    contactActions[button.dataset.contactAction]?.();
   });
 });
 
