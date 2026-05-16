@@ -561,7 +561,12 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .success-state p { color: var(--muted); margin: 0.7rem auto 1.25rem; max-width: 460px; }
 .success-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
 .form-alert { min-height: 1.4rem; color: #d96d6d; font-size: 0.84rem; margin-top: 0.8rem; }
-.form-alert.success { color: var(--gold); }
+.form-captcha {
+  margin: 0.4rem 0 1rem;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+}
 
 footer {
   padding: 2rem 0;
@@ -800,7 +805,12 @@ footer {
                   <div class="field" data-field="budget"><label for="budget">Budget Range</label><select id="budget" name="budget"><option value="">Select budget</option><option>Below $2,500</option><option>$2,500–$6,000</option><option>$6,000–$12,000</option><option>$12,000–$30,000</option><option>$30,000+</option><option>Not sure yet</option></select></div>
                   <div class="field" data-field="timeline"><label for="timeline">Timeline</label><select id="timeline" name="timeline"><option value="">Select timeline</option><option>Immediately</option><option>Within 30 days</option><option>1–3 months</option><option>3–6 months</option><option>Exploring options</option></select></div>
                   <div class="field full" data-field="challenge"><label for="challenge">Main Business Challenge</label><textarea id="challenge" name="challenge" placeholder="What is the biggest workflow, growth, or technology problem you want solved?"></textarea></div>
-                  <div class="field full" data-field="captcha"><label for="captchaAnswer">Security Check: <span id="captchaQuestion">Loading...</span> *</label><input id="captchaAnswer" name="captchaAnswer" type="text" inputmode="numeric" autocomplete="off" required><div class="error-text">Please solve the security check.</div></div>
+                  <div class="field full">
+                    <label>Security Check *</label>
+                    <div class="form-captcha">
+                      <div class="g-recaptcha" data-sitekey="6LfdYVYrAAAAADuAW-DHihyUwvCQRIUWXWdL5r2V"></div>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-actions"><button class="btn btn-gold" type="submit" id="submitBtn">Book My Free Strategy Session →</button></div>
               </div>
@@ -836,6 +846,7 @@ footer {
   </div>
 </footer>
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 const topbar = document.getElementById("topbar");
 window.addEventListener("scroll", () => topbar.classList.toggle("scrolled", window.scrollY > 24));
@@ -898,21 +909,9 @@ const dot1 = document.getElementById("dot1");
 const dot2 = document.getElementById("dot2");
 const alertBox = document.getElementById("formAlert");
 const submitBtn = document.getElementById("submitBtn");
-let captchaAnswer = 0;
-
-function refreshCaptcha() {
-  const a = Math.floor(Math.random() * 8) + 2;
-  const b = Math.floor(Math.random() * 7) + 3;
-  captchaAnswer = a + b;
-  const question = document.getElementById("captchaQuestion");
-  const answer = document.getElementById("captchaAnswer");
-  if (question) question.textContent = `${a} + ${b}`;
-  if (answer) answer.value = "";
-}
 
 function setAlert(message = "") {
   alertBox.textContent = message;
-  alertBox.classList.remove("success");
 }
 
 function markField(id, isValid) {
@@ -930,13 +929,8 @@ function validateStepOne() {
 }
 
 function validateStepTwo() {
-  const companyValid = markField("company", document.getElementById("company").value.trim().length > 1);
-  const captchaValue = document.getElementById("captchaAnswer").value.trim();
-  const captchaValid = markField("captcha", Number(captchaValue) === captchaAnswer);
-  return companyValid && captchaValid;
+  return markField("company", document.getElementById("company").value.trim().length > 1);
 }
-
-refreshCaptcha();
 
 document.getElementById("continueBtn").addEventListener("click", () => {
   setAlert();
@@ -966,6 +960,11 @@ form.addEventListener("submit", async event => {
     setAlert("Please complete the required fields before booking.");
     return;
   }
+  const recaptchaToken = window.grecaptcha?.getResponse() || "";
+  if (!recaptchaToken) {
+    setAlert("Please complete the security check before booking.");
+    return;
+  }
 
   const original = submitBtn.textContent;
   submitBtn.disabled = true;
@@ -984,8 +983,6 @@ form.addEventListener("submit", async event => {
     "Main Business Challenge:",
     data.challenge || "Not provided"
   ].join("\n");
-  const fallbackSubject = encodeURIComponent(data.subject || "New Pinnacle Route Strategy Session Inquiry");
-  const fallbackBody = encodeURIComponent(`Name: ${data.fullName}\nEmail: ${data.email}\n\n${message}`);
 
   try {
     const response = await fetch(form.action, {
@@ -996,7 +993,8 @@ form.addEventListener("submit", async event => {
         email: data.email,
         phone: data.phone || "",
         subject: data.subject || "New Pinnacle Route Strategy Session Inquiry",
-        message
+        message,
+        token: recaptchaToken
       })
     });
     const result = await response.json().catch(() => ({}));
@@ -1005,10 +1003,8 @@ form.addEventListener("submit", async event => {
     document.getElementById("formContent").style.display = "none";
     document.getElementById("successState").classList.add("show");
   } catch (error) {
-    refreshCaptcha();
-    window.location.href = `mailto:info@pinnacleroute.com?subject=${fallbackSubject}&body=${fallbackBody}`;
-    setAlert("Your email app has been opened with this request pre-filled. Send it from there, or message us on WhatsApp.");
-    alertBox.classList.add("success");
+    window.grecaptcha?.reset();
+    setAlert(`${error.message} Please email info@pinnacleroute.com or message us on WhatsApp.`);
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = original;
