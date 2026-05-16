@@ -662,13 +662,15 @@ footer {
   .footer-inner { align-items: flex-start; flex-direction: column; }
   .footer-meta { justify-content: flex-start; gap: 0.6rem; flex-direction: column; }
 }
+
+[data-href] { cursor: pointer; }
 </style>
 </head>
 <body>
 <header class="topbar" id="topbar">
   <div class="container topbar-inner">
-    <a class="logo" href="/" aria-label="Pinnacle Route home"><img src="assets/brand/logo.png" alt="Pinnacle Route"></a>
-    <a class="btn btn-gold" href="#booking"><span class="hide-mobile">Book Your </span>Strategy Call</a>
+    <a class="logo" data-href="/" aria-label="Pinnacle Route home" role="link" tabindex="0"><img src="assets/brand/logo.png" alt="Pinnacle Route"></a>
+    <a class="btn btn-gold" data-href="#booking" role="link" tabindex="0"><span class="hide-mobile">Book Your </span>Strategy Call</a>
   </div>
 </header>
 
@@ -683,7 +685,7 @@ footer {
           <div><span>✦</span>50+ businesses transformed across 10+ industries</div>
           <div><span>✦</span>Average client ROI recovered within 90 days of deployment</div>
         </div>
-        <a class="btn btn-gold reveal" href="#booking" style="--delay:.32s">See If You Qualify →</a>
+        <a class="btn btn-gold reveal" data-href="#booking" style="--delay:.32s" role="link" tabindex="0">See If You Qualify →</a>
       </div>
       <div class="dashboard-wrap reveal" style="--delay:.18s" aria-label="AI operations dashboard visual">
         <div class="float-card one"><strong>AI Lead Score: 92%</strong><small>Auto-routed to sales</small></div>
@@ -759,7 +761,7 @@ footer {
         <article class="cost-card reveal"><span class="cost-metric">6–12 months</span><h3>Time wasted building the wrong digital product</h3><p>Without a proper strategy and architecture phase, most custom builds end up over budget, late, and solving the wrong problem.</p></article>
         <article class="cost-card reveal"><span class="cost-metric">3× slower growth</span><h3>For businesses running on manual processes vs automated systems</h3><p>The data is consistent — businesses with automated sales and operational systems grow three times faster than those relying on manual effort.</p></article>
       </div>
-      <div class="section-cta reveal"><a href="#booking" class="btn btn-gold">Find Out What It's Costing Your Business →</a></div>
+      <div class="section-cta reveal"><a data-href="#booking" class="btn btn-gold" role="link" tabindex="0">Find Out What It's Costing Your Business →</a></div>
     </div>
   </section>
 
@@ -904,11 +906,11 @@ footer {
 <footer>
   <div class="container footer-inner">
     <div>
-      <a class="footer-brand" href="/" aria-label="Pinnacle Route home"><img src="assets/brand/logo.png" alt="Pinnacle Route"></a>
+      <a class="footer-brand" data-href="/" aria-label="Pinnacle Route home" role="link" tabindex="0"><img src="assets/brand/logo.png" alt="Pinnacle Route"></a>
       <div>© 2026 Pinnacle Route. All rights reserved.</div>
     </div>
     <div class="footer-meta">
-      <a href="mailto:info@pinnacleroute.com">info@pinnacleroute.com</a>
+      <a data-href="mailto:info@pinnacleroute.com" role="link" tabindex="0">info@pinnacleroute.com</a>
       <span>Pinnacle Route · AI-Powered Digital Transformation · India</span>
     </div>
   </div>
@@ -916,6 +918,48 @@ footer {
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
+(function(){
+  function openCleanLink(el){
+    const href = el.dataset.href;
+    if (!href) return;
+    const target = el.getAttribute("target");
+    const scrollToHash = (hash) => {
+      try {
+        const node = document.querySelector(hash);
+        if (node) {
+          node.scrollIntoView({ behavior: "smooth", block: "start" });
+          return true;
+        }
+      } catch (error) {}
+      return false;
+    };
+    const onHome = location.pathname === "/" || location.pathname.endsWith("/index.html");
+    if (href.startsWith("#") && scrollToHash(href)) return;
+    if (href.startsWith("/#") && onHome && scrollToHash(href.slice(1))) return;
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+      window.location.href = href;
+      return;
+    }
+    if (target === "_blank") {
+      window.open(href, "_blank", "noopener");
+      return;
+    }
+    window.location.href = href;
+  }
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[data-href]");
+    if (!link) return;
+    event.preventDefault();
+    openCleanLink(link);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const link = event.target.closest("a[data-href]");
+    if (!link) return;
+    event.preventDefault();
+    openCleanLink(link);
+  });
+})();
 const topbar = document.getElementById("topbar");
 window.addEventListener("scroll", () => topbar.classList.toggle("scrolled", window.scrollY > 24));
 

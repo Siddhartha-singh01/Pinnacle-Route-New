@@ -19,6 +19,8 @@
 footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5rem 0 2.5rem}.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3.5rem;border-bottom:1px solid var(--border-subtle);margin-bottom:2.5rem}.footer-logo{font-family:var(--font-head);font-size:1.6rem;font-weight:600;color:var(--ivory);margin-bottom:1rem}.footer-logo span{color:var(--gold)}.footer-tagline{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;max-width:260px}.footer-socials{display:flex;gap:.75rem}.social-btn{width:36px;height:36px;border-radius:6px;background:var(--card);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);transition:var(--transition)}.social-btn:hover{border-color:var(--border);color:var(--gold)}.footer-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);margin-bottom:1.2rem}.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}.footer-col ul li a{font-size:.88rem;color:var(--muted);transition:color var(--transition)}.footer-col ul li a:hover{color:var(--ivory)}.footer-contact-item{font-size:.85rem;color:var(--muted);margin-bottom:.6rem;display:flex;align-items:flex-start;gap:.5rem}.footer-bottom{display:flex;align-items:center;justify-content:space-between}.footer-copy{font-size:.8rem;color:var(--muted)}.footer-copy span{color:var(--gold)}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}
 @media(max-width:1050px){.policy-wrap{grid-template-columns:1fr}.policy-nav{position:relative;top:auto}.contact-card{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr}.nav-links,.nav-cta{display:none}.nav-toggle{display:flex}}@media(max-width:640px){.container{padding:0 1.25rem}.section{padding:5rem 0}.hero{min-height:auto;padding:8rem 0 4rem}.policy-content{padding:1.5rem}.hero-title{font-size:3rem}.mobile-menu a{font-size:1.8rem}.footer-top{grid-template-columns:1fr;gap:2rem}.footer-bottom{flex-direction:column;gap:1rem;align-items:flex-start}.cta-actions{flex-direction:column}.btn{width:100%;justify-content:center}}
+
+[data-href] { cursor: pointer; }
 </style>
 <link rel="icon" type="image/png" href="/assets/brand/favicon-web.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-web.png">
@@ -27,16 +29,16 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:44px;width:auto;display:block;"></a>
+      <a data-href="/" class="nav-logo" aria-label="Pinnacle Route home" role="link" tabindex="0"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:44px;width:auto;display:block;"></a>
       <ul class="nav-links">
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#solutions">Solutions</a></li>
-        <li><a href="/#case-studies">Case Studies</a></li>
-        <li><a href="/#process">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><a data-href="/#services" role="link" tabindex="0">Services</a></li>
+        <li><a data-href="/#solutions" role="link" tabindex="0">Solutions</a></li>
+        <li><a data-href="/#case-studies" role="link" tabindex="0">Case Studies</a></li>
+        <li><a data-href="/#process" role="link" tabindex="0">About</a></li>
+        <li><a data-href="/#contact" role="link" tabindex="0">Contact</a></li>
       </ul>
       <div style="display:flex;align-items:center;gap:1.5rem;">
-        <a href="/strategy-call" class="nav-cta">Book Strategy Call</a>
+        <a data-href="/strategy-call" class="nav-cta" role="link" tabindex="0">Book Strategy Call</a>
         <div class="nav-toggle" id="menuToggle" aria-label="Open menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
       </div>
     </div>
@@ -45,18 +47,18 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="menuClose" aria-label="Close menu">x</button>
-  <a href="/#services" class="ml">Services</a>
-  <a href="/#solutions" class="ml">Solutions</a>
-  <a href="/#case-studies" class="ml">Case Studies</a>
-  <a href="/#contact" class="ml">Contact</a>
-  <a href="/strategy-call" class="nav-cta">Book Strategy Call</a>
+  <a data-href="/#services" class="ml" role="link" tabindex="0">Services</a>
+  <a data-href="/#solutions" class="ml" role="link" tabindex="0">Solutions</a>
+  <a data-href="/#case-studies" class="ml" role="link" tabindex="0">Case Studies</a>
+  <a data-href="/#contact" class="ml" role="link" tabindex="0">Contact</a>
+  <a data-href="/strategy-call" class="nav-cta" role="link" tabindex="0">Book Strategy Call</a>
 </div>
 
 <main>
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="breadcrumb reveal"><a href="/">Home</a><span>/</span><span>Privacy Policy</span></div>
+        <div class="breadcrumb reveal"><a data-href="/" role="link" tabindex="0">Home</a><span>/</span><span>Privacy Policy</span></div>
         <div class="hero-eyebrow reveal">Data Protection</div>
         <h1 class="hero-title reveal reveal-delay-1">Privacy Policy for a Business Built on <em>Trust.</em></h1>
         <p class="hero-sub reveal reveal-delay-2">This policy explains how Pinnacle Route collects, uses, stores, and protects information shared through our website, strategy sessions, consultation forms, and digital transformation engagements.</p>
@@ -70,14 +72,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
       <div class="policy-wrap">
         <aside class="policy-nav reveal">
           <h2>Policy Sections</h2>
-          <a href="#overview">Overview</a>
-          <a href="#information">Information We Collect</a>
-          <a href="#use">How We Use Information</a>
-          <a href="#sharing">Sharing & Service Providers</a>
-          <a href="#cookies">Cookies & Tracking</a>
-          <a href="#security">Security & Retention</a>
-          <a href="#rights">Your Choices</a>
-          <a href="#contact-policy">Contact</a>
+          <a data-href="#overview" role="link" tabindex="0">Overview</a>
+          <a data-href="#information" role="link" tabindex="0">Information We Collect</a>
+          <a data-href="#use" role="link" tabindex="0">How We Use Information</a>
+          <a data-href="#sharing" role="link" tabindex="0">Sharing & Service Providers</a>
+          <a data-href="#cookies" role="link" tabindex="0">Cookies & Tracking</a>
+          <a data-href="#security" role="link" tabindex="0">Security & Retention</a>
+          <a data-href="#rights" role="link" tabindex="0">Your Choices</a>
+          <a data-href="#contact-policy" role="link" tabindex="0">Contact</a>
         </aside>
 
         <article class="policy-content reveal reveal-delay-1">
@@ -156,11 +158,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
             <h2>8. Contact Us</h2>
             <p>If you have questions about this Privacy Policy or how Pinnacle Route handles information, contact us at:</p>
             <div class="contact-card">
-              <a class="contact-link" href="mailto:info@pinnacleroute.com">
+              <a class="contact-link" data-href="mailto:info@pinnacleroute.com" role="link" tabindex="0">
                 <div class="contact-label">Email</div>
                 <div class="contact-value">info@pinnacleroute.com</div>
               </a>
-              <a class="contact-link" href="https://wa.me/919621391943" target="_blank" rel="noopener">
+              <a class="contact-link" data-href="https://wa.me/919621391943" target="_blank" rel="noopener" role="link" tabindex="0">
                 <div class="contact-label">WhatsApp</div>
                 <div class="contact-value">+91 96213 91943</div>
               </a>
@@ -182,8 +184,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
       <h2>Have a Project to Discuss?</h2>
       <p>Book a strategy session and we will review your goals, data needs, workflow requirements, and the safest path to build the right system.</p>
       <div class="cta-actions">
-        <a href="/strategy-call" class="btn btn-gold">Book Strategy Call →</a>
-        <a href="mailto:info@pinnacleroute.com" class="btn btn-outline">Email Us</a>
+        <a data-href="/strategy-call" class="btn btn-gold" role="link" tabindex="0">Book Strategy Call →</a>
+        <a data-href="mailto:info@pinnacleroute.com" class="btn btn-outline" role="link" tabindex="0">Email Us</a>
       </div>
     </div>
   </section>
@@ -193,38 +195,38 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="/" class="footer-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:56px;width:auto;display:block;"></a>
+        <a data-href="/" class="footer-logo" aria-label="Pinnacle Route home" role="link" tabindex="0"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:56px;width:auto;display:block;"></a>
         <p class="footer-tagline">AI-powered digital solutions for modern businesses. We build systems that reduce friction, automate operations, and drive scalable growth.</p>
         <div class="footer-socials">
-          <a class="social-btn" href="https://www.linkedin.com/company/pinnacle-route" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on LinkedIn" title="LinkedIn">in</a>
-          <a class="social-btn" href="https://www.instagram.com/pinnacle_route/" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on Instagram" title="Instagram">ig</a>
-          <a class="social-btn" href="https://x.com/PinnacleRoute" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on X" title="X/Twitter">X</a>
-          <a class="social-btn" href="https://www.threads.com/@pinnacle_route" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on Threads" title="Threads">th</a>
+          <a class="social-btn" data-href="https://www.linkedin.com/company/pinnacle-route" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on LinkedIn" title="LinkedIn" role="link" tabindex="0">in</a>
+          <a class="social-btn" data-href="https://www.instagram.com/pinnacle_route/" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on Instagram" title="Instagram" role="link" tabindex="0">ig</a>
+          <a class="social-btn" data-href="https://x.com/PinnacleRoute" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on X" title="X/Twitter" role="link" tabindex="0">X</a>
+          <a class="social-btn" data-href="https://www.threads.com/@pinnacle_route" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on Threads" title="Threads" role="link" tabindex="0">th</a>
         </div>
       </div>
 
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="/services/ai-automation/">AI Automation</a></li>
-          <li><a href="/services/ecommerce-development/">eCommerce Development</a></li>
-          <li><a href="/services/mobile-app-development/">Mobile App Development</a></li>
-          <li><a href="/services/custom-software-development/">Custom Software</a></li>
-          <li><a href="/services/crm-development/">CRM Development</a></li>
-          <li><a href="/services/erp-development/">ERP Development</a></li>
-          <li><a href="/services/saas-development/">SaaS Platforms</a></li>
-          <li><a href="/services/ui-ux-design/">UI/UX Design</a></li>
+          <li><a data-href="/services/ai-automation/" role="link" tabindex="0">AI Automation</a></li>
+          <li><a data-href="/services/ecommerce-development/" role="link" tabindex="0">eCommerce Development</a></li>
+          <li><a data-href="/services/mobile-app-development/" role="link" tabindex="0">Mobile App Development</a></li>
+          <li><a data-href="/services/custom-software-development/" role="link" tabindex="0">Custom Software</a></li>
+          <li><a data-href="/services/crm-development/" role="link" tabindex="0">CRM Development</a></li>
+          <li><a data-href="/services/erp-development/" role="link" tabindex="0">ERP Development</a></li>
+          <li><a data-href="/services/saas-development/" role="link" tabindex="0">SaaS Platforms</a></li>
+          <li><a data-href="/services/ui-ux-design/" role="link" tabindex="0">UI/UX Design</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="/#process">About</a></li>
-          <li><a href="/#case-studies">Case Studies</a></li>
-          <li><a href="/#industries">Industries</a></li>
-          <li><a href="/#contact">Contact</a></li>
-          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a data-href="/#process" role="link" tabindex="0">About</a></li>
+          <li><a data-href="/#case-studies" role="link" tabindex="0">Case Studies</a></li>
+          <li><a data-href="/#industries" role="link" tabindex="0">Industries</a></li>
+          <li><a data-href="/#contact" role="link" tabindex="0">Contact</a></li>
+          <li><a data-href="/privacy-policy/" role="link" tabindex="0">Privacy Policy</a></li>
         </ul>
       </div>
 
@@ -234,7 +236,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
         <div class="footer-contact-item">WhatsApp: +91 96213 91943</div>
         <div class="footer-contact-item">India</div>
         <div style="margin-top:1rem;">
-          <a href="https://calendly.com/pinnacleroute-info/30min" target="_blank" rel="noopener" class="btn btn-gold" style="padding:.6rem 1.2rem;font-size:.8rem;">Book a Call →</a>
+          <a data-href="https://calendly.com/pinnacleroute-info/30min" target="_blank" rel="noopener" class="btn btn-gold" style="padding:.6rem 1.2rem;font-size:.8rem;" role="link" tabindex="0">Book a Call →</a>
         </div>
       </div>
     </div>
@@ -247,6 +249,48 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
 </footer>
 
 <script>
+(function(){
+  function openCleanLink(el){
+    const href = el.dataset.href;
+    if (!href) return;
+    const target = el.getAttribute("target");
+    const scrollToHash = (hash) => {
+      try {
+        const node = document.querySelector(hash);
+        if (node) {
+          node.scrollIntoView({ behavior: "smooth", block: "start" });
+          return true;
+        }
+      } catch (error) {}
+      return false;
+    };
+    const onHome = location.pathname === "/" || location.pathname.endsWith("/index.html");
+    if (href.startsWith("#") && scrollToHash(href)) return;
+    if (href.startsWith("/#") && onHome && scrollToHash(href.slice(1))) return;
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+      window.location.href = href;
+      return;
+    }
+    if (target === "_blank") {
+      window.open(href, "_blank", "noopener");
+      return;
+    }
+    window.location.href = href;
+  }
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[data-href]");
+    if (!link) return;
+    event.preventDefault();
+    openCleanLink(link);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const link = event.target.closest("a[data-href]");
+    if (!link) return;
+    event.preventDefault();
+    openCleanLink(link);
+  });
+})();
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
 const mobileMenu=document.getElementById('mobileMenu');

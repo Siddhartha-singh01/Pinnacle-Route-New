@@ -186,6 +186,8 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
   .hero-actions{flex-direction:column;}
   .steps-visual{grid-template-columns:1fr;}
 }
+
+[data-href] { cursor: pointer; }
 </style>
 <link rel="icon" type="image/png" href="/assets/brand/favicon-web.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-web.png">
@@ -196,16 +198,16 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:44px;width:auto;display:block;"></a>
+      <a data-href="/" class="nav-logo" aria-label="Pinnacle Route home" role="link" tabindex="0"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:44px;width:auto;display:block;"></a>
       <ul class="nav-links">
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#solutions">Solutions</a></li>
-        <li><a href="/#case-studies">Case Studies</a></li>
-        <li><a href="/#process">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><a data-href="/#services" role="link" tabindex="0">Services</a></li>
+        <li><a data-href="/#solutions" role="link" tabindex="0">Solutions</a></li>
+        <li><a data-href="/#case-studies" role="link" tabindex="0">Case Studies</a></li>
+        <li><a data-href="/#process" role="link" tabindex="0">About</a></li>
+        <li><a data-href="/#contact" role="link" tabindex="0">Contact</a></li>
       </ul>
       <div style="display:flex;align-items:center;gap:1.5rem;">
-        <a href="/strategy-call" class="nav-cta">Book Strategy Call</a>
+        <a data-href="/strategy-call" class="nav-cta" role="link" tabindex="0">Book Strategy Call</a>
         <div class="nav-toggle" id="menuToggle"><span></span><span></span><span></span></div>
       </div>
     </div>
@@ -213,11 +215,11 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="menuClose">✕</button>
-  <a href="/#services" class="ml">Services</a>
-  <a href="/#solutions" class="ml">Solutions</a>
-  <a href="/#case-studies" class="ml">Case Studies</a>
-  <a href="/#contact" class="ml">Contact</a>
-  <a href="/strategy-call" class="nav-cta">Book Strategy Call</a>
+  <a data-href="/#services" class="ml" role="link" tabindex="0">Services</a>
+  <a data-href="/#solutions" class="ml" role="link" tabindex="0">Solutions</a>
+  <a data-href="/#case-studies" class="ml" role="link" tabindex="0">Case Studies</a>
+  <a data-href="/#contact" class="ml" role="link" tabindex="0">Contact</a>
+  <a data-href="/strategy-call" class="nav-cta" role="link" tabindex="0">Book Strategy Call</a>
 </div>
 
 <!-- HERO -->
@@ -227,7 +229,7 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
     <div class="hero-content">
       <div class="back-link reveal" onclick="history.back()">← Back to Services</div>
       <div class="breadcrumb reveal">
-        <a href="/">Home</a>
+        <a data-href="/" role="link" tabindex="0">Home</a>
         <span>/</span>
         <span>AI & Automation Solutions</span>
       </div>
@@ -239,8 +241,8 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
         We design and deploy intelligent AI automation systems that eliminate repetitive work, qualify leads at scale, support customers 24/7, and surface insights that help your team make faster, better decisions.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
-        <a href="/strategy-call" class="btn btn-gold">Book Free Strategy Session →</a>
-        <a href="#use-cases" class="btn btn-outline">See Use Cases</a>
+        <a data-href="/strategy-call" class="btn btn-gold" role="link" tabindex="0">Book Free Strategy Session →</a>
+        <a data-href="#use-cases" class="btn btn-outline" role="link" tabindex="0">See Use Cases</a>
       </div>
       <div class="hero-metrics reveal reveal-delay-4">
         <div class="hero-metric">
@@ -474,8 +476,8 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
       <h2 class="cta-title">Ready to Eliminate<br><em>Manual Work for Good?</em></h2>
       <p class="cta-sub">Book a free 45-minute strategy session. We'll map your current workflows, identify your top automation opportunities, and show you what an AI-powered version of your operations could look like.</p>
       <div class="cta-actions">
-        <a href="/strategy-call" class="btn btn-gold">Book Free Strategy Session →</a>
-        <a href="/#services" class="btn btn-outline">Explore All Services</a>
+        <a data-href="/strategy-call" class="btn btn-gold" role="link" tabindex="0">Book Free Strategy Session →</a>
+        <a data-href="/#services" class="btn btn-outline" role="link" tabindex="0">Explore All Services</a>
       </div>
     </div>
   </div>
@@ -485,15 +487,15 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <a href="/" class="footer-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:56px;width:auto;display:block;"></a>
+      <a data-href="/" class="footer-logo" aria-label="Pinnacle Route home" role="link" tabindex="0"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:56px;width:auto;display:block;"></a>
       <div class="footer-links">
-        <a href="/services/ai-automation/">AI Automation</a>
-        <a href="/services/ecommerce-development/">eCommerce</a>
-        <a href="/services/mobile-app-development/">Mobile Apps</a>
-        <a href="/services/custom-software-development/">Custom Software</a>
-        <a href="/services/crm-development/">CRM & ERP</a>
-        <a href="/services/saas-development/">SaaS</a>
-        <a href="/services/ui-ux-design/">UI/UX Design</a>
+        <a data-href="/services/ai-automation/" role="link" tabindex="0">AI Automation</a>
+        <a data-href="/services/ecommerce-development/" role="link" tabindex="0">eCommerce</a>
+        <a data-href="/services/mobile-app-development/" role="link" tabindex="0">Mobile Apps</a>
+        <a data-href="/services/custom-software-development/" role="link" tabindex="0">Custom Software</a>
+        <a data-href="/services/crm-development/" role="link" tabindex="0">CRM & ERP</a>
+        <a data-href="/services/saas-development/" role="link" tabindex="0">SaaS</a>
+        <a data-href="/services/ui-ux-design/" role="link" tabindex="0">UI/UX Design</a>
       </div>
       <div class="footer-copy">© 2026 <span>Pinnacle Route</span>. All rights reserved.</div>
     </div>
@@ -501,6 +503,48 @@ footer{background:var(--bg);border-top:1px solid var(--border-subtle);padding:3r
 </footer>
 
 <script>
+(function(){
+  function openCleanLink(el){
+    const href = el.dataset.href;
+    if (!href) return;
+    const target = el.getAttribute("target");
+    const scrollToHash = (hash) => {
+      try {
+        const node = document.querySelector(hash);
+        if (node) {
+          node.scrollIntoView({ behavior: "smooth", block: "start" });
+          return true;
+        }
+      } catch (error) {}
+      return false;
+    };
+    const onHome = location.pathname === "/" || location.pathname.endsWith("/index.html");
+    if (href.startsWith("#") && scrollToHash(href)) return;
+    if (href.startsWith("/#") && onHome && scrollToHash(href.slice(1))) return;
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+      window.location.href = href;
+      return;
+    }
+    if (target === "_blank") {
+      window.open(href, "_blank", "noopener");
+      return;
+    }
+    window.location.href = href;
+  }
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[data-href]");
+    if (!link) return;
+    event.preventDefault();
+    openCleanLink(link);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const link = event.target.closest("a[data-href]");
+    if (!link) return;
+    event.preventDefault();
+    openCleanLink(link);
+  });
+})();
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
 document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('open'));
