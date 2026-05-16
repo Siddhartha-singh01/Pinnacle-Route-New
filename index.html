@@ -1166,6 +1166,14 @@ button, input, select, textarea { font-family: var(--font-body); }
 }
 .author-name { font-size: 0.9rem; font-weight: 500; color: var(--ivory); }
 .author-role { font-size: 0.78rem; color: var(--muted); }
+.author-role a {
+  color: inherit;
+  transition: color var(--transition);
+}
+.author-role a:hover,
+.author-role a:focus-visible {
+  color: var(--gold);
+}
 
 /* ============================================================
    CONTACT / FORM SECTION
@@ -2199,7 +2207,7 @@ footer {
           <div class="author-avatar">MD</div>
           <div>
             <div class="author-name">Maddie Davies</div>
-            <div class="author-role">Founder, The Designer Club</div>
+            <div class="author-role">Founder, <a href="https://www.thedesignerclub.com.au/" target="_blank" rel="noopener noreferrer">The Designer Club</a></div>
           </div>
         </div>
       </div>
@@ -2210,7 +2218,7 @@ footer {
           <div class="author-avatar">BJ</div>
           <div>
             <div class="author-name">Billy Jaderpour</div>
-            <div class="author-role">Owner, The Mandaean Life</div>
+            <div class="author-role">Owner, <a href="https://mandaeanapp.com.au/" target="_blank" rel="noopener noreferrer">The Mandaean App</a></div>
           </div>
         </div>
       </div>
@@ -2221,7 +2229,7 @@ footer {
           <div class="author-avatar">TT</div>
           <div>
             <div class="author-name">TJ Touma</div>
-            <div class="author-role">CEO, The Borrowed Luxe</div>
+            <div class="author-role">CEO, <a href="https://www.borrowedluxehire.com.au/" target="_blank" rel="noopener noreferrer">The Borrowed Luxe</a></div>
           </div>
         </div>
       </div>
