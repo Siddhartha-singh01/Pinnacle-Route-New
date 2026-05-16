@@ -173,25 +173,37 @@ button, input, select, textarea { font-family: var(--font-body); }
   gap: 2.5rem;
   list-style: none;
 }
-.nav-links a {
+.nav-links a,
+.nav-links button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-family: var(--font-body);
   font-size: 0.88rem;
   font-weight: 400;
   color: var(--muted);
   letter-spacing: 0.01em;
   transition: color var(--transition);
+  cursor: pointer;
 }
-.nav-links a:hover { color: var(--ivory); }
+.nav-links a:hover,
+.nav-links button:hover { color: var(--ivory); }
 .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 .nav-cta {
+  appearance: none;
   padding: 0.6rem 1.4rem;
   background: var(--gold);
+  border: 0;
   color: #0D0D0D;
   border-radius: 3px;
+  font-family: var(--font-body);
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   transition: var(--transition);
   white-space: nowrap;
+  cursor: pointer;
 }
 .nav-cta:hover { background: var(--gold-hover); box-shadow: 0 4px 20px rgba(198,169,114,0.3); }
 .nav-toggle {
@@ -220,15 +232,23 @@ button, input, select, textarea { font-family: var(--font-body); }
   gap: 2rem;
 }
 .mobile-menu.open { display: flex; }
-.mobile-menu a {
+.mobile-menu a,
+.mobile-menu button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
   font-family: var(--font-head);
   font-size: 2.2rem;
   font-weight: 400;
   color: var(--ivory);
   transition: color var(--transition);
+  cursor: pointer;
 }
-.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu a:hover,
+.mobile-menu button:hover { color: var(--gold); }
 .mobile-menu .nav-cta { font-family: var(--font-body); font-size: 1rem; padding: 0.85rem 2rem; }
+.mobile-menu .nav-cta:hover { color: #0D0D0D; }
 .mobile-close {
   position: absolute; top: 1.5rem; right: 2rem;
   background: none; border: none;
@@ -1177,12 +1197,21 @@ button, input, select, textarea { font-family: var(--font-body); }
 }
 .author-name { font-size: 0.9rem; font-weight: 500; color: var(--ivory); }
 .author-role { font-size: 0.78rem; color: var(--muted); }
-.author-role a {
+.author-role a,
+.author-role button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
   color: inherit;
   transition: color var(--transition);
+  cursor: pointer;
 }
 .author-role a:hover,
-.author-role a:focus-visible {
+.author-role a:focus-visible,
+.author-role button:hover,
+.author-role button:focus-visible {
   color: var(--gold);
 }
 
@@ -1403,6 +1432,7 @@ footer {
 .footer-tagline { font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; max-width: 240px; }
 .footer-socials { display: flex; gap: 0.75rem; }
 .social-btn {
+  appearance: none;
   width: 36px; height: 36px;
   border-radius: 6px;
   background: var(--card);
@@ -1510,15 +1540,15 @@ footer {
       <a href="/" class="nav-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:44px;width:auto;display:block;"></a>
 
       <ul class="nav-links">
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#solutions">Solutions</a></li>
-        <li><a href="/#case-studies">Case Studies</a></li>
-        <li><a href="/#process">About</a></li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><button type="button" data-nav-target="services">Services</button></li>
+        <li><button type="button" data-nav-target="solutions">Solutions</button></li>
+        <li><button type="button" data-nav-target="case-studies">Case Studies</button></li>
+        <li><button type="button" data-nav-target="process">About</button></li>
+        <li><button type="button" data-nav-target="contact">Contact</button></li>
       </ul>
 
       <div class="nav-right">
-        <a href="/strategy-call.html" class="nav-cta">Book Strategy Call</a>
+        <button type="button" class="nav-cta" data-page-target="/strategy-call">Book Strategy Call</button>
         <div class="nav-toggle" id="menuToggle" aria-label="Open menu">
           <span></span><span></span><span></span>
         </div>
@@ -1531,13 +1561,13 @@ footer {
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="menuClose" aria-label="Close menu">✕</button>
 
-  <a href="/#services" class="mobile-link">Services</a>
-  <a href="/#solutions" class="mobile-link">Solutions</a>
-  <a href="/#case-studies" class="mobile-link">Case Studies</a>
-  <a href="/#process" class="mobile-link">About</a>
-  <a href="/#contact" class="mobile-link">Contact</a>
+  <button type="button" class="mobile-link" data-nav-target="services">Services</button>
+  <button type="button" class="mobile-link" data-nav-target="solutions">Solutions</button>
+  <button type="button" class="mobile-link" data-nav-target="case-studies">Case Studies</button>
+  <button type="button" class="mobile-link" data-nav-target="process">About</button>
+  <button type="button" class="mobile-link" data-nav-target="contact">Contact</button>
 
-  <a href="/strategy-call.html" class="nav-cta">Book Strategy Call</a>
+  <button type="button" class="nav-cta" data-page-target="/strategy-call">Book Strategy Call</button>
 </div>
 
 <!-- ============================================================
@@ -1558,7 +1588,7 @@ footer {
           We design premium websites, scalable software, AI automation systems, and mobile applications that help businesses grow faster with less manual work.
         </p>
         <div class="hero-actions reveal reveal-delay-3">
-          <a href="/strategy-call.html" class="btn btn-gold">Book Free Consultation →</a>
+          <a href="/strategy-call" class="btn btn-gold">Book Free Consultation →</a>
           <a href="#case-studies" class="btn btn-outline">View Our Work</a>
         </div>
       </div>
@@ -2223,7 +2253,7 @@ footer {
           <div class="author-avatar">MD</div>
           <div>
             <div class="author-name">Maddie Davies</div>
-            <div class="author-role">Founder, <a href="https://www.thedesignerclub.com.au/" target="_blank" rel="noopener noreferrer">The Designer Club</a></div>
+            <div class="author-role">Founder, <button type="button" data-client-site="designer">The Designer Club</button></div>
           </div>
         </div>
       </div>
@@ -2235,7 +2265,7 @@ footer {
           <div class="author-avatar">BJ</div>
           <div>
             <div class="author-name">Billy Jaderpour</div>
-            <div class="author-role">Owner, <a href="https://mandaeanapp.com.au/" target="_blank" rel="noopener noreferrer">The Mandaean App</a></div>
+            <div class="author-role">Owner, <button type="button" data-client-site="mandaean">The Mandaean App</button></div>
           </div>
         </div>
       </div>
@@ -2247,7 +2277,7 @@ footer {
           <div class="author-avatar">TT</div>
           <div>
             <div class="author-name">TJ Touma</div>
-            <div class="author-role">CEO, <a href="https://www.borrowedluxehire.com.au/" target="_blank" rel="noopener noreferrer">The Borrowed Luxe</a></div>
+            <div class="author-role">CEO, <button type="button" data-client-site="borrowed">The Borrowed Luxe</button></div>
           </div>
         </div>
       </div>
@@ -2390,7 +2420,7 @@ footer {
       <h2 class="cta-title">Ready to Scale With<br><em>AI & Automation?</em></h2>
       <p class="cta-sub">Whether you need a premium website, a custom platform, a mobile app, or intelligent automation — Pinnacle Route builds systems that move your business forward.</p>
       <div class="cta-actions">
-        <a href="/strategy-call.html" class="btn btn-gold">Book Consultation →</a>
+        <a href="/strategy-call" class="btn btn-gold">Book Consultation →</a>
         <a href="#contact" class="btn btn-outline">Contact Us</a>
       </div>
     </div>
@@ -2407,10 +2437,10 @@ footer {
         <a href="/" class="footer-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route" style="height:56px;width:auto;display:block;"></a>
         <p class="footer-tagline">AI-powered digital solutions for modern businesses. We build systems that reduce friction, automate operations, and drive scalable growth.</p>
         <div class="footer-socials">
-  <a class="social-btn" href="https://www.linkedin.com/company/pinnacle-route" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on LinkedIn" title="LinkedIn">in</a>
-  <a class="social-btn" href="https://www.instagram.com/pinnacle_route/" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on Instagram" title="Instagram">ig</a>
-  <a class="social-btn" href="https://x.com/PinnacleRoute" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on X" title="X/Twitter">𝕏</a>
-  <a class="social-btn" href="https://www.threads.com/@pinnacle_route" target="_blank" rel="noopener noreferrer" aria-label="Pinnacle Route on Threads" title="Threads">th</a>
+          <button class="social-btn" type="button" data-social="linkedin" aria-label="Pinnacle Route on LinkedIn" title="LinkedIn">in</button>
+          <button class="social-btn" type="button" data-social="instagram" aria-label="Pinnacle Route on Instagram" title="Instagram">ig</button>
+          <button class="social-btn" type="button" data-social="x" aria-label="Pinnacle Route on X" title="X/Twitter">𝕏</button>
+          <button class="social-btn" type="button" data-social="threads" aria-label="Pinnacle Route on Threads" title="Threads">th</button>
         </div>
       </div>
 
@@ -2445,7 +2475,7 @@ footer {
         <div class="footer-contact-item">💬 WhatsApp: +91 9621391943</div>
         <div class="footer-contact-item">📍 India</div>
         <div style="margin-top:1rem;">
-          <a href="/strategy-call.html" class="btn btn-gold" style="padding:0.6rem 1.2rem;font-size:0.8rem;">Book a Call →</a>
+          <a href="/strategy-call" class="btn btn-gold" style="padding:0.6rem 1.2rem;font-size:0.8rem;">Book a Call →</a>
         </div>
       </div>
     </div>
@@ -2477,6 +2507,51 @@ const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-menu .nav-c
 toggle.addEventListener('click', () => menu.classList.toggle('open'));
 close.addEventListener('click', () => menu.classList.remove('open'));
 mobileLinks.forEach(l => l.addEventListener('click', () => menu.classList.remove('open')));
+
+/* --- CLEAN NAV + EXTERNAL ACTIONS --- */
+document.querySelectorAll('[data-nav-target]').forEach(button => {
+  button.addEventListener('click', () => {
+    const target = document.getElementById(button.dataset.navTarget);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.location.href = `/#${button.dataset.navTarget}`;
+    }
+  });
+});
+
+document.querySelectorAll('[data-page-target]').forEach(button => {
+  button.addEventListener('click', () => {
+    window.location.href = button.dataset.pageTarget;
+  });
+});
+
+const clientSites = {
+  designer: 'https://www.thedesignerclub.com.au/',
+  mandaean: 'https://mandaeanapp.com.au/',
+  borrowed: 'https://www.borrowedluxehire.com.au/'
+};
+
+document.querySelectorAll('[data-client-site]').forEach(button => {
+  button.addEventListener('click', () => {
+    const url = clientSites[button.dataset.clientSite];
+    if (url) window.open(url, '_blank', 'noopener');
+  });
+});
+
+const socialLinks = {
+  linkedin: 'https://www.linkedin.com/company/pinnacle-route',
+  instagram: 'https://www.instagram.com/pinnacle_route/',
+  x: 'https://x.com/PinnacleRoute',
+  threads: 'https://www.threads.com/@pinnacle_route'
+};
+
+document.querySelectorAll('[data-social]').forEach(button => {
+  button.addEventListener('click', () => {
+    const url = socialLinks[button.dataset.social];
+    if (url) window.open(url, '_blank', 'noopener');
+  });
+});
 
 /* --- SCROLL REVEAL --- */
 const revealObserver = new IntersectionObserver((entries) => {
