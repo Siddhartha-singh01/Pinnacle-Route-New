@@ -368,6 +368,38 @@ button { cursor: pointer; }
   line-height: 1.22;
 }
 .quote cite { display: block; margin-top: 1rem; color: var(--muted); font-style: normal; }
+.client-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.4rem;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.client-proof {
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 1.1rem;
+}
+.client-proof p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+.client-proof b {
+  display: block;
+  color: var(--ivory);
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+}
+.client-proof span {
+  display: block;
+  color: var(--gold);
+  font-size: 0.78rem;
+  margin-top: 0.1rem;
+}
 
 .timeline {
   display: grid;
@@ -433,8 +465,18 @@ button { cursor: pointer; }
 }
 .proof-stat { text-align: center; padding: 1.65rem 1rem; background: var(--card); border-right: 1px solid var(--border-soft); }
 .proof-stat:last-child { border-right: 0; }
-.proof-stat strong { display: block; font-family: var(--head); font-size: 3.1rem; line-height: 1; color: var(--gold); }
-.proof-stat span { color: var(--muted); font-size: 0.88rem; }
+.proof-stat strong {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.05em;
+  font-family: var(--head);
+  font-size: 3.1rem;
+  line-height: 1;
+  color: var(--gold);
+}
+.proof-stat .count-up { color: inherit; font-size: inherit; }
+.proof-label { display: block; color: var(--muted); font-size: 0.88rem; margin-top: 0.45rem; }
 
 .expect-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.6rem; }
 .expect {
@@ -544,6 +586,7 @@ footer {
   .float-card.one { left: 1rem; }
   .float-card.two { left: 2rem; }
   .diagnostics, .future-grid, .expect-row, .timeline { grid-template-columns: 1fr; }
+  .client-proof-grid { grid-template-columns: 1fr; }
   .timeline::before { left: 27px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
   .step { display: grid; grid-template-columns: 56px 1fr; gap: 1rem; align-items: start; }
   .step .step-dot { margin-bottom: 0; }
@@ -582,7 +625,7 @@ footer {
       <div class="hero-copy">
         <div class="eyebrow reveal"><span class="eyebrow-dot"></span>BY APPLICATION ONLY — LIMITED STRATEGY SESSIONS AVAILABLE</div>
         <h1 class="hero-title reveal" style="--delay:.08s">We Don't Work With Everyone. But If Your Business Is Ready to Scale — We Should Talk.</h1>
-        <p class="hero-sub reveal" style="--delay:.16s">Pinnacle Route partners with serious founders and business owners to design, build, and deploy AI-powered systems that eliminate manual work, accelerate revenue, and create scalable digital infrastructure — in weeks, not months.</p>
+        <p class="hero-sub reveal" style="--delay:.16s">Pinnacle Route partners with serious founders and business owners to design, build, and deploy AI automation, eCommerce platforms, mobile apps, custom software, CRM/ERP systems, SaaS products, and premium UI/UX — in weeks, not months.</p>
         <div class="trust-lines reveal" style="--delay:.24s">
           <div><span>✦</span>50+ businesses transformed across 10+ industries</div>
           <div><span>✦</span>Average client ROI recovered within 90 days of deployment</div>
@@ -626,10 +669,10 @@ footer {
       <div class="cards-grid situations">
         <article class="situation-card reveal"><h3>Your leads are everywhere — and going nowhere.</h3><p>Enquiries come in from WhatsApp, email, website forms, and portals. There's no system, no scoring, no follow-up process. Deals are slipping through the cracks every single day.</p></article>
         <article class="situation-card reveal"><h3>Your team is buried in tasks that shouldn't require humans.</h3><p>Data entry, report generation, follow-up emails, CRM updates, invoice reminders — your best people are spending their hours on work a machine could do in seconds.</p></article>
-        <article class="situation-card reveal"><h3>You have a digital presence. But it's not doing any work for you.</h3><p>Your website looks fine, but it doesn't capture leads, qualify visitors, or move people toward a decision. It's a digital brochure, not a business asset.</p></article>
+        <article class="situation-card reveal"><h3>You have a website or store. But it's not doing enough work for you.</h3><p>Your website or eCommerce experience looks fine, but it doesn't capture qualified leads, improve conversions, automate operations, or move people toward a decision.</p></article>
         <article class="situation-card reveal"><h3>You've tried tools. Nothing stuck.</h3><p>You've subscribed to CRMs, automation platforms, and project management tools. But without a system built specifically for your business, they just created more complexity.</p></article>
         <article class="situation-card reveal"><h3>Your operations run on WhatsApp groups and spreadsheets.</h3><p>There's no single source of truth. Decisions are made on incomplete information. Things fall through the cracks because there's no infrastructure holding them together.</p></article>
-        <article class="situation-card reveal"><h3>You know what you want to build — but you don't have the right team to build it.</h3><p>You have a clear vision for a product, a platform, or an app. But every developer conversation ends in confusion, delays, or a quote that makes no sense.</p></article>
+        <article class="situation-card reveal"><h3>You know what you want to build — but you don't have the right team to build it.</h3><p>You have a clear vision for an app, SaaS platform, CRM, ERP, portal, dashboard, or custom product. But every developer conversation ends in confusion, delays, or a quote that makes no sense.</p></article>
       </div>
       <p class="gold-italic reveal">If even two of these feel familiar — this page was written for you.</p>
     </div>
@@ -658,7 +701,7 @@ footer {
         <p class="section-copy">Most business owners underestimate what inefficiency actually costs them. It's not just time — it's compounding revenue loss, team burnout, and market share quietly moving to more systemised competitors.</p>
       </div>
       <div class="cards-grid cost-grid">
-        <article class="cost-card reveal"><span class="cost-metric">₹8–25 Lakhs / year</span><h3>Average hidden cost of manual operations</h3><p>When you calculate the salary cost of repetitive tasks that could be automated, the number shocks most founders.</p></article>
+        <article class="cost-card reveal"><span class="cost-metric">$10k–$30k / year</span><h3>Average hidden cost of manual operations</h3><p>When you calculate the salary cost of repetitive tasks that could be automated, the number shocks most founders.</p></article>
         <article class="cost-card reveal"><span class="cost-metric">47% of leads</span><h3>Lost due to slow or inconsistent follow-up</h3><p>Nearly half of all inbound enquiries go cold before your team has a chance to respond. That's revenue your marketing already paid for.</p></article>
         <article class="cost-card reveal"><span class="cost-metric">6–12 months</span><h3>Time wasted building the wrong digital product</h3><p>Without a proper strategy and architecture phase, most custom builds end up over budget, late, and solving the wrong problem.</p></article>
         <article class="cost-card reveal"><span class="cost-metric">3× slower growth</span><h3>For businesses running on manual processes vs automated systems</h3><p>The data is consistent — businesses with automated sales and operational systems grow three times faster than those relying on manual effort.</p></article>
@@ -672,20 +715,24 @@ footer {
       <div class="center reveal">
         <div class="section-label">YOUR FUTURE STATE</div>
         <h2 class="section-title">Imagine Running a Business Where the System Does the Heavy Lifting.</h2>
-        <p class="section-copy">This isn't a fantasy. It's what our clients experience within 60–90 days of working with Pinnacle Route. Here's what that looks like in practice:</p>
+        <p class="section-copy">This is what Pinnacle Route is built to deliver: practical digital systems, intelligent automation, and polished user experiences that make the business easier to run and easier to scale.</p>
       </div>
       <div class="cards-grid future-grid">
         <article class="future-card reveal"><div class="icon-box">01</div><h3>Every lead is captured, scored, and followed up — automatically.</h3><p>The moment a prospect interacts with your business, they enter an intelligent system that qualifies, nurtures, and routes them to your team — ready to close.</p></article>
         <article class="future-card reveal"><div class="icon-box">02</div><h3>Your team works on what only humans can do.</h3><p>Repetitive tasks — CRM updates, reports, reminders, data entry — are handled by automation. Your people focus on relationships, decisions, and growth.</p></article>
-        <article class="future-card reveal"><div class="icon-box">03</div><h3>Your website converts visitors into booked calls without manual intervention.</h3><p>An AI-powered funnel captures intent, delivers the right message, and moves qualified visitors into your calendar — 24 hours a day.</p></article>
-        <article class="future-card reveal"><div class="icon-box">04</div><h3>You have one dashboard that shows you everything.</h3><p>Revenue, pipeline, team performance, marketing ROI, operational KPIs — all in one place, updated in real time, accessible from anywhere.</p></article>
-        <article class="future-card reveal"><div class="icon-box">05</div><h3>You scale without scaling your headcount.</h3><p>New markets, new products, new channels — your automated infrastructure handles the volume without requiring proportional team growth.</p></article>
-        <article class="future-card reveal"><div class="icon-box">06</div><h3>You have a technology partner, not just a vendor.</h3><p>A dedicated team that knows your business, maintains your systems, and continues building as your needs evolve — always one step ahead.</p></article>
+        <article class="future-card reveal"><div class="icon-box">03</div><h3>Your website or eCommerce platform becomes a revenue asset.</h3><p>Conversion-focused UX, lead capture, product journeys, checkout flows, and automation turn your digital presence into a system that supports sales every day.</p></article>
+        <article class="future-card reveal"><div class="icon-box">04</div><h3>Your CRM, ERP, dashboard, or internal software gives you one source of truth.</h3><p>Revenue, pipeline, team performance, marketing ROI, inventory, operations, and KPIs become visible in one place, updated around how your business actually works.</p></article>
+        <article class="future-card reveal"><div class="icon-box">05</div><h3>Your app, SaaS product, or custom platform is built with scale in mind.</h3><p>From MVP to production, your product has clean user journeys, secure architecture, admin systems, analytics, and workflows designed for real adoption.</p></article>
+        <article class="future-card reveal"><div class="icon-box">06</div><h3>You have a technology partner, not just a vendor.</h3><p>A dedicated team that understands automation, software, product design, and digital growth — and continues building as your needs evolve.</p></article>
       </div>
       <blockquote class="quote reveal">
-        <p>"Within 90 days of working with Pinnacle Route, we had a fully automated lead qualification system, a live CRM dashboard, and our support response time went from 6 hours to 4 minutes."</p>
-        <cite>— Arjun Rathore, Founder, Luxury Retail Brand</cite>
+        <p>"Pinnacle Route replaced our scattered manual workflows with a clean automated system that gave our team visibility, speed, and control we didn't think was possible without hiring 5 more people."</p>
+        <cite>— Maddie Davies, Founder, The Designer Club</cite>
       </blockquote>
+      <div class="client-proof-grid">
+        <article class="client-proof reveal"><p>"The CRM they built for us transformed how our sales team operates. Leads no longer fall through the cracks, and our conversion rate has improved significantly since we deployed it."</p><b>Billy Jaderpour</b><span>Owner, The Mandaean App</span></article>
+        <article class="client-proof reveal"><p>"They took our complex SaaS requirements and delivered a polished, investor-ready product in 8 weeks. Their AI integrations were thoughtful, not gimmicky — they actually solved real user problems."</p><b>TJ Touma</b><span>CEO, The Borrowed Luxe</span></article>
+      </div>
     </div>
   </section>
 
@@ -693,22 +740,22 @@ footer {
     <div class="container">
       <div class="center reveal">
         <div class="section-label">THE PINNACLE ROUTE METHOD</div>
-        <h2 class="section-title">We Don't Sell Software. We Build the Operating System for Your Business.</h2>
-        <p class="section-copy">After working with 50+ businesses across 10+ industries, we've developed a methodology that doesn't just build technology — it redesigns how your business operates, competes, and grows.</p>
+        <h2 class="section-title">We Don't Sell Generic Software. We Build the Digital Systems Your Business Actually Needs.</h2>
+        <p class="section-copy">Across AI automation, eCommerce, mobile apps, custom software, CRM/ERP systems, SaaS platforms, and UI/UX design, our methodology connects strategy, architecture, build quality, and post-launch optimisation.</p>
       </div>
       <div class="timeline">
         <article class="step reveal"><div class="step-dot">1</div><div><h3>Diagnose</h3><p>We map every broken workflow, revenue leak, and manual process in your business before we recommend a single solution.</p></div></article>
-        <article class="step reveal"><div class="step-dot">2</div><div><h3>Architect</h3><p>We design the exact systems — automation flows, integrations, data architecture, and product roadmap — your business needs to operate at the next level.</p></div></article>
-        <article class="step reveal"><div class="step-dot">3</div><div><h3>Build & Deploy</h3><p>Our team designs, develops, tests, and deploys your AI systems, software, or digital product with enterprise-grade quality and speed.</p></div></article>
-        <article class="step reveal"><div class="step-dot">4</div><div><h3>Optimise & Scale</h3><p>Post-launch, we monitor, improve, and expand your systems continuously — so your technology always grows ahead of your business.</p></div></article>
+        <article class="step reveal"><div class="step-dot">2</div><div><h3>Architect</h3><p>We design the exact solution — automation flows, integrations, data architecture, product roadmap, UX structure, and technical stack — before development begins.</p></div></article>
+        <article class="step reveal"><div class="step-dot">3</div><div><h3>Build & Deploy</h3><p>Our team designs, develops, tests, and deploys your automation system, website, app, software platform, CRM/ERP, SaaS product, or dashboard with clean execution.</p></div></article>
+        <article class="step reveal"><div class="step-dot">4</div><div><h3>Optimise & Scale</h3><p>Post-launch, we refine conversion, workflows, usability, reporting, integrations, and performance so the system keeps improving as the business grows.</p></div></article>
       </div>
       <div class="pills reveal" aria-label="What Pinnacle Route builds">
         <span class="pill">AI Automation</span><span class="pill">eCommerce Development</span><span class="pill">Mobile Apps</span><span class="pill">Custom Software</span><span class="pill">CRM Systems</span><span class="pill">ERP Systems</span><span class="pill">SaaS Platforms</span><span class="pill">UI/UX Design</span>
       </div>
       <div class="proof-stats reveal" id="proofStats">
-        <div class="proof-stat"><strong><span class="count-up" data-target="50">0</span>+</strong><span>Projects Delivered</span></div>
-        <div class="proof-stat"><strong><span class="count-up" data-target="10">0</span>+</strong><span>Industries Served</span></div>
-        <div class="proof-stat"><strong><span class="count-up" data-target="98">0</span>%</strong><span>Client Satisfaction</span></div>
+        <div class="proof-stat"><strong><span class="count-up" data-target="50">0</span>+</strong><span class="proof-label">Projects Delivered</span></div>
+        <div class="proof-stat"><strong><span class="count-up" data-target="10">0</span>+</strong><span class="proof-label">Industries Served</span></div>
+        <div class="proof-stat"><strong><span class="count-up" data-target="98">0</span>%</strong><span class="proof-label">Client Satisfaction</span></div>
       </div>
     </div>
   </section>
@@ -748,7 +795,7 @@ footer {
                 <div class="form-grid">
                   <div class="field" data-field="company"><label for="company">Company / Business Name *</label><input id="company" name="company" type="text" autocomplete="organization" required><div class="error-text">Please enter your company name.</div></div>
                   <div class="field" data-field="phone"><label for="phone">Phone / WhatsApp</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-                  <div class="field" data-field="budget"><label for="budget">Budget Range</label><select id="budget" name="budget"><option value="">Select budget</option><option>Below ₹2 Lakhs</option><option>₹2–5 Lakhs</option><option>₹5–10 Lakhs</option><option>₹10–25 Lakhs</option><option>₹25 Lakhs+</option><option>Not sure yet</option></select></div>
+                  <div class="field" data-field="budget"><label for="budget">Budget Range</label><select id="budget" name="budget"><option value="">Select budget</option><option>Below $2,500</option><option>$2,500–$6,000</option><option>$6,000–$12,000</option><option>$12,000–$30,000</option><option>$30,000+</option><option>Not sure yet</option></select></div>
                   <div class="field" data-field="timeline"><label for="timeline">Timeline</label><select id="timeline" name="timeline"><option value="">Select timeline</option><option>Immediately</option><option>Within 30 days</option><option>1–3 months</option><option>3–6 months</option><option>Exploring options</option></select></div>
                   <div class="field full" data-field="challenge"><label for="challenge">Main Business Challenge</label><textarea id="challenge" name="challenge" placeholder="What is the biggest workflow, growth, or technology problem you want solved?"></textarea></div>
                   <div class="field full" data-field="captcha"><label for="captchaAnswer">Security Check: <span id="captchaQuestion">Loading...</span> *</label><input id="captchaAnswer" name="captchaAnswer" type="text" inputmode="numeric" autocomplete="off" required><div class="error-text">Please solve the security check.</div></div>
