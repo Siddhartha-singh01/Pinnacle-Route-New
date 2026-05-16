@@ -561,6 +561,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shado
 .success-state p { color: var(--muted); margin: 0.7rem auto 1.25rem; max-width: 460px; }
 .success-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
 .form-alert { min-height: 1.4rem; color: #d96d6d; font-size: 0.84rem; margin-top: 0.8rem; }
+.form-alert.success { color: var(--gold); }
 
 footer {
   padding: 2rem 0;
@@ -784,7 +785,8 @@ footer {
           <div id="formContent">
             <h3>Request your session</h3>
             <div class="form-steps" aria-hidden="true"><span class="form-step-dot active" id="dot1"></span><span class="form-step-dot" id="dot2"></span></div>
-            <form id="strategyForm" action="/api/contact" method="POST" novalidate>
+            <form id="strategyForm" action="https://main-backend-eta.vercel.app/api/contact" method="POST" novalidate>
+              <input type="hidden" name="subject" value="New Pinnacle Route Strategy Session Inquiry">
               <div class="form-step active" id="step1">
                 <div class="field" data-field="name"><label for="fullName">Full Name *</label><input id="fullName" name="fullName" type="text" autocomplete="name" required><div class="error-text">Please enter your full name.</div></div>
                 <div class="field" data-field="email"><label for="email">Email Address *</label><input id="email" name="email" type="email" autocomplete="email" required><div class="error-text">Please enter a valid email address.</div></div>
@@ -910,6 +912,7 @@ function refreshCaptcha() {
 
 function setAlert(message = "") {
   alertBox.textContent = message;
+  alertBox.classList.remove("success");
 }
 
 function markField(id, isValid) {
@@ -981,15 +984,18 @@ form.addEventListener("submit", async event => {
     "Main Business Challenge:",
     data.challenge || "Not provided"
   ].join("\n");
+  const fallbackSubject = encodeURIComponent(data.subject || "New Pinnacle Route Strategy Session Inquiry");
+  const fallbackBody = encodeURIComponent(`Name: ${data.fullName}\nEmail: ${data.email}\n\n${message}`);
 
   try {
-    const response = await fetch("/api/contact", {
+    const response = await fetch(form.action, {
       method: "POST",
       headers: { "Accept": "application/json", "Content-Type": "application/json" },
       body: JSON.stringify({
         name: data.fullName,
         email: data.email,
         phone: data.phone || "",
+        subject: data.subject || "New Pinnacle Route Strategy Session Inquiry",
         message
       })
     });
@@ -1000,7 +1006,9 @@ form.addEventListener("submit", async event => {
     document.getElementById("successState").classList.add("show");
   } catch (error) {
     refreshCaptcha();
-    setAlert(`${error.message} Please email info@pinnacleroute.com or message us on WhatsApp.`);
+    window.location.href = `mailto:info@pinnacleroute.com?subject=${fallbackSubject}&body=${fallbackBody}`;
+    setAlert("Your email app has been opened with this request pre-filled. Send it from there, or message us on WhatsApp.");
+    alertBox.classList.add("success");
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = original;
