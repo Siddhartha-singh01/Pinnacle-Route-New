@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Most Indian Businesses Lose 47% of Their Leads Before Lunch — Pinnacle Route</title>
+<meta name="description" content="Most business owners assume they have a sales problem. What they actually have is a response-time problem. Here's how AI qualification systems are changing this equation permanently.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Pinnacle Route">
+<meta property="og:title" content="Why Most Indian Businesses Lose 47% of Their Leads Before Lunch — Pinnacle Route">
+<meta property="og:description" content="Most business owners assume they have a sales problem. What they actually have is a response-time problem.">
+<meta property="og:url" content="https://pinnacleroute.com/blog-article">
+<link rel="canonical" href="https://pinnacleroute.com/blog-article">
+<meta property="og:image" content="https://pinnacleroute.com/assets/brand/social-preview.png">
+<meta property="og:image:secure_url" content="https://pinnacleroute.com/assets/brand/social-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pinnacle Route — AI-Powered Digital Transformation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Most Indian Businesses Lose 47% of Their Leads Before Lunch — Pinnacle Route">
+<meta name="twitter:description" content="How AI qualification systems help businesses respond faster and protect more leads.">
+<meta name="twitter:image" content="https://pinnacleroute.com/assets/brand/social-preview.png">
+<meta name="twitter:image:alt" content="Pinnacle Route — AI-Powered Digital Transformation">
+<link rel="icon" type="image/png" href="/assets/brand/favicon-web.png">
+<link rel="apple-touch-icon" href="/assets/brand/favicon-web.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   DESIGN TOKENS
+============================================================ */
+:root {
+  --bg:            #0D0D0D;
+  --bg2:           #161616;
+  --card:          #1C1C1C;
+  --ivory:         #F5F5F0;
+  --gold:          #C6A972;
+  --gold-hover:    #D4BC8A;
+  --muted:         #888880;
+  --graphite:      #2A2A2A;
+  --blue:          #4D8DFF;
+  --green:         #4CAF50;
+  --border:        rgba(198,169,114,0.18);
+  --border-subtle: rgba(255,255,255,0.06);
+  --font-head:     'Cormorant Garamond', serif;
+  --font-body:     'DM Sans', sans-serif;
+  --transition:    0.35s cubic-bezier(0.4,0,0.2,1);
+  --content-w:     720px;
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   READING PROGRESS BAR
+============================================================ */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-hover), var(--blue));
+  z-index: 2000;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(198,169,114,0.5);
+}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+#nav {
+  position: fixed; top: 3px; left: 0; right: 0;
+  z-index: 1000; padding: 1.1rem 0;
+  transition: background 0.4s, padding 0.3s;
+}
+#nav.scrolled {
+  background: rgba(13,13,13,0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.8rem 0;
+}
+.container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--ivory); letter-spacing: -0.02em; }
+.nav-logo img { height: 44px; width: auto; display: block; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  transition: color var(--transition), transform var(--transition);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -0.35rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transform: scaleX(0.45);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.nav-links a:hover {
+  color: var(--ivory);
+  transform: translateY(-1px);
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.nav-links a.active { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 1.5rem; }
+.nav-cta {
+  padding: 0.58rem 1.4rem; background: var(--gold); color: #0D0D0D;
+  border-radius: 3px; font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.04em; transition: var(--transition); white-space: nowrap;
+}
+.nav-cta:hover { background: var(--gold-hover); box-shadow: 0 4px 20px rgba(198,169,114,0.28); transform: translateY(-1px); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; transition: transform var(--transition); }
+.nav-toggle:hover { transform: translateY(-1px); }
+.nav-toggle span { width: 24px; height: 1.5px; background: var(--ivory); display: block; transition: var(--transition); }
+.nav-toggle:hover span { background: var(--gold); }
+.mobile-menu {
+  display: none; position: fixed; inset: 0;
+  background: rgba(13,13,13,0.97); backdrop-filter: blur(20px);
+  z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: var(--font-head); font-size: 2.2rem; color: var(--ivory); transition: color var(--transition), transform var(--transition); }
+.mobile-menu a:hover { color: var(--gold); transform: translateY(-2px); }
+.mobile-menu .nav-cta { font-family: var(--font-body); font-size: 1rem; padding: 0.85rem 2rem; }
+.mobile-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; font-size: 1.8rem; color: var(--muted); cursor: pointer; transition: color var(--transition), transform var(--transition); }
+.mobile-close:hover { color: var(--gold); transform: rotate(90deg); }
+
+[data-href] { cursor: pointer; }
+
+/* Mobile menu polish */
+.mobile-menu {
+  z-index: 2000 !important;
+  padding-top: max(6rem, env(safe-area-inset-top)) !important;
+}
+.mobile-menu::before {
+  content: "";
+  position: absolute;
+  top: calc(1.35rem + env(safe-area-inset-top));
+  left: clamp(1.5rem, 7vw, 4.75rem);
+  width: 180px;
+  height: 64px;
+  background: url("/assets/brand/logo.png") left center / contain no-repeat;
+  pointer-events: none;
+}
+.mobile-close {
+  top: calc(1.35rem + env(safe-area-inset-top)) !important;
+  right: clamp(1.25rem, 6vw, 3rem) !important;
+  width: 44px !important;
+  height: 44px !important;
+  padding: 0 !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.mobile-close::before,
+.mobile-close::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ivory);
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: background var(--transition), transform var(--transition);
+}
+.mobile-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+.mobile-close:hover::before {
+  background: var(--gold);
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+.mobile-close:hover::after {
+  background: var(--gold);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.mobile-menu .nav-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-height: 48px !important;
+  padding: 0.85rem 2rem !important;
+  background: var(--gold) !important;
+  color: #0D0D0D !important;
+  border: 0 !important;
+  border-radius: 3px !important;
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1.2 !important;
+}
+.mobile-menu .nav-cta:hover {
+  background: var(--gold-hover) !important;
+  color: #0D0D0D !important;
+  box-shadow: 0 8px 28px rgba(198,169,114,0.28);
+}
+
+/* ============================================================
+   ARTICLE HEADER
+============================================================ */
+.article-header {
+  padding: 9rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.article-header-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(198,169,114,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198,169,114,0.02) 1px, transparent 1px),
+    radial-gradient(ellipse 60% 70% at 70% 30%, rgba(77,141,255,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(198,169,114,0.04) 0%, transparent 60%);
+  background-size: 60px 60px, 60px 60px, 100% 100%, 100% 100%;
+  pointer-events: none;
+}
+.article-header-inner { position: relative; z-index: 2; max-width: var(--content-w); }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; color: var(--muted); margin-bottom: 2rem;
+}
+.breadcrumb a { transition: color var(--transition); }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb-sep { opacity: 0.4; }
+.breadcrumb-current { color: var(--muted); }
+
+/* Article meta row */
+.article-meta-row {
+  display: flex; align-items: center; gap: 1rem;
+  flex-wrap: wrap; margin-bottom: 1.8rem;
+}
+.article-category {
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--border);
+  padding: 0.25rem 0.8rem; border-radius: 20px;
+  background: rgba(198,169,114,0.06);
+}
+.article-meta-item {
+  display: flex; align-items: center; gap: 0.35rem;
+  font-size: 0.78rem; color: var(--muted);
+}
+
+/* Article headline */
+.article-headline {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin-bottom: 1.6rem;
+}
+.article-headline em { font-style: italic; color: var(--gold); }
+
+/* Article lede */
+.article-lede {
+  font-size: 1.18rem;
+  color: var(--muted);
+  line-height: 1.78;
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+/* Author + share row */
+.article-byline {
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1.2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.author-block { display: flex; align-items: center; gap: 1rem; }
+.author-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--graphite), var(--card));
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 1.1rem;
+  font-weight: 600; color: var(--gold); flex-shrink: 0;
+}
+.author-name { font-size: 0.9rem; font-weight: 500; color: var(--ivory); }
+.author-role { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+.share-row { display: flex; align-items: center; gap: 0.6rem; }
+.share-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-right: 0.2rem; }
+.share-btn {
+  width: 34px; height: 34px; border-radius: 6px;
+  background: var(--card); border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; color: var(--muted);
+  cursor: pointer; transition: var(--transition);
+}
+.share-btn:hover { border-color: var(--border); color: var(--gold); }
+
+/* ============================================================
+   ARTICLE HERO VISUAL (CSS dashboard)
+============================================================ */
+.article-hero-visual {
+  margin: 3rem 0;
+  background: var(--bg2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 32px 72px rgba(0,0,0,0.5);
+  max-width: 860px;
+}
+.ahv-topbar {
+  background: var(--card);
+  padding: 0.7rem 1.2rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.ahv-dot { width: 8px; height: 8px; border-radius: 50%; }
+.ahv-dot-r { background: #FF5F57; } .ahv-dot-y { background: #FFBC2E; } .ahv-dot-g { background: #28C840; }
+.ahv-label { font-size: 0.7rem; color: var(--muted); margin-left: 0.5rem; letter-spacing: 0.06em; }
+.ahv-body {
+  padding: 1.4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.ahv-metric {
+  background: var(--card); border: 1px solid var(--border-subtle);
+  border-radius: 8px; padding: 1rem;
+}
+.ahv-metric-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.4rem; }
+.ahv-metric-val { font-family: var(--font-head); font-size: 1.8rem; font-weight: 600; line-height: 1; margin-bottom: 0.25rem; }
+.ahv-metric-val.blue { color: var(--blue); }
+.ahv-metric-val.gold { color: var(--gold); }
+.ahv-metric-val.green { color: var(--green); }
+.ahv-metric-val.red { color: #FF5F57; }
+.ahv-metric-sub { font-size: 0.65rem; color: var(--muted); }
+.ahv-metric-change { font-size: 0.62rem; color: var(--green); margin-top: 0.2rem; }
+.ahv-metric-change.bad { color: #FF5F57; }
+.ahv-chart-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.ahv-chart {
+  background: var(--card); border: 1px solid var(--border-subtle);
+  border-radius: 8px; padding: 1rem;
+}
+.ahv-chart-title { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; }
+.ahv-bars { display: flex; align-items: flex-end; gap: 5px; height: 70px; }
+.ahv-bar {
+  flex: 1; border-radius: 3px 3px 0 0;
+  animation: ahvPulse 3s ease-in-out infinite;
+}
+.ahv-bar.b { background: linear-gradient(180deg, var(--blue) 0%, rgba(77,141,255,0.2) 100%); }
+.ahv-bar.g { background: linear-gradient(180deg, var(--gold) 0%, rgba(198,169,114,0.2) 100%); }
+.ahv-bar:nth-child(1){height:25%} .ahv-bar:nth-child(2){height:45%} .ahv-bar:nth-child(3){height:35%}
+.ahv-bar:nth-child(4){height:60%} .ahv-bar:nth-child(5){height:50%} .ahv-bar:nth-child(6){height:80%}
+.ahv-bar:nth-child(7){height:65%} .ahv-bar:nth-child(8){height:95%}
+@keyframes ahvPulse { 0%,100%{opacity:.65} 50%{opacity:1} }
+.ahv-pipeline { display: flex; flex-direction: column; gap: 0.5rem; }
+.ahv-pipe-row { display: flex; align-items: center; gap: 0.75rem; }
+.ahv-pipe-label { font-size: 0.68rem; color: var(--muted); width: 80px; flex-shrink: 0; }
+.ahv-pipe-track { flex: 1; height: 6px; background: var(--graphite); border-radius: 3px; overflow: hidden; }
+.ahv-pipe-fill { height: 100%; border-radius: 3px; }
+.ahv-pipe-fill.f1 { width: 100%; background: var(--blue); }
+.ahv-pipe-fill.f2 { width: 65%;  background: var(--gold); }
+.ahv-pipe-fill.f3 { width: 28%;  background: #9C6FFF; }
+.ahv-pipe-fill.f4 { width: 12%;  background: var(--green); }
+.ahv-pipe-val { font-size: 0.68rem; color: var(--ivory); font-weight: 500; width: 30px; text-align: right; flex-shrink: 0; }
+
+/* ============================================================
+   ARTICLE LAYOUT — Three-column with sticky TOC
+============================================================ */
+.article-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 720px) 220px;
+  gap: 3rem;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+  align-items: start;
+}
+
+/* ── Sticky TOC (left column) ──────────────────────────── */
+.toc-sidebar {
+  position: sticky;
+  top: 100px;
+}
+.toc-label {
+  font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 1rem;
+}
+.toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.1rem; }
+.toc-item a {
+  display: block;
+  font-size: 0.82rem; color: var(--muted);
+  padding: 0.45rem 0.75rem;
+  border-left: 2px solid var(--border-subtle);
+  line-height: 1.4;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+  border-radius: 0 4px 4px 0;
+}
+.toc-item a:hover { color: var(--ivory); border-color: var(--border); }
+.toc-item.active a {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(198,169,114,0.05);
+}
+.toc-back {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.75rem; color: var(--muted);
+  margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  transition: color var(--transition); cursor: pointer;
+}
+.toc-back:hover { color: var(--gold); }
+
+/* ── Article body (centre column) ─────────────────────── */
+.article-body {
+  min-width: 0;
+}
+
+/* Typography */
+.article-body h2 {
+  font-family: var(--font-head);
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  font-weight: 500; line-height: 1.2;
+  color: var(--ivory); letter-spacing: -0.01em;
+  margin: 3.5rem 0 1.2rem;
+  padding-top: 1rem;
+  scroll-margin-top: 120px;
+}
+.article-body h3 {
+  font-family: var(--font-head);
+  font-size: 1.45rem; font-weight: 500;
+  color: var(--ivory); line-height: 1.3;
+  margin: 2.5rem 0 0.9rem;
+  scroll-margin-top: 120px;
+}
+.article-body p {
+  font-size: 1rem; color: var(--muted);
+  line-height: 1.82; margin-bottom: 1.5rem;
+}
+.article-body p strong { color: var(--ivory); font-weight: 500; }
+.article-body p em { font-style: italic; color: var(--ivory); }
+.article-body a { color: var(--gold); text-decoration: underline; text-decoration-color: rgba(198,169,114,0.3); transition: text-decoration-color var(--transition); }
+.article-body a:hover { text-decoration-color: var(--gold); }
+
+/* Pull quote */
+.pull-quote {
+  margin: 2.5rem 0;
+  padding: 2rem 2rem 2rem 2.5rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(198,169,114,0.04);
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+.pull-quote::before {
+  content: '"';
+  font-family: var(--font-head);
+  font-size: 5rem; line-height: 1;
+  color: rgba(198,169,114,0.15);
+  position: absolute; top: 0.5rem; left: 1.2rem;
+}
+.pull-quote p {
+  font-family: var(--font-head);
+  font-size: 1.35rem; font-style: italic;
+  color: var(--ivory); line-height: 1.65;
+  margin: 0; position: relative; z-index: 1;
+}
+
+/* Stat callout */
+.stat-callout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+.stat-callout-item {
+  background: var(--bg2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.4rem;
+  text-align: center;
+  transition: var(--transition);
+}
+.stat-callout-item:hover { border-color: var(--border); transform: translateY(-2px); }
+.stat-callout-val {
+  font-family: var(--font-head);
+  font-size: 2.4rem; font-weight: 600;
+  color: var(--gold); line-height: 1; margin-bottom: 0.4rem;
+}
+.stat-callout-label { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* Numbered list */
+.article-body ol {
+  counter-reset: article-counter;
+  list-style: none;
+  margin: 1.5rem 0 2rem;
+  display: flex; flex-direction: column; gap: 1.2rem;
+}
+.article-body ol li {
+  counter-increment: article-counter;
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  font-size: 1rem; color: var(--muted); line-height: 1.75;
+}
+.article-body ol li::before {
+  content: counter(article-counter);
+  flex-shrink: 0;
+  width: 28px; height: 28px;
+  background: rgba(198,169,114,0.1);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-family: var(--font-head);
+  font-size: 0.9rem; font-weight: 600;
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 0.1rem;
+}
+
+/* Bullet list */
+.article-body ul {
+  list-style: none;
+  margin: 1.5rem 0 2rem;
+  display: flex; flex-direction: column; gap: 0.8rem;
+}
+.article-body ul li {
+  display: flex; gap: 0.9rem; align-items: flex-start;
+  font-size: 1rem; color: var(--muted); line-height: 1.75;
+}
+.article-body ul li::before {
+  content: '✦';
+  color: var(--gold); font-size: 0.6rem;
+  flex-shrink: 0; margin-top: 0.5rem;
+}
+
+/* Code block */
+.code-block {
+  background: var(--bg2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  position: relative;
+}
+.code-block-label {
+  position: absolute; top: 0.6rem; right: 1rem;
+  font-size: 0.6rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.code-block code {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85rem; color: var(--ivory); line-height: 1.7;
+  display: block;
+}
+.code-block .token-key  { color: var(--blue); }
+.code-block .token-val  { color: var(--gold); }
+.code-block .token-str  { color: #4CAF50; }
+.code-block .token-num  { color: #FF9800; }
+.code-block .token-com  { color: var(--muted); font-style: italic; }
+
+/* Info box */
+.info-box {
+  background: rgba(77,141,255,0.06);
+  border: 1px solid rgba(77,141,255,0.2);
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.info-box-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+.info-box-text { font-size: 0.9rem; color: var(--muted); line-height: 1.72; }
+.info-box-text strong { color: var(--ivory); }
+
+/* Warning box */
+.warn-box {
+  background: rgba(255,152,0,0.06);
+  border: 1px solid rgba(255,152,0,0.2);
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.warn-box-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+.warn-box-text { font-size: 0.9rem; color: var(--muted); line-height: 1.72; }
+.warn-box-text strong { color: var(--ivory); }
+
+/* Section divider */
+.article-divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 3rem 0;
+  color: var(--muted); font-size: 0.65rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+.article-divider::before, .article-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border-subtle);
+}
+
+/* Inline CTA cards */
+.inline-cta {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2rem 2.2rem;
+  margin: 3rem 0;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.inline-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(198,169,114,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.inline-cta-text { position: relative; }
+.inline-cta-label {
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;
+}
+.inline-cta-title {
+  font-family: var(--font-head);
+  font-size: 1.3rem; font-weight: 500;
+  color: var(--ivory); line-height: 1.25;
+  margin-bottom: 0.4rem;
+}
+.inline-cta-sub { font-size: 0.84rem; color: var(--muted); line-height: 1.6; max-width: 360px; }
+.inline-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  background: var(--gold); color: #0D0D0D;
+  border-radius: 3px; font-size: 0.85rem;
+  font-weight: 600; letter-spacing: 0.04em;
+  transition: var(--transition); white-space: nowrap;
+  flex-shrink: 0; position: relative;
+}
+.inline-cta-btn:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(198,169,114,0.28); }
+
+/* Article tags */
+.article-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 3rem 0 1rem; }
+.article-tag {
+  font-size: 0.72rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--border-subtle);
+  padding: 0.3rem 0.8rem; border-radius: 20px;
+  transition: var(--transition); cursor: default;
+}
+.article-tag:hover { border-color: var(--border); color: var(--ivory); }
+
+/* Article end divider */
+.article-end {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 2rem 0 3rem; padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.article-end-line { flex: 1; height: 1px; background: var(--border-subtle); }
+.article-end-icon { color: var(--gold); font-size: 0.8rem; }
+
+/* ── Share bar (bottom) ────────────────────────────────── */
+.share-bar {
+  background: var(--bg2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.5rem 1.8rem;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  margin-bottom: 3rem;
+}
+.share-bar-text { font-size: 0.9rem; color: var(--muted); }
+.share-bar-text strong { color: var(--ivory); }
+.share-bar-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.share-bar-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  background: var(--card); border: 1px solid var(--border-subtle);
+  border-radius: 5px; font-size: 0.78rem; color: var(--muted);
+  cursor: pointer; transition: var(--transition);
+  font-family: var(--font-body);
+}
+.share-bar-btn:hover { border-color: var(--border); color: var(--ivory); }
+.share-bar-btn.copy-btn.copied { border-color: rgba(76,175,80,0.4); color: var(--green); }
+
+/* ── Author card ────────────────────────────────────────── */
+.author-card {
+  background: var(--bg2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 2rem 2.2rem;
+  display: flex; gap: 1.5rem; align-items: flex-start;
+  margin-bottom: 3rem;
+  transition: var(--transition);
+}
+.author-card:hover { border-color: var(--border); }
+.author-card-avatar {
+  width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--graphite), var(--card));
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 1.4rem;
+  font-weight: 600; color: var(--gold);
+}
+.author-card-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+.author-card-name { font-family: var(--font-head); font-size: 1.4rem; font-weight: 500; color: var(--ivory); margin-bottom: 0.3rem; }
+.author-card-role { font-size: 0.8rem; color: var(--gold); margin-bottom: 0.75rem; }
+.author-card-bio { font-size: 0.88rem; color: var(--muted); line-height: 1.72; }
+
+/* ── Sticky right sidebar ──────────────────────────────── */
+.article-sidebar {
+  position: sticky;
+  top: 100px;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.sidebar-card {
+  background: var(--bg2);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+.sidebar-card:hover { border-color: var(--border); }
+.sidebar-card-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+.sidebar-card-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 500; color: var(--ivory); line-height: 1.3; margin-bottom: 0.6rem; }
+.sidebar-card-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.2rem; }
+.sidebar-btn {
+  display: block; width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--gold); color: #0D0D0D;
+  border: none; border-radius: 5px;
+  font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.04em; text-align: center;
+  cursor: pointer; transition: var(--transition);
+  font-family: var(--font-body); text-decoration: none;
+}
+.sidebar-btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+.sidebar-btn.outline {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--border-subtle);
+}
+.sidebar-btn.outline:hover { border-color: var(--border); color: var(--ivory); transform: none; }
+
+/* Reading progress sidebar */
+.sidebar-progress-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+.sidebar-progress-track { height: 4px; background: var(--graphite); border-radius: 2px; overflow: hidden; margin-bottom: 0.5rem; }
+.sidebar-progress-fill { height: 100%; background: var(--gold); border-radius: 2px; width: 0%; transition: width 0.15s linear; }
+.sidebar-progress-pct { font-size: 0.75rem; color: var(--muted); }
+.sidebar-progress-pct span { color: var(--gold); font-weight: 500; }
+
+/* Newsletter sidebar */
+.sidebar-nl-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  padding: 0.65rem 0.9rem;
+  color: var(--ivory); font-size: 0.82rem;
+  font-family: var(--font-body); outline: none;
+  margin-bottom: 0.6rem;
+  transition: border-color var(--transition);
+}
+.sidebar-nl-input::placeholder { color: var(--muted); opacity: 0.5; }
+.sidebar-nl-input:focus { border-color: rgba(198,169,114,0.4); }
+.sidebar-newsletter-form { display: flex; flex-direction: column; gap: 0.65rem; }
+.sidebar-newsletter-captcha { min-height: 78px; overflow: hidden; }
+.sidebar-newsletter-status {
+  min-height: 1.15rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.sidebar-newsletter-status.error { color: #FF8A80; }
+.sidebar-newsletter-status.success { color: #4CAF50; text-align: center; }
+
+/* ============================================================
+   RELATED POSTS
+============================================================ */
+.related-section {
+  padding: 5rem 0;
+  background: var(--bg2);
+  border-top: 1px solid var(--border-subtle);
+}
+.related-label-row {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.related-divider { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-subtle), transparent); }
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+.related-card {
+  background: var(--card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: var(--transition);
+  cursor: pointer;
+  display: block;
+}
+.related-card:hover { border-color: var(--border); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.related-thumb {
+  height: 160px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.related-thumb-ai     { background: linear-gradient(135deg, rgba(77,141,255,0.1) 0%, rgba(13,13,13,0.8) 100%); }
+.related-thumb-growth { background: linear-gradient(135deg, rgba(76,175,80,0.1) 0%, rgba(13,13,13,0.8) 100%); }
+.related-thumb-case   { background: linear-gradient(135deg, rgba(156,111,255,0.1) 0%, rgba(13,13,13,0.8) 100%); }
+.related-thumb-saas   { background: linear-gradient(135deg, rgba(255,152,0,0.1) 0%, rgba(13,13,13,0.8) 100%); }
+.related-thumb-icon { font-size: 2rem; }
+.related-cat {
+  position: absolute; bottom: 0.7rem; left: 0.7rem;
+  font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--border);
+  padding: 0.18rem 0.6rem; border-radius: 20px;
+  background: rgba(13,13,13,0.75); backdrop-filter: blur(8px);
+}
+.related-read {
+  position: absolute; bottom: 0.7rem; right: 0.7rem;
+  font-size: 0.62rem; color: var(--muted);
+  background: rgba(13,13,13,0.7); backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  padding: 0.18rem 0.6rem; border-radius: 20px;
+}
+.related-body { padding: 1.4rem 1.5rem 1.5rem; }
+.related-date { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.6rem; }
+.related-title {
+  font-family: var(--font-head); font-size: 1.15rem;
+  font-weight: 500; color: var(--ivory);
+  line-height: 1.28; margin-bottom: 0.65rem;
+  transition: color var(--transition);
+}
+.related-card:hover .related-title { color: var(--gold-hover); }
+.related-excerpt { font-size: 0.82rem; color: var(--muted); line-height: 1.68; margin-bottom: 1rem; }
+.related-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 0.8rem; border-top: 1px solid var(--border-subtle);
+}
+.related-author { font-size: 0.72rem; color: var(--muted); }
+.related-arrow { font-size: 0.72rem; color: var(--gold); transition: transform var(--transition); }
+.related-card:hover .related-arrow { transform: translateX(4px); }
+
+/* ============================================================
+   FINAL CTA SECTION
+============================================================ */
+.article-final-cta {
+  padding: 6rem 0;
+  background: var(--bg);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.article-final-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 70% at 50% 50%, rgba(198,169,114,0.05) 0%, transparent 70%),
+    linear-gradient(rgba(198,169,114,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198,169,114,0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 60px 60px, 60px 60px;
+  pointer-events: none;
+}
+.final-cta-label { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--border); padding: 0.35rem 0.9rem; border-radius: 2rem; margin-bottom: 1.8rem; background: rgba(198,169,114,0.06); position: relative; }
+.final-cta-title { font-family: var(--font-head); font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 500; color: var(--ivory); line-height: 1.12; margin-bottom: 1.2rem; letter-spacing: -0.015em; position: relative; }
+.final-cta-title em { font-style: italic; color: var(--gold); }
+.final-cta-sub { font-size: 1rem; color: var(--muted); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; position: relative; }
+.final-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 3px; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border: none; transition: var(--transition); font-family: var(--font-body); }
+.btn-gold { background: var(--gold); color: #0D0D0D; }
+.btn-gold:hover { background: var(--gold-hover); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(198,169,114,0.28); }
+.btn-outline { background: transparent; color: var(--ivory); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer { background: var(--bg2); border-top: 1px solid var(--border-subtle); padding: 4rem 0 2rem; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3.5rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border-subtle); margin-bottom: 2rem; }
+.footer-logo { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--ivory); margin-bottom: 0.9rem; display: inline-block; }
+.footer-logo img { height: 56px; width: auto; display: block; }
+.footer-logo span { color: var(--gold); }
+.footer-tagline { font-size: 0.86rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.4rem; max-width: 230px; }
+.footer-socials { display: flex; gap: 0.6rem; }
+.social-btn { width: 34px; height: 34px; border-radius: 6px; background: var(--card); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: var(--muted); transition: var(--transition); cursor: pointer; }
+.social-btn:hover { border-color: var(--border); color: var(--gold); }
+.footer-col h4 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 1.1rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.footer-col ul li a { font-size: 0.86rem; color: var(--muted); transition: color var(--transition); }
+.footer-col ul li a:hover { color: var(--ivory); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: 0.78rem; color: var(--muted); }
+.footer-copy span { color: var(--gold); }
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+.reveal { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1100px) {
+  .article-layout { grid-template-columns: 1fr var(--content-w) 1fr; gap: 2rem; }
+}
+@media (max-width: 960px) {
+  .article-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem 4rem; }
+  .toc-sidebar { display: none; }
+  .article-sidebar { display: none; }
+  .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-links, .nav-right .nav-cta { display: none; }
+  .nav-toggle { display: flex; }
+}
+@media (max-width: 640px) {
+  .article-headline { font-size: 2.2rem; }
+  .article-byline { flex-direction: column; gap: 1rem; }
+  .stat-callout { grid-template-columns: 1fr; }
+  .related-grid { grid-template-columns: 1fr; }
+  .share-bar { flex-direction: column; }
+  .ahv-body { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr; gap: 1.8rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .inline-cta { flex-direction: column; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     READING PROGRESS BAR
+============================================================ -->
+<div id="progress-bar"></div>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route"></a>
+      <ul class="nav-links">
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#solutions">Solutions</a></li>
+        <li><a href="/#case-studies">Case Studies</a></li>
+        <li><a href="/#process">About</a></li>
+        <li><a href="/blog" class="active">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="/strategy-call" class="nav-cta">Book Strategy Call</a>
+        <button class="nav-toggle" id="menuToggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="menuClose">✕</button>
+  <a href="/#services" class="ml">Services</a>
+  <a href="/#solutions" class="ml">Solutions</a>
+  <a href="/#case-studies" class="ml">Case Studies</a>
+  <a href="/#process" class="ml">About</a>
+  <a href="/blog" class="ml">Blog</a>
+  <a href="/#contact" class="ml">Contact</a>
+  <a href="/strategy-call" class="nav-cta">Book Strategy Call</a>
+</div>
+
+<!-- ============================================================
+     ARTICLE HEADER
+============================================================ -->
+<header class="article-header" id="article-top">
+  <div class="article-header-bg"></div>
+  <div class="container">
+    <div class="article-header-inner">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="/blog">Insights & Strategy</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">AI Automation</span>
+      </nav>
+
+      <!-- Meta row -->
+      <div class="article-meta-row">
+        <span class="article-category">AI Automation</span>
+        <span class="article-meta-item">⏱ 8 min read</span>
+        <span class="article-meta-item">📅 12 May 2026</span>
+        <span class="article-meta-item">👁 2,847 views</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="article-headline">
+        Why Most Indian Businesses Lose <em>47% of Their Leads</em> Before Lunch — And the AI System That Fixes It
+      </h1>
+
+      <!-- Lede -->
+      <p class="article-lede">
+        Most business owners assume they have a sales problem. What they actually have is a response-time problem. By the time your team manually checks an enquiry, opens the CRM, and drafts a reply — the prospect has already spoken to three competitors.
+      </p>
+
+      <!-- Byline -->
+      <div class="article-byline">
+        <div class="author-block">
+          <div class="author-avatar">PR</div>
+          <div>
+            <div class="author-name">Pinnacle Route Team</div>
+            <div class="author-role">AI & Automation · 12 May 2026</div>
+          </div>
+        </div>
+        <div class="share-row">
+          <span class="share-label">Share</span>
+          <button class="share-btn" onclick="shareArticle('linkedin')" title="Share on LinkedIn">in</button>
+          <button class="share-btn" onclick="shareArticle('twitter')" title="Share on X">𝕏</button>
+          <button class="share-btn" onclick="copyLink(this)" title="Copy link">🔗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     ARTICLE HERO VISUAL
+============================================================ -->
+<div class="container">
+  <div class="article-hero-visual reveal">
+    <div class="ahv-topbar">
+      <div class="ahv-dot ahv-dot-r"></div>
+      <div class="ahv-dot ahv-dot-y"></div>
+      <div class="ahv-dot ahv-dot-g"></div>
+      <span class="ahv-label">Pinnacle Route — Lead Intelligence Dashboard · Live</span>
+    </div>
+    <div class="ahv-body">
+      <div class="ahv-metric">
+        <div class="ahv-metric-label">Leads Today</div>
+        <div class="ahv-metric-val blue">284</div>
+        <div class="ahv-metric-sub">From all channels</div>
+        <div class="ahv-metric-change">↑ 38% vs last week</div>
+      </div>
+      <div class="ahv-metric">
+        <div class="ahv-metric-label">AI Qualified</div>
+        <div class="ahv-metric-val gold">127</div>
+        <div class="ahv-metric-sub">Score ≥ 7.0</div>
+        <div class="ahv-metric-change">↑ 24% conversion</div>
+      </div>
+      <div class="ahv-metric">
+        <div class="ahv-metric-label">Avg Response</div>
+        <div class="ahv-metric-val green">4 min</div>
+        <div class="ahv-metric-sub">Was 6.2 hours</div>
+        <div class="ahv-metric-change">▼ 97% reduction</div>
+      </div>
+      <div class="ahv-metric">
+        <div class="ahv-metric-label">Leads Lost</div>
+        <div class="ahv-metric-val red">157</div>
+        <div class="ahv-metric-sub">Gone cold</div>
+        <div class="ahv-metric-change bad">Without AI system</div>
+      </div>
+      <div class="ahv-chart-row">
+        <div class="ahv-chart">
+          <div class="ahv-chart-title">Lead Response Time (Before vs After AI)</div>
+          <div class="ahv-bars">
+            <div class="ahv-bar b"></div><div class="ahv-bar b"></div>
+            <div class="ahv-bar b"></div><div class="ahv-bar b"></div>
+            <div class="ahv-bar g"></div><div class="ahv-bar g"></div>
+            <div class="ahv-bar g"></div><div class="ahv-bar g"></div>
+          </div>
+        </div>
+        <div class="ahv-chart">
+          <div class="ahv-chart-title">Lead Pipeline by Stage</div>
+          <div class="ahv-pipeline">
+            <div class="ahv-pipe-row">
+              <div class="ahv-pipe-label">Captured</div>
+              <div class="ahv-pipe-track"><div class="ahv-pipe-fill f1"></div></div>
+              <div class="ahv-pipe-val">284</div>
+            </div>
+            <div class="ahv-pipe-row">
+              <div class="ahv-pipe-label">Qualified</div>
+              <div class="ahv-pipe-track"><div class="ahv-pipe-fill f2"></div></div>
+              <div class="ahv-pipe-val">127</div>
+            </div>
+            <div class="ahv-pipe-row">
+              <div class="ahv-pipe-label">In Talks</div>
+              <div class="ahv-pipe-track"><div class="ahv-pipe-fill f3"></div></div>
+              <div class="ahv-pipe-val">43</div>
+            </div>
+            <div class="ahv-pipe-row">
+              <div class="ahv-pipe-label">Closed</div>
+              <div class="ahv-pipe-track"><div class="ahv-pipe-fill f4"></div></div>
+              <div class="ahv-pipe-val">18</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     THREE-COLUMN ARTICLE LAYOUT
+============================================================ -->
+<div class="article-layout" id="articleLayout">
+
+  <!-- ── LEFT: Sticky TOC ─────────────────────────────── -->
+  <aside class="toc-sidebar" id="toc">
+    <div class="toc-label">In This Article</div>
+    <ul class="toc-list" id="tocList">
+      <li class="toc-item" data-target="s1"><a href="#s1">The Response-Time Crisis</a></li>
+      <li class="toc-item" data-target="s2"><a href="#s2">Why Manual Follow-Up Fails</a></li>
+      <li class="toc-item" data-target="s3"><a href="#s3">The Real Cost of Slow Responses</a></li>
+      <li class="toc-item" data-target="s4"><a href="#s4">How AI Qualification Works</a></li>
+      <li class="toc-item" data-target="s5"><a href="#s5">The Architecture We Build</a></li>
+      <li class="toc-item" data-target="s6"><a href="#s6">Real Results: Case Breakdown</a></li>
+      <li class="toc-item" data-target="s7"><a href="#s7">How to Get Started</a></li>
+    </ul>
+    <div class="toc-back" onclick="document.getElementById('article-top').scrollIntoView({behavior:'smooth'})">
+      ↑ Back to top
+    </div>
+  </aside>
+
+  <!-- ── CENTRE: Article Body ─────────────────────────── -->
+  <article class="article-body" id="articleBody">
+
+    <!-- S1 -->
+    <h2 id="s1">The Response-Time Crisis Nobody Is Talking About</h2>
+    <p>
+      There is a window. It opens the moment a prospect submits an enquiry — and it closes fast. Research from the Harvard Business Review found that companies that respond to leads within one hour are <strong>seven times more likely to qualify that lead</strong> than those who respond an hour later. In India's hyper-competitive digital economy, that window is even shorter.
+    </p>
+    <p>
+      But here's what's actually happening in most businesses: a lead comes in through your website form at 11:14am. Your sales manager sees it at 1:30pm after a meeting. They open the CRM — which may or may not have the lead in it — draft a reply, and send it by 2pm. Two hours and forty-six minutes have passed. That prospect has already had a 20-minute demo with a competitor who responded in four minutes using an AI qualification system.
+    </p>
+
+    <div class="pull-quote">
+      <p>The businesses winning right now aren't working harder or hiring faster. They built a system that responds before a human even sees the notification.</p>
+    </div>
+
+    <p>
+      This isn't a people problem. It isn't a motivation problem. It's an <strong>infrastructure problem</strong> — and it's costing Indian businesses billions of rupees in lost revenue every year.
+    </p>
+
+    <!-- S2 -->
+    <h2 id="s2">Why Manual Follow-Up Consistently Fails</h2>
+    <p>
+      Manual lead follow-up fails for three structural reasons that no amount of training or process improvement can fix:
+    </p>
+    <ol>
+      <li><strong>It's asynchronous by nature.</strong> Humans sleep, eat, attend meetings, and handle competing priorities. An enquiry that arrives at 7pm on a Friday doesn't get a response until Monday morning. The prospect has moved on.</li>
+      <li><strong>It creates inconsistent quality.</strong> Different team members respond differently. Some write detailed, personalised replies. Others send a generic "Thanks for your enquiry." There's no standard, no quality control, and no way to scale the good behaviour.</li>
+      <li><strong>It doesn't scale with volume.</strong> When your marketing works and lead volume increases, your team gets overwhelmed. Response times worsen exactly when you can least afford it — during peak periods of interest.</li>
+    </ol>
+
+    <div class="info-box">
+      <div class="info-box-icon">💡</div>
+      <div class="info-box-text">
+        <strong>Key insight:</strong> The problem isn't that your team is slow. It's that humans are fundamentally not designed for the kind of instant, consistent, 24/7 response that modern B2C and B2B buyers now expect. An AI system is.
+      </div>
+    </div>
+
+    <!-- Stat callout -->
+    <div class="stat-callout">
+      <div class="stat-callout-item">
+        <div class="stat-callout-val">47%</div>
+        <div class="stat-callout-label">of inbound leads go cold before first contact in businesses without automation</div>
+      </div>
+      <div class="stat-callout-item">
+        <div class="stat-callout-val">7×</div>
+        <div class="stat-callout-label">higher qualification rate when you respond within 60 seconds vs 60 minutes</div>
+      </div>
+      <div class="stat-callout-item">
+        <div class="stat-callout-val">4 min</div>
+        <div class="stat-callout-label">average AI response time vs 2.4 hours for a well-run manual process</div>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <h2 id="s3">The Real Cost of a Slow Response</h2>
+    <p>
+      Most founders track lead volume. Very few track lead <em>loss</em>. Here's how to calculate what your current response-time gap is costing you:
+    </p>
+    <ul>
+      <li>Take your monthly inbound lead volume</li>
+      <li>Multiply by your current close rate from inbound leads</li>
+      <li>Multiply by your average deal value</li>
+      <li>That's your current inbound revenue potential</li>
+      <li>Now apply a 47% loss rate to your lead volume (the industry average for slow responders)</li>
+      <li>Recalculate — the difference is what you're leaving on the table every single month</li>
+    </ul>
+    <p>
+      For a business receiving 200 inbound leads per month with a 15% close rate and an average deal value of ₹50,000 — the gap between a slow manual process and an AI-powered one is approximately <strong>₹7 lakhs per month in additional closed revenue</strong>. That's ₹84 lakhs annually. For a larger business, this number scales dramatically.
+    </p>
+
+    <div class="warn-box">
+      <div class="warn-box-icon">⚠️</div>
+      <div class="warn-box-text">
+        <strong>Common mistake:</strong> Many businesses invest heavily in generating more leads when the real leverage is in recovering the leads they're already generating but losing to slow response. Fix the leaky bucket before adding more water.
+      </div>
+    </div>
+
+    <!-- INLINE CTA 1 -->
+    <div class="inline-cta">
+      <div class="inline-cta-text">
+        <div class="inline-cta-label">Free Audit</div>
+        <div class="inline-cta-title">Find Out What Slow Response Is Costing Your Business</div>
+        <div class="inline-cta-sub">Book a free 45-minute strategy session. We'll calculate your exact revenue gap and show you what an AI qualification system would recover.</div>
+      </div>
+      <a href="/strategy-call" class="inline-cta-btn">Book Free Session →</a>
+    </div>
+
+    <!-- S4 -->
+    <h2 id="s4">How AI Lead Qualification Actually Works</h2>
+    <p>
+      Let's be specific. When we build AI qualification systems for clients, here is exactly what happens from the moment a lead submits an enquiry:
+    </p>
+    <ol>
+      <li><strong>Capture:</strong> The lead data is captured from the form, WhatsApp, email, or any other channel and sent to a central processing node — typically Make.com or n8n for orchestration.</li>
+      <li><strong>Enrichment:</strong> The system automatically enriches the lead data — pulling in company information, LinkedIn profile, website details, and any prior interaction history from your CRM.</li>
+      <li><strong>AI Scoring:</strong> A GPT-4 or Claude model evaluates the lead against your ideal customer profile. It scores intent, budget signals, urgency indicators, and fit — and generates a qualification score from 1–10.</li>
+      <li><strong>Instant Response:</strong> Within 60–90 seconds of submission, the lead receives a personalised WhatsApp or email message. Not a generic auto-reply — an intelligent response that references their specific enquiry and asks one smart qualifying question.</li>
+      <li><strong>CRM Update:</strong> The lead is automatically created or updated in your CRM with the score, enriched data, and conversation history. Your sales team sees a fully qualified lead — not a raw form submission.</li>
+      <li><strong>Smart Routing:</strong> High-score leads (7+) trigger an immediate notification to your top sales rep. Medium-score leads (4–6) enter a nurture sequence. Low-score leads are acknowledged and filed.</li>
+    </ol>
+
+    <div class="article-divider">System Architecture</div>
+
+    <!-- S5 -->
+    <h2 id="s5">The Architecture We Build for Clients</h2>
+    <p>
+      Every implementation is custom, but the architecture follows a proven pattern. Here's a simplified view of the system we deploy for most clients:
+    </p>
+
+    <!-- Code block -->
+    <div class="code-block">
+      <div class="code-block-label">Automation Flow</div>
+      <code>
+<span class="token-com">// Step 1 — Lead capture (any channel)</span>
+<span class="token-key">trigger</span>: [<span class="token-str">"website_form"</span>, <span class="token-str">"whatsapp_webhook"</span>, <span class="token-str">"email_parser"</span>]
+
+<span class="token-com">// Step 2 — Data enrichment</span>
+<span class="token-key">enrich</span>: {
+  <span class="token-key">clearbit</span>: <span class="token-str">"company_data"</span>,
+  <span class="token-key">linkedin</span>: <span class="token-str">"profile_data"</span>,
+  <span class="token-key">crm_history</span>: <span class="token-str">"prior_interactions"</span>
+}
+
+<span class="token-com">// Step 3 — AI qualification</span>
+<span class="token-key">ai_score</span>: {
+  <span class="token-key">model</span>: <span class="token-str">"gpt-4o"</span>,
+  <span class="token-key">criteria</span>: [<span class="token-str">"budget_signals"</span>, <span class="token-str">"urgency"</span>, <span class="token-str">"icp_fit"</span>],
+  <span class="token-key">output</span>: <span class="token-num">0</span>–<span class="token-num">10</span>
+}
+
+<span class="token-com">// Step 4 — Response + routing</span>
+<span class="token-key">route</span>: {
+  <span class="token-num">7</span>–<span class="token-num">10</span>: <span class="token-str">"instant_notify_sales"</span>,
+  <span class="token-num">4</span>–<span class="token-num">6</span>:  <span class="token-str">"nurture_sequence"</span>,
+  <span class="token-num">0</span>–<span class="token-num">3</span>:  <span class="token-str">"acknowledge_and_file"</span>
+}
+      </code>
+    </div>
+
+    <p>
+      The tools we most commonly use are <strong>Make.com</strong> for orchestration, <strong>OpenAI GPT-4o</strong> or <strong>Anthropic Claude</strong> for AI reasoning, <strong>WhatsApp Business API</strong> for messaging, and your existing CRM (HubSpot, Zoho, custom) for storage. The entire system can typically be deployed in 3–6 weeks depending on the complexity of your existing tech stack.
+    </p>
+
+    <!-- S6 -->
+    <h2 id="s6">Real Results: A Case Breakdown</h2>
+    <p>
+      Here's a real implementation we completed for a real estate group receiving leads from four different property portals — 99acres, MagicBricks, Housing.com, and their own website. Before working with us, their average response time was 4.2 hours and their team was manually updating a spreadsheet with lead information.
+    </p>
+    <p>
+      After deploying our AI qualification and routing system:
+    </p>
+    <ul>
+      <li>Average response time dropped from <strong>4.2 hours to under 3 minutes</strong></li>
+      <li>Lead qualification rate improved from 18% to <strong>44% of inbound leads</strong></li>
+      <li>Sales team follow-up rate increased from 60% to <strong>100%</strong> (because the system handles initial contact automatically)</li>
+      <li>Monthly qualified follow-ups increased <strong>3.2×</strong> with no additional sales headcount</li>
+      <li>The system paid for itself within <strong>6 weeks</strong> of deployment</li>
+    </ul>
+
+    <div class="pull-quote">
+      <p>"Our sales team went from chasing cold leads to only speaking with prospects who had already been qualified and were expecting our call. It changed everything about how we sell."</p>
+    </div>
+
+    <!-- INLINE CTA 2 — Service-specific -->
+    <div class="inline-cta" style="background:rgba(77,141,255,0.04);border-color:rgba(77,141,255,0.2);">
+      <div class="inline-cta-text">
+        <div class="inline-cta-label" style="color:var(--blue);border-color:rgba(77,141,255,0.3);">Real Estate Automation</div>
+        <div class="inline-cta-title">We Build This System for Real Estate Businesses</div>
+        <div class="inline-cta-sub">Multi-portal lead capture, AI qualification, WhatsApp automation, and a live sales dashboard — deployed in under 6 weeks.</div>
+      </div>
+      <a href="/strategy-call" class="inline-cta-btn">Get a Custom Build →</a>
+    </div>
+
+    <!-- S7 -->
+    <h2 id="s7">How to Get Started With AI Lead Qualification</h2>
+    <p>
+      The good news: you don't need to rebuild your entire business to benefit from AI qualification. You can start with a single channel — your website form or WhatsApp — and expand from there. Here's a practical starting framework:
+    </p>
+    <ol>
+      <li><strong>Audit your current response time.</strong> Pull your last 30 days of leads. How long did it take to respond to each one? What's the average? What's the worst case? This number will shock you.</li>
+      <li><strong>Identify your highest-volume channel.</strong> Where do most of your leads come from? Website, WhatsApp, Instagram DMs, email? Start the automation there.</li>
+      <li><strong>Define your ideal lead profile.</strong> What does a 10/10 lead look like? What signals indicate high intent, budget, and urgency? This becomes your AI scoring criteria.</li>
+      <li><strong>Build the response sequence.</strong> What should the first message say? What qualifying question should it ask? This is where most businesses underestimate the copywriting required.</li>
+      <li><strong>Connect to your CRM.</strong> Whatever system you use — even a well-structured spreadsheet — the AI output needs to flow somewhere your team can action it.</li>
+    </ol>
+    <p>
+      If this sounds like significant work — it is. Which is why most businesses that attempt to build this themselves abandon it halfway through, end up with a system that half-works, and conclude that "AI automation doesn't work for us." It works. It just requires expertise in the integration layer.
+    </p>
+
+    <!-- Tags -->
+    <div class="article-tags">
+      <span class="article-tag">AI Automation</span>
+      <span class="article-tag">Lead Qualification</span>
+      <span class="article-tag">WhatsApp API</span>
+      <span class="article-tag">CRM Integration</span>
+      <span class="article-tag">Sales Systems</span>
+      <span class="article-tag">Business Growth</span>
+    </div>
+
+    <!-- End mark -->
+    <div class="article-end">
+      <div class="article-end-line"></div>
+      <span class="article-end-icon">✦</span>
+      <div class="article-end-line"></div>
+    </div>
+
+    <!-- Share bar -->
+    <div class="share-bar">
+      <div class="share-bar-text">
+        <strong>Found this useful?</strong> Share it with a founder or operator who needs to hear it.
+      </div>
+      <div class="share-bar-btns">
+        <button class="share-bar-btn" onclick="shareArticle('linkedin')">in LinkedIn</button>
+        <button class="share-bar-btn" onclick="shareArticle('twitter')">𝕏 Post</button>
+        <button class="share-bar-btn" onclick="shareArticle('whatsapp')">💬 WhatsApp</button>
+        <button class="share-bar-btn copy-btn" id="copyLinkBtn" onclick="copyLink(this)">🔗 Copy Link</button>
+      </div>
+    </div>
+
+    <!-- Author card -->
+    <div class="author-card">
+      <div class="author-card-avatar">PR</div>
+      <div>
+        <div class="author-card-label">Written By</div>
+        <div class="author-card-name">Pinnacle Route Team</div>
+        <div class="author-card-role">AI & Automation · Digital Transformation</div>
+        <p class="author-card-bio">We build AI-powered systems, custom software, and scalable digital infrastructure for modern businesses. With 50+ projects across 10+ industries, we write from direct implementation experience — not theory.</p>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- ── RIGHT: Sticky Sidebar ────────────────────────── -->
+  <aside class="article-sidebar">
+
+    <!-- Reading progress -->
+    <div class="sidebar-card">
+      <div class="sidebar-progress-label">Reading Progress</div>
+      <div class="sidebar-progress-track">
+        <div class="sidebar-progress-fill" id="sidebarProgress"></div>
+      </div>
+      <div class="sidebar-progress-pct"><span id="sidebarProgressPct">0</span>% complete</div>
+    </div>
+
+    <!-- Book call CTA -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-label">Free Strategy Session</div>
+      <div class="sidebar-card-title">Want This System Built for Your Business?</div>
+      <div class="sidebar-card-sub">Book a free 45-minute session. We'll map your lead flow and show you exactly what we'd build.</div>
+      <a href="/strategy-call" class="sidebar-btn">Book Free Session →</a>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-label">Weekly Insights</div>
+      <div class="sidebar-card-title">Get Articles Like This Every Week</div>
+      <div class="sidebar-card-sub">No fluff. Just practical thinking on AI, systems, and growth.</div>
+      <form class="sidebar-newsletter-form" id="sidebarNewsletterForm" action="https://main-backend-eta.vercel.app/api/contact" method="POST" novalidate>
+        <input type="email" class="sidebar-nl-input" id="sidebarEmail" name="email" placeholder="your@email.com" autocomplete="email" required>
+        <div class="sidebar-newsletter-captcha">
+          <div class="g-recaptcha" data-sitekey="6LfdYVYrAAAAADuAW-DHihyUwvCQRIUWXWdL5r2V" data-theme="dark" data-size="compact"></div>
+        </div>
+        <button class="sidebar-btn" id="sidebarNlBtn" type="submit">Subscribe →</button>
+        <p class="sidebar-newsletter-status" id="sidebarNlStatus" role="alert" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <!-- WhatsApp -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-label">Talk to Us</div>
+      <div class="sidebar-card-title">Have a Question?</div>
+      <div class="sidebar-card-sub">Message us directly on WhatsApp — we reply fast.</div>
+      <a href="https://wa.me/919621391943?text=Hi%20Pinnacle%20Route%2C%20I%20read%20your%20article%20on%20lead%20qualification%20and%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="sidebar-btn outline">💬 WhatsApp Us</a>
+    </div>
+
+  </aside>
+
+</div><!-- /article-layout -->
+
+<!-- ============================================================
+     RELATED POSTS
+============================================================ -->
+<section class="related-section">
+  <div class="container">
+    <div class="related-label-row reveal">
+      <span style="font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:0.35rem 0.9rem;border-radius:2rem;background:rgba(198,169,114,0.06);">Continue Reading</span>
+      <div class="related-divider"></div>
+    </div>
+
+    <div class="related-grid">
+      <!-- Related 1 -->
+      <a href="/blog-article" class="related-card reveal">
+        <div class="related-thumb related-thumb-case">
+          <div class="related-thumb-icon">🏢</div>
+          <span class="related-cat">Case Study</span>
+          <span class="related-read">12 min</span>
+        </div>
+        <div class="related-body">
+          <div class="related-date">08 May 2026</div>
+          <h3 class="related-title">How We Built a WhatsApp Lead Qualification System That Tripled Follow-Ups for a Real Estate Group</h3>
+          <p class="related-excerpt">A detailed architecture breakdown of the exact system we deployed — inputs, AI logic, CRM routing, and measurable results.</p>
+          <div class="related-footer">
+            <span class="related-author">Pinnacle Route Team</span>
+            <span class="related-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Related 2 -->
+      <a href="/blog-article" class="related-card reveal reveal-delay-1">
+        <div class="related-thumb related-thumb-growth">
+          <div class="related-thumb-icon">📈</div>
+          <span class="related-cat">Business Growth</span>
+          <span class="related-read">6 min</span>
+        </div>
+        <div class="related-body">
+          <div class="related-date">04 May 2026</div>
+          <h3 class="related-title">The Hidden Cost of Manual Operations: What ₹8–25 Lakhs of Inefficiency Actually Looks Like</h3>
+          <p class="related-excerpt">Most founders dramatically underestimate what manual work costs them. Here's how to calculate your actual number — and what to do about it.</p>
+          <div class="related-footer">
+            <span class="related-author">Pinnacle Route Team</span>
+            <span class="related-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Related 3 -->
+      <a href="/blog-article" class="related-card reveal reveal-delay-2">
+        <div class="related-thumb related-thumb-ai">
+          <div class="related-thumb-icon">⚡</div>
+          <span class="related-cat">AI Automation</span>
+          <span class="related-read">10 min</span>
+        </div>
+        <div class="related-body">
+          <div class="related-date">18 Apr 2026</div>
+          <h3 class="related-title">5 Business Processes You Can Automate With OpenAI This Month (With Real Examples)</h3>
+          <p class="related-excerpt">Practical, proven automation use cases deployable within weeks — even for small teams without a dedicated tech department.</p>
+          <div class="related-footer">
+            <span class="related-author">Pinnacle Route Team</span>
+            <span class="related-arrow">→</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="article-final-cta">
+  <div class="container">
+    <div class="reveal">
+      <div class="final-cta-label">Work With Pinnacle Route</div>
+      <h2 class="final-cta-title">Stop Losing Leads.<br><em>Start Building the System That Captures Them.</em></h2>
+      <p class="final-cta-sub">Book a free strategy session and we'll show you exactly what an AI qualification system would look like for your business — including the expected ROI.</p>
+      <div class="final-cta-actions">
+        <a href="/strategy-call" class="btn btn-gold">Book Free Strategy Session →</a>
+        <a href="/blog" class="btn btn-outline">Read More Articles</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="/" class="footer-logo" aria-label="Pinnacle Route home"><img src="/assets/brand/logo.png" alt="Pinnacle Route"></a>
+        <p class="footer-tagline">AI-powered digital solutions for modern businesses. We build systems that reduce friction, automate operations, and drive scalable growth.</p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/company/pinnacle-route" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Pinnacle Route on LinkedIn">in</a>
+          <a href="https://www.instagram.com/pinnacle_route/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Pinnacle Route on Instagram">ig</a>
+          <a href="https://x.com/PinnacleRoute" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Pinnacle Route on X">𝕏</a>
+          <a href="https://www.threads.com/@pinnacle_route" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Pinnacle Route on Threads">th</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/services/ai-automation/">AI Automation</a></li>
+          <li><a href="/services/ecommerce-development/">eCommerce Development</a></li>
+          <li><a href="/services/mobile-app-development/">Mobile App Development</a></li>
+          <li><a href="/services/custom-software-development/">Custom Software</a></li>
+          <li><a href="/services/crm-development/">CRM Development</a></li>
+          <li><a href="/services/erp-development/">ERP Development</a></li>
+          <li><a href="/services/saas-development/">SaaS Platforms</a></li>
+          <li><a href="/services/ui-ux-design/">UI/UX Design</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#process">About</a></li>
+          <li><a href="/#case-studies">Case Studies</a></li>
+          <li><a href="/#industries">Industries</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;">✉ info@pinnacleroute.com</p>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;">💬 WhatsApp: +91 9621391943</p>
+        <p style="font-size:0.85rem;color:var(--muted);">📍 India</p>
+        <div style="margin-top:1rem;">
+          <a href="/strategy-call" class="btn btn-gold" style="padding:0.6rem 1.2rem;font-size:0.8rem;">Book a Call →</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 <span>Pinnacle Route</span>. All rights reserved.</div>
+      <div class="footer-copy">Crafted with precision for ambitious businesses.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+'use strict';
+
+/* ── Nav scroll ─────────────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50), { passive: true });
+
+/* ── Mobile menu ─────────────────────────────────────────── */
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('menuClose').addEventListener('click',  () => document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('.ml, .mobile-menu .nav-cta').forEach(l =>
+  l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'))
+);
+
+/* ── Reading progress bar ────────────────────────────────── */
+const progressBar      = document.getElementById('progress-bar');
+const sidebarProgress  = document.getElementById('sidebarProgress');
+const sidebarProgressPct = document.getElementById('sidebarProgressPct');
+const articleBody      = document.getElementById('articleBody');
+
+function updateProgress() {
+  const el    = articleBody;
+  const top   = el.getBoundingClientRect().top + window.scrollY;
+  const height= el.offsetHeight;
+  const scrolled = Math.max(0, window.scrollY - top);
+  const pct   = Math.min(100, Math.round((scrolled / height) * 100));
+
+  progressBar.style.width          = pct + '%';
+  sidebarProgress.style.width      = pct + '%';
+  sidebarProgressPct.textContent   = pct;
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+/* ── Active TOC highlight ────────────────────────────────── */
+const sections  = ['s1','s2','s3','s4','s5','s6','s7'].map(id => document.getElementById(id)).filter(Boolean);
+const tocItems  = document.querySelectorAll('.toc-item');
+
+function updateTOC() {
+  let active = sections[0]?.id;
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top <= 140) active = sec.id;
+  });
+  tocItems.forEach(item => {
+    item.classList.toggle('active', item.getAttribute('data-target') === active);
+  });
+}
+window.addEventListener('scroll', updateTOC, { passive: true });
+updateTOC();
+
+/* ── Scroll reveal ───────────────────────────────────────── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ── Share functions ─────────────────────────────────────── */
+const pageURL   = encodeURIComponent(window.location.href);
+const pageTitle = encodeURIComponent(document.title);
+
+function shareArticle(platform) {
+  const urls = {
+    linkedin:  `https://www.linkedin.com/sharing/share-offsite/?url=${pageURL}`,
+    twitter:   `https://x.com/intent/tweet?url=${pageURL}&text=${pageTitle}`,
+    whatsapp:  `https://wa.me/?text=${pageTitle}%20${pageURL}`,
+  };
+  if (urls[platform]) window.open(urls[platform], '_blank', 'width=600,height=500');
+}
+
+function copyLink(btn) {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    btn.classList.add('copied');
+    const original = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+/* ── Sidebar newsletter ──────────────────────────────────── */
+const sidebarNewsletterForm = document.getElementById('sidebarNewsletterForm');
+const sidebarEmail = document.getElementById('sidebarEmail');
+const sidebarNlBtn = document.getElementById('sidebarNlBtn');
+const sidebarNlStatus = document.getElementById('sidebarNlStatus');
+
+function setSidebarNewsletterStatus(message = '', type = '') {
+  sidebarNlStatus.textContent = message;
+  sidebarNlStatus.className = `sidebar-newsletter-status ${type}`.trim();
+}
+
+sidebarEmail.addEventListener('input', () => {
+  sidebarEmail.style.borderColor = '';
+  setSidebarNewsletterStatus();
+});
+
+sidebarNewsletterForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const email = sidebarEmail.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    sidebarEmail.style.borderColor = 'rgba(255,95,87,0.5)';
+    setSidebarNewsletterStatus('Please enter a valid email address.', 'error');
+    sidebarEmail.focus();
+    return;
+  }
+
+  const token = window.grecaptcha?.getResponse() || '';
+  if (!token) {
+    setSidebarNewsletterStatus('Please complete the security check before subscribing.', 'error');
+    return;
+  }
+
+  const originalText = sidebarNlBtn.textContent;
+  sidebarNlBtn.disabled = true;
+  sidebarNlBtn.textContent = 'Subscribing...';
+  setSidebarNewsletterStatus();
+
+  try {
+    const response = await fetch(sidebarNewsletterForm.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Blog Newsletter Subscriber',
+        email,
+        subject: 'New Pinnacle Route Blog Newsletter Subscription',
+        message: `Weekly insights newsletter subscription request.\n\nEmail: ${email}\nSource: Blog article sidebar`,
+        token
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.ok === false) throw new Error(result.message || 'The subscription could not be sent.');
+    sidebarNewsletterForm.innerHTML = `
+      <div style="text-align:center;padding:0.5rem 0;">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">✓</div>
+        <div style="font-family:var(--font-head);font-size:1.1rem;color:var(--ivory);margin-bottom:0.4rem;">You're subscribed.</div>
+        <div style="font-size:0.8rem;color:var(--muted);">We'll be in your inbox next week.</div>
+      </div>`;
+  } catch (error) {
+    setSidebarNewsletterStatus(`${error.message} Please email info@pinnacleroute.com and we will add you manually.`, 'error');
+    window.grecaptcha?.reset();
+    sidebarNlBtn.disabled = false;
+    sidebarNlBtn.textContent = originalText;
+  }
+});
+
+/* ── Smooth scroll for TOC links ─────────────────────────── */
+document.querySelectorAll('.toc-list a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
