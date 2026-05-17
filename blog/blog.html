@@ -87,7 +87,7 @@ img { display: block; max-width: 100%; }
 }
 
 /* SCROLL REVEAL */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay-1 { transition-delay: 0.08s; }
 .reveal-delay-2 { transition-delay: 0.16s; }
@@ -1598,7 +1598,7 @@ newsletterForm.addEventListener('submit', async event => {
     });
     const result = await response.json().catch(() => ({}));
     if (!response.ok || result.ok === false) throw new Error(result.message || 'The subscription could not be sent.');
-    newsletterForm.innerHTML = '<p class="newsletter-status success">✓ You\\'re subscribed. Talk soon.</p>';
+    newsletterForm.innerHTML = '<p class="newsletter-status success">✓ You&rsquo;re subscribed. Talk soon.</p>';
   } catch (error) {
     setNewsletterStatus(`${error.message} Please email info@pinnacleroute.com and we will add you manually.`, 'error');
     window.grecaptcha?.reset();
