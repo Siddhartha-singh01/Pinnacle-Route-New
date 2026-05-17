@@ -690,6 +690,16 @@ a { color: inherit; text-decoration: none; }
 }
 .sidebar-nl-input::placeholder { color: var(--muted); opacity: 0.5; }
 .sidebar-nl-input:focus { border-color: rgba(198,169,114,0.4); }
+.sidebar-newsletter-form { display: flex; flex-direction: column; gap: 0.65rem; }
+.sidebar-newsletter-captcha { min-height: 78px; overflow: hidden; }
+.sidebar-newsletter-status {
+  min-height: 1.15rem;
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.sidebar-newsletter-status.error { color: #FF8A80; }
+.sidebar-newsletter-status.success { color: #4CAF50; text-align: center; }
 
 /* ============================================================
    RELATED POSTS
@@ -1302,8 +1312,14 @@ a { color: inherit; text-decoration: none; }
       <div class="sidebar-card-label">Weekly Insights</div>
       <div class="sidebar-card-title">Get Articles Like This Every Week</div>
       <div class="sidebar-card-sub">No fluff. Just practical thinking on AI, systems, and growth.</div>
-      <input type="email" class="sidebar-nl-input" id="sidebarEmail" placeholder="your@email.com">
-      <button class="sidebar-btn" id="sidebarNlBtn">Subscribe →</button>
+      <form class="sidebar-newsletter-form" id="sidebarNewsletterForm" action="https://main-backend-eta.vercel.app/api/contact" method="POST" novalidate>
+        <input type="email" class="sidebar-nl-input" id="sidebarEmail" name="email" placeholder="your@email.com" autocomplete="email" required>
+        <div class="sidebar-newsletter-captcha">
+          <div class="g-recaptcha" data-sitekey="6LfdYVYrAAAAADuAW-DHihyUwvCQRIUWXWdL5r2V" data-theme="dark" data-size="compact"></div>
+        </div>
+        <button class="sidebar-btn" id="sidebarNlBtn" type="submit">Subscribe →</button>
+        <p class="sidebar-newsletter-status" id="sidebarNlStatus" role="alert" aria-live="polite"></p>
+      </form>
     </div>
 
     <!-- WhatsApp -->
@@ -1463,6 +1479,7 @@ a { color: inherit; text-decoration: none; }
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 'use strict';
 
@@ -1542,19 +1559,68 @@ function copyLink(btn) {
 }
 
 /* ── Sidebar newsletter ──────────────────────────────────── */
-document.getElementById('sidebarNlBtn').addEventListener('click', () => {
-  const val = document.getElementById('sidebarEmail').value.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-    document.getElementById('sidebarEmail').style.borderColor = 'rgba(255,95,87,0.5)';
+const sidebarNewsletterForm = document.getElementById('sidebarNewsletterForm');
+const sidebarEmail = document.getElementById('sidebarEmail');
+const sidebarNlBtn = document.getElementById('sidebarNlBtn');
+const sidebarNlStatus = document.getElementById('sidebarNlStatus');
+
+function setSidebarNewsletterStatus(message = '', type = '') {
+  sidebarNlStatus.textContent = message;
+  sidebarNlStatus.className = `sidebar-newsletter-status ${type}`.trim();
+}
+
+sidebarEmail.addEventListener('input', () => {
+  sidebarEmail.style.borderColor = '';
+  setSidebarNewsletterStatus();
+});
+
+sidebarNewsletterForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const email = sidebarEmail.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    sidebarEmail.style.borderColor = 'rgba(255,95,87,0.5)';
+    setSidebarNewsletterStatus('Please enter a valid email address.', 'error');
+    sidebarEmail.focus();
     return;
   }
-  const card = document.getElementById('sidebarNlBtn').closest('.sidebar-card');
-  card.innerHTML = `
-    <div style="text-align:center;padding:0.5rem 0;">
-      <div style="font-size:1.6rem;margin-bottom:0.75rem;">✓</div>
-      <div style="font-family:var(--font-head);font-size:1.1rem;color:var(--ivory);margin-bottom:0.4rem;">You're subscribed.</div>
-      <div style="font-size:0.8rem;color:var(--muted);">We'll be in your inbox next week.</div>
-    </div>`;
+
+  const token = window.grecaptcha?.getResponse() || '';
+  if (!token) {
+    setSidebarNewsletterStatus('Please complete the security check before subscribing.', 'error');
+    return;
+  }
+
+  const originalText = sidebarNlBtn.textContent;
+  sidebarNlBtn.disabled = true;
+  sidebarNlBtn.textContent = 'Subscribing...';
+  setSidebarNewsletterStatus();
+
+  try {
+    const response = await fetch(sidebarNewsletterForm.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Blog Newsletter Subscriber',
+        email,
+        subject: 'New Pinnacle Route Blog Newsletter Subscription',
+        message: `Weekly insights newsletter subscription request.\n\nEmail: ${email}\nSource: Blog article sidebar`,
+        token
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.ok === false) throw new Error(result.message || 'The subscription could not be sent.');
+    sidebarNewsletterForm.innerHTML = `
+      <div style="text-align:center;padding:0.5rem 0;">
+        <div style="font-size:1.6rem;margin-bottom:0.75rem;">✓</div>
+        <div style="font-family:var(--font-head);font-size:1.1rem;color:var(--ivory);margin-bottom:0.4rem;">You're subscribed.</div>
+        <div style="font-size:0.8rem;color:var(--muted);">We'll be in your inbox next week.</div>
+      </div>`;
+  } catch (error) {
+    setSidebarNewsletterStatus(`${error.message} Please email info@pinnacleroute.com and we will add you manually.`, 'error');
+    window.grecaptcha?.reset();
+    sidebarNlBtn.disabled = false;
+    sidebarNlBtn.textContent = originalText;
+  }
 });
 
 /* ── Smooth scroll for TOC links ─────────────────────────── */

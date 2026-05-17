@@ -620,6 +620,18 @@ img { display: block; max-width: 100%; }
   transition: var(--transition); font-family: var(--font-body);
 }
 .newsletter-btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+.newsletter-status {
+  min-height: 1.2rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.newsletter-status.error { color: #FF8A80; }
+.newsletter-status.success { color: #4CAF50; text-align: center; }
+.newsletter-captcha {
+  min-height: 78px;
+  overflow: hidden;
+}
 
 /* ============================================================
    LOAD MORE
@@ -1050,10 +1062,14 @@ img { display: block; max-width: 100%; }
       <div class="newsletter-card reveal reveal-delay-3">
         <h3 class="newsletter-card-title">Get Weekly Insights in Your Inbox</h3>
         <p class="newsletter-card-sub">One email per week. Practical thinking on AI, automation, and business systems — no fluff.</p>
-        <div class="newsletter-form">
-          <input class="newsletter-input" type="email" placeholder="your@email.com" id="nlEmail">
-          <button class="newsletter-btn" id="nlBtn">Subscribe →</button>
-        </div>
+        <form class="newsletter-form" id="newsletterForm" action="https://main-backend-eta.vercel.app/api/contact" method="POST" novalidate>
+          <input class="newsletter-input" type="email" placeholder="your@email.com" id="nlEmail" name="email" autocomplete="email" required>
+          <div class="newsletter-captcha">
+            <div class="g-recaptcha" data-sitekey="6LfdYVYrAAAAADuAW-DHihyUwvCQRIUWXWdL5r2V" data-theme="dark" data-size="compact"></div>
+          </div>
+          <button class="newsletter-btn" id="nlBtn" type="submit">Subscribe →</button>
+          <p class="newsletter-status" id="nlStatus" role="alert" aria-live="polite"></p>
+        </form>
       </div>
 
       <!-- POST 4 -->
@@ -1306,6 +1322,7 @@ img { display: block; max-width: 100%; }
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 'use strict';
 
@@ -1426,14 +1443,63 @@ loadMoreBtn.addEventListener('click', () => {
 });
 
 /* ── Newsletter form ─────────────────────────────────────── */
-document.getElementById('nlBtn').addEventListener('click', () => {
-  const val = document.getElementById('nlEmail').value.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-    document.getElementById('nlEmail').style.borderColor = 'rgba(255,95,87,0.5)';
+const newsletterForm = document.getElementById('newsletterForm');
+const newsletterEmail = document.getElementById('nlEmail');
+const newsletterStatus = document.getElementById('nlStatus');
+const newsletterBtn = document.getElementById('nlBtn');
+
+function setNewsletterStatus(message = '', type = '') {
+  newsletterStatus.textContent = message;
+  newsletterStatus.className = `newsletter-status ${type}`.trim();
+}
+
+newsletterEmail.addEventListener('input', () => {
+  newsletterEmail.style.borderColor = '';
+  setNewsletterStatus();
+});
+
+newsletterForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const email = newsletterEmail.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    newsletterEmail.style.borderColor = 'rgba(255,95,87,0.5)';
+    setNewsletterStatus('Please enter a valid email address.', 'error');
+    newsletterEmail.focus();
     return;
   }
-  document.querySelector('.newsletter-form').innerHTML =
-    '<p style="font-size:0.88rem;color:#4CAF50;text-align:center;">✓ You\'re subscribed. Talk soon.</p>';
+
+  const token = window.grecaptcha?.getResponse() || '';
+  if (!token) {
+    setNewsletterStatus('Please complete the security check before subscribing.', 'error');
+    return;
+  }
+
+  const originalText = newsletterBtn.textContent;
+  newsletterBtn.disabled = true;
+  newsletterBtn.textContent = 'Subscribing...';
+  setNewsletterStatus();
+
+  try {
+    const response = await fetch(newsletterForm.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Blog Newsletter Subscriber',
+        email,
+        subject: 'New Pinnacle Route Blog Newsletter Subscription',
+        message: `Weekly insights newsletter subscription request.\n\nEmail: ${email}\nSource: Blog listing page`,
+        token
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.ok === false) throw new Error(result.message || 'The subscription could not be sent.');
+    newsletterForm.innerHTML = '<p class="newsletter-status success">✓ You\\'re subscribed. Talk soon.</p>';
+  } catch (error) {
+    setNewsletterStatus(`${error.message} Please email info@pinnacleroute.com and we will add you manually.`, 'error');
+    window.grecaptcha?.reset();
+    newsletterBtn.disabled = false;
+    newsletterBtn.textContent = originalText;
+  }
 });
 
 /* ── Smooth anchor scroll ────────────────────────────────── */
