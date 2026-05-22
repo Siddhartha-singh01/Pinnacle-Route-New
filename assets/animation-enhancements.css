@@ -1,0 +1,452 @@
+/* Shared motion polish for Pinnacle Route */
+:root {
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+#hero,
+#latest-technologies,
+.tech-carousel,
+.tech-marquee,
+.logo-marquee {
+  overflow: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body,
+  #hero,
+  #latest-technologies,
+  .tech-carousel,
+  .tech-marquee,
+  .logo-marquee {
+    overflow-x: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.pr-enhanced-motion body {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 520ms ease, transform 520ms var(--motion-ease);
+  }
+
+  html.pr-enhanced-motion body.pr-motion-ready {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  html.pr-enhanced-motion body.pr-page-leaving {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  #nav,
+  .topbar {
+    animation: prNavDrop 720ms var(--motion-ease) both;
+  }
+
+  .reveal {
+    transition-duration: 860ms !important;
+    transition-timing-function: var(--motion-ease) !important;
+    transition-delay: var(--pr-stagger, 0ms) !important;
+  }
+
+  .hero-dashboard,
+  .mock-window,
+  .visual-card,
+  .flow-container,
+  .quote-card,
+  .form-card,
+  .contact-form,
+  .newsletter-card {
+    animation: prFloat 7s ease-in-out infinite;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .float-card-1 {
+    animation: prOrbitTiny 6.5s ease-in-out infinite;
+  }
+
+  .float-card-2 {
+    animation: prOrbitTiny 7.5s ease-in-out infinite reverse;
+  }
+
+  .bar,
+  .mock-bar,
+  .line,
+  .mock-line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bar::after,
+  .mock-bar::after,
+  .line::after,
+  .mock-line::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(245, 245, 240, 0.34), transparent);
+    transform: translateX(-120%);
+    animation: prDataSweep 3.8s ease-in-out infinite;
+  }
+
+  .chart-bars .bar {
+    transform-origin: bottom;
+    animation: prBarPulse 3.6s ease-in-out infinite;
+    animation-delay: calc(var(--pr-index, 0) * 95ms);
+  }
+
+  .flow-line,
+  .flow-arrow {
+    animation: prSignal 2.8s ease-in-out infinite;
+    animation-delay: calc(var(--pr-index, 0) * 120ms);
+  }
+
+  .dot,
+  .mock-dot,
+  .node,
+  .flow-dot,
+  .status-dot,
+  .float-badge-icon,
+  .automate-icon {
+    animation: prPulse 2.8s ease-in-out infinite;
+  }
+
+  .mobile-menu.open a,
+  .mobile-menu.open .nav-cta {
+    animation: prMenuItem 520ms var(--motion-ease) both;
+    animation-delay: calc(var(--pr-index, 0) * 55ms);
+  }
+}
+
+.btn,
+.nav-cta,
+.form-submit,
+.newsletter-btn,
+.load-more-btn,
+.contact-method,
+a.service-link,
+a[data-href],
+a[href] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn,
+.nav-cta,
+.form-submit,
+.newsletter-btn,
+.load-more-btn {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.btn::after,
+.nav-cta::after,
+.form-submit::after,
+.newsletter-btn::after,
+.load-more-btn::after {
+  content: "";
+  position: absolute;
+  inset: -35% -55%;
+  background: linear-gradient(110deg, transparent 38%, rgba(255, 255, 255, 0.28), transparent 62%);
+  transform: translateX(-115%) skewX(-18deg);
+  transition: transform 680ms var(--motion-ease);
+  pointer-events: none;
+}
+
+.btn:hover::after,
+.nav-cta:hover::after,
+.form-submit:hover::after,
+.newsletter-btn:hover::after,
+.load-more-btn:hover::after {
+  transform: translateX(115%) skewX(-18deg);
+}
+
+.btn:hover,
+.nav-cta:hover,
+.form-submit:hover,
+.newsletter-btn:hover,
+.load-more-btn:hover {
+  filter: saturate(1.08);
+}
+
+.btn:active,
+.nav-cta:active,
+.form-submit:active,
+.newsletter-btn:active,
+.load-more-btn:active,
+.contact-method:active {
+  transform: translateY(0) scale(0.985) !important;
+}
+
+.service-card,
+.solution-card,
+.case-card,
+.testimonial-card,
+.post-card,
+.featured-card,
+.topic-card,
+.automate-card,
+.outcome-card,
+.use-case,
+.feature,
+.outcome,
+.step,
+.client-proof,
+.copy-card,
+.tech-logo-card,
+.tech-pill,
+.tech span,
+.ai-benefit,
+.contact-method,
+.policy-card {
+  will-change: transform, border-color, box-shadow, background;
+}
+
+.service-card:hover,
+.solution-card:hover,
+.case-card:hover,
+.testimonial-card:hover,
+.post-card:hover,
+.featured-card:hover,
+.topic-card:hover,
+.automate-card:hover,
+.outcome-card:hover,
+.use-case:hover,
+.feature:hover,
+.outcome:hover,
+.step:hover,
+.client-proof:hover,
+.copy-card:hover,
+.tech-logo-card:hover,
+.tech-pill:hover,
+.tech span:hover,
+.ai-benefit:hover,
+.contact-method:hover,
+.policy-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(198, 169, 114, 0.08);
+}
+
+.service-card,
+.solution-card,
+.case-card,
+.post-card,
+.featured-card,
+.automate-card,
+.feature,
+.client-proof,
+.copy-card,
+.visual-card,
+.mock-window,
+.hero-dashboard {
+  position: relative;
+}
+
+.service-card::after,
+.solution-card::after,
+.case-card::after,
+.post-card::after,
+.featured-card::after,
+.automate-card::after,
+.feature::after,
+.client-proof::after,
+.copy-card::after,
+.visual-card::after,
+.mock-window::after,
+.hero-dashboard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--pr-x, 50%) var(--pr-y, 0%), rgba(198, 169, 114, 0.14), transparent 38%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+  pointer-events: none;
+}
+
+.service-card:hover::after,
+.solution-card:hover::after,
+.case-card:hover::after,
+.post-card:hover::after,
+.featured-card:hover::after,
+.automate-card:hover::after,
+.feature:hover::after,
+.client-proof:hover::after,
+.copy-card:hover::after,
+.visual-card:hover::after,
+.mock-window:hover::after,
+.hero-dashboard:hover::after {
+  opacity: 1;
+}
+
+.form-input,
+.form-select,
+.form-textarea,
+input,
+select,
+textarea,
+.newsletter-input {
+  transition: border-color 220ms ease, box-shadow 220ms ease, background 220ms ease, transform 220ms ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus,
+input:focus,
+select:focus,
+textarea:focus,
+.newsletter-input:focus {
+  box-shadow: 0 0 0 4px rgba(198, 169, 114, 0.1), 0 0 28px rgba(77, 141, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.faq-q {
+  transition: color 220ms ease, padding-left 220ms ease;
+}
+
+.faq-q:hover {
+  padding-left: 0.35rem;
+}
+
+.faq-a p {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 260ms ease, transform 260ms var(--motion-ease);
+}
+
+.faq-item.open .faq-a p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tech-logo-card img,
+.client-proof-img,
+.testimonial-media,
+.quote-brand-image {
+  transition: transform 420ms var(--motion-ease), filter 420ms ease, opacity 420ms ease;
+}
+
+.tech-logo-card:hover img,
+.client-proof:hover .client-proof-img,
+.testimonial-card:hover .testimonial-media,
+.quote-card:hover .quote-brand-image {
+  transform: scale(1.035);
+  filter: saturate(1.08) contrast(1.03);
+}
+
+.tech-marquee,
+.tech-track,
+.logo-marquee,
+.logo-track {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.tech-marquee:hover .tech-track,
+.logo-marquee:hover .logo-track {
+  animation-play-state: paused;
+}
+
+@keyframes prNavDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes prFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes prOrbitTiny {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(8px, -7px, 0);
+  }
+}
+
+@keyframes prPulse {
+  0%, 100% {
+    opacity: 0.72;
+    box-shadow: 0 0 0 rgba(77, 141, 255, 0);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 22px rgba(77, 141, 255, 0.24);
+  }
+}
+
+@keyframes prDataSweep {
+  0%, 18% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  58%, 100% {
+    transform: translateX(120%) skewX(-18deg);
+  }
+}
+
+@keyframes prBarPulse {
+  0%, 100% {
+    transform: scaleY(0.88);
+    opacity: 0.68;
+  }
+  50% {
+    transform: scaleY(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes prSignal {
+  0%, 100% {
+    opacity: 0.42;
+    filter: drop-shadow(0 0 0 rgba(77, 141, 255, 0));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(77, 141, 255, 0.32));
+  }
+}
+
+@keyframes prMenuItem {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

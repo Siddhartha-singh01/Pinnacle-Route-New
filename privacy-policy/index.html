@@ -115,6 +115,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border-subtle);padding:5
 </style>
 <link rel="icon" type="image/png" href="/assets/brand/favicon-web.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-web.png">
+<link rel="stylesheet" href="/assets/animation-enhancements.css">
 </head>
 <body>
 <nav id="nav">
@@ -399,5 +400,6 @@ document.querySelectorAll('.ml,.mobile-menu .nav-cta').forEach(link=>link.addEve
 const ro=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');ro.unobserve(entry.target);}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 </script>
+<script src="/assets/animation-enhancements.js" defer></script>
 </body>
 </html>
