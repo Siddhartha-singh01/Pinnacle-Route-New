@@ -223,6 +223,40 @@ body {
   text-align: center !important;
 }
 
+.hero-visual {
+  isolation: isolate;
+}
+
+.hero-dashboard {
+  z-index: 1;
+}
+
+.dashboard-main {
+  position: relative;
+  z-index: 2;
+}
+
+.float-card {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.float-card-1 {
+  top: 7% !important;
+  left: -230px !important;
+}
+
+.float-card-2 {
+  bottom: 4% !important;
+  left: -210px !important;
+}
+
+@media (min-width: 901px) and (max-width: 1400px) {
+  .float-card {
+    display: none;
+  }
+}
+
 .pr-body-menu-locked {
   overflow: hidden;
 }
@@ -285,18 +319,15 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   html.pr-enhanced-motion body {
     opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 520ms ease, transform 520ms var(--motion-ease);
+    transition: opacity 520ms ease;
   }
 
   html.pr-enhanced-motion body.pr-motion-ready {
     opacity: 1;
-    transform: translateY(0);
   }
 
   html.pr-enhanced-motion body.pr-page-leaving {
     opacity: 0;
-    transform: translateY(-8px);
   }
 
   #nav,
@@ -321,6 +352,10 @@ body {
     animation: prFloat 7s ease-in-out infinite;
     transform-origin: center;
     will-change: transform;
+  }
+
+  .hero-dashboard {
+    animation: none !important;
   }
 
   .float-card-1 {
