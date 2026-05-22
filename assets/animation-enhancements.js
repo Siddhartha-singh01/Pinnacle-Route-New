@@ -4,6 +4,7 @@
   const mobileMenuLinks = [
     { label: "Services", href: "/#services" },
     { label: "Solutions", href: "/#solutions" },
+    { label: "Techs", href: "/#latest-technologies" },
     { label: "Case Studies", href: "/#case-studies" },
     { label: "About", href: "/#process" },
     { label: "Blog", href: "/blog" },
@@ -69,6 +70,92 @@
         target.style.setProperty("--pr-y", `${y}%`);
       }, { passive: true });
     });
+  };
+
+  const buildTechsLink = () => {
+    const link = document.createElement("a");
+    link.href = "/#latest-technologies";
+    link.dataset.href = "/#latest-technologies";
+    link.setAttribute("role", "link");
+    link.setAttribute("tabindex", "0");
+    link.textContent = "Techs";
+    return link;
+  };
+
+  const hasTechsLink = (root) => Array.from(root.querySelectorAll("a, button"))
+    .some((el) => el.textContent.trim().toLowerCase() === "techs");
+
+  const insertAfterText = (root, text, node) => {
+    const target = Array.from(root.children).find((child) => child.textContent.trim().toLowerCase() === text);
+    if (target) {
+      target.insertAdjacentElement("afterend", node);
+      return true;
+    }
+    return false;
+  };
+
+  const installTechsLinks = () => {
+    document.querySelectorAll(".nav-links").forEach((nav) => {
+      if (hasTechsLink(nav)) return;
+
+      const item = document.createElement("li");
+      item.appendChild(buildTechsLink());
+      const solutionItem = Array.from(nav.children).find((child) =>
+        child.textContent.trim().toLowerCase() === "solutions"
+      );
+
+      if (solutionItem) solutionItem.insertAdjacentElement("afterend", item);
+      else nav.appendChild(item);
+    });
+
+    document.querySelectorAll(".footer-links").forEach((footerLinks) => {
+      if (hasTechsLink(footerLinks)) return;
+
+      const link = buildTechsLink();
+      const blog = Array.from(footerLinks.children).find((child) =>
+        child.textContent.trim().toLowerCase() === "blog"
+      );
+
+      if (blog) blog.insertAdjacentElement("beforebegin", link);
+      else footerLinks.appendChild(link);
+    });
+
+    document.querySelectorAll(".footer-col ul").forEach((list) => {
+      if (hasTechsLink(list)) return;
+      const heading = list.closest(".footer-col")?.querySelector("h4")?.textContent.trim().toLowerCase();
+      if (heading !== "company") return;
+
+      const item = document.createElement("li");
+      item.appendChild(buildTechsLink());
+      if (!insertAfterText(list, "case studies", item)) list.appendChild(item);
+    });
+  };
+
+  const scrollToHashTarget = () => {
+    if (!window.location.hash) return;
+
+    let target;
+    try {
+      target = document.querySelector(window.location.hash);
+    } catch (error) {
+      return;
+    }
+    if (!target) return;
+
+    const header = document.querySelector("#nav, .topbar");
+    const offset = header ? Math.ceil(header.getBoundingClientRect().height + 14) : 0;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  };
+
+  const installHashCorrection = () => {
+    window.addEventListener("hashchange", () => {
+      window.setTimeout(scrollToHashTarget, 80);
+      window.setTimeout(scrollToHashTarget, 700);
+    });
+
+    window.setTimeout(scrollToHashTarget, 120);
+    window.setTimeout(scrollToHashTarget, 900);
   };
 
   const themeLogoCache = new Map();
@@ -338,7 +425,9 @@
   };
 
   const init = () => {
+    installTechsLinks();
     installMobileMenu();
+    installHashCorrection();
     themeTechLogos();
     setIndexes(".chart-bars .bar, .flow-line, .flow-arrow, .mobile-menu a, .mobile-menu .nav-cta");
     staggerRevealChildren();
