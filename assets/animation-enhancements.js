@@ -71,6 +71,100 @@
     });
   };
 
+  const themeLogoCache = new Map();
+
+  const loadImageElement = (img, src) => new Promise((resolve, reject) => {
+    const loadedSource = img.currentSrc || img.src;
+    if (img.complete && img.naturalWidth > 0 && loadedSource === src) {
+      resolve(img);
+      return;
+    }
+
+    const loader = new Image();
+    loader.decoding = "async";
+    loader.onload = () => resolve(loader);
+    loader.onerror = reject;
+    loader.src = src;
+  });
+
+  const transparentizeLogo = async (img) => {
+    const originalSrc = img.dataset.prOriginalSrc || img.getAttribute("src") || img.currentSrc || img.src;
+    if (!originalSrc || originalSrc.startsWith("data:")) return originalSrc;
+    img.dataset.prOriginalSrc = originalSrc;
+    if (themeLogoCache.has(originalSrc)) return themeLogoCache.get(originalSrc);
+
+    const job = loadImageElement(img, originalSrc).then((loaded) => {
+      const canvas = document.createElement("canvas");
+      const width = loaded.naturalWidth;
+      const height = loaded.naturalHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      context.drawImage(loaded, 0, 0, width, height);
+
+      const imageData = context.getImageData(0, 0, width, height);
+      const data = imageData.data;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        const saturation = max - min;
+        const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        const nearWhite = luminance > 218 && saturation < 34;
+        const softWhite = luminance > 238;
+
+        if (nearWhite || softWhite) {
+          data[i + 3] = 0;
+          continue;
+        }
+
+        const darkNeutral = luminance < 128 && saturation < 42;
+        if (darkNeutral) {
+          const lift = luminance < 72 ? 245 : 220;
+          data[i] = lift;
+          data[i + 1] = lift;
+          data[i + 2] = Math.max(205, lift - 8);
+          data[i + 3] = Math.max(data[i + 3], 230);
+          continue;
+        }
+
+        const darkColor = luminance < 95;
+        if (darkColor) {
+          data[i] = Math.min(255, Math.round(r * 1.32 + 14));
+          data[i + 1] = Math.min(255, Math.round(g * 1.32 + 14));
+          data[i + 2] = Math.min(255, Math.round(b * 1.32 + 14));
+        } else {
+          data[i] = Math.min(255, Math.round(r * 1.05));
+          data[i + 1] = Math.min(255, Math.round(g * 1.05));
+          data[i + 2] = Math.min(255, Math.round(b * 1.05));
+        }
+      }
+
+      context.putImageData(imageData, 0, 0);
+      return canvas.toDataURL("image/png");
+    });
+
+    themeLogoCache.set(originalSrc, job);
+    return job;
+  };
+
+  const themeTechLogos = () => {
+    const logos = document.querySelectorAll("#latest-technologies .tech-logo-card img");
+    logos.forEach(async (img) => {
+      try {
+        const themedSrc = await transparentizeLogo(img);
+        if (themedSrc && img.src !== themedSrc) img.src = themedSrc;
+        img.classList.add("pr-logo-processed");
+      } catch (error) {
+        img.classList.add("pr-logo-fallback");
+      }
+    });
+  };
+
   const createMobileMenu = () => {
     const existing = document.getElementById("mobileMenu");
     if (existing) return existing;
@@ -245,6 +339,7 @@
 
   const init = () => {
     installMobileMenu();
+    themeTechLogos();
     setIndexes(".chart-bars .bar, .flow-line, .flow-arrow, .mobile-menu a, .mobile-menu .nav-cta");
     staggerRevealChildren();
     addPointerGlow();
