@@ -1594,7 +1594,36 @@ a { color: inherit; text-decoration: none; }
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+(function(){
+  let recaptchaRequested = false;
+  function loadRecaptcha(){
+    if (recaptchaRequested || window.grecaptcha) return;
+    recaptchaRequested = true;
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+  const captcha = document.querySelector('.g-recaptcha');
+  const form = document.getElementById('newsletterForm') || document.querySelector('form');
+  if ('IntersectionObserver' in window && captcha) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        loadRecaptcha();
+        observer.disconnect();
+      }
+    }, { rootMargin: '500px 0px' });
+    observer.observe(captcha);
+  }
+  if (form) {
+    ['focusin','pointerenter','touchstart'].forEach(eventName => {
+      form.addEventListener(eventName, loadRecaptcha, { once: true, passive: true });
+    });
+  }
+})();
+</script>
 <script>
 'use strict';
 

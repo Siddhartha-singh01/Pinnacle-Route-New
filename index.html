@@ -2343,7 +2343,7 @@ footer {
 
     <div class="testimonials-grid">
       <div class="testimonial-card reveal">
-        <img class="testimonial-media" src="assets/client-proof/designer-club.png" alt="The Designer Club brand visual" loading="lazy">
+        <img class="testimonial-media" src="assets/client-proof/designer-club-640.jpg" alt="The Designer Club brand visual" loading="lazy" decoding="async" width="640" height="360">
         <div class="quote-mark">"</div>
         <p class="testimonial-text">Pinnacle Route replaced our scattered manual workflows with a clean automated system that gave our team visibility, speed, and control we didn't think was possible without hiring 5 more people.</p>
         <div class="testimonial-author">
@@ -2355,7 +2355,7 @@ footer {
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-1">
-        <img class="testimonial-media" src="assets/client-proof/mandaean-app.jpg" alt="The Mandaean App brand visual" loading="lazy">
+        <img class="testimonial-media" src="assets/client-proof/mandaean-app.png" alt="The Mandaean App brand visual" loading="lazy" decoding="async" width="320" height="320">
         <div class="quote-mark">"</div>
         <p class="testimonial-text">The CRM they built for us transformed how our sales team operates. Leads no longer fall through the cracks, and our conversion rate has improved significantly since we deployed it.</p>
         <div class="testimonial-author">
@@ -2367,7 +2367,7 @@ footer {
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
-        <img class="testimonial-media" src="assets/client-proof/borrowed-luxe.webp" alt="The Borrowed Luxe brand visual" loading="lazy">
+        <img class="testimonial-media" src="assets/client-proof/borrowed-luxe-640.jpg" alt="The Borrowed Luxe brand visual" loading="lazy" decoding="async" width="640" height="640">
         <div class="quote-mark">"</div>
         <p class="testimonial-text">They took our complex SaaS requirements and delivered a polished, investor-ready product in 8 weeks. Their AI integrations were thoughtful, not gimmicky — they actually solved real user problems.</p>
         <div class="testimonial-author">
@@ -2588,7 +2588,36 @@ footer {
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+(function(){
+  let recaptchaRequested = false;
+  function loadRecaptcha(){
+    if (recaptchaRequested || window.grecaptcha) return;
+    recaptchaRequested = true;
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+  const captcha = document.querySelector('.g-recaptcha');
+  const form = document.getElementById('contactForm') || document.querySelector('form');
+  if ('IntersectionObserver' in window && captcha) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        loadRecaptcha();
+        observer.disconnect();
+      }
+    }, { rootMargin: '500px 0px' });
+    observer.observe(captcha);
+  }
+  if (form) {
+    ['focusin','pointerenter','touchstart'].forEach(eventName => {
+      form.addEventListener(eventName, loadRecaptcha, { once: true, passive: true });
+    });
+  }
+})();
+</script>
 <script>
 (function(){
   function openCleanLink(el){
