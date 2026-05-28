@@ -8,6 +8,7 @@
     { label: "Case Studies", href: "/#case-studies" },
     { label: "About", href: "/#process" },
     { label: "Blog", href: "/blog" },
+    { label: "Referral", href: "/referral-collaborations/" },
     { label: "Contact", href: "/#contact" },
     { label: "Book Strategy Call", href: "/strategy-call", cta: true }
   ];
