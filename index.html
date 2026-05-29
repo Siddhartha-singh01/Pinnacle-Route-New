@@ -57,7 +57,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; font-size: 16px; overflow-x: hidden; }
 body {
   background: var(--bg);
   color: var(--ivory);
@@ -74,7 +74,7 @@ button, input, select, textarea { font-family: var(--font-body); }
    UTILITY
 ============================================================ */
 .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
-.section { padding: 7rem 0; }
+.section { padding: clamp(5rem, 7vw, 6.25rem) 0; }
 .section-label {
   display: inline-block;
   font-family: var(--font-body);
@@ -108,7 +108,7 @@ button, input, select, textarea { font-family: var(--font-body); }
 /* SCROLL REVEAL */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(20px);
   transition: opacity 0.75s ease, transform 0.75s ease;
 }
 .reveal.visible {
@@ -1529,7 +1529,7 @@ footer {
 }
 
 @media (max-width: 640px) {
-  .section { padding: 5rem 0; }
+  .section { padding: 3.5rem 0; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: 1fr; }
   .service-card:nth-child(2n) { border-right: none; }
@@ -2182,6 +2182,8 @@ footer {
     <p class="solution-desc">Real-time business intelligence dashboards that consolidate data from every corner of your business into a single command view.</p>
   </a>
 </div>
+  </div>
+</section>
 
 <!-- ============================================================
      CASE STUDIES
@@ -2730,7 +2732,7 @@ const revealObserver = new IntersectionObserver((entries) => {
       revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.05, rootMargin: '0px 0px 12% 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
