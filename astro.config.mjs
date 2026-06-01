@@ -8,7 +8,7 @@ import vercel from "@astrojs/vercel";
 // https://astro.build
 export default defineConfig({
   site: "https://pinnacleroute.com",
-  output: "hybrid",
+  output: "static",
   adapter: vercel(),
   integrations: [react(), sitemap()],
   prefetch: { prefetchAll: true, defaultStrategy: "viewport" },
