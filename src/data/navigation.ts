@@ -68,6 +68,6 @@ export const footerColumns: FooterColumn[] = [
 
 export const socials: SocialLink[] = [
   { label: "LinkedIn", href: "#" },
-  { label: "Twitter / X", href: "#" },
+  { label: "Twitter / X", href: "https://x.com/PinnacleRoute" },
   { label: "Instagram", href: "#" },
 ];
