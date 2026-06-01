@@ -6,7 +6,6 @@
  * Includes optional geometric decorations and ArrowMotif.
  */
 import ArrowMotif from "@/components/ui/ArrowMotif.astro";
-import NetworkParticles from "@/components/ui/NetworkParticles.astro";
 
 interface Props {
   eyebrow: string;
@@ -28,13 +27,6 @@ const {
 ---
 
 <section class="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16">
-  <!-- Interactive particle network background -->
-  <NetworkParticles />
-
-  <!-- hairline geometry + brand arrow motif -->
-  <div class="hair-arc hidden md:block" style="width:1100px;height:1100px;right:-340px;top:-200px;"></div>
-  <ArrowMotif class="absolute right-[4vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-xl text-white/[0.05] pointer-events-none hidden md:block" />
-
   <div class="container-page relative z-10 w-full">
     <p class="eyebrow mb-8" data-reveal>{eyebrow}</p>
 

@@ -22,7 +22,7 @@ const masks = ["br", "tr", "bl", "arch"] as const;
   strictNav={true}
 >
   <!-- ===================== HERO ===================== -->
-  <section class="relative h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-ink">
+  <section class="relative h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img 
         src="/assets/client-proof/mandaean-app.jpg" 
@@ -43,7 +43,7 @@ const masks = ["br", "tr", "bl", "arch"] as const;
   <StickySubNav categories={expertiseData} />
 
   <!-- ===================== EXPERTISE SECTIONS ===================== -->
-  <div class="bg-paper">
+  <div class="bg-transparent">
     {
       expertiseData.map((category, index) => (
         <ExpertiseSection 

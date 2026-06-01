@@ -34,8 +34,6 @@
       this.animationFrameId = 0;
       
       this.options = {
-        particleColor: 'rgba(10, 10, 10, 0.8)', // Darker particles
-        lineColor: 'rgba(10, 10, 10, 0.25)',
         particleAmount: 60,
         defaultSpeed: 0.5,
         variantSpeed: 1,
@@ -89,7 +87,7 @@
         vx: (Math.random() * this.options.variantSpeed) + this.options.defaultSpeed * (Math.random() > 0.5 ? 1 : -1),
         vy: (Math.random() * this.options.variantSpeed) + this.options.defaultSpeed * (Math.random() > 0.5 ? 1 : -1),
         radius: ((Math.random() * this.options.variantRadius) + this.options.defaultRadius) * (isGold ? 1.5 : 1), // Gold particles are slightly larger
-        color: isGold ? '#CAA154' : this.options.particleColor
+        color: isGold ? '#CAA154' : '' // Empty string means it will use the dynamic theme color
       };
     }
 
@@ -127,10 +125,20 @@
           p.y += pushY;
         }
 
+        // Get dynamic theme color for particles
+        const themeColor = getComputedStyle(document.body).getPropertyValue('--color-white').trim() || '#ffffff';
+
         // Draw Particle
         this.ctx.beginPath();
         this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        this.ctx.fillStyle = p.color;
+        
+        if (p.color) {
+          this.ctx.fillStyle = p.color;
+          this.ctx.globalAlpha = 1;
+        } else {
+          this.ctx.fillStyle = themeColor;
+          this.ctx.globalAlpha = 0.8;
+        }
         this.ctx.fill();
 
         // Draw Links
@@ -140,13 +148,15 @@
 
           if (dist <= this.options.linkRadius) {
             this.ctx.beginPath();
-            this.ctx.strokeStyle = `rgba(10, 10, 10, ${0.25 - (dist / this.options.linkRadius) * 0.25})`;
+            this.ctx.strokeStyle = themeColor;
+            this.ctx.globalAlpha = 0.25 - (dist / this.options.linkRadius) * 0.25;
             this.ctx.lineWidth = 1;
             this.ctx.moveTo(p.x, p.y);
             this.ctx.lineTo(p2.x, p2.y);
             this.ctx.stroke();
           }
         }
+        this.ctx.globalAlpha = 1; // reset alpha
       }
     }
 
