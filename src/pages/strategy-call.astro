@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Book a Strategy Session · Pinnacle Route" navTheme="light" layoutTheme="light">
-  <main class="relative min-h-screen overflow-hidden pt-24 pb-24 font-sans">
+  <main class="relative min-h-screen overflow-hidden bg-ink text-white pt-24 pb-24 font-sans">
     
     <!-- Background Glow -->
     <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-[#CAA154]/5 blur-[120px] rounded-full pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
@@ -405,10 +405,10 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8 bg-[#CAA154]/5">
           Next Step
         </div>
-        <h1 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] mb-6">
+        <h1 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-white mb-6">
           Book Your Free Strategy Session.
         </h1>
-        <p class="text-base md:text-lg text-current opacity-60 max-w-3xl leading-relaxed font-light mx-auto">
+        <p class="text-base md:text-lg text-white/60 max-w-3xl leading-relaxed font-light mx-auto">
           This is a focused 45 minute call where we analyse your current operations, identify your biggest automation and growth opportunities, and outline exactly what we would build for your business at no cost and no obligation.
         </p>
       </div>
@@ -483,27 +483,27 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             <script src="https://www.google.com/recaptcha/api.js" async defer is:inline></script>
             
             <div class="flex flex-col gap-2 group">
-              <label class="text-xs font-semibold text-current opacity-70">Full Name *</label>
+              <label class="text-xs font-semibold text-white/70">Full Name *</label>
               <input 
                 type="text" 
-                class="w-full bg-ink/5 border border-ink/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all"
+                class="w-full bg-ink border border-grey/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all"
                 required
               />
             </div>
             
             <div class="flex flex-col gap-2 group">
-              <label class="text-xs font-semibold text-current opacity-70">Email Address *</label>
+              <label class="text-xs font-semibold text-white/70">Email Address *</label>
               <input 
                 type="email" 
-                class="w-full bg-ink/5 border border-ink/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all"
+                class="w-full bg-ink border border-grey/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all"
                 required
               />
             </div>
 
             <div class="flex flex-col gap-2 group">
-              <label class="text-xs font-semibold text-current opacity-70">Project Type *</label>
+              <label class="text-xs font-semibold text-white/70">Project Type *</label>
               <div class="relative">
-                <select class="w-full bg-ink/5 border border-ink/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all appearance-none cursor-pointer" required>
+                <select class="w-full bg-ink border border-grey/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all appearance-none cursor-pointer" required>
                   <option value="" disabled selected>Select one</option>
                   <option value="ai">AI Automation</option>
                   <option value="ecommerce">Website & eCommerce</option>

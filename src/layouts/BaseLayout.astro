@@ -10,8 +10,6 @@ import Nav from "@/components/layout/Nav.astro";
 import SidePanel from "@/components/layout/SidePanel.astro";
 import Footer from "@/components/layout/Footer.astro";
 import SearchModal from "@/components/ui/SearchModal.astro";
-import NetworkParticles from "@/components/ui/NetworkParticles.astro";
-import ArrowMotif from "@/components/ui/ArrowMotif.astro";
 import { SEO_DEFAULTS, GA_ID } from "@/data/site";
 
 /* ── Styles ──────────────────────────────────────────────── */
@@ -109,18 +107,6 @@ const ogImage = new URL(image, Astro.site).href;
   </head>
 
   <body class={layoutTheme === "light" ? "theme-light" : ""} data-strict-nav={strictNav ? "true" : undefined}>
-    
-    <!-- Global Fixed Background -->
-    <div class="fixed inset-0 z-[-10] pointer-events-none overflow-hidden">
-      <!-- Interactive particle network background -->
-      <NetworkParticles />
-
-      <!-- hairline geometry + brand arrow motif -->
-      <div class="hair-arc hidden md:block" style="width:1100px;height:1100px;right:-340px;top:-200px;"></div>
-      <!-- text-current allows it to adapt to dark/light theme automatically using CSS cascading -->
-      <ArrowMotif class="absolute right-[4vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-xl text-current opacity-5 pointer-events-none hidden md:block" />
-    </div>
-
     <!-- Intro preloader (plays once per real load, then slides down) -->
     <div id="preloader" transition:persist>
       <img src="/assets/brand/logo-gold-transparent.png" alt="Pinnacle Route" />
