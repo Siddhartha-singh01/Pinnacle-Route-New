@@ -2,191 +2,345 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Strategy Call · Pinnacle Route" navTheme="light">
-  <main class="relative min-h-screen overflow-hidden bg-white text-ink pt-32 pb-24">
+<BaseLayout title="Qualify · Pinnacle Route" navTheme="dark" layoutTheme="dark">
+  <main class="relative min-h-screen overflow-hidden bg-[#0b0b0c] text-white pt-24 pb-24 font-sans">
     
-    <!-- Background Geometry -->
-    <div class="hair-arc hidden md:block" style="width:900px;height:900px;right:-100px;top:-200px;"></div>
+    <!-- Background Glow -->
+    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gold/5 blur-[120px] rounded-full pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
 
-    <div class="container-page relative z-10">
-      
-      <!-- Hero Section -->
-      <section class="mb-24 lg:mb-32">
-        <h1 class="display !text-[clamp(3rem,8vw,6rem)] mb-4" data-reveal>Let's Connect!</h1>
-        <p class="text-2xl md:text-3xl text-ink/60" data-reveal data-reveal-delay="1">Use the form below, or send us an email</p>
-        
-        <!-- Golden Decorative Arrow -->
-        <div class="mt-12 md:mt-16 text-gold" data-reveal data-reveal-delay="2">
-          <svg class="w-10 h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
+    <!-- Hero Section -->
+    <section class="container-page relative z-10 pt-12 pb-20 md:pb-32">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+        <!-- Left Copy -->
+        <div class="flex flex-col items-start gap-8">
+          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-[#CAA154]/30 bg-[#CAA154]/10 text-[#CAA154] text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#CAA154]"></span>
+            By Application Only — Limited Strategy Sessions Available
+          </div>
+          
+          <h1 class="font-display font-medium text-4xl sm:text-5xl md:text-[4rem] leading-[1.05] tracking-[-0.02em] text-white">
+            We Don't Work With Everyone. <br class="hidden sm:block" />
+            <span class="text-white/70">But If Your Business Is Ready to Scale —</span> We Should Talk.
+          </h1>
+          
+          <p class="text-base sm:text-lg text-white/60 max-w-xl leading-relaxed font-light">
+            Pinnacle Route partners with serious founders and business owners to design, build, and deploy AI automation, eCommerce platforms, mobile apps, custom software, CRM/ERP systems, SaaS products, and premium UI/UX — in weeks, not months.
+          </p>
+          
+          <ul class="flex flex-col gap-4 text-sm sm:text-base text-white/90 font-medium">
+            <li class="flex items-start gap-3">
+              <span class="text-[#CAA154] mt-0.5 text-lg">✦</span>
+              50+ businesses transformed across 10+ industries
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#CAA154] mt-0.5 text-lg">✦</span>
+              Average client ROI recovered within 90 days of deployment
+            </li>
+          </ul>
+          
+          <button type="button" class="mt-4 bg-[#CAA154] text-black px-8 py-4 rounded font-bold hover:bg-white transition-colors flex items-center gap-2 tracking-wide" onclick="document.getElementById('inquiry-form').scrollIntoView({behavior: 'smooth'})">
+            See If You Qualify <span class="text-xl leading-none">→</span>
+          </button>
         </div>
-      </section>
 
-      <div class="w-full h-px bg-grey/20 mb-16 lg:mb-24"></div>
-
-      <!-- Contact Form Section -->
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-24 lg:mb-32">
-        <div class="lg:col-span-4">
-          <h2 class="text-3xl md:text-4xl font-medium text-ink">Contact us</h2>
-        </div>
-        
-        <div class="lg:col-span-8">
-          <form class="flex flex-col gap-8 md:gap-12">
+        <!-- Right Dashboard UI -->
+        <div class="relative w-full aspect-[4/3] max-w-[600px] mx-auto lg:ml-auto perspective-1000">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1c] to-[#0f0f11] rounded-xl border border-white/5 shadow-2xl overflow-hidden flex flex-col transform md:rotate-y-[-5deg] md:rotate-x-[2deg] shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
+            <!-- Top Bar -->
+            <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-[#141416]">
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
+              </div>
+              <span class="ml-2 text-[9px] uppercase tracking-widest text-white/40 font-semibold">Pinnacle Ops Command</span>
+            </div>
             
-            <!-- Row 1 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">First Name</label>
-                <input 
-                  type="text" 
-                  placeholder="Enter first name"
-                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
-                />
+            <!-- Dashboard Body -->
+            <div class="flex-1 p-5 sm:p-8 flex flex-col gap-6 sm:gap-8 bg-[#0b0b0c]">
+              <!-- Top Stats Grid -->
+              <div class="grid grid-cols-3 gap-3 sm:gap-5">
+                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
+                  <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">Pipeline</span>
+                  <span class="text-xl sm:text-3xl font-display font-medium text-white">$90k</span>
+                  <span class="text-[10px] sm:text-xs text-[#27c93f] font-medium">+28%</span>
+                </div>
+                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
+                  <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">Response</span>
+                  <span class="text-xl sm:text-3xl font-display font-medium text-[#4da6ff]">4m</span>
+                  <span class="text-[10px] sm:text-xs text-[#4da6ff] font-medium">-91%</span>
+                </div>
+                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
+                  <div class="absolute inset-0 bg-[#CAA154]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">ROI</span>
+                  <span class="text-xl sm:text-3xl font-display font-medium text-[#CAA154]">3.8x</span>
+                  <span class="text-[10px] sm:text-xs text-[#27c93f] font-medium">90 days</span>
+                </div>
               </div>
-              <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">Last Name</label>
-                <input 
-                  type="text" 
-                  placeholder="Enter last name"
-                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
-                />
+              
+              <!-- Chart Area -->
+              <div class="flex-1 bg-[#141416] border border-white/5 rounded-lg p-4 sm:p-6 flex flex-col relative overflow-hidden">
+                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold mb-auto relative z-10">Revenue Velocity</span>
+                <div class="flex items-end justify-between gap-1.5 sm:gap-3 h-20 sm:h-28 mt-6 relative z-10">
+                  <!-- Bars -->
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[30%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[45%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[35%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[55%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[45%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[70%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[60%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#CAA154]/40 to-[#CAA154] rounded-sm h-[85%] shadow-[0_0_15px_rgba(202,161,84,0.4)] relative">
+                    <!-- Glow on the gold bar -->
+                    <div class="absolute inset-0 bg-[#CAA154] blur-sm opacity-50"></div>
+                  </div>
+                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[90%] hover:brightness-125 transition-all"></div>
+                </div>
               </div>
-            </div>
 
-            <!-- Row 2 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">Email</label>
-                <input 
-                  type="email" 
-                  placeholder="Enter email"
-                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
-                />
-              </div>
-              <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">Company</label>
-                <input 
-                  type="text" 
-                  placeholder="Company name or website"
-                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
-                />
-              </div>
-            </div>
-
-            <!-- Row 3 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-              <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">Phone Number</label>
-                <input 
-                  type="tel" 
-                  placeholder="124-456-7890"
-                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
-                />
-              </div>
-              <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">Budget Range</label>
-                <div class="relative">
-                  <select class="w-full bg-transparent border-b border-grey/20 text-ink pb-3 focus:outline-none focus:border-gold transition-colors appearance-none pr-8">
-                    <option value="" disabled selected class="bg-white text-ink/40">Please select...</option>
-                    <option value="under_10k" class="bg-white text-ink">Under $10,000</option>
-                    <option value="10k_50k" class="bg-white text-ink">$10,000 - $50,000</option>
-                    <option value="50k_100k" class="bg-white text-ink">$50,000 - $100,000</option>
-                    <option value="over_100k" class="bg-white text-ink">$100,000+</option>
-                  </select>
-                  <svg class="absolute right-0 bottom-4 text-ink/60 pointer-events-none" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              <!-- Bottom Stats -->
+              <div class="grid grid-cols-4 gap-3 sm:gap-4">
+                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#4da6ff]">
+                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Captured</span>
+                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">184</span>
+                </div>
+                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#CAA154]">
+                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Scored</span>
+                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">96</span>
+                </div>
+                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#a67cff]">
+                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Booked</span>
+                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">31</span>
+                </div>
+                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#27c93f]">
+                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Closed</span>
+                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">14</span>
                 </div>
               </div>
             </div>
-
-            <!-- Row 4 -->
-            <div class="flex flex-col gap-3 mt-4">
-              <label class="text-sm font-semibold text-ink">Message</label>
-              <textarea 
-                placeholder="Tell us about your project. What problems can we help you solve?"
-                rows="1"
-                class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors resize-y min-h-[40px]"
-              ></textarea>
-            </div>
-
-            <!-- Footer -->
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mt-8">
-              <label class="flex items-center gap-3 cursor-pointer group">
-                <div class="relative flex items-center justify-center w-5 h-5 border border-grey/20 rounded bg-transparent group-hover:border-gold transition-colors">
-                  <input type="checkbox" class="peer sr-only" />
-                  <svg class="w-3 h-3 text-gold opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <span class="text-sm text-ink/60 group-hover:text-ink transition-colors">Subscribe to newsletter</span>
-              </label>
-
-              <button type="button" class="pill pill-dark" data-magnetic="0.3">
-                Submit Inquiry <span class="arrow">↗</span>
-              </button>
-            </div>
-            
-          </form>
+          </div>
+          <!-- Hovering small badge -->
+          <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-[#141416] border border-white/10 rounded-xl p-4 shadow-2xl z-10 flex flex-col animate-float">
+            <span class="text-sm font-semibold text-white">12.4 hrs saved today</span>
+            <span class="text-[11px] text-white/50 mt-1">Ops tasks automated</span>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <div class="w-full h-px bg-grey/20 mb-16"></div>
-
-      <!-- Direct Contact Links -->
-      <section class="mb-24">
-        <div class="flex flex-col border-b border-grey/20">
-          <!-- Projects -->
-          <a href="mailto:projects@pinnacleroute.com" class="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-t border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
-            <h3 class="text-3xl md:text-4xl text-ink/60 group-hover:text-ink transition-colors w-full md:w-1/3 mb-4 md:mb-0">Projects</h3>
-            <div class="flex items-center justify-between w-full md:w-2/3">
-              <span class="text-3xl md:text-5xl font-medium tracking-tight group-hover:text-gold transition-colors break-all">projects@pinnacleroute.com</span>
-              <svg class="w-8 h-8 md:w-10 md:h-10 text-ink/60 group-hover:text-gold transition-colors transform group-hover:translate-x-2 group-hover:-translate-y-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5v14M19 5H5"/></svg>
-            </div>
-          </a>
-
-          <!-- Careers -->
-          <a href="mailto:join@pinnacleroute.com" class="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-t border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
-            <h3 class="text-3xl md:text-4xl text-ink/60 group-hover:text-ink transition-colors w-full md:w-1/3 mb-4 md:mb-0">Careers</h3>
-            <div class="flex items-center justify-between w-full md:w-2/3">
-              <span class="text-3xl md:text-5xl font-medium tracking-tight group-hover:text-gold transition-colors break-all">join@pinnacleroute.com</span>
-              <svg class="w-8 h-8 md:w-10 md:h-10 text-ink/60 group-hover:text-gold transition-colors transform group-hover:translate-x-2 group-hover:-translate-y-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5v14M19 5H5"/></svg>
-            </div>
-          </a>
-
-          <!-- Media -->
-          <a href="mailto:info@pinnacleroute.com" class="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-t border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
-            <h3 class="text-3xl md:text-4xl text-ink/60 group-hover:text-ink transition-colors w-full md:w-1/3 mb-4 md:mb-0">Media</h3>
-            <div class="flex items-center justify-between w-full md:w-2/3">
-              <span class="text-3xl md:text-5xl font-medium tracking-tight group-hover:text-gold transition-colors break-all">info@pinnacleroute.com</span>
-              <svg class="w-8 h-8 md:w-10 md:h-10 text-ink/60 group-hover:text-gold transition-colors transform group-hover:translate-x-2 group-hover:-translate-y-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5v14M19 5H5"/></svg>
-            </div>
-          </a>
+    <!-- "Does This Sound Familiar?" Section -->
+    <section class="container-page py-24 md:py-32 border-t border-white/10 relative z-10">
+      <div class="flex flex-col items-center text-center mb-16 md:mb-24">
+        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8">
+          Does This Sound Familiar?
         </div>
-      </section>
+        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-white max-w-4xl">
+          You're Running a Real Business. <br class="hidden sm:block" />
+          <span class="text-white/60">But It Doesn't Always Feel Like It.</span>
+        </h2>
+      </div>
 
-      <!-- Social Links -->
-      <section class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-8">
-        <div class="md:col-span-4">
-          <h3 class="text-3xl md:text-4xl text-ink/60">Social</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <!-- Card 1 -->
+        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">Your leads are everywhere — and going nowhere.</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            Enquiries come in from WhatsApp, email, website forms, and portals. There's no system, no scoring, no follow-up process. Deals are slipping through the cracks every single day.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">Your team is buried in tasks that shouldn't require humans.</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            Data entry, report generation, follow-up emails, CRM updates, invoice reminders — your best people are spending their hours on work a machine could do in seconds.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">You have a website or store. But it's not doing enough work for you.</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            Your website or eCommerce experience looks fine, but it doesn't capture qualified leads, improve conversions, automate operations, or move people toward a decision.
+          </p>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">You've tried tools. Nothing stuck.</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            You've subscribed to CRMs, automation platforms, and project management tools. But without a system built specifically for your business, they just created more complexity.
+          </p>
+        </div>
+        <!-- Card 5 -->
+        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">Your operations run on WhatsApp groups and spreadsheets.</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            There's no single source of truth. Decisions are made on incomplete information. Things fall through the cracks because there's no infrastructure holding them together.
+          </p>
+        </div>
+        <!-- Card 6 -->
+        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
+          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">You know what you want to build — but you don't have the right team to build it.</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            You have a clear vision for an app, SaaS platform, CRM, ERP, portal, dashboard, or custom product. But every developer conversation ends in confusion, delays, or a quote that makes no sense.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-20 md:mt-32">
+        <p class="font-serif italic text-2xl md:text-[2rem] text-[#CAA154] font-light tracking-wide">If even two of these feel familiar — this page was written for you.</p>
+      </div>
+    </section>
+
+    <!-- "The Real Problem" Section -->
+    <section class="container-page py-24 md:py-32 border-t border-white/10 bg-[#141416]/30 relative z-10">
+      <div class="flex flex-col items-center text-center mb-16 md:mb-24">
+        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8">
+          The Real Problem
+        </div>
+        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-white max-w-5xl">
+          The Problem Isn't That You Lack Tools. <br class="hidden sm:block" />
+          <span class="text-white/60">It's That You Lack a System.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <!-- Col 1 -->
+        <div class="bg-[#0b0b0c] border border-white/5 rounded-xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 group">
+          <span class="font-display text-4xl md:text-5xl text-[#CAA154]/30 group-hover:text-[#CAA154] transition-colors block mb-6">01</span>
+          <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why are qualified leads not converting?</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            Most businesses lose deals not because their offer is weak — but because their follow-up is slow, inconsistent, and manual. By the time your team responds, the prospect has already moved on.
+          </p>
+        </div>
+        <!-- Col 2 -->
+        <div class="bg-[#0b0b0c] border border-white/5 rounded-xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 group">
+          <span class="font-display text-4xl md:text-5xl text-[#CAA154]/30 group-hover:text-[#CAA154] transition-colors block mb-6">02</span>
+          <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why does growth feel harder the bigger you get?</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            Because your operations were never designed to scale. Every new client, every new hire, every new channel adds complexity — and without automated systems underneath, growth creates chaos instead of momentum.
+          </p>
+        </div>
+        <!-- Col 3 -->
+        <div class="bg-[#0b0b0c] border border-white/5 rounded-xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 group">
+          <span class="font-display text-4xl md:text-5xl text-[#CAA154]/30 group-hover:text-[#CAA154] transition-colors block mb-6">03</span>
+          <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why do your tools feel like more work?</h3>
+          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+            Because tools don't fix process problems — systems do. A CRM no one uses, an automation that keeps breaking, a dashboard no one checks — these are symptoms of a business that was never properly architected.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form (Qualify Form) -->
+    <section id="inquiry-form" class="container-page py-24 md:py-32 border-t border-white/10 relative z-10">
+      <div class="max-w-4xl mx-auto bg-[#141416] border border-white/10 rounded-2xl p-8 md:p-16 shadow-2xl relative overflow-hidden">
+        
+        <!-- Form Background Accent -->
+        <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-[#CAA154]/5 blur-[80px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+
+        <div class="mb-14 text-center relative z-10">
+          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-white mb-6">Ready to Architect Your Business?</h2>
+          <p class="text-white/60 text-lg font-light">Fill out the application below. If we're a fit, we'll schedule a deep-dive strategy session.</p>
         </div>
         
-        <div class="md:col-span-8 flex flex-col">
-          <a href="#" class="group flex items-center justify-between py-6 border-b border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
-            <span class="text-2xl md:text-3xl font-medium group-hover:text-gold transition-colors">LinkedIn</span>
-            <svg class="w-6 h-6 text-ink/60 group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          
-          <a href="#" class="group flex items-center justify-between py-6 border-b border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
-            <span class="text-2xl md:text-3xl font-medium group-hover:text-gold transition-colors">Twitter</span>
-            <svg class="w-6 h-6 text-ink/60 group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          
-          <a href="#" class="group flex items-center justify-between py-6 border-b border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
-            <span class="text-2xl md:text-3xl font-medium group-hover:text-gold transition-colors">Instagram</span>
-            <svg class="w-6 h-6 text-ink/60 group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
-        </div>
-      </section>
+        <form class="flex flex-col gap-10 relative z-10">
+          <!-- Row 1 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="flex flex-col gap-3 group">
+              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">First Name</label>
+              <input 
+                type="text" 
+                placeholder="Enter first name"
+                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
+              />
+            </div>
+            <div class="flex flex-col gap-3 group">
+              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Last Name</label>
+              <input 
+                type="text" 
+                placeholder="Enter last name"
+                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
+              />
+            </div>
+          </div>
 
-    </div>
+          <!-- Row 2 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="flex flex-col gap-3 group">
+              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Email</label>
+              <input 
+                type="email" 
+                placeholder="Enter business email"
+                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
+              />
+            </div>
+            <div class="flex flex-col gap-3 group">
+              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Company Name / URL</label>
+              <input 
+                type="text" 
+                placeholder="Company name or website"
+                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
+              />
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="flex flex-col gap-3 group">
+              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Phone Number</label>
+              <input 
+                type="tel" 
+                placeholder="124-456-7890"
+                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
+              />
+            </div>
+            <div class="flex flex-col gap-3 group">
+              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Monthly Revenue (Optional)</label>
+              <div class="relative">
+                <select class="w-full bg-transparent border-b border-white/20 text-white pb-3 focus:outline-none focus:border-[#CAA154] transition-colors appearance-none pr-8 cursor-pointer [&>option]:bg-[#141416] [&>option]:text-white font-light">
+                  <option value="" disabled selected class="text-white/20">Please select...</option>
+                  <option value="under_10k">Under $10,000</option>
+                  <option value="10k_50k">$10,000 - $50,000</option>
+                  <option value="50k_100k">$50,000 - $100,000</option>
+                  <option value="over_100k">$100,000+</option>
+                </select>
+                <svg class="absolute right-0 bottom-4 text-white/40 pointer-events-none" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="flex flex-col gap-3 mt-4 group">
+            <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">What is the biggest operational bottleneck holding your business back right now?</label>
+            <textarea 
+              placeholder="Be as specific as possible..."
+              rows="3"
+              class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors resize-y min-h-[40px] font-light pt-2"
+            ></textarea>
+          </div>
+
+          <!-- Footer -->
+          <div class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+            <button type="button" class="bg-[#CAA154] text-black px-12 py-5 rounded font-bold hover:bg-white transition-colors w-full md:w-auto text-center tracking-widest uppercase text-xs">
+              Submit Application
+            </button>
+          </div>
+          
+        </form>
+      </div>
+    </section>
+
   </main>
+
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
 </BaseLayout>
