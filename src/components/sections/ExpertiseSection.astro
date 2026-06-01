@@ -1,0 +1,87 @@
+---
+/**
+ * Expertise Section
+ * -----------------
+ * The 2-column layout for each expertise category.
+ * Left: Number, Title, Image.
+ * Right: Description, CTA, Services List.
+ */
+import type { ExpertiseCategory } from "@/types";
+
+interface Props {
+  category: ExpertiseCategory;
+  mask?: "tl" | "tr" | "bl" | "br" | "arch" | "blob";
+}
+
+const { category, mask = "tr" } = Astro.props;
+---
+
+<section id={category.id} class="section section-light border-b border-line-ink last:border-0 pt-24 pb-32">
+  <div class="container-page grid gap-16 lg:grid-cols-[1fr_1.1fr]">
+    
+    <!-- Left Column: Number, Title, Image -->
+    <div class="flex flex-col">
+      <div class="flex gap-4 mb-16" data-reveal>
+        <span class="display-sm text-grey-2/50 !text-5xl">{category.number}</span>
+        <h2 class="display-sm !text-[clamp(2.5rem,5vw,4rem)] max-w-[12ch] leading-[1.05]">
+          {category.titleLine1} <br/> <span class="font-normal">{category.titleLine2}</span>
+        </h2>
+      </div>
+
+      <div class={`relative h-[320px] sm:h-[480px] mt-auto`} data-reveal data-reveal-delay="1">
+        <div class={`absolute inset-0 overflow-hidden mask-${mask} bg-ink/5`}>
+          {category.image.endsWith('.mp4') ? (
+            <video 
+              class="h-full w-full object-cover grayscale opacity-90"
+              autoplay muted loop playsinline preload="metadata"
+            >
+              <source src={category.image} type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              src={category.image}
+              alt={`${category.titleLine1} ${category.titleLine2}`}
+              data-parallax="0.05"
+              class="absolute inset-0 h-[115%] w-full object-cover -top-[7%] grayscale opacity-90"
+            />
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Text, Learn More, Services List -->
+    <div class="flex flex-col lg:pl-10" data-reveal data-reveal-delay="1">
+      <p class="text-[1.1rem] leading-relaxed text-ink/80 max-w-[50ch] mb-8">
+        {category.description}
+      </p>
+
+      <div>
+        <a href="/strategy-call" class="pill pill-dark !py-2.5 !px-5 !text-[0.85rem]" data-magnetic="0.2">
+          Learn More <span class="arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="mt-20">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-xs">↓</span>
+          <span class="text-xs font-medium uppercase tracking-wider">Services</span>
+        </div>
+
+        <ul class="border-t border-line-ink">
+          {category.services.map((service) => (
+            <li class="border-b border-line-ink group">
+              <a href="/strategy-call" class="flex items-center gap-4 py-5 hover:bg-ink/[0.02] transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-grey-2 shrink-0">
+                  <path d={service.icon} />
+                </svg>
+                <span class="text-[0.95rem] font-medium text-ink/70 group-hover:text-ink transition-colors">{service.label}</span>
+                <span class="ml-auto text-grey-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>

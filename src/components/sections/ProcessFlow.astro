@@ -1,0 +1,119 @@
+---
+/**
+ * Process Flow Section
+ * --------------------
+ * Custom component based on client design request.
+ * Displays project lifecycle with accordions on the left and a cyclical diagram on the right.
+ */
+const phases = [
+  { id: "discovery", title: "Discovery Phase", desc: "Understanding your vision, business goals, and defining the scope." },
+  { id: "prototype", title: "Prototype & Design", desc: "Crafting wireframes, UI/UX designs, and clickable prototypes." },
+  { id: "development", title: "Development", desc: "Building the scalable architecture and writing clean, robust code." },
+  { id: "testing", title: "Testing", desc: "Rigorous QA testing to ensure performance, security, and stability." },
+  { id: "launch", title: "Launch", desc: "Deploying your product to production and making it live." },
+  { id: "maintenance", title: "Maintenance", desc: "Ongoing support, updates, and feature enhancements." },
+];
+
+const diagramPills = [
+  "DISCOVERY PHASE",
+  "ANALYSIS AND STRATEGIC PLANNING",
+  "IT TEAM AND TECH STACK CONSIDERATION",
+  "PRODUCTION",
+  "INTEGRATION AND DEPLOYMENT"
+];
+---
+
+<section class="section section-light relative overflow-hidden py-24">
+  <div class="container-page relative z-10 grid gap-16 lg:grid-cols-12 items-center">
+    
+    <!-- Left Column: Accordions -->
+    <div class="lg:col-span-5 flex flex-col gap-4">
+      <div class="mb-6">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-3">Our Process</h2>
+        <p class="text-gray-500 max-w-md">A proven, cyclical methodology designed to bring your ambitious ideas to reality.</p>
+      </div>
+      
+      {phases.map((phase) => (
+        <details class="group bg-[#ffffff] rounded-2xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] overflow-hidden transition-all duration-300 open:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)]">
+          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer list-none outline-none">
+            <span class="font-semibold text-gray-800 text-[1.05rem]">{phase.title}</span>
+            <span class="text-[#CAA154] transition-transform duration-300 group-open:-rotate-180">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-5 pt-0 text-gray-500 text-sm leading-relaxed border-t border-gray-50 mt-1 pt-4">
+            {phase.desc}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Right Column: Diagram -->
+    <div class="lg:col-span-7 relative h-[600px] flex items-center justify-center rounded-[40px] bg-[#ffffff] border border-gray-100 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.05)] overflow-hidden">
+      <!-- Background Glow -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#CAA154]/15 via-[#CAA154]/5 to-[#ffffff]"></div>
+      
+      <!-- SVG Overlay -->
+      <div class="relative z-10 w-full max-w-[500px]">
+        <svg viewBox="0 0 400 500" class="w-full h-auto drop-shadow-sm overflow-visible">
+          <!-- Top Circle -->
+          <circle cx="200" cy="180" r="140" fill="none" stroke="#CAA154" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.6"/>
+          <!-- Bottom Circle -->
+          <circle cx="200" cy="320" r="140" fill="none" stroke="#CAA154" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.6"/>
+          
+          <!-- Arrows on Circles -->
+          <!-- Top circle left arrow (pointing up) -->
+          <path d="M52 180 l10 -15 l10 15" fill="none" stroke="#CAA154" stroke-width="1.5" />
+          <!-- Bottom circle right arrow (pointing down) -->
+          <path d="M348 320 l-10 15 l-10 -15" fill="none" stroke="#CAA154" stroke-width="1.5" />
+
+          <!-- Dynamic Pill Placement using foreignObject for standard HTML rendering -->
+          <!-- 1. Discovery -->
+          <foreignObject x="110" y="80" width="180" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="h-full w-full flex items-center justify-center bg-[#ffffff] rounded-full border border-gray-100 shadow-sm px-4">
+              <span class="text-[9px] font-bold tracking-wider text-[#CAA154] uppercase">{diagramPills[0]}</span>
+            </div>
+          </foreignObject>
+          
+          <!-- 2. Analysis -->
+          <foreignObject x="70" y="150" width="260" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="h-full w-full flex items-center justify-center bg-[#ffffff] rounded-full border border-gray-100 shadow-sm px-4">
+              <span class="text-[9px] font-bold tracking-wider text-[#CAA154] uppercase">{diagramPills[1]}</span>
+            </div>
+          </foreignObject>
+
+          <!-- 3. IT Stack (Center Overlap) -->
+          <foreignObject x="40" y="230" width="320" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="h-full w-full flex items-center justify-center bg-[#ffffff] rounded-full border border-gray-100 shadow-sm px-4">
+              <span class="text-[10px] font-bold tracking-wider text-[#CAA154] uppercase">{diagramPills[2]}</span>
+            </div>
+          </foreignObject>
+
+          <!-- 4. Production -->
+          <foreignObject x="130" y="310" width="140" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="h-full w-full flex items-center justify-center bg-[#ffffff] rounded-full border border-gray-100 shadow-sm px-4">
+              <span class="text-[9px] font-bold tracking-wider text-[#CAA154] uppercase">{diagramPills[3]}</span>
+            </div>
+          </foreignObject>
+
+          <!-- 5. Integration -->
+          <foreignObject x="80" y="380" width="240" height="40">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="h-full w-full flex items-center justify-center bg-[#ffffff] rounded-full border border-gray-100 shadow-sm px-4">
+              <span class="text-[9px] font-bold tracking-wider text-[#CAA154] uppercase">{diagramPills[4]}</span>
+            </div>
+          </foreignObject>
+        </svg>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  /* Remove default summary marker in Safari/Chrome */
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

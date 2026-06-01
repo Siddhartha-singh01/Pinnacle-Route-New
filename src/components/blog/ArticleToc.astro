@@ -1,0 +1,69 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+---
+
+<div class="hidden lg:block w-64 shrink-0">
+  <div class="sticky top-32">
+    <div class="text-[0.65rem] font-bold text-grey-2 uppercase tracking-widest mb-6">
+      In This Article
+    </div>
+    
+    <nav class="flex flex-col border-l border-line-soft">
+      {filteredHeadings.map((heading) => (
+        <a 
+          href={`#${heading.slug}`}
+          class={`toc-link py-2 pl-4 text-sm transition-colors border-l-2 -ml-[1px]
+            ${heading.depth === 3 ? 'pl-8 text-[0.8rem] text-grey-2/80' : 'text-grey-2'}
+            hover:text-white border-transparent
+          `}
+        >
+          {heading.text}
+        </a>
+      ))}
+    </nav>
+    
+    <a href="#" class="inline-flex items-center gap-2 text-xs text-grey-2 hover:text-white mt-12 transition-colors">
+      <span>↑</span> Back to top
+    </a>
+  </div>
+</div>
+
+<style>
+  /* Active state handled via JS */
+  .toc-link.is-active {
+    color: var(--color-gold);
+    border-left-color: var(--color-gold);
+  }
+</style>
+
+<script>
+  // Simple intersection observer for TOC
+  document.addEventListener('astro:page-load', () => {
+    const links = document.querySelectorAll('.toc-link');
+    if (!links.length) return;
+
+    const sections = Array.from(links).map(link => {
+      const id = link.getAttribute('href')?.substring(1);
+      return document.getElementById(id || '');
+    }).filter(Boolean) as HTMLElement[];
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('is-active'));
+          const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+          if (activeLink) activeLink.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-100px 0px -60% 0px' });
+
+    sections.forEach(sec => observer.observe(sec));
+  });
+</script>

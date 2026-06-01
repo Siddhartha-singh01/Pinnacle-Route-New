@@ -1,0 +1,51 @@
+/* ============================================================
+   NAV — floating glass pill with dropdown menus
+============================================================ */
+#site-nav {
+  transition: transform 0.5s var(--ease-out-expo);
+  will-change: transform;
+}
+/* auto-hide: slide up out of view */
+#site-nav.nav-hidden { transform: translateY(-135%); }
+
+/* the floating pill — pitch black, solid, no glass */
+.nav-pill {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 24px 60px -26px rgba(0, 0, 0, 0.9);
+}
+
+/* nav links */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92rem;
+  transition: color 0.3s var(--ease-out-expo);
+}
+.nav-link:hover { color: #ffffff; }
+.nav-chevron { transition: transform 0.35s var(--ease-out-expo); }
+.nav-group:hover .nav-chevron { transform: rotate(180deg); }
+
+/* dropdown panel */
+.nav-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo),
+    visibility 0.3s;
+}
+.nav-group:hover .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-panel {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  box-shadow: 0 28px 64px -26px rgba(0, 0, 0, 0.9);
+}
+.nav-bar { background: #ffffff; } /* hamburger lines on the dark pill */

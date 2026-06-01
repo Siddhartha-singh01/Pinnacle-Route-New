@@ -1,0 +1,192 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Strategy Call · Pinnacle Route" navTheme="light">
+  <main class="relative min-h-screen overflow-hidden bg-white text-ink pt-32 pb-24">
+    
+    <!-- Background Geometry -->
+    <div class="hair-arc hidden md:block" style="width:900px;height:900px;right:-100px;top:-200px;"></div>
+
+    <div class="container-page relative z-10">
+      
+      <!-- Hero Section -->
+      <section class="mb-24 lg:mb-32">
+        <h1 class="display !text-[clamp(3rem,8vw,6rem)] mb-4" data-reveal>Let's Connect!</h1>
+        <p class="text-2xl md:text-3xl text-ink/60" data-reveal data-reveal-delay="1">Use the form below, or send us an email</p>
+        
+        <!-- Golden Decorative Arrow -->
+        <div class="mt-12 md:mt-16 text-gold" data-reveal data-reveal-delay="2">
+          <svg class="w-10 h-10 md:w-12 md:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </div>
+      </section>
+
+      <div class="w-full h-px bg-grey/20 mb-16 lg:mb-24"></div>
+
+      <!-- Contact Form Section -->
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-24 lg:mb-32">
+        <div class="lg:col-span-4">
+          <h2 class="text-3xl md:text-4xl font-medium text-ink">Contact us</h2>
+        </div>
+        
+        <div class="lg:col-span-8">
+          <form class="flex flex-col gap-8 md:gap-12">
+            
+            <!-- Row 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              <div class="flex flex-col gap-3">
+                <label class="text-sm font-semibold text-ink">First Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter first name"
+                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
+                />
+              </div>
+              <div class="flex flex-col gap-3">
+                <label class="text-sm font-semibold text-ink">Last Name</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter last name"
+                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
+                />
+              </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              <div class="flex flex-col gap-3">
+                <label class="text-sm font-semibold text-ink">Email</label>
+                <input 
+                  type="email" 
+                  placeholder="Enter email"
+                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
+                />
+              </div>
+              <div class="flex flex-col gap-3">
+                <label class="text-sm font-semibold text-ink">Company</label>
+                <input 
+                  type="text" 
+                  placeholder="Company name or website"
+                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
+                />
+              </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              <div class="flex flex-col gap-3">
+                <label class="text-sm font-semibold text-ink">Phone Number</label>
+                <input 
+                  type="tel" 
+                  placeholder="124-456-7890"
+                  class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
+                />
+              </div>
+              <div class="flex flex-col gap-3">
+                <label class="text-sm font-semibold text-ink">Budget Range</label>
+                <div class="relative">
+                  <select class="w-full bg-transparent border-b border-grey/20 text-ink pb-3 focus:outline-none focus:border-gold transition-colors appearance-none pr-8">
+                    <option value="" disabled selected class="bg-white text-ink/40">Please select...</option>
+                    <option value="under_10k" class="bg-white text-ink">Under $10,000</option>
+                    <option value="10k_50k" class="bg-white text-ink">$10,000 - $50,000</option>
+                    <option value="50k_100k" class="bg-white text-ink">$50,000 - $100,000</option>
+                    <option value="over_100k" class="bg-white text-ink">$100,000+</option>
+                  </select>
+                  <svg class="absolute right-0 bottom-4 text-ink/60 pointer-events-none" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="flex flex-col gap-3 mt-4">
+              <label class="text-sm font-semibold text-ink">Message</label>
+              <textarea 
+                placeholder="Tell us about your project. What problems can we help you solve?"
+                rows="1"
+                class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors resize-y min-h-[40px]"
+              ></textarea>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mt-8">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <div class="relative flex items-center justify-center w-5 h-5 border border-grey/20 rounded bg-transparent group-hover:border-gold transition-colors">
+                  <input type="checkbox" class="peer sr-only" />
+                  <svg class="w-3 h-3 text-gold opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-sm text-ink/60 group-hover:text-ink transition-colors">Subscribe to newsletter</span>
+              </label>
+
+              <button type="button" class="pill pill-dark" data-magnetic="0.3">
+                Submit Inquiry <span class="arrow">↗</span>
+              </button>
+            </div>
+            
+          </form>
+        </div>
+      </section>
+
+      <div class="w-full h-px bg-grey/20 mb-16"></div>
+
+      <!-- Direct Contact Links -->
+      <section class="mb-24">
+        <div class="flex flex-col border-b border-grey/20">
+          <!-- Projects -->
+          <a href="mailto:projects@pinnacleroute.com" class="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-t border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
+            <h3 class="text-3xl md:text-4xl text-ink/60 group-hover:text-ink transition-colors w-full md:w-1/3 mb-4 md:mb-0">Projects</h3>
+            <div class="flex items-center justify-between w-full md:w-2/3">
+              <span class="text-3xl md:text-5xl font-medium tracking-tight group-hover:text-gold transition-colors break-all">projects@pinnacleroute.com</span>
+              <svg class="w-8 h-8 md:w-10 md:h-10 text-ink/60 group-hover:text-gold transition-colors transform group-hover:translate-x-2 group-hover:-translate-y-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5v14M19 5H5"/></svg>
+            </div>
+          </a>
+
+          <!-- Careers -->
+          <a href="mailto:join@pinnacleroute.com" class="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-t border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
+            <h3 class="text-3xl md:text-4xl text-ink/60 group-hover:text-ink transition-colors w-full md:w-1/3 mb-4 md:mb-0">Careers</h3>
+            <div class="flex items-center justify-between w-full md:w-2/3">
+              <span class="text-3xl md:text-5xl font-medium tracking-tight group-hover:text-gold transition-colors break-all">join@pinnacleroute.com</span>
+              <svg class="w-8 h-8 md:w-10 md:h-10 text-ink/60 group-hover:text-gold transition-colors transform group-hover:translate-x-2 group-hover:-translate-y-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5v14M19 5H5"/></svg>
+            </div>
+          </a>
+
+          <!-- Media -->
+          <a href="mailto:info@pinnacleroute.com" class="group flex flex-col md:flex-row items-start md:items-center justify-between py-10 border-t border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
+            <h3 class="text-3xl md:text-4xl text-ink/60 group-hover:text-ink transition-colors w-full md:w-1/3 mb-4 md:mb-0">Media</h3>
+            <div class="flex items-center justify-between w-full md:w-2/3">
+              <span class="text-3xl md:text-5xl font-medium tracking-tight group-hover:text-gold transition-colors break-all">info@pinnacleroute.com</span>
+              <svg class="w-8 h-8 md:w-10 md:h-10 text-ink/60 group-hover:text-gold transition-colors transform group-hover:translate-x-2 group-hover:-translate-y-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19L19 5M19 5v14M19 5H5"/></svg>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Social Links -->
+      <section class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-8">
+        <div class="md:col-span-4">
+          <h3 class="text-3xl md:text-4xl text-ink/60">Social</h3>
+        </div>
+        
+        <div class="md:col-span-8 flex flex-col">
+          <a href="#" class="group flex items-center justify-between py-6 border-b border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
+            <span class="text-2xl md:text-3xl font-medium group-hover:text-gold transition-colors">LinkedIn</span>
+            <svg class="w-6 h-6 text-ink/60 group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          
+          <a href="#" class="group flex items-center justify-between py-6 border-b border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
+            <span class="text-2xl md:text-3xl font-medium group-hover:text-gold transition-colors">Twitter</span>
+            <svg class="w-6 h-6 text-ink/60 group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          
+          <a href="#" class="group flex items-center justify-between py-6 border-b border-grey/20 hover:bg-grey/5 transition-colors px-4 -mx-4 rounded-xl">
+            <span class="text-2xl md:text-3xl font-medium group-hover:text-gold transition-colors">Instagram</span>
+            <svg class="w-6 h-6 text-ink/60 group-hover:text-ink transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</BaseLayout>

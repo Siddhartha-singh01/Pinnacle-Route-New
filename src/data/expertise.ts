@@ -1,0 +1,88 @@
+import type { ExpertiseCategory } from "@/types";
+
+// Reusable SVG path strings for icons
+const ICONS = {
+  mobile: "M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z M8 21h8 M12 18h.01",
+  monitor: "M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5zm10 14v3m-4 0h8",
+  ai: "M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83",
+  database: "M21 12c0 1.66-4 3-9 3s-9-1.34-9-3 M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5 M21 5c0 1.66-4 3-9 3s-9-1.34-9-3",
+  cpu: "M4 4h16v16H4V4z M9 9h6v6H9V9z M9 1v3 M15 1v3 M9 20v3 M15 20v3 M20 9h3 M20 14h3 M1 9h3 M1 14h3",
+  compass: "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z",
+  message: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z M9 9h.01 M15 9h.01 M12 9h.01",
+  layout: "M3 3h18v18H3z M3 9h18 M9 21V9",
+  layers: "M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5",
+  grid: "M3 3h7v7H3z M14 3h7v7h-7z M14 14h7v7h-7z M3 14h7v7H3z",
+  rocket: "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z M9 18c1.38 0 2-1.62 2-3 M18 9c0 1.38-1.62 2-3 2",
+  check: "M22 11.08V12a10 10 0 1 1-5.93-9.14 M22 4L12 14.01l-3-3",
+  sparkles: "M12 3l1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3z",
+  map: "M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z M8 2v16 M16 6v16",
+  search: "M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z M21 21l-4.35-4.35",
+  activity: "M22 12h-4l-3 9L9 3l-3 9H2",
+  flask: "M9 3h6v4l4.5 9A2 2 0 0 1 18 19H6a2 2 0 0 1-1.72-3L8.5 7V3z M14 3v4 M8.5 14h7",
+  trending: "M23 6l-9.5 9.5-5-5L1 18 M17 6h6v6",
+};
+
+export const expertiseData: ExpertiseCategory[] = [
+  {
+    id: "technology",
+    number: "1",
+    navLabel: "01 Technology",
+    titleLine1: "Tech &",
+    titleLine2: "Innovation",
+    description: "We are a leader in building cutting-edge, AI-driven, and intuitive digital solutions. We push boundaries, solve complex challenges, and create future-proof, scalable mobile and web products that drive real impact.",
+    image: "/assets/client-proof/avp-global.png", // We'll use a video or image. We have mandaean-app.png or company.mp4. Let's use image.
+    services: [
+      { label: "Mobile App Development", icon: ICONS.mobile },
+      { label: "Web Development", icon: ICONS.monitor },
+      { label: "AI Solutions", icon: ICONS.ai },
+      { label: "Backend & Infrastructure", icon: ICONS.database },
+      { label: "Emerging Technology", icon: ICONS.cpu },
+    ],
+  },
+  {
+    id: "design",
+    number: "2",
+    navLabel: "02 Design",
+    titleLine1: "Experience",
+    titleLine2: "& Design",
+    description: "Our best in class Product Designers and Strategists collaborate to create smart, clear product experiences that keeps people engaged. Through carefully crafted UX, UI and interaction design, our goal is to turn complex ideas into seamless, engaging digital experiences.",
+    image: "/assets/client-proof/borrowed-luxe.webp",
+    services: [
+      { label: "Product Discovery", icon: ICONS.compass },
+      { label: "User Research", icon: ICONS.message },
+      { label: "User Experience Design (UX)", icon: ICONS.layout },
+      { label: "Visual Product Design (UI)", icon: ICONS.layers },
+      { label: "Design Systems", icon: ICONS.grid },
+    ],
+  },
+  {
+    id: "strategy",
+    number: "3",
+    navLabel: "03 Strategy",
+    titleLine1: "Strategy &",
+    titleLine2: "Consulting",
+    description: "We bring together expert minds to work with clients to define business strategies through possible digital product solutions. We surround our clients with leaders from product, design, data, and engineering departments, with a relentless focus on product-market fit, growth potential, monetization strategies, and technical opportunities.",
+    image: "/assets/client-proof/designer-club.png",
+    services: [
+      { label: "Digital Transformation", icon: ICONS.rocket },
+      { label: "Product Validation", icon: ICONS.check },
+      { label: "AI Strategy", icon: ICONS.sparkles },
+      { label: "Planning & Roadmapping", icon: ICONS.map },
+      { label: "Technical Audits", icon: ICONS.search },
+    ],
+  },
+  {
+    id: "growth",
+    number: "4",
+    navLabel: "04 Growth",
+    titleLine1: "Product",
+    titleLine2: "Growth",
+    description: "Launching a digital product is not the finish line; it's only the beginning of the Growth journey. Our Product Managers, Data Scientists and Growth Marketers partner with clients to focus on the evolution and adoption of the product, prioritizing business goals through rapid releases, user feedback cycles, and data-driven growth marketing experimentation.",
+    image: "/assets/client-proof/mandaean-app.jpg",
+    services: [
+      { label: "Ongoing Management", icon: ICONS.activity },
+      { label: "Data & Experimentation", icon: ICONS.flask },
+      { label: "User Acquisition Marketing", icon: ICONS.trending },
+    ],
+  },
+];

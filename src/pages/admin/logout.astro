@@ -1,0 +1,5 @@
+---
+export const prerender = false;
+Astro.cookies.delete('admin_session', { path: '/' });
+return Astro.redirect('/admin/login');
+---

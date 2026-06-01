@@ -1,0 +1,30 @@
+/* ============================================================
+   ACCORDION — "What we do" expandable panels
+============================================================ */
+.wwd-item {
+  border-left: 1px solid var(--color-line-soft);
+  transition: border-color 0.4s var(--ease-out-expo);
+}
+.wwd-item.is-open { border-left-color: #ffffff; }
+
+.wwd-label {
+  color: var(--color-grey);
+  transition: color 0.4s var(--ease-out-expo);
+}
+.wwd-item.is-open .wwd-label,
+.wwd-head:hover .wwd-label { color: #ffffff; }
+
+.wwd-arrow {
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
+}
+.wwd-item.is-open .wwd-arrow { opacity: 1; }
+.wwd-head:hover .wwd-arrow { transform: translate(3px, -3px); }
+
+.wwd-panel {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.6s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
+}
+.wwd-item.is-open .wwd-panel { opacity: 1; }

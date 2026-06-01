@@ -1,0 +1,67 @@
+---
+/**
+ * Expertise Grid
+ * --------------
+ * Split section: video on left, expertise links on right.
+ * Used on the homepage #services area.
+ */
+import type { Service } from "@/types";
+import ArrowMotif from "@/components/ui/ArrowMotif.astro";
+import { serviceHref } from "@/data/services";
+
+interface Props {
+  services: Service[];
+  videoSrc?: string;
+}
+
+const {
+  services,
+  videoSrc = "/assets/home/showcase.mp4",
+} = Astro.props;
+---
+
+<section id="services" class="section relative overflow-hidden">
+  <ArrowMotif class="absolute left-[2vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-lg text-white/[0.04] pointer-events-none hidden lg:block" />
+
+  <div class="container-page grid gap-16 lg:grid-cols-2 lg:items-center relative z-10">
+    <!-- showcase video -->
+    <div class="relative h-[520px]" data-reveal>
+      <div class="absolute inset-0 overflow-hidden mask-arch border border-line-soft bg-surface">
+        <video
+          class="h-full w-full object-cover"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          data-speed="1.5"
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- copy + expertise list -->
+    <div>
+      <h2 class="display-sm max-w-[16ch]" data-reveal>
+        Drawing on deep expertise, we build products with <span class="dim">ambitious partners.</span>
+      </h2>
+
+      <div class="mt-12 grid sm:grid-cols-2 gap-x-10 gap-y-5" data-reveal data-reveal-delay="1">
+        {
+          services.map((s) => (
+            <a href={serviceHref(s.slug)} class="group flex items-center gap-3 py-3 border-b border-line-soft text-grey-2 hover:text-white transition-colors duration-300">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 opacity-70 group-hover:opacity-100"><path d={s.glyph} /></svg>
+              <span class="text-[1.05rem]">{s.label}</span>
+              <span class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <a href="/#work" class="pill pill-dark mt-10" data-magnetic="0.25">
+        View all services <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>

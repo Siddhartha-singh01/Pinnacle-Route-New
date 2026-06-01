@@ -1,0 +1,274 @@
+---
+/**
+ * Service detail page
+ * -------------------
+ * Faithful to the reference: sticky service header with a chevron service
+ * switcher, an intro (paragraph + sub-service anchor list + masked image),
+ * then detailed sub-service sections with a left rail and "related" cards.
+ * Light / paper theme.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaBanner from "@/components/sections/CtaBanner.astro";
+import { serviceDetails } from "@/data/service-details";
+import { services, serviceHref } from "@/data/services";
+import type { ServiceDetail } from "@/types";
+
+export function getStaticPaths() {
+  return Object.values(serviceDetails).map((svc) => ({
+    params: { slug: svc.slug },
+    props: { svc },
+  }));
+}
+
+interface Props {
+  svc: ServiceDetail;
+}
+const { svc } = Astro.props;
+
+const chevron =
+  '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+---
+
+<BaseLayout
+  title={`${svc.label} · Pinnacle Route`}
+  description={svc.intro}
+  navTheme="light"
+  strictNav={true}
+>
+  <div class="bg-paper text-ink">
+    {/* ===================== HERO ===================== */}
+    <section id="svc-hero" class="container-page pt-32 lg:pt-36 pb-8">
+      <a href="/our-expertise" class="inline-flex items-center gap-2 text-sm font-medium text-ink/60 hover:text-ink transition-colors mb-7">
+        <span class="text-base">←</span> {svc.category}
+      </a>
+
+      <div class="svc-switcher relative inline-block">
+        <button type="button" class="svc-toggle flex items-center gap-4 text-left" aria-expanded="false" aria-haspopup="true">
+          <h1 class="display-sm !text-[clamp(2.4rem,6vw,4.5rem)] text-ink">{svc.label}</h1>
+          <span class="svc-chev grid place-items-center h-9 w-9 rounded-full border border-line-ink text-ink shrink-0 mt-2">
+            <Fragment set:html={chevron} />
+          </span>
+        </button>
+        <div class="svc-panel">
+          <div class="svc-panel-inner grid grid-cols-2 gap-1">
+            {services.map((s) => (
+              <a href={serviceHref(s.slug)} class:list={["svc-panel-link", { "is-current": s.slug === svc.slug }]}>
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ============== STICKY COMPACT BAR (shows after hero) ============== */}
+    <div id="svc-stickybar" class="svc-stickybar sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-y border-line-ink">
+      <div class="container-page py-3.5 flex items-center gap-4">
+        <a href="/our-expertise" class="text-ink/55 hover:text-ink transition-colors" aria-label={`Back to ${svc.category}`}>←</a>
+        <div class="svc-switcher relative">
+          <button type="button" class="svc-toggle flex items-center gap-2.5 text-left" aria-expanded="false" aria-haspopup="true">
+            <span class="font-display font-semibold tracking-tight text-xl sm:text-2xl text-ink">{svc.label}</span>
+            <Fragment set:html={chevron} />
+          </button>
+          <div class="svc-panel">
+            <div class="svc-panel-inner grid grid-cols-2 gap-1">
+              {services.map((s) => (
+                <a href={serviceHref(s.slug)} class:list={["svc-panel-link", { "is-current": s.slug === svc.slug }]}>
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* ===================== INTRO ===================== */}
+    <section class="container-page py-16 lg:py-24">
+      <div class="grid gap-14 lg:grid-cols-2 lg:items-start">
+        <div>
+          <p class="text-[clamp(1.25rem,2.4vw,1.6rem)] leading-snug text-ink/70 max-w-[26ch]" data-reveal>
+            {svc.intro}
+          </p>
+
+          <ul class="mt-12 border-t border-line-ink" data-reveal data-reveal-delay="1">
+            {svc.subItems.map((si) => (
+              <li class="border-b border-line-ink group">
+                <a href={`#${si.id}`} class="flex items-center gap-3 py-4 text-ink/55 hover:text-ink transition-colors">
+                  <span class="text-[1.05rem] font-medium">{si.title}</span>
+                  <span class="ml-auto text-grey-2 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">↓</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="relative h-[360px] lg:h-[520px]" data-reveal data-reveal-delay="1">
+          <div class="absolute inset-0 overflow-hidden mask-bl bg-ink/5">
+            <img src={svc.image} alt={svc.label} data-parallax="0.05" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%] grayscale" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ===================== SUB-SERVICE SECTIONS ===================== */}
+    <div class="container-page pb-12">
+      <div class="border-l border-line-ink">
+        {
+          svc.subItems.map((si) => (
+            <section id={si.id} class="grid gap-10 lg:grid-cols-2 lg:gap-16 pl-7 lg:pl-14 py-16 lg:py-24 border-b border-line-ink last:border-b-0">
+              {/* Left: icon, title, related card */}
+              <div class="flex flex-col">
+                <span class="grid place-items-center h-12 w-12 rounded-xl border border-line-ink text-ink mb-8" data-reveal>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d={si.icon} />
+                  </svg>
+                </span>
+
+                <h2 class="display-sm !text-[clamp(2rem,4vw,3.25rem)] text-ink max-w-[12ch]" data-reveal>
+                  {si.title}
+                </h2>
+
+                {si.related && (
+                  <div class="mt-12 lg:mt-auto lg:pt-16 flex items-start gap-4" data-reveal>
+                    <span class="grid place-items-center h-14 w-14 rounded-2xl bg-ink/5 text-ink shrink-0">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d={si.related.icon} />
+                      </svg>
+                    </span>
+                    <div>
+                      <p class="text-[1.05rem] font-medium text-ink leading-snug max-w-[30ch]">{si.related.prompt}</p>
+                      <a href={si.related.href} class="mt-2 inline-flex items-center gap-1.5 text-sm text-ink/70 hover:text-ink transition-colors">
+                        {si.related.label} <span>↗</span>
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Right: detailed copy */}
+              <div class="lg:pt-2" data-reveal data-reveal-delay="1">
+                {si.body.map((p) => (
+                  <p class="text-[1.05rem] leading-relaxed text-ink/70 mb-6 last:mb-0 max-w-[62ch]">{p}</p>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+
+  </div>
+
+  {/* Dark closing CTA — flows seamlessly into the footer */}
+  <CtaBanner
+    eyebrow="Let's talk"
+    headline="Ready to build"
+    headlineDim={`${svc.label}?`}
+    links={[{ href: "/strategy-call", label: "Start a project", variant: "light" }]}
+  />
+</BaseLayout>
+
+<style>
+  /* Service switcher dropdown (dark panel on the light page) */
+  .svc-panel {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 0.85rem;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), visibility 0.3s;
+  }
+  .svc-switcher.is-open .svc-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .svc-panel-inner {
+    background: #0a0a0c;
+    border: 1px solid var(--color-line-soft);
+    border-radius: 1.1rem;
+    padding: 0.5rem;
+    min-width: 21rem;
+    box-shadow: 0 28px 64px -26px rgba(0, 0, 0, 0.55);
+  }
+  @media (min-width: 640px) {
+    .svc-panel-inner { min-width: 28rem; }
+  }
+  .svc-panel-link {
+    display: block;
+    border-radius: 0.7rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+    color: var(--color-grey-2);
+    transition: color 0.2s, background 0.2s;
+  }
+  .svc-panel-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .svc-panel-link.is-current {
+    color: #fff;
+  }
+  .svc-chev svg,
+  .svc-toggle svg {
+    transition: transform 0.35s var(--ease-out-expo);
+  }
+  .svc-switcher.is-open svg {
+    transform: rotate(180deg);
+  }
+
+  /* Sticky compact bar: hidden until the hero scrolls away */
+  .svc-stickybar {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease-out-expo);
+  }
+  .svc-stickybar.is-shown {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // --- service switcher open/close ---
+    const switchers = Array.from(document.querySelectorAll<HTMLElement>(".svc-switcher"));
+    const closeAll = () =>
+      switchers.forEach((s) => {
+        s.classList.remove("is-open");
+        s.querySelector(".svc-toggle")?.setAttribute("aria-expanded", "false");
+      });
+
+    switchers.forEach((sw) => {
+      const toggle = sw.querySelector<HTMLElement>(".svc-toggle");
+      toggle?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = sw.classList.contains("is-open");
+        closeAll();
+        if (!isOpen) {
+          sw.classList.add("is-open");
+          toggle.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+    document.addEventListener("click", closeAll);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAll();
+    });
+
+    // --- reveal sticky bar once the hero is scrolled past ---
+    const hero = document.getElementById("svc-hero");
+    const bar = document.getElementById("svc-stickybar");
+    if (hero && bar) {
+      const io = new IntersectionObserver(
+        ([entry]) => bar.classList.toggle("is-shown", !entry.isIntersecting),
+        { rootMargin: "-80px 0px 0px 0px", threshold: 0 },
+      );
+      io.observe(hero);
+    }
+  });
+</script>

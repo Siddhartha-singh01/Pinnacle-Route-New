@@ -1,0 +1,89 @@
+---
+/**
+ * Sticky Sub Navigation
+ * -------------------
+ * Appears below the hero on the expertise page and sticks to the top during scroll.
+ */
+import type { ExpertiseCategory } from "@/types";
+
+interface Props {
+  categories: ExpertiseCategory[];
+}
+
+const { categories } = Astro.props;
+---
+
+<nav class="sticky top-0 z-40 bg-paper border-b border-line-ink overflow-x-auto">
+  <div class="container-page">
+    <ul class="flex min-w-max">
+      {
+        categories.map((c, i) => (
+          <li class="flex-1">
+            <a
+              href={`#${c.id}`}
+              class="subnav-link block py-5 px-6 border-l border-line-ink text-[0.8rem] font-medium text-ink/50 hover:text-ink transition-all"
+            >
+              <span class="text-grey-2 mr-1">0{i + 1}</span>
+              {c.navLabel.replace(/^0\d\s/, "")}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  html {
+    scroll-padding-top: 5rem; /* offset for subnav */
+  }
+  
+  /* Active state for the subnav links */
+  .subnav-link.is-active {
+    color: var(--color-ink);
+    font-weight: 700;
+    box-shadow: inset 3px 0 0 0 var(--color-ink); /* thick black left border */
+  }
+  .subnav-link.is-active span {
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const links = document.querySelectorAll('.subnav-link');
+    if (!links.length) return;
+
+    // Get all sections referenced by the links
+    const sections = Array.from(links).map(link => {
+      const id = link.getAttribute('href')?.replace('#', '');
+      return document.getElementById(id || '');
+    }).filter(Boolean) as HTMLElement[];
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            links.forEach(link => {
+              if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('is-active');
+              } else {
+                link.classList.remove('is-active');
+              }
+            });
+          }
+        });
+      },
+      {
+        rootMargin: '-15% 0px -65% 0px', // Triggers when section enters upper-middle viewport
+        threshold: 0
+      }
+    );
+
+    sections.forEach(section => observer.observe(section));
+  });
+</script>

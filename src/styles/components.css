@@ -1,0 +1,134 @@
+/* ============================================================
+   COMPONENT STYLES
+   Layout primitives, typography, buttons, masks, decorations.
+============================================================ */
+@layer components {
+  /* ── Layout ────────────────────────────────────────────── */
+
+  .container-page {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 4rem);
+  }
+
+  .section { padding-block: clamp(5rem, 10vw, 9rem); position: relative; }
+
+  /* White / inverted section — flips the ink scale */
+  .section-light {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  .section-light h1,
+  .section-light h2,
+  .section-light h3 { color: var(--color-ink); }
+
+  /* In light theme, .section-light should use normal text color since ink is white */
+  .theme-light .section-light {
+    background: var(--color-surface);
+    color: var(--color-white);
+  }
+  .theme-light .section-light h1,
+  .theme-light .section-light h2,
+  .theme-light .section-light h3 { color: var(--color-white); }
+
+  /* ── Typography ────────────────────────────────────────── */
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-grey);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 0.5rem; height: 0.5rem;
+    border-radius: 99px;
+    background: currentColor;
+  }
+
+  /* Oversized display headline */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    font-size: clamp(2.75rem, 9vw, 9rem);
+  }
+  .display-sm { font-size: clamp(2.25rem, 5.5vw, 5rem); line-height: 0.96; letter-spacing: -0.03em; }
+
+  /* Second-line muting trick */
+  .display .dim { color: var(--color-grey-3); }
+  .section-light .display .dim { color: #b9b6ad; }
+
+  /* ── Pill buttons ──────────────────────────────────────── */
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.95rem 1.5rem;
+    border-radius: 99px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    transition: background 0.45s var(--ease-out-expo),
+      color 0.45s var(--ease-out-expo), transform 0.45s var(--ease-out-expo);
+    will-change: transform;
+  }
+  .pill .arrow { transition: transform 0.45s var(--ease-out-expo); }
+  .pill:hover .arrow { transform: translate(3px, -3px); }
+
+  .pill-dark { background: var(--color-surface); color: #fff; border: 1px solid var(--color-line); }
+  .pill-dark:hover { background: #fff; color: #0a0a0a; }
+
+  .pill-light { background: #fff; color: #0a0a0a; }
+  .pill-light:hover { background: #0a0a0a; color: #fff; }
+
+  /* Light Theme Overrides for high contrast buttons */
+  .theme-light .pill-dark { background: transparent; color: #0a0a0a; border-color: rgba(10,10,10,0.2); }
+  .theme-light .pill-dark:hover { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+
+  .theme-light .pill-light { background: #0a0a0a; color: #fff; border: 1px solid transparent; }
+  .theme-light .pill-light:hover { background: transparent; color: #0a0a0a; border-color: rgba(10,10,10,0.2); }
+
+  .pill-ghost { color: currentColor; padding-inline: 0; }
+  .pill-ghost:hover { opacity: 0.6; }
+
+  /* ── Image masks ───────────────────────────────────────── */
+
+  .mask-tl { border-radius: 42% 0 0 0 / 60% 0 0 0; }
+  .mask-tr { border-radius: 0 42% 0 0 / 0 60% 0 0; }
+  .mask-bl { border-radius: 0 0 0 42% / 0 0 0 60%; }
+  .mask-arch { border-radius: 50% 50% 0 0 / 28% 28% 0 0; }
+  .mask-blob { border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%; }
+
+  /* ── Hairline geometry ─────────────────────────────────── */
+
+  .hair { position: absolute; border: 1px solid var(--color-line-soft); pointer-events: none; }
+  .hair-arc {
+    position: absolute;
+    border: 1px solid var(--color-line-soft);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* ── Footer watermark ──────────────────────────────────── */
+
+  .footer-mark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+    line-height: 0.74;
+    letter-spacing: -0.045em;
+    color: #ffffff;
+    font-size: clamp(1.9rem, 8.4vw, 8rem);
+    user-select: none;
+  }
+  .footer-mark .gold { color: var(--color-gold); margin-left: 0.4em; }
+}

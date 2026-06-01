@@ -1,0 +1,53 @@
+---
+/**
+ * Tool Strip
+ * ----------
+ * Greyscale logo strip showing the tech stack.
+ */
+
+interface Props {
+  tools: string[];
+  label?: string;
+}
+
+const { tools, label = "The modern stack we orchestrate" } = Astro.props;
+---
+
+<div class="mt-20 pt-12 border-t border-ink/10">
+  <p class="text-xs uppercase tracking-[0.25em] text-current opacity-45 mb-8">{label}</p>
+  
+  <div class="relative w-full overflow-hidden mask-edges py-2">
+    <div class="flex w-fit items-center gap-12 animate-scroll">
+      {
+        [...tools, ...tools].map((t) => (
+          <img
+            src={t.startsWith('http') ? t : `/assets/tech-logos/optimized/${t}.jpg`}
+            alt={t.split('/').pop() || t}
+            loading="lazy"
+            class="h-14 md:h-16 w-auto max-w-[200px] md:max-w-[260px] object-contain transition-transform duration-300 flex-shrink-0 px-4"
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .mask-edges {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+  }
+  
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 1.5rem)); }
+  }
+</style>

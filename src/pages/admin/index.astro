@@ -1,0 +1,62 @@
+---
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const totalViews = posts.reduce((sum, post) => sum + (post.data.views || 0), 0);
+---
+
+<AdminLayout title="Dashboard Overview" activeTab="overview">
+  <div class="max-w-5xl">
+    <h1 class="text-2xl font-semibold text-white mb-8">Dashboard Overview</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <!-- Total Views -->
+      <div class="bg-surface border border-line-soft rounded-xl p-6 relative overflow-hidden">
+        <div class="text-[0.65rem] font-bold text-grey-2 uppercase tracking-widest mb-2">Total Blog Views</div>
+        <div class="text-4xl font-display text-white">{totalViews.toLocaleString()}</div>
+        <div class="text-xs text-green-400 mt-2">↑ 12% from last month</div>
+        <svg class="absolute right-0 bottom-0 text-line opacity-50" width="120" height="80" viewBox="0 0 120 80" fill="none"><path d="M0 80 Q 30 20 60 40 T 120 10 L 120 80 Z" fill="currentColor"/></svg>
+      </div>
+
+      <!-- Published Posts -->
+      <div class="bg-surface border border-line-soft rounded-xl p-6">
+        <div class="text-[0.65rem] font-bold text-grey-2 uppercase tracking-widest mb-2">Published Posts</div>
+        <div class="text-4xl font-display text-white">{posts.length}</div>
+        <div class="text-xs text-grey-2 mt-2">Latest: {posts.sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0]?.data.title.substring(0, 20)}...</div>
+      </div>
+
+      <!-- Unique Visitors (Mock) -->
+      <div class="bg-surface border border-line-soft rounded-xl p-6">
+        <div class="text-[0.65rem] font-bold text-grey-2 uppercase tracking-widest mb-2">Unique Visitors</div>
+        <div class="text-4xl font-display text-white">12,450</div>
+        <div class="text-xs text-green-400 mt-2">↑ 8% from last month</div>
+      </div>
+    </div>
+
+    <h2 class="text-lg font-semibold text-white mb-4">Website Health</h2>
+    <div class="bg-surface border border-line-soft rounded-xl p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <div class="w-2 h-2 rounded-full bg-green-500"></div>
+          <span class="text-sm font-medium text-white">System Status</span>
+        </div>
+        <p class="text-xs text-grey-2">All systems operational.</p>
+      </div>
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-sm font-medium text-white">Average Load Time</span>
+        </div>
+        <p class="text-lg text-gold font-display">0.8s</p>
+      </div>
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-sm font-medium text-white">Build Status</span>
+        </div>
+        <p class="text-xs px-2 py-1 bg-green-500/10 text-green-500 border border-green-500/20 rounded inline-block">Passing</p>
+      </div>
+    </div>
+
+  </div>
+</AdminLayout>

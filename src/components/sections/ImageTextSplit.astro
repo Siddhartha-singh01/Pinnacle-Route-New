@@ -1,0 +1,68 @@
+---
+/**
+ * Image-Text Split
+ * ----------------
+ * Two-column section with masked image on one side and text + CTA on the other.
+ * Supports reversed layout for visual variety.
+ */
+
+interface Props {
+  image: string;
+  imageAlt: string;
+  mask?: "tl" | "tr" | "bl" | "arch" | "blob";
+  heading: string;
+  /** HTML allowed for the dim span trick. */
+  headingDim?: string;
+  body: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+  /** If true, image goes on the right (text first on desktop). */
+  reverse?: boolean;
+  grayscale?: boolean;
+}
+
+const {
+  image,
+  imageAlt,
+  mask = "tl",
+  heading,
+  headingDim,
+  body,
+  ctaHref,
+  ctaLabel,
+  reverse = false,
+  grayscale = false,
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="container-page grid gap-14 lg:grid-cols-2 lg:items-center">
+    <!-- Image -->
+    <div class={`relative h-[440px] lg:h-[540px] ${reverse ? "order-2 lg:order-1" : ""}`} data-reveal>
+      <div class={`absolute inset-0 overflow-hidden mask-${mask} border border-line-soft`}>
+        <img
+          src={image}
+          alt={imageAlt}
+          data-parallax="0.06"
+          class={`absolute inset-0 h-[115%] w-full object-cover -top-[7%] ${grayscale ? "grayscale" : ""}`}
+        />
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class={reverse ? "order-1 lg:order-2" : ""} data-reveal data-reveal-delay="1">
+      <h2 class="display-sm max-w-[14ch]">
+        {heading} {headingDim && <span class="dim">{headingDim}</span>}
+      </h2>
+      <p class="mt-8 max-w-md text-lg text-grey-2">{body}</p>
+      {ctaHref && ctaLabel && (
+        <a href={ctaHref} class="pill pill-dark mt-10" data-magnetic="0.25">
+          {ctaLabel} <span class="arrow">↗</span>
+        </a>
+      )}
+    </div>
+  </div>
+
+  <!-- Optional slot for stats or extra content -->
+  <slot />
+</section>

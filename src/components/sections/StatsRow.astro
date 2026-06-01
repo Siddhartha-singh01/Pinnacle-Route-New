@@ -1,0 +1,27 @@
+---
+/**
+ * Stats Row
+ * ---------
+ * Horizontal row of stat counters with dividers.
+ */
+import type { Stat } from "@/types";
+
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="container-page mt-20">
+  <div class="grid grid-cols-3 border-t border-line-soft">
+    {
+      stats.map((s) => (
+        <div class="py-8 pr-6 border-r border-line-soft last:border-r-0">
+          <div class="display !text-[clamp(2.5rem,6vw,4.5rem)]">{s.value}</div>
+          <div class="mt-2 text-sm text-grey-2">{s.label}</div>
+        </div>
+      ))
+    }
+  </div>
+</div>

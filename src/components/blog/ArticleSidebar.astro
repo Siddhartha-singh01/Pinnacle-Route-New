@@ -1,0 +1,61 @@
+---
+// ArticleSidebar.astro
+---
+
+<div class="hidden xl:flex flex-col gap-6 w-80 shrink-0">
+  <div class="sticky top-32 flex flex-col gap-6">
+    
+    <!-- Reading Progress -->
+    <div class="bg-surface border border-line-soft rounded-2xl p-6">
+      <div class="text-[0.65rem] font-bold text-grey-2 uppercase tracking-widest mb-4">Reading Progress</div>
+      <div class="h-1 w-full bg-ink rounded-full overflow-hidden mb-2">
+        <div id="reading-progress" class="h-full bg-gold w-0 transition-all duration-150"></div>
+      </div>
+      <div class="text-xs text-grey-2" id="reading-percent">0% complete</div>
+    </div>
+
+    <!-- Free Strategy Session CTA -->
+    <div class="bg-surface border border-line-soft rounded-2xl p-8">
+      <div class="text-[0.65rem] font-bold text-gold uppercase tracking-widest mb-4">Free Strategy Session</div>
+      <h3 class="font-display text-xl text-white mb-4">Want This System Built for Your Business?</h3>
+      <p class="text-sm text-grey-2 mb-6">Book a free 45-minute session. We'll map your lead flow and show you exactly what we'd build.</p>
+      <a href="/strategy-call" class="pill pill-light w-full justify-center !py-3">
+        Book Free Session <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Newsletter CTA -->
+    <div class="bg-surface border border-line-soft rounded-2xl p-8">
+      <div class="text-[0.65rem] font-bold text-grey-2 uppercase tracking-widest mb-4">Weekly Insights</div>
+      <h3 class="font-display text-xl text-white mb-4">Get Articles Like This Every Week</h3>
+      <p class="text-sm text-grey-2 mb-6">No fluff. Just practical thinking on AI, systems, and growth.</p>
+      <form class="flex flex-col gap-3">
+        <input type="email" placeholder="Email address" class="w-full bg-ink border border-line-soft rounded-lg py-3 px-4 text-sm text-white placeholder-grey-2 focus:outline-none focus:border-gold transition-colors" required />
+        <button type="submit" class="pill pill-dark w-full justify-center border-line-soft">
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const progress = document.getElementById('reading-progress');
+    const percentText = document.getElementById('reading-percent');
+    if (!progress || !percentText) return;
+
+    const updateProgress = () => {
+      const scrollPx = document.documentElement.scrollTop;
+      const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollLen = Math.ceil((scrollPx / winHeightPx) * 100);
+      
+      progress.style.width = `${scrollLen}%`;
+      percentText.innerText = `${scrollLen}% complete`;
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress(); // init
+  });
+</script>

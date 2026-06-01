@@ -1,0 +1,48 @@
+---
+/**
+ * Work Showcase
+ * -------------
+ * Portfolio grid with parallax images and hover effects.
+ */
+import type { WorkItem } from "@/types";
+
+interface Props {
+  items: WorkItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section id="work" class="section section-light">
+  <div class="container-page">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-end mb-14">
+      <h2 class="display-sm max-w-[12ch]" data-reveal>Innovating with ambitious teams</h2>
+      <p class="max-w-md text-[1.05rem] text-current opacity-70 lg:justify-self-end" data-reveal data-reveal-delay="1">
+        Our work with founders and established brands turns complex problems
+        into refined digital products that drive measurable growth.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        items.map((p, i) => (
+          <a href="/#work" class="group block" data-reveal data-reveal-delay={(i % 3) + 1}>
+            <div class={`relative overflow-hidden ${i === 1 ? "mask-arch" : "mask-tl"} aspect-[4/5] bg-ink/5`}>
+              <img src={p.img} alt={p.title} loading="lazy" data-parallax="0.05" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%] transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div class="mt-5 flex items-center justify-between">
+              <div>
+                <h3 class="text-2xl">{p.title}</h3>
+                <p class="text-sm text-current opacity-60 mt-1">{p.tag}</p>
+              </div>
+              <span class="text-xl opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">↗</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- greyscale tool strip slot -->
+    <slot />
+  </div>
+</section>

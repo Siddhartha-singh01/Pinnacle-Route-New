@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogFilterBar from '@/components/blog/BlogFilterBar.astro';
+import FeaturedArticle from '@/components/blog/FeaturedArticle.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
+import CtaBanner from '@/components/sections/CtaBanner.astro';
+
+// Fetch and sort posts by date
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Separate featured post
+const featuredPost = sortedPosts.find(post => post.data.featured) || sortedPosts[0];
+const gridPosts = sortedPosts.filter(post => post.id !== featuredPost.id);
+---
+
+<BaseLayout 
+  title="Insights & Strategy · Pinnacle Route"
+  description="Practical insights on AI automation, business systems, digital transformation, and growth strategy."
+  navTheme="dark"
+>
+  <!-- Hero Section -->
+  <section class="pt-32 pb-16 lg:pt-40 lg:pb-20">
+    <div class="container-page">
+      <div class="max-w-4xl">
+        <div class="eyebrow text-gold mb-6">Insights · Strategy · Growth</div>
+        <h1 class="display-sm !text-[clamp(3rem,6vw,5rem)] mb-8" data-reveal>
+          Thinking That Helps Your<br/>
+          Business Move <span class="text-gold italic">Faster</span>
+        </h1>
+        <p class="text-lg text-grey-2 max-w-2xl" data-reveal>
+          Practical insights on AI automation, business systems, digital transformation, and growth strategy — written for founders and operators who are building for scale.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Filter Bar -->
+  <BlogFilterBar totalArticles={sortedPosts.length} />
+
+  <!-- Blog Content Area -->
+  <section class="py-16 bg-ink-2 min-h-screen">
+    <div class="container-page">
+      
+      <!-- Featured Post -->
+      {featuredPost && <FeaturedArticle post={featuredPost} />}
+
+      <!-- Grid Posts -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {gridPosts.map(post => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CtaBanner 
+    eyebrow="Let's talk"
+    headline="We'd love to hear about"
+    headlineDim="your project"
+    links={[
+      { href: "/strategy-call", label: "Start a Project", variant: "light" }
+    ]}
+  />
+
+</BaseLayout>

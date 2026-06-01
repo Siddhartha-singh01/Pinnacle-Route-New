@@ -1,0 +1,64 @@
+---
+/**
+ * Our Expertise
+ * -------------
+ * Detailed breakdown of the 4 main service areas.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import StickySubNav from "@/components/ui/StickySubNav.astro";
+import ExpertiseSection from "@/components/sections/ExpertiseSection.astro";
+import CtaBanner from "@/components/sections/CtaBanner.astro";
+
+import { expertiseData } from "@/data/expertise";
+
+// Alternate masks for visual variety
+const masks = ["br", "tr", "bl", "arch"] as const;
+---
+
+<BaseLayout
+  title="Our Expertise · Pinnacle Route"
+  description="Explore our capabilities in Technology, Design, Strategy, and Growth."
+  navTheme="light"
+  strictNav={true}
+>
+  <!-- ===================== HERO ===================== -->
+  <section class="relative h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-ink">
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/assets/client-proof/mandaean-app.jpg" 
+        alt="Pinnacle Route team collaborating"
+        data-parallax="0.1"
+        class="h-[120%] w-full object-cover -top-[10%] opacity-40 grayscale"
+      />
+    </div>
+    
+    <div class="container-page relative z-10 text-center">
+      <h1 class="display-sm !text-[clamp(3rem,6vw,5rem)] text-white" data-reveal>
+        Decades of Proven Approach
+      </h1>
+    </div>
+  </section>
+
+  <!-- ===================== STICKY SUB-NAV ===================== -->
+  <StickySubNav categories={expertiseData} />
+
+  <!-- ===================== EXPERTISE SECTIONS ===================== -->
+  <div class="bg-paper">
+    {
+      expertiseData.map((category, index) => (
+        <ExpertiseSection 
+          category={category} 
+          mask={masks[index % masks.length]} 
+        />
+      ))
+    }
+  </div>
+
+  <!-- Dark closing CTA — flows seamlessly into the footer -->
+  <CtaBanner
+    eyebrow="Let's talk"
+    headline="We'd love to hear about"
+    headlineDim="your project"
+    links={[{ href: "/strategy-call", label: "Start a project", variant: "light" }]}
+  />
+</BaseLayout>

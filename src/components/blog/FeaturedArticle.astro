@@ -1,0 +1,104 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+};
+
+// Simple highlight function to make words like '47% of Their Leads' golden. 
+// For production, this could be a custom frontmatter field or parsed from the title.
+const highlightTitle = (title: string) => {
+  return title.replace(/(\d+% of Their Leads|faster)/i, '<span class="text-gold italic">$1</span>');
+};
+---
+
+<div class="mb-10">
+  <div class="eyebrow mb-6 text-gold">Featured Article</div>
+  
+  <a href={`/blog/${post.id}`} class="group flex flex-col md:flex-row bg-surface rounded-2xl border border-line-soft overflow-hidden hover:border-line transition-colors">
+    
+    <!-- Left Graphic (Dashboard mockup interpretation) -->
+    <div class="w-full md:w-1/2 bg-surface-2 p-8 flex flex-col gap-4 border-b md:border-b-0 md:border-r border-line-soft relative">
+      <!-- Top Bar Mock -->
+      <div class="h-10 bg-ink rounded-lg border border-line-soft flex items-center px-4 gap-2">
+        <div class="flex gap-1.5"><div class="w-2 h-2 rounded-full bg-red-500"></div><div class="w-2 h-2 rounded-full bg-yellow-500"></div><div class="w-2 h-2 rounded-full bg-green-500"></div></div>
+        <span class="text-[0.65rem] text-grey-2 ml-2">Lead Qualification Dashboard</span>
+      </div>
+      
+      <!-- Stats Mock -->
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
+        <div class="bg-ink p-4 rounded-lg border border-line-soft">
+          <div class="text-[0.65rem] text-grey-2 uppercase tracking-wider mb-1">Leads Today</div>
+          <div class="text-2xl font-display text-blue-400">284</div>
+          <div class="text-[0.65rem] text-green-400 mt-1">↑ 38%</div>
+        </div>
+        <div class="bg-ink p-4 rounded-lg border border-line-soft">
+          <div class="text-[0.65rem] text-grey-2 uppercase tracking-wider mb-1">Qualified</div>
+          <div class="text-2xl font-display text-gold">127</div>
+          <div class="text-[0.65rem] text-green-400 mt-1">↑ 24%</div>
+        </div>
+        <div class="bg-ink p-4 rounded-lg border border-line-soft hidden lg:block">
+          <div class="text-[0.65rem] text-grey-2 uppercase tracking-wider mb-1">Response</div>
+          <div class="text-2xl font-display text-white">4 min</div>
+          <div class="text-[0.65rem] text-gold mt-1">↓ 92%</div>
+        </div>
+      </div>
+      
+      <!-- Chart Mock -->
+      <div class="flex-1 bg-ink rounded-lg border border-line-soft p-4 flex flex-col justify-end gap-1 mt-2 min-h-[100px]">
+        <div class="text-[0.6rem] text-grey-2 uppercase tracking-wider absolute top-4 left-4">Lead Response Time</div>
+        <div class="flex items-end justify-between h-12 gap-1 px-1">
+          {[40, 50, 45, 60, 50, 70, 65, 80].map((h, i) => (
+            <div class={`w-full rounded-t-sm ${i === 7 ? 'bg-gold/80' : 'bg-blue-500/80'}`} style={`height: ${h}%`}></div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Content -->
+    <div class="w-full md:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="px-3 py-1 rounded-full border border-gold/30 bg-gold/10 text-gold text-[0.65rem] font-medium uppercase tracking-wider">
+          {post.data.category}
+        </span>
+        <span class="text-xs text-grey-2 flex items-center gap-1">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          {post.data.readTime} min read
+        </span>
+        <span class="text-xs text-grey-2 flex items-center gap-1">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          {formatDate(post.data.pubDate)}
+        </span>
+      </div>
+
+      <h2 class="display-sm !text-3xl lg:!text-4xl mb-6 group-hover:text-gold transition-colors" set:html={highlightTitle(post.data.title)} />
+      
+      <p class="text-grey-2 text-sm lg:text-base mb-8 line-clamp-4">
+        {post.data.description}
+      </p>
+
+      <div class="flex items-center justify-between mt-auto">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-ink border border-line flex items-center justify-center text-xs font-bold text-white">PR</div>
+          <div class="flex flex-col">
+            <span class="text-sm text-white font-medium">{post.data.author}</span>
+            <span class="text-[0.7rem] text-grey-2">AI & Automation</span>
+          </div>
+        </div>
+        <span class="text-xs font-medium tracking-wider text-white uppercase flex items-center gap-1 group-hover:gap-2 transition-all">
+          Read Article <span class="text-gold">→</span>
+        </span>
+      </div>
+    </div>
+  </a>
+</div>

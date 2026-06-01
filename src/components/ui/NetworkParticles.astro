@@ -1,0 +1,173 @@
+---
+/**
+ * Network Particles
+ * -----------------
+ * A lightweight, vanilla JS HTML5 canvas component that draws a
+ * network of connecting particles that gently react to the mouse.
+ */
+---
+
+<canvas id="network-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-80"></canvas>
+
+<script>
+  class ParticleNetwork {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    particles: Array<{ x: number; y: number; vx: number; vy: number; radius: number; color: string }>;
+    mouse: { x: number; y: number; radius: number };
+    options: {
+      particleColor: string;
+      lineColor: string;
+      particleAmount: number;
+      defaultSpeed: number;
+      variantSpeed: number;
+      defaultRadius: number;
+      variantRadius: number;
+      linkRadius: number;
+    };
+    animationFrameId: number;
+
+    constructor(canvas: HTMLCanvasElement) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d')!;
+      this.particles = [];
+      this.animationFrameId = 0;
+      
+      this.options = {
+        particleColor: 'rgba(10, 10, 10, 0.8)', // Darker particles
+        lineColor: 'rgba(10, 10, 10, 0.25)',
+        particleAmount: 60,
+        defaultSpeed: 0.5,
+        variantSpeed: 1,
+        defaultRadius: 1.5,
+        variantRadius: 2,
+        linkRadius: 150,
+      };
+
+      this.mouse = {
+        x: -1000,
+        y: -1000,
+        radius: 200 // Radius of interaction
+      };
+
+      this.init();
+    }
+
+    init() {
+      this.resize();
+      window.addEventListener('resize', () => this.resize());
+      window.addEventListener('mousemove', (e) => this.onMouseMove(e));
+      window.addEventListener('mouseleave', () => {
+        this.mouse.x = -1000;
+        this.mouse.y = -1000;
+      });
+
+      for (let i = 0; i < this.options.particleAmount; i++) {
+        this.particles.push(this.createParticle());
+      }
+
+      this.loop();
+    }
+
+    resize() {
+      // Use parent dimensions for better full-section coverage
+      const parent = this.canvas.parentElement;
+      if (parent) {
+        this.canvas.width = parent.clientWidth;
+        this.canvas.height = parent.clientHeight;
+      } else {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      }
+    }
+
+    createParticle() {
+      const isGold = Math.random() > 0.85; // 15% gold particles
+      return {
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        vx: (Math.random() * this.options.variantSpeed) + this.options.defaultSpeed * (Math.random() > 0.5 ? 1 : -1),
+        vy: (Math.random() * this.options.variantSpeed) + this.options.defaultSpeed * (Math.random() > 0.5 ? 1 : -1),
+        radius: ((Math.random() * this.options.variantRadius) + this.options.defaultRadius) * (isGold ? 1.5 : 1), // Gold particles are slightly larger
+        color: isGold ? '#CAA154' : this.options.particleColor
+      };
+    }
+
+    onMouseMove(e: MouseEvent) {
+      const rect = this.canvas.getBoundingClientRect();
+      this.mouse.x = e.clientX - rect.left;
+      this.mouse.y = e.clientY - rect.top;
+    }
+
+    draw() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      for (let i = 0; i < this.particles.length; i++) {
+        let p = this.particles[i];
+
+        // Move
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Bounce off edges
+        if (p.x < 0 || p.x > this.canvas.width) p.vx = p.vx * -1;
+        if (p.y < 0 || p.y > this.canvas.height) p.vy = p.vy * -1;
+
+        // Mouse interaction (push away gently)
+        const dx = p.x - this.mouse.x;
+        const dy = p.y - this.mouse.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < this.mouse.radius) {
+          const angle = Math.atan2(dy, dx);
+          const force = (this.mouse.radius - distance) / this.mouse.radius;
+          const pushX = Math.cos(angle) * force * 2;
+          const pushY = Math.sin(angle) * force * 2;
+          p.x += pushX;
+          p.y += pushY;
+        }
+
+        // Draw Particle
+        this.ctx.beginPath();
+        this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        this.ctx.fillStyle = p.color;
+        this.ctx.fill();
+
+        // Draw Links
+        for (let j = i + 1; j < this.particles.length; j++) {
+          let p2 = this.particles[j];
+          const dist = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
+
+          if (dist <= this.options.linkRadius) {
+            this.ctx.beginPath();
+            this.ctx.strokeStyle = `rgba(10, 10, 10, ${0.25 - (dist / this.options.linkRadius) * 0.25})`;
+            this.ctx.lineWidth = 1;
+            this.ctx.moveTo(p.x, p.y);
+            this.ctx.lineTo(p2.x, p2.y);
+            this.ctx.stroke();
+          }
+        }
+      }
+    }
+
+    loop() {
+      this.draw();
+      this.animationFrameId = requestAnimationFrame(() => this.loop());
+    }
+  }
+
+  // Initialize strictly on client load and handle Astro page transitions
+  function initParticles() {
+    const canvas = document.getElementById('network-canvas') as HTMLCanvasElement | null;
+    if (canvas && !canvas.dataset.initialized) {
+      new ParticleNetwork(canvas);
+      canvas.dataset.initialized = 'true';
+    }
+  }
+
+  // Run on first load
+  initParticles();
+  
+  // Re-run if Astro view transitions are used
+  document.addEventListener('astro:page-load', initParticles);
+</script>

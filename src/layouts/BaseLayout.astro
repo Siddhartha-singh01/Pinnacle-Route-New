@@ -1,0 +1,133 @@
+---
+/**
+ * BaseLayout
+ * ----------
+ * Root HTML shell. Handles SEO meta, fonts, analytics, and the Nav/Footer chrome.
+ * All client-side interactions are loaded via a single script import.
+ */
+import { ClientRouter } from "astro:transitions";
+import Nav from "@/components/layout/Nav.astro";
+import SidePanel from "@/components/layout/SidePanel.astro";
+import Footer from "@/components/layout/Footer.astro";
+import { SEO_DEFAULTS, GA_ID } from "@/data/site";
+
+/* ── Styles ──────────────────────────────────────────────── */
+import "@/styles/global.css";
+import "@/styles/components.css";
+import "@/styles/nav.css";
+import "@/styles/motion.css";
+import "@/styles/accordion.css";
+
+/* ── Props ───────────────────────────────────────────────── */
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  navTheme?: "dark" | "light";
+  strictNav?: boolean;
+  layoutTheme?: "dark" | "light";
+}
+
+const {
+  title = SEO_DEFAULTS.title,
+  description = SEO_DEFAULTS.description,
+  image = SEO_DEFAULTS.image,
+  noindex = false,
+  navTheme = "dark",
+  strictNav = false,
+  layoutTheme = "dark",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <!-- Maintenance Mode Check -->
+    <script is:inline>
+      fetch('/api/public/settings')
+        .then(res => res.json())
+        .then(settings => {
+          const maintenance = settings.find(s => s.id === 'maintenance');
+          if (maintenance && maintenance.active) {
+            window.location.href = '/maintenance';
+          }
+        })
+        .catch(() => {});
+    </script>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta name="theme-color" content="#0b0b0c" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pinnacle Route" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/png" href="/assets/brand/favicon-web.png" />
+    <link rel="apple-touch-icon" href="/assets/brand/favicon-web.png" />
+
+    <ClientRouter />
+
+    <!-- Analytics -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script is:inline define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", GA_ID);
+    </script>
+  </head>
+
+  <body class={layoutTheme === "light" ? "theme-light" : ""} data-strict-nav={strictNav ? "true" : undefined}>
+    <!-- Intro preloader (plays once per real load, then slides down) -->
+    <div id="preloader" transition:persist>
+      <img src="/assets/brand/logo.png" alt="Pinnacle Route" />
+    </div>
+
+    <Nav theme={navTheme} />
+    <SidePanel />
+    
+    <!-- Global Sticky Action Buttons -->
+    <div class="fixed left-0 top-[60%] z-[45] origin-top-left -rotate-90 flex items-center gap-1">
+      <a href="/strategy-call" class="bg-black text-[#ffffff] px-6 py-2.5 rounded-b-xl font-bold text-[11px] tracking-[0.15em] uppercase hover:bg-gray-900 transition-colors shadow-2xl border-b border-[#333] whitespace-nowrap flex items-center">Schedule Call</a>
+      <a href="/strategy-call" class="bg-[#CAA154] text-[#ffffff] px-6 py-2.5 rounded-b-xl font-bold text-[11px] tracking-[0.15em] uppercase hover:bg-[#b08d45] transition-colors shadow-2xl border-b border-[#e6c17a]/50 whitespace-nowrap flex items-center">Request Quote</a>
+    </div>
+
+    <main id="top">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Single script import — all interactions orchestrated from here -->
+    <script>
+      import "@/scripts/index";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+---
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import BlogEditor from '@/components/admin/BlogEditor';
+---
+
+<AdminLayout title="New Post" activeTab="blog">
+  <BlogEditor client:load />
+</AdminLayout>

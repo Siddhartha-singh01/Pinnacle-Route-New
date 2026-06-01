@@ -1,0 +1,51 @@
+---
+/**
+ * CTA Banner
+ * ----------
+ * Full-width call-to-action section with headline and button(s).
+ */
+
+interface CtaLink {
+  href: string;
+  label: string;
+  variant?: "light" | "dark";
+}
+
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  /** HTML allowed for the dim span trick. */
+  headlineDim?: string;
+  links: CtaLink[];
+}
+
+const { eyebrow, headline, headlineDim, links } = Astro.props;
+---
+
+<section class="section relative overflow-hidden">
+  <div class="hair-arc hidden md:block" style="width:900px;height:900px;left:-300px;bottom:-380px;"></div>
+
+  <div class="container-page relative z-10 text-center">
+    {eyebrow && (
+      <p class="eyebrow justify-center mb-8" data-reveal>{eyebrow}</p>
+    )}
+
+    <h2 class="display max-w-[16ch] mx-auto" data-reveal data-reveal-delay="1">
+      {headline} {headlineDim && <span class="dim">{headlineDim}</span>}
+    </h2>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-4" data-reveal data-reveal-delay="2">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class={`pill ${link.variant === "dark" ? "pill-dark" : "pill-light"}`}
+            data-magnetic="0.3"
+          >
+            {link.label} <span class="arrow">↗</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

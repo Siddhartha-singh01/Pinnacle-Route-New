@@ -1,0 +1,95 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ArticleToc from '@/components/blog/ArticleToc.astro';
+import ArticleSidebar from '@/components/blog/ArticleSidebar.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+};
+
+const highlightTitle = (title: string) => {
+  return title.replace(/(\d+% of Their Leads)/i, '<span class="text-gold italic">$1</span>');
+};
+---
+
+<BaseLayout 
+  title={`${post.data.title} · Pinnacle Route`}
+  description={post.data.description}
+  navTheme="dark"
+  strictNav={true}
+>
+  <div class="bg-ink-2 min-h-screen pt-32 pb-24">
+    <div class="container-page">
+      
+      <!-- Article Header -->
+      <div class="max-w-4xl mb-16">
+        <!-- Breadcrumbs -->
+        <div class="flex items-center gap-2 text-sm text-grey-2 mb-8">
+          <a href="/" class="hover:text-white transition-colors">Home</a>
+          <span>›</span>
+          <a href="/blog" class="hover:text-white transition-colors">Insights & Strategy</a>
+          <span>›</span>
+          <span class="text-white">{post.data.category}</span>
+        </div>
+
+        <!-- Meta -->
+        <div class="flex flex-wrap items-center gap-4 mb-8">
+          <span class="px-3 py-1 rounded-full border border-gold/30 bg-gold/5 text-gold text-[0.65rem] font-medium uppercase tracking-wider">
+            {post.data.category}
+          </span>
+          <span class="text-xs text-grey-2 flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            {post.data.readTime} min read
+          </span>
+          <span class="text-xs text-grey-2 flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            {formatDate(post.data.pubDate)}
+          </span>
+          <span class="text-xs text-grey-2 flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            {post.data.views.toLocaleString()} views
+          </span>
+        </div>
+
+        <h1 class="display-sm !text-[clamp(2.5rem,5vw,4.5rem)] mb-6" set:html={highlightTitle(post.data.title)} />
+        
+        <p class="text-xl text-grey-2 leading-relaxed max-w-3xl border-b border-line-soft pb-12">
+          {post.data.description}
+        </p>
+      </div>
+
+      <!-- 3-Column Article Layout -->
+      <div class="flex flex-col lg:flex-row gap-12 xl:gap-20 relative">
+        
+        <!-- Left Sidebar (TOC) -->
+        <ArticleToc headings={headings} />
+
+        <!-- Main Content (Markdown) -->
+        <article class="flex-1 max-w-3xl prose prose-invert prose-lg prose-headings:font-display prose-headings:font-medium prose-a:text-gold hover:prose-a:text-gold/80 prose-blockquote:border-gold prose-blockquote:bg-surface prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-white prose-li:text-grey-2 prose-p:text-grey-2">
+          <Content />
+        </article>
+
+        <!-- Right Sidebar (Reading Progress + CTAs) -->
+        <ArticleSidebar />
+
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

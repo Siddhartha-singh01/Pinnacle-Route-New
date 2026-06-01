@@ -1,0 +1,131 @@
+---
+/**
+ * Our Company
+ * -----------
+ * Composes section components with data from the data layer.
+ * All content is imported — this file is purely a composition.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Accordion from "@/components/sections/Accordion.astro";
+import ImageTextSplit from "@/components/sections/ImageTextSplit.astro";
+import StatsRow from "@/components/sections/StatsRow.astro";
+import CtaBanner from "@/components/sections/CtaBanner.astro";
+
+import { careStats, partnerStats, whatWeDo } from "@/data/company";
+---
+
+<BaseLayout
+  title="Our Company · Pinnacle Route"
+  description="Pinnacle Route is a digital studio obsessed with impact and results, building premium software, AI automation, and products for ambitious businesses."
+  navTheme="light"
+>
+  <!-- ===================== HERO (light) ===================== -->
+  <section class="section section-light pt-32 lg:pt-40">
+    <div class="container-page">
+      <p class="eyebrow mb-8" data-reveal>Our Company</p>
+      <h1 class="display max-w-[15ch]" data-reveal data-reveal-delay="1">
+        Obsessed with Impact <span class="dim">and Results</span>
+      </h1>
+
+      <div class="mt-16 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <!-- video -->
+        <div class="relative overflow-hidden rounded-[1.25rem] border border-ink/10 aspect-video bg-ink/5" data-reveal>
+          <video
+            class="h-full w-full object-cover"
+            autoplay muted loop playsinline
+            preload="metadata"
+            poster="/assets/client-proof/designer-club.png"
+          >
+            <source src="/assets/about/company.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- copy -->
+        <div data-reveal data-reveal-delay="1">
+          <p class="text-[1.15rem] leading-relaxed text-ink/55">
+            <span class="text-ink">From ambitious startups to established brands,</span>
+            clients partner with Pinnacle <span class="text-gold">Route</span> to
+            bring big ideas to life and transform their businesses. With years of
+            focused product work and hundreds of builds behind us, we've honed our
+            craft across software, AI, and design. Learning, adapting,
+            standardizing, and innovating.
+          </p>
+          <a href="#care" class="mt-9 inline-flex items-center gap-2 text-ink font-medium underline underline-offset-4 decoration-ink/30 hover:decoration-ink transition">
+            Learn more about our team <span>↓</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT / CARE (dark) ===================== -->
+  <section id="care" class="section relative overflow-hidden">
+    <div class="container-page">
+      <h2 class="footer-mark mb-10 lg:mb-4" data-reveal>About us</h2>
+
+      <div class="grid gap-14 lg:grid-cols-2 lg:items-center">
+        <div data-reveal>
+          <h3 class="display-sm max-w-[12ch]">
+            We care deeply about <span class="dim">success</span>
+          </h3>
+          <p class="mt-8 max-w-md text-lg text-grey-2">
+            We're made up of product experts, designers, engineers, and product
+            leaders who treat every client project as if it were our own.
+          </p>
+
+          <div class="mt-12 grid grid-cols-2 gap-8 max-w-md">
+            {
+              careStats.map((s) => (
+                <div class="border-t border-line-soft pt-5">
+                  <div class="display-sm !text-[clamp(2.5rem,5vw,3.5rem)]">{s.value}</div>
+                  <div class="mt-3 text-sm text-white">{s.label}</div>
+                  <div class="text-xs text-grey-3">{s.sub}</div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="relative h-[460px] lg:h-[560px]" data-reveal data-reveal-delay="1">
+          <div class="absolute inset-0 overflow-hidden mask-bl border border-line-soft">
+            <img src="/assets/client-proof/mandaean-app.png" alt="The Pinnacle Route team at work" data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT WE DO (accordion) ===================== -->
+  <Accordion
+    eyebrow="What we do"
+    heading="Elegant solutions built on proven"
+    headingDim="methodologies."
+    items={whatWeDo}
+  />
+
+  <!-- ===================== PARTNERSHIPS ===================== -->
+  <ImageTextSplit
+    image="/assets/client-proof/designer-club.png"
+    imageAlt="Client partnership"
+    mask="tr"
+    heading="We're proud of our intimate client"
+    headingDim="partnerships"
+    body="Venturing into new tech can be daunting, so we bring a collaborative, transparent approach that takes the stress out of projects and builds lasting relationships with our partners."
+    ctaHref="/#services"
+    ctaLabel="Our Services"
+    reverse={true}
+    grayscale={true}
+  >
+    <StatsRow stats={partnerStats} />
+  </ImageTextSplit>
+
+  <!-- ===================== CLOSING CTA ===================== -->
+  <CtaBanner
+    headline="Let's build something"
+    headlineDim="exceptional."
+    links={[
+      { href: "/strategy-call", label: "Start a project", variant: "light" },
+      { href: "/#work", label: "See our work", variant: "dark" },
+    ]}
+  />
+</BaseLayout>

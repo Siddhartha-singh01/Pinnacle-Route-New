@@ -1,0 +1,131 @@
+---
+/**
+ * Side Panel
+ * ----------
+ * A slide-out panel triggered by the Grid icon in the Nav.
+ * Contains quick links, a CTA, and contact details.
+ */
+---
+
+<div id="side-panel-wrapper" class="fixed inset-0 z-[70] pointer-events-none opacity-0 invisible transition-all duration-500">
+  <!-- Overlay Backdrop -->
+  <div id="side-panel-overlay" onclick="window.closeSidePanel && window.closeSidePanel()" class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-none transition-opacity duration-500"></div>
+
+  <!-- The Panel -->
+  <div id="side-panel" class="absolute top-0 left-0 h-full w-full sm:w-[400px] bg-[#0a0a0a] rounded-r-[30px] shadow-[20px_0_40px_-15px_rgba(0,0,0,0.5)] transform -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto flex flex-col border-r border-[#CAA154]/20 overflow-hidden">
+    
+    <!-- Vertical Close Tab (Sticking out right edge) -->
+    <button id="side-panel-close" onclick="window.closeSidePanel && window.closeSidePanel()" class="absolute top-10 -right-[40px] w-[40px] h-[120px] bg-[#0a0a0a] border-y border-r border-[#CAA154]/20 rounded-r-xl flex items-center justify-center hover:bg-[#111] transition-colors group z-20" aria-label="Close Panel">
+      <span class="transform -rotate-90 whitespace-nowrap text-gray-400 group-hover:text-[#CAA154] transition-colors text-sm tracking-widest font-medium flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+        Close
+      </span>
+    </button>
+
+    <!-- Content Container -->
+    <div class="relative z-10 flex flex-col h-full overflow-y-auto px-10 py-12 scrollbar-hide">
+      
+      <!-- Logo -->
+      <a href="/" class="shrink-0 mb-8 block" aria-label="Pinnacle Route home">
+        <img src="/assets/brand/logo.png" alt="Pinnacle Route" class="h-8 w-auto" />
+      </a>
+
+      <!-- Intro Text -->
+      <p class="text-[#e2e8f0] text-[1.05rem] leading-relaxed mb-12">
+        Collaborating with clients around the world! Creating experiences through Websites, Apps, Marketing Campaigns, and more! We're passionate about creativity, technology, and innovation.
+      </p>
+
+      <!-- Quick Links -->
+      <div class="mb-12">
+        <h3 class="text-2xl font-medium text-[#ffffff] mb-6 tracking-tight">Quick Links</h3>
+        <ul class="flex flex-col gap-4">
+          <li><a href="#" class="text-gray-400 hover:text-[#CAA154] transition-colors text-[1.05rem]">Client Login</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-[#CAA154] transition-colors text-[1.05rem]">Partners</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-[#CAA154] transition-colors text-[1.05rem]">Make a Payment</a></li>
+          <li><a href="/strategy-call" class="text-gray-400 hover:text-[#CAA154] transition-colors text-[1.05rem]">Request Consultation</a></li>
+        </ul>
+      </div>
+
+      <!-- Request Quote Button -->
+      <a href="/strategy-call" class="relative inline-flex items-center justify-center px-8 py-3.5 rounded-full text-[#ffffff] font-medium bg-transparent group overflow-hidden self-start mb-16">
+        <span class="absolute inset-0 rounded-full border border-transparent [background:linear-gradient(#0a0a0a,#0a0a0a)_padding-box,linear-gradient(to_right,#CAA154,#99732f)_border-box]"></span>
+        <span class="relative z-10 group-hover:scale-105 transition-transform duration-300">Request Quote</span>
+      </a>
+
+      <!-- Contact Details -->
+      <div class="mt-auto flex flex-col gap-3">
+        <a href="tel:18009163864" class="text-[#e2e8f0] hover:text-[#CAA154] transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-[#CAA154] text-[1.05rem]">1 (800) 916 3864</a>
+        <a href="mailto:hello@thoughtmedia.com" class="text-[#e2e8f0] hover:text-[#CAA154] transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-[#CAA154] text-[1.05rem]">hello@thoughtmedia.com</a>
+        <p class="text-[#e2e8f0] text-[1.05rem] mt-2 leading-relaxed">
+          106 E 6th St. STE 900-130<br>
+          Austin, Texas 78701
+        </p>
+        <a href="#" class="text-[#e2e8f0] hover:text-[#CAA154] transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-[#CAA154] text-[1.05rem] mt-2">View All</a>
+      </div>
+    </div>
+
+    <!-- Glowing Wave Graphic (Background Bottom) -->
+    <div class="absolute bottom-0 left-0 w-full h-[50%] pointer-events-none z-0">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#CAA154]/15 via-[#CAA154]/5 to-transparent mix-blend-screen"></div>
+      <svg viewBox="0 0 400 300" class="absolute bottom-0 left-0 w-full h-full opacity-30 mix-blend-screen" preserveAspectRatio="none">
+        <path d="M0,150 Q100,50 200,150 T400,150 V300 H0 Z" fill="none" stroke="url(#wave-grad)" stroke-width="1.5"/>
+        <path d="M0,200 Q150,100 250,200 T400,200 V300 H0 Z" fill="none" stroke="url(#wave-grad)" stroke-width="1"/>
+        <path d="M0,250 Q200,150 300,250 T400,250 V300 H0 Z" fill="none" stroke="url(#wave-grad)" stroke-width="0.5"/>
+        <defs>
+          <linearGradient id="wave-grad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#CAA154"/>
+            <stop offset="100%" stop-color="#99732f"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  window.openSidePanel = function() {
+    const wrapper = document.getElementById('side-panel-wrapper');
+    const panel = document.getElementById('side-panel');
+    const overlay = document.getElementById('side-panel-overlay');
+    if(!wrapper || !panel) return;
+    
+    wrapper.classList.remove('invisible', 'pointer-events-none');
+    wrapper.classList.add('visible');
+    wrapper.style.opacity = '1';
+    if(overlay) overlay.style.pointerEvents = 'auto';
+    panel.classList.remove('-translate-x-full');
+    panel.classList.add('translate-x-0');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeSidePanel = function() {
+    const wrapper = document.getElementById('side-panel-wrapper');
+    const panel = document.getElementById('side-panel');
+    const overlay = document.getElementById('side-panel-overlay');
+    if(!wrapper || !panel) return;
+
+    panel.classList.remove('translate-x-0');
+    panel.classList.add('-translate-x-full');
+    if(overlay) overlay.style.pointerEvents = 'none';
+    
+    setTimeout(() => {
+      wrapper.style.opacity = '0';
+      wrapper.classList.add('invisible', 'pointer-events-none');
+      wrapper.classList.remove('visible');
+      document.body.style.overflow = '';
+    }, 500);
+  };
+</script>
+
+<style>
+  /* Hide scrollbar for a cleaner look */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

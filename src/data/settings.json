@@ -1,0 +1,26 @@
+[
+  {
+    "id": "maintenance",
+    "name": "Maintenance Mode",
+    "description": "Take the public website offline for updates. Only admins can access.",
+    "active": false
+  },
+  {
+    "id": "blog_public",
+    "name": "Public Blog Visibility",
+    "description": "Show the blog section to public visitors on the main website.",
+    "active": true
+  },
+  {
+    "id": "strategy_booking",
+    "name": "Strategy Call Booking",
+    "description": "Enable the contact and referral forms across the site.",
+    "active": true
+  },
+  {
+    "id": "analytics",
+    "name": "Analytics Tracking",
+    "description": "Enable Google Analytics and tracking scripts on public pages.",
+    "active": true
+  }
+]

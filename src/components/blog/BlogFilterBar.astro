@@ -1,0 +1,43 @@
+---
+interface Props {
+  totalArticles: number;
+}
+const { totalArticles } = Astro.props;
+const categories = ['All', 'AI Automation', 'Business Growth', 'eCommerce', 'Case Studies', 'SaaS', 'Strategy'];
+---
+
+<div class="relative z-20 bg-ink/90 backdrop-blur-md border-y border-line-soft py-4">
+  <div class="container-page flex flex-wrap items-center justify-between gap-4">
+    
+    <!-- Search Input -->
+    <div class="relative w-full max-w-sm">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-grey-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </div>
+      <input 
+        type="text" 
+        placeholder="Search articles..." 
+        class="w-full bg-surface-2 border border-line-soft rounded-lg py-2.5 pl-10 pr-4 text-sm text-white placeholder-grey-2 focus:outline-none focus:border-gold transition-colors"
+      />
+    </div>
+
+    <!-- Categories -->
+    <div class="flex-1 flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1 sm:pb-0">
+      {categories.map((cat, i) => (
+        <button class={`px-4 py-1.5 rounded-full text-[0.8rem] font-medium whitespace-nowrap transition-colors border ${i === 0 ? 'border-gold text-gold bg-gold/10' : 'border-line-soft text-grey-2 hover:text-white hover:border-white/30'}`}>
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Article Count -->
+    <div class="hidden lg:block text-sm text-grey-2">
+      Showing <span class="text-white font-medium">{totalArticles}</span> articles
+    </div>
+  </div>
+</div>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

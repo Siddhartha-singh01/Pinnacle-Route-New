@@ -1,0 +1,67 @@
+---
+export const prerender = false;
+import '@/styles/global.css';
+
+// Small security check: if maintenance mode was turned off, redirect back to home.
+// (So users aren't stuck here if they directly navigate here).
+import fs from 'fs/promises';
+import path from 'path';
+
+let isMaintenance = false;
+try {
+  const data = await fs.readFile(path.join(process.cwd(), 'src/data/settings.json'), 'utf-8');
+  const settings = JSON.parse(data);
+  const maintenanceSetting = settings.find((s: any) => s.id === 'maintenance');
+  if (maintenanceSetting?.active) {
+    isMaintenance = true;
+  }
+} catch (e) {
+  // Assume false
+}
+
+if (!isMaintenance) {
+  return Astro.redirect('/');
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Under Maintenance | Pinnacle Route</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-[#050505] text-white antialiased flex flex-col items-center justify-center min-h-screen p-8 text-center relative overflow-hidden font-sans">
+    
+    <!-- Background Glows -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+      <img src="/assets/brand/logo.png" alt="Pinnacle Route" class="h-10 mb-12 grayscale opacity-50" />
+      
+      <div class="w-16 h-16 bg-surface border border-line-soft rounded-full flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(201,162,75,0.1)]">
+        <svg class="text-gold" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-display text-white mb-6 leading-tight">
+        System <span class="text-gold italic">Upgrade</span>
+      </h1>
+      
+      <p class="text-lg text-grey-2 max-w-md mx-auto mb-12">
+        Our digital studio is currently offline for scheduled maintenance and upgrades. We'll be back online shortly.
+      </p>
+
+      <div class="flex items-center gap-2 text-xs font-bold text-gold uppercase tracking-[0.2em]">
+        <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+        Systems Updating
+      </div>
+    </div>
+  </body>
+</html>

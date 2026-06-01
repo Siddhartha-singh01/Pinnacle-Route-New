@@ -1,0 +1,52 @@
+---
+/**
+ * Hero Section
+ * ------------
+ * Full-height hero with eyebrow, two-line display headline, body copy, and CTA.
+ * Includes optional geometric decorations and ArrowMotif.
+ */
+import ArrowMotif from "@/components/ui/ArrowMotif.astro";
+import NetworkParticles from "@/components/ui/NetworkParticles.astro";
+
+interface Props {
+  eyebrow: string;
+  titleLine1: string;
+  titleLine2: string;
+  description: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+
+const {
+  eyebrow,
+  titleLine1,
+  titleLine2,
+  description,
+  ctaHref = "/strategy-call",
+  ctaLabel = "Work with us",
+} = Astro.props;
+---
+
+<section class="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16">
+  <!-- Interactive particle network background -->
+  <NetworkParticles />
+
+  <!-- hairline geometry + brand arrow motif -->
+  <div class="hair-arc hidden md:block" style="width:1100px;height:1100px;right:-340px;top:-200px;"></div>
+  <ArrowMotif class="absolute right-[4vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-xl text-white/[0.05] pointer-events-none hidden md:block" />
+
+  <div class="container-page relative z-10 w-full">
+    <p class="eyebrow mb-8" data-reveal>{eyebrow}</p>
+
+    <h1 class="display max-w-[14ch]">
+      <span class="block" data-reveal data-reveal-delay="1">{titleLine1}</span>
+      <span class="block dim" data-reveal data-reveal-delay="2">{titleLine2}</span>
+    </h1>
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+      <p class="max-w-md text-lg text-grey-2" data-reveal data-reveal-delay="3">
+        <Fragment set:html={description} />
+      </p>
+    </div>
+  </div>
+</section>

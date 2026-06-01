@@ -1,0 +1,52 @@
+---
+/**
+ * Homepage
+ * --------
+ * Composes section components with data from the data layer.
+ * All content is imported — this file is purely a composition.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import ExpertiseGrid from "@/components/sections/ExpertiseGrid.astro";
+import ProcessFlow from "@/components/sections/ProcessFlow.astro";
+import Marquee from "@/components/sections/Marquee.astro";
+import WorkShowcase from "@/components/sections/WorkShowcase.astro";
+import ToolStrip from "@/components/sections/ToolStrip.astro";
+import CtaBanner from "@/components/sections/CtaBanner.astro";
+import Chatbot from "@/components/ui/Chatbot";
+
+import { services } from "@/data/services";
+import { workItems } from "@/data/work";
+import { tools, marqueeWords } from "@/data/tools";
+---
+
+<BaseLayout layoutTheme="light">
+  <Hero
+    eyebrow="Pinnacle Route · Digital Studio"
+    titleLine1="Building Today's"
+    titleLine2="AI Solutions"
+    description='Pinnacle <span class="text-gold">Route</span> crafts award grade custom software, AI automation, and digital products, driven by strategy, design, and engineering.'
+  />
+
+  <ExpertiseGrid services={services.slice(0, 5)} />
+
+  <Marquee words={marqueeWords} />
+
+  <WorkShowcase items={workItems}>
+    <ToolStrip tools={tools} />
+  </WorkShowcase>
+
+  <ProcessFlow />
+
+  <CtaBanner
+    eyebrow="Start a project"
+    headline="Let's build something"
+    headlineDim="exceptional."
+    links={[
+      { href: "/strategy-call", label: "Start a project", variant: "light" },
+      { href: "/our-expertise", label: "Explore expertise", variant: "dark" },
+    ]}
+  />
+
+  <Chatbot client:idle />
+</BaseLayout>

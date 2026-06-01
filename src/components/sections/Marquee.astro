@@ -1,0 +1,64 @@
+---
+/**
+ * Marquee
+ * -------
+ * Infinite horizontal scrolling text strip.
+ */
+
+interface Props {
+  words: string[];
+}
+
+const { words } = Astro.props;
+---
+
+<section class="relative w-full py-32 overflow-hidden bg-transparent flex items-center justify-center">
+  
+  <!-- Black Strip (Angled Up) -->
+  <div class="absolute w-[110%] left-[-5%] h-[80px] bg-ink flex items-center shadow-2xl -rotate-[3deg] z-10 overflow-hidden border-y border-white/5">
+    <div class="marquee-track flex whitespace-nowrap will-change-transform items-center">
+      {
+        [...Array(6)].map(() => (
+          <span class="text-white font-medium text-[22px] tracking-wide px-2 shrink-0">
+            Blockchain, and Digital Innovation. <span class="mx-6 text-white/40">/</span> Driving the Future of Web, AI, <span class="mx-6 text-white/40">/</span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Gold Strip (Angled Down) -->
+  <div class="absolute w-[110%] left-[-5%] h-[80px] bg-[#CAA154] flex items-center shadow-2xl rotate-[3deg] z-20 overflow-hidden border-y border-[#99732f]/50">
+    <div class="marquee-track-reverse flex whitespace-nowrap will-change-transform items-center">
+      {
+        [...Array(6)].map(() => (
+          <span class="text-[#ffffff] font-medium text-[22px] tracking-wide px-2 shrink-0">
+            Blockchain, and Digital Innovation. <span class="mx-6 text-white/60">/</span> Driving the Future of Web, AI, <span class="mx-6 text-white/60">/</span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-track {
+    animation: scroll-left 35s linear infinite;
+    display: flex;
+    width: max-content;
+  }
+  .marquee-track-reverse {
+    animation: scroll-right 35s linear infinite;
+    display: flex;
+    width: max-content;
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scroll-right {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+</style>
