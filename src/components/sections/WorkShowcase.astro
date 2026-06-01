@@ -26,7 +26,14 @@ const { items } = Astro.props;
     <div class="grid gap-6 md:grid-cols-3">
       {
         items.map((p, i) => (
-          <a href="/#work" class="group block" data-reveal data-reveal-delay={(i % 3) + 1}>
+          <a 
+            href={p.href || "/#work"} 
+            target={p.href ? "_blank" : undefined} 
+            rel={p.href ? "noopener noreferrer" : undefined} 
+            class="group block" 
+            data-reveal 
+            data-reveal-delay={(i % 3) + 1}
+          >
             <div class={`relative overflow-hidden ${i === 1 ? "mask-arch" : "mask-tl"} aspect-[4/5] bg-ink/5`}>
               <img src={p.img} alt={p.title} loading="lazy" data-parallax="0.05" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%] transition-transform duration-700 group-hover:scale-105" />
             </div>

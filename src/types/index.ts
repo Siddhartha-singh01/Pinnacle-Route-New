@@ -112,6 +112,7 @@ export interface WorkItem {
   title: string;
   tag: string;
   img: string;
+  href?: string;
 }
 
 /* ── Stats & Accordion ──────────────────────────────────── */
