@@ -29,7 +29,7 @@ export const mainMenu: MenuItem[] = [
   },
   { label: "Media", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/strategy-call" },
+  { label: "Contact", href: "/contact" },
 ];
 
 /* ── Footer columns ─────────────────────────────────────── */
