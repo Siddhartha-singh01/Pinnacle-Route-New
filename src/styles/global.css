@@ -134,12 +134,13 @@ html.preloading { overflow: hidden; }
   display: grid;
   place-items: center;
   background: #0a0a0a;
-  transition: transform 0.95s var(--ease-out-expo);
-  will-change: transform;
+  transition: background-color 0.8s ease, visibility 0.8s ease;
+  will-change: background-color, visibility;
 }
 #preloader.is-done {
-  transform: translateY(100%);
+  background-color: transparent;
   pointer-events: none;
+  visibility: hidden;
 }
 #preloader img {
   width: clamp(150px, 20vw, 260px);
@@ -147,11 +148,13 @@ html.preloading { overflow: hidden; }
   opacity: 0;
   transform: translateY(14px) scale(0.96);
   animation: preloader-in 0.9s var(--ease-out-expo) 0.1s forwards;
+  will-change: transform, opacity;
 }
 #preloader.is-done img {
-  opacity: 0;
-  transform: translateY(-12px);
-  transition: opacity 0.5s ease, transform 0.7s var(--ease-out-expo);
+  opacity: 0 !important;
+  /* Move to top center and shrink */
+  transform: translateY(calc(-50vh + 36px)) scale(0.15) !important;
+  transition: transform 0.9s var(--ease-out-expo), opacity 0.6s ease 0.2s;
 }
 @keyframes preloader-in {
   to { opacity: 1; transform: translateY(0) scale(1); }
