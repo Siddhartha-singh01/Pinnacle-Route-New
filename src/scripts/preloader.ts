@@ -29,41 +29,34 @@ export function initPreloader(): void {
     const navLogo = document.querySelector('header#site-nav a[aria-label="Pinnacle Route home"] img');
 
     if (preloadLogo && navLogo) {
-      // Calculate exact coordinates for perfect FLIP animation
+      // Clear CSS animation to get natural bounding box
+      preloadLogo.style.animation = "none";
+      preloadLogo.style.transform = "none";
+
+      // Get natural rects
       const pRect = preloadLogo.getBoundingClientRect();
       const nRect = navLogo.getBoundingClientRect();
       
       const scaleX = nRect.width / pRect.width;
       const scaleY = nRect.height / pRect.height;
       
-      const pCenterX = pRect.left + pRect.width / 2;
-      const pCenterY = pRect.top + pRect.height / 2;
-      
-      const nCenterX = nRect.left + nRect.width / 2;
-      const nCenterY = nRect.top + nRect.height / 2;
-      
-      const x = nCenterX - pCenterX;
-      const y = nCenterY - pCenterY;
+      const x = nRect.left - pRect.left;
+      const y = nRect.top - pRect.top;
 
-      // Lock current state and remove CSS animation to prevent conflicts
-      preloadLogo.style.transform = "translateY(0px) scale(1)";
-      preloadLogo.style.animation = "none";
-
-      // Animate the logo directly to the navbar logo position relative to current visual spot
+      // Animate the logo directly to the navbar logo position
       gsap.to(preloadLogo, {
-        x: `+=${x}`,
-        y: `+=${y}`,
+        x: x,
+        y: y,
         scaleX: scaleX,
         scaleY: scaleY,
+        transformOrigin: "top left",
         opacity: 0,
         duration: 1.2,
         ease: "power3.inOut",
         onComplete: () => {
+          el.style.display = "none";
           el.classList.add("is-done");
           root.classList.remove("preloading");
-          // Clean up inline styles for future navigation
-          gsap.set(preloadLogo, { clearProps: "all" });
-          gsap.set(el, { clearProps: "all" });
         }
       });
 
@@ -76,6 +69,7 @@ export function initPreloader(): void {
       });
 
     } else {
+      el.style.display = "none";
       el.classList.add("is-done");
       root.classList.remove("preloading");
     }

@@ -141,6 +141,7 @@ html.preloading { overflow: hidden; }
   background-color: transparent;
   pointer-events: none;
   visibility: hidden;
+  display: none !important;
 }
 #preloader img {
   width: clamp(150px, 20vw, 260px);
