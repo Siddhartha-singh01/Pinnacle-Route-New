@@ -1,0 +1,89 @@
+---
+/**
+ * Custom Cursor Component
+ * -----------------------
+ * A premium dual-element GSAP cursor (solid gold dot + trailing ring)
+ * Automatically hides on touch devices.
+ */
+---
+
+<div id="custom-cursor" class="hidden lg:block pointer-events-none fixed inset-0 z-[9999]">
+  <!-- Trailing Ring -->
+  <div id="cursor-ring" class="absolute top-0 left-0 w-8 h-8 -ml-4 -mt-4 rounded-full border border-ink/40 dark:border-white/40 will-change-transform"></div>
+  
+  <!-- Solid Gold Dot -->
+  <div id="cursor-dot" class="absolute top-0 left-0 w-2 h-2 -ml-1 -mt-1 rounded-full bg-[#CAA154] will-change-transform"></div>
+</div>
+
+<style>
+  /* Base styles for the cursor elements */
+  #cursor-ring, #cursor-dot {
+    pointer-events: none;
+    backface-visibility: hidden;
+  }
+  
+  /* Hover state scale adjustments via classes managed by JS */
+  #cursor-ring.is-hovering {
+    background-color: rgba(202, 161, 84, 0.1);
+    border-color: rgba(202, 161, 84, 0.8);
+    transform-origin: center center;
+  }
+  
+  #cursor-dot.is-hovering {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.addEventListener("astro:page-load", () => {
+    // Only init on non-touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    const ring = document.getElementById("cursor-ring");
+    const dot = document.getElementById("cursor-dot");
+    
+    if (!ring || !dot) return;
+
+    // Use GSAP quickTo for maximum performance
+    const xSetRing = gsap.quickTo(ring, "x", { duration: 0.5, ease: "power3" });
+    const ySetRing = gsap.quickTo(ring, "y", { duration: 0.5, ease: "power3" });
+    const xSetDot = gsap.quickTo(dot, "x", { duration: 0.05, ease: "power3.out" });
+    const ySetDot = gsap.quickTo(dot, "y", { duration: 0.05, ease: "power3.out" });
+
+    // Ensure the cursor follows the mouse
+    window.addEventListener("mousemove", (e) => {
+      xSetRing(e.clientX);
+      ySetRing(e.clientY);
+      xSetDot(e.clientX);
+      ySetDot(e.clientY);
+    });
+
+    // Handle hover states for links and buttons
+    const interactiveElements = document.querySelectorAll('a, button, input[type="submit"], input[type="button"], select, [data-cursor-hover]');
+    
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        ring.classList.add('is-hovering');
+        dot.classList.add('is-hovering');
+        gsap.to(ring, { scale: 1.5, duration: 0.3, ease: "back.out(1.5)" });
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        ring.classList.remove('is-hovering');
+        dot.classList.remove('is-hovering');
+        gsap.to(ring, { scale: 1, duration: 0.3, ease: "power2.out" });
+      });
+    });
+
+    // Hide cursor when it leaves the window
+    document.addEventListener("mouseleave", () => {
+      gsap.to([ring, dot], { opacity: 0, duration: 0.2 });
+    });
+    
+    document.addEventListener("mouseenter", () => {
+      gsap.to([ring, dot], { opacity: 1, duration: 0.2 });
+    });
+  });
+</script>

@@ -10,6 +10,7 @@ import Nav from "@/components/layout/Nav.astro";
 import SidePanel from "@/components/layout/SidePanel.astro";
 import Footer from "@/components/layout/Footer.astro";
 import SearchModal from "@/components/ui/SearchModal.astro";
+import CustomCursor from "@/components/ui/CustomCursor.astro";
 import { SEO_DEFAULTS, GA_ID } from "@/data/site";
 
 /* ── Styles ──────────────────────────────────────────────── */
@@ -107,6 +108,7 @@ const ogImage = new URL(image, Astro.site).href;
   </head>
 
   <body class={layoutTheme === "light" ? "theme-light" : ""} data-strict-nav={strictNav ? "true" : undefined}>
+    <CustomCursor />
     <!-- Intro preloader (plays once per real load, then slides down) -->
     <div id="preloader" transition:persist>
       <img src="/assets/brand/logo-gold-transparent.png" alt="Pinnacle Route" />

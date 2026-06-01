@@ -160,3 +160,12 @@ html.preloading { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   #preloader { display: none; }
 }
+
+/* ============================================================
+   CUSTOM CURSOR
+============================================================ */
+@media (pointer: fine) {
+  body, a, button, input[type="button"], input[type="submit"], select, .cursor-pointer {
+    cursor: none !important;
+  }
+}
