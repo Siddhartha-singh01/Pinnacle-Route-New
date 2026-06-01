@@ -67,7 +67,7 @@ export const footerColumns: FooterColumn[] = [
 /* ── Social links ───────────────────────────────────────── */
 
 export const socials: SocialLink[] = [
-  { label: "LinkedIn", href: "#" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/pinnacle-route" },
   { label: "Twitter / X", href: "https://x.com/PinnacleRoute" },
-  { label: "Instagram", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/pinnacle_route/" },
 ];
