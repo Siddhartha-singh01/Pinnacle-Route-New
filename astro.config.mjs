@@ -11,6 +11,7 @@ export default defineConfig({
   output: "static",
   adapter: vercel(),
   integrations: [react(), sitemap()],
+  compressHTML: true,
   prefetch: { prefetchAll: true, defaultStrategy: "viewport" },
   vite: {
     plugins: [tailwindcss()],
