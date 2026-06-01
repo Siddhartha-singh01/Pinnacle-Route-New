@@ -24,7 +24,7 @@ const { tools, label = "The modern stack we orchestrate" } = Astro.props;
             src={t.startsWith('http') ? t : `/assets/tech-logos/optimized/${t}.jpg`}
             alt={t.split('/').pop() || t}
             loading="lazy"
-            class="h-14 md:h-16 w-auto max-w-[200px] md:max-w-[260px] object-contain transition-transform duration-300 flex-shrink-0 px-4"
+            class="h-14 md:h-16 w-auto max-w-[200px] md:max-w-[260px] object-contain transition-transform duration-300 flex-shrink-0 px-4 mix-blend-multiply"
           />
         ))
       }
