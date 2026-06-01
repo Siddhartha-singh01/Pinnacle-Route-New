@@ -1,0 +1,148 @@
+---
+---
+<dialog id="search-modal" class="fixed inset-0 m-0 w-full h-full max-w-none max-h-none bg-black/60 backdrop-blur-md z-[100] opacity-0 invisible transition-all duration-300 open:opacity-100 open:visible flex items-start justify-center pt-24 pb-12 px-4 border-none">
+  
+  <div class="bg-surface border border-line-soft rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col scale-95 opacity-0 transition-all duration-300 transform search-modal-content">
+    
+    <!-- Header / Input -->
+    <div class="relative border-b border-line-soft p-4 flex items-center">
+      <svg class="w-5 h-5 text-gray-400 absolute left-8 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search pages, services, articles..." 
+        class="w-full bg-transparent border-none outline-none text-white text-lg py-4 pl-12 pr-12 placeholder:text-gray-500"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="search-close" type="button" class="absolute right-6 p-2 text-gray-400 hover:text-white transition-colors bg-ink rounded-lg border border-line-soft text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 cursor-pointer">
+        ESC
+      </button>
+    </div>
+
+    <!-- Results Area -->
+    <div class="max-h-[60vh] overflow-y-auto p-4 flex flex-col gap-2" id="search-results">
+      <div class="p-8 text-center text-gray-500 text-sm" id="search-empty">
+        Type something to search...
+      </div>
+    </div>
+    
+  </div>
+</dialog>
+
+<style>
+  dialog[open] .search-modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+  /* Remove default dialog background */
+  dialog::backdrop {
+    background: transparent; 
+  }
+</style>
+
+<script>
+  let searchData: any[] = [];
+  let isDataLoaded = false;
+  
+  const modal = document.getElementById('search-modal') as HTMLDialogElement;
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const resultsContainer = document.getElementById('search-results');
+  const closeBtn = document.getElementById('search-close');
+  
+  // Connect to the search button in the navbar
+  const searchTriggers = document.querySelectorAll('[aria-label="Search"], #search-open');
+
+  async function fetchSearchData() {
+    if (isDataLoaded) return;
+    try {
+      const res = await fetch('/api/search.json');
+      searchData = await res.json();
+      isDataLoaded = true;
+    } catch (e) {
+      console.error("Failed to load search index", e);
+    }
+  }
+
+  function openModal() {
+    if (!modal) return;
+    modal.showModal();
+    document.body.style.overflow = 'hidden';
+    fetchSearchData();
+    // Tiny delay to allow animation to start before focus, preventing scrolling jumps
+    setTimeout(() => input?.focus(), 50);
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.close();
+    document.body.style.overflow = '';
+    if (input) input.value = '';
+    renderResults('');
+  }
+
+  function renderResults(query: string) {
+    if (!resultsContainer) return;
+    
+    if (!query.trim()) {
+      resultsContainer.innerHTML = `<div class="p-8 text-center text-gray-500 text-sm">Type something to search...</div>`;
+      return;
+    }
+
+    const q = query.toLowerCase();
+    const filtered = searchData.filter(item => 
+      item.title.toLowerCase().includes(q) || 
+      item.description.toLowerCase().includes(q) ||
+      item.category.toLowerCase().includes(q)
+    ).slice(0, 8); // limit to 8 results
+
+    if (filtered.length === 0) {
+      resultsContainer.innerHTML = `<div class="p-8 text-center text-gray-500 text-sm">No results found for "${query}"</div>`;
+      return;
+    }
+
+    resultsContainer.innerHTML = filtered.map(item => `
+      <a href="${item.url}" class="group flex flex-col p-4 rounded-xl hover:bg-white/5 transition-colors border border-transparent hover:border-line-soft">
+        <div class="flex items-center justify-between mb-1">
+          <h4 class="text-white font-medium group-hover:text-gold transition-colors">${item.title}</h4>
+          <span class="text-[10px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded-full bg-white/10 text-gray-300 border border-line-soft">${item.category}</span>
+        </div>
+        <p class="text-sm text-gray-400 truncate">${item.description}</p>
+      </a>
+    `).join('');
+  }
+
+  // Event Listeners
+  searchTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal(); // Click outside
+  });
+
+  input?.addEventListener('input', (e) => {
+    renderResults((e.target as HTMLInputElement).value);
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      if (modal && !modal.open) openModal();
+      else closeModal();
+    }
+    if (e.key === 'Escape' && modal && modal.open) {
+      e.preventDefault();
+      closeModal();
+    }
+  });
+</script>
