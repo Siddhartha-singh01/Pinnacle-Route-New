@@ -27,7 +27,7 @@ export const mainMenu: MenuItem[] = [
     cols: 2,
     items: services.map((s) => ({ label: s.label, href: serviceHref(s.slug) })),
   },
-  { label: "Media", href: "/blog" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/contact" },
 ];
