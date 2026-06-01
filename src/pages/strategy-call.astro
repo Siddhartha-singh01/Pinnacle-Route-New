@@ -2,32 +2,32 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Qualify · Pinnacle Route" navTheme="dark" layoutTheme="dark">
-  <main class="relative min-h-screen overflow-hidden bg-[#0b0b0c] text-white pt-24 pb-24 font-sans">
+<BaseLayout title="Qualify · Pinnacle Route" navTheme="light" layoutTheme="light">
+  <main class="relative min-h-screen overflow-hidden bg-white text-ink pt-24 pb-24 font-sans">
     
     <!-- Background Glow -->
-    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-gold/5 blur-[120px] rounded-full pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
+    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-[#CAA154]/5 blur-[120px] rounded-full pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
 
     <!-- Hero Section -->
     <section class="container-page relative z-10 pt-12 pb-20 md:pb-32">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
         <!-- Left Copy -->
         <div class="flex flex-col items-start gap-8">
-          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-[#CAA154]/30 bg-[#CAA154]/10 text-[#CAA154] text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase">
+          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-[#CAA154]/30 bg-[#CAA154]/5 text-[#CAA154] text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase">
             <span class="w-1.5 h-1.5 rounded-full bg-[#CAA154]"></span>
             By Application Only — Limited Strategy Sessions Available
           </div>
           
-          <h1 class="font-display font-medium text-4xl sm:text-5xl md:text-[4rem] leading-[1.05] tracking-[-0.02em] text-white">
+          <h1 class="font-display font-medium text-4xl sm:text-5xl md:text-[4rem] leading-[1.05] tracking-[-0.02em] text-ink">
             We Don't Work With Everyone. <br class="hidden sm:block" />
-            <span class="text-white/70">But If Your Business Is Ready to Scale —</span> We Should Talk.
+            <span class="text-ink/50">But If Your Business Is Ready to Scale —</span> We Should Talk.
           </h1>
           
-          <p class="text-base sm:text-lg text-white/60 max-w-xl leading-relaxed font-light">
+          <p class="text-base sm:text-lg text-ink/70 max-w-xl leading-relaxed font-light">
             Pinnacle Route partners with serious founders and business owners to design, build, and deploy AI automation, eCommerce platforms, mobile apps, custom software, CRM/ERP systems, SaaS products, and premium UI/UX — in weeks, not months.
           </p>
           
-          <ul class="flex flex-col gap-4 text-sm sm:text-base text-white/90 font-medium">
+          <ul class="flex flex-col gap-4 text-sm sm:text-base text-ink/90 font-medium">
             <li class="flex items-start gap-3">
               <span class="text-[#CAA154] mt-0.5 text-lg">✦</span>
               50+ businesses transformed across 10+ industries
@@ -38,150 +38,147 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             </li>
           </ul>
           
-          <button type="button" class="mt-4 bg-[#CAA154] text-black px-8 py-4 rounded font-bold hover:bg-white transition-colors flex items-center gap-2 tracking-wide" onclick="document.getElementById('inquiry-form').scrollIntoView({behavior: 'smooth'})">
+          <button type="button" class="mt-4 bg-[#CAA154] text-white px-8 py-4 rounded font-bold hover:bg-ink transition-colors flex items-center gap-2 tracking-wide shadow-lg shadow-[#CAA154]/20" onclick="document.getElementById('inquiry-form').scrollIntoView({behavior: 'smooth'})">
             See If You Qualify <span class="text-xl leading-none">→</span>
           </button>
         </div>
 
-        <!-- Right Dashboard UI -->
+        <!-- Right Dashboard UI (Light Mode) -->
         <div class="relative w-full aspect-[4/3] max-w-[600px] mx-auto lg:ml-auto perspective-1000">
-          <div class="absolute inset-0 bg-gradient-to-br from-[#1a1a1c] to-[#0f0f11] rounded-xl border border-white/5 shadow-2xl overflow-hidden flex flex-col transform md:rotate-y-[-5deg] md:rotate-x-[2deg] shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
+          <div class="absolute inset-0 bg-white rounded-xl border border-grey/20 shadow-2xl overflow-hidden flex flex-col transform md:rotate-y-[-5deg] md:rotate-x-[2deg] shadow-[0_30px_60px_rgba(0,0,0,0.1)]">
             <!-- Top Bar -->
-            <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-[#141416]">
+            <div class="flex items-center gap-2 px-4 py-3 border-b border-grey/10 bg-[#f8f9fa]">
               <div class="flex gap-1.5">
                 <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
                 <div class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></div>
                 <div class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
               </div>
-              <span class="ml-2 text-[9px] uppercase tracking-widest text-white/40 font-semibold">Pinnacle Ops Command</span>
+              <span class="ml-2 text-[9px] uppercase tracking-widest text-ink/40 font-semibold">Pinnacle Ops Command</span>
             </div>
             
             <!-- Dashboard Body -->
-            <div class="flex-1 p-5 sm:p-8 flex flex-col gap-6 sm:gap-8 bg-[#0b0b0c]">
+            <div class="flex-1 p-5 sm:p-8 flex flex-col gap-6 sm:gap-8 bg-white">
               <!-- Top Stats Grid -->
               <div class="grid grid-cols-3 gap-3 sm:gap-5">
-                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
-                  <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">Pipeline</span>
-                  <span class="text-xl sm:text-3xl font-display font-medium text-white">$90k</span>
+                <div class="bg-white border border-grey/10 shadow-sm rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
+                  <div class="absolute inset-0 bg-gradient-to-b from-grey/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-ink/40 font-semibold">Pipeline</span>
+                  <span class="text-xl sm:text-3xl font-display font-medium text-ink">$90k</span>
                   <span class="text-[10px] sm:text-xs text-[#27c93f] font-medium">+28%</span>
                 </div>
-                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
-                  <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">Response</span>
-                  <span class="text-xl sm:text-3xl font-display font-medium text-[#4da6ff]">4m</span>
-                  <span class="text-[10px] sm:text-xs text-[#4da6ff] font-medium">-91%</span>
+                <div class="bg-white border border-grey/10 shadow-sm rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
+                  <div class="absolute inset-0 bg-gradient-to-b from-grey/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-ink/40 font-semibold">Response</span>
+                  <span class="text-xl sm:text-3xl font-display font-medium text-[#0066cc]">4m</span>
+                  <span class="text-[10px] sm:text-xs text-[#0066cc] font-medium">-91%</span>
                 </div>
-                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
-                  <div class="absolute inset-0 bg-[#CAA154]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">ROI</span>
+                <div class="bg-white border border-grey/10 shadow-sm rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
+                  <div class="absolute inset-0 bg-[#CAA154]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-ink/40 font-semibold">ROI</span>
                   <span class="text-xl sm:text-3xl font-display font-medium text-[#CAA154]">3.8x</span>
                   <span class="text-[10px] sm:text-xs text-[#27c93f] font-medium">90 days</span>
                 </div>
               </div>
               
               <!-- Chart Area -->
-              <div class="flex-1 bg-[#141416] border border-white/5 rounded-lg p-4 sm:p-6 flex flex-col relative overflow-hidden">
-                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold mb-auto relative z-10">Revenue Velocity</span>
+              <div class="flex-1 bg-white border border-grey/10 shadow-sm rounded-lg p-4 sm:p-6 flex flex-col relative overflow-hidden">
+                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest text-ink/40 font-semibold mb-auto relative z-10">Revenue Velocity</span>
                 <div class="flex items-end justify-between gap-1.5 sm:gap-3 h-20 sm:h-28 mt-6 relative z-10">
                   <!-- Bars -->
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[30%] hover:brightness-125 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[45%] hover:brightness-125 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[35%] hover:brightness-125 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[55%] hover:brightness-125 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[45%] hover:brightness-125 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[70%] hover:brightness-125 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[60%] hover:brightness-125 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#CAA154]/40 to-[#CAA154] rounded-sm h-[85%] shadow-[0_0_15px_rgba(202,161,84,0.4)] relative">
-                    <!-- Glow on the gold bar -->
-                    <div class="absolute inset-0 bg-[#CAA154] blur-sm opacity-50"></div>
-                  </div>
-                  <div class="w-full bg-gradient-to-t from-[#4da6ff]/20 to-[#4da6ff] rounded-sm h-[90%] hover:brightness-125 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[30%] hover:brightness-90 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[45%] hover:brightness-90 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[35%] hover:brightness-90 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[55%] hover:brightness-90 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[45%] hover:brightness-90 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[70%] hover:brightness-90 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[60%] hover:brightness-90 transition-all"></div>
+                  <div class="w-full bg-gradient-to-t from-[#CAA154]/40 to-[#CAA154] rounded-sm h-[85%] shadow-[0_0_15px_rgba(202,161,84,0.3)] relative"></div>
+                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[90%] hover:brightness-90 transition-all"></div>
                 </div>
               </div>
 
               <!-- Bottom Stats -->
               <div class="grid grid-cols-4 gap-3 sm:gap-4">
-                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#4da6ff]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Captured</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">184</span>
+                <div class="bg-white border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#0066cc]">
+                  <span class="text-[9px] sm:text-[10px] text-ink/50 font-medium">Captured</span>
+                  <span class="text-base sm:text-lg font-display text-ink mt-1 font-semibold">184</span>
                 </div>
-                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#CAA154]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Scored</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">96</span>
+                <div class="bg-white border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#CAA154]">
+                  <span class="text-[9px] sm:text-[10px] text-ink/50 font-medium">Scored</span>
+                  <span class="text-base sm:text-lg font-display text-ink mt-1 font-semibold">96</span>
                 </div>
-                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#a67cff]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Booked</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">31</span>
+                <div class="bg-white border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#a67cff]">
+                  <span class="text-[9px] sm:text-[10px] text-ink/50 font-medium">Booked</span>
+                  <span class="text-base sm:text-lg font-display text-ink mt-1 font-semibold">31</span>
                 </div>
-                <div class="bg-[#141416] border border-white/5 rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#27c93f]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Closed</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">14</span>
+                <div class="bg-white border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#27c93f]">
+                  <span class="text-[9px] sm:text-[10px] text-ink/50 font-medium">Closed</span>
+                  <span class="text-base sm:text-lg font-display text-ink mt-1 font-semibold">14</span>
                 </div>
               </div>
             </div>
           </div>
           <!-- Hovering small badge -->
-          <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-[#141416] border border-white/10 rounded-xl p-4 shadow-2xl z-10 flex flex-col animate-float">
-            <span class="text-sm font-semibold text-white">12.4 hrs saved today</span>
-            <span class="text-[11px] text-white/50 mt-1">Ops tasks automated</span>
+          <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-white border border-grey/10 rounded-xl p-4 shadow-xl z-10 flex flex-col animate-float">
+            <span class="text-sm font-semibold text-ink">12.4 hrs saved today</span>
+            <span class="text-[11px] text-ink/50 mt-1">Ops tasks automated</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- "Does This Sound Familiar?" Section -->
-    <section class="container-page py-24 md:py-32 border-t border-white/10 relative z-10">
+    <section class="container-page py-24 md:py-32 border-t border-grey/10 relative z-10 bg-[#fcfcfc]">
       <div class="flex flex-col items-center text-center mb-16 md:mb-24">
-        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8">
+        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8 bg-[#CAA154]/5">
           Does This Sound Familiar?
         </div>
-        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-white max-w-4xl">
+        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-ink max-w-4xl">
           You're Running a Real Business. <br class="hidden sm:block" />
-          <span class="text-white/60">But It Doesn't Always Feel Like It.</span>
+          <span class="text-ink/40">But It Doesn't Always Feel Like It.</span>
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
         <!-- Card 1 -->
-        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
-          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">Your leads are everywhere — and going nowhere.</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 sm:p-10 hover:border-[#CAA154]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#CAA154]/5 group">
+          <h3 class="text-lg sm:text-xl font-semibold text-ink mb-4 group-hover:text-[#CAA154] transition-colors">Your leads are everywhere — and going nowhere.</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             Enquiries come in from WhatsApp, email, website forms, and portals. There's no system, no scoring, no follow-up process. Deals are slipping through the cracks every single day.
           </p>
         </div>
         <!-- Card 2 -->
-        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
-          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">Your team is buried in tasks that shouldn't require humans.</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 sm:p-10 hover:border-[#CAA154]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#CAA154]/5 group">
+          <h3 class="text-lg sm:text-xl font-semibold text-ink mb-4 group-hover:text-[#CAA154] transition-colors">Your team is buried in tasks that shouldn't require humans.</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             Data entry, report generation, follow-up emails, CRM updates, invoice reminders — your best people are spending their hours on work a machine could do in seconds.
           </p>
         </div>
         <!-- Card 3 -->
-        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
-          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">You have a website or store. But it's not doing enough work for you.</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 sm:p-10 hover:border-[#CAA154]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#CAA154]/5 group">
+          <h3 class="text-lg sm:text-xl font-semibold text-ink mb-4 group-hover:text-[#CAA154] transition-colors">You have a website or store. But it's not doing enough work for you.</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             Your website or eCommerce experience looks fine, but it doesn't capture qualified leads, improve conversions, automate operations, or move people toward a decision.
           </p>
         </div>
         <!-- Card 4 -->
-        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
-          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">You've tried tools. Nothing stuck.</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 sm:p-10 hover:border-[#CAA154]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#CAA154]/5 group">
+          <h3 class="text-lg sm:text-xl font-semibold text-ink mb-4 group-hover:text-[#CAA154] transition-colors">You've tried tools. Nothing stuck.</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             You've subscribed to CRMs, automation platforms, and project management tools. But without a system built specifically for your business, they just created more complexity.
           </p>
         </div>
         <!-- Card 5 -->
-        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
-          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">Your operations run on WhatsApp groups and spreadsheets.</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 sm:p-10 hover:border-[#CAA154]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#CAA154]/5 group">
+          <h3 class="text-lg sm:text-xl font-semibold text-ink mb-4 group-hover:text-[#CAA154] transition-colors">Your operations run on WhatsApp groups and spreadsheets.</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             There's no single source of truth. Decisions are made on incomplete information. Things fall through the cracks because there's no infrastructure holding them together.
           </p>
         </div>
         <!-- Card 6 -->
-        <div class="bg-[#141416] border border-white/5 rounded-xl p-8 sm:p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(202,161,84,0.05)] group">
-          <h3 class="text-lg sm:text-xl font-semibold text-white mb-4 group-hover:text-[#CAA154] transition-colors">You know what you want to build — but you don't have the right team to build it.</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 sm:p-10 hover:border-[#CAA154]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#CAA154]/5 group">
+          <h3 class="text-lg sm:text-xl font-semibold text-ink mb-4 group-hover:text-[#CAA154] transition-colors">You know what you want to build — but you don't have the right team to build it.</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             You have a clear vision for an app, SaaS platform, CRM, ERP, portal, dashboard, or custom product. But every developer conversation ends in confusion, delays, or a quote that makes no sense.
           </p>
         </div>
@@ -193,141 +190,318 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </section>
 
     <!-- "The Real Problem" Section -->
-    <section class="container-page py-24 md:py-32 border-t border-white/10 bg-[#141416]/30 relative z-10">
+    <section class="container-page py-24 md:py-32 border-t border-grey/10 bg-white relative z-10">
       <div class="flex flex-col items-center text-center mb-16 md:mb-24">
-        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8">
+        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8 bg-[#CAA154]/5">
           The Real Problem
         </div>
-        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-white max-w-5xl">
+        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-ink max-w-5xl">
           The Problem Isn't That You Lack Tools. <br class="hidden sm:block" />
-          <span class="text-white/60">It's That You Lack a System.</span>
+          <span class="text-ink/40">It's That You Lack a System.</span>
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
         <!-- Col 1 -->
-        <div class="bg-[#0b0b0c] border border-white/5 rounded-xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 group">
-          <span class="font-display text-4xl md:text-5xl text-[#CAA154]/30 group-hover:text-[#CAA154] transition-colors block mb-6">01</span>
-          <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why are qualified leads not converting?</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl group">
+          <span class="font-display text-4xl md:text-5xl text-grey/30 group-hover:text-[#CAA154] transition-colors block mb-6">01</span>
+          <h3 class="text-xl sm:text-2xl font-semibold text-ink mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why are qualified leads not converting?</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             Most businesses lose deals not because their offer is weak — but because their follow-up is slow, inconsistent, and manual. By the time your team responds, the prospect has already moved on.
           </p>
         </div>
         <!-- Col 2 -->
-        <div class="bg-[#0b0b0c] border border-white/5 rounded-xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 group">
-          <span class="font-display text-4xl md:text-5xl text-[#CAA154]/30 group-hover:text-[#CAA154] transition-colors block mb-6">02</span>
-          <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why does growth feel harder the bigger you get?</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl group">
+          <span class="font-display text-4xl md:text-5xl text-grey/30 group-hover:text-[#CAA154] transition-colors block mb-6">02</span>
+          <h3 class="text-xl sm:text-2xl font-semibold text-ink mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why does growth feel harder the bigger you get?</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             Because your operations were never designed to scale. Every new client, every new hire, every new channel adds complexity — and without automated systems underneath, growth creates chaos instead of momentum.
           </p>
         </div>
         <!-- Col 3 -->
-        <div class="bg-[#0b0b0c] border border-white/5 rounded-xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 group">
-          <span class="font-display text-4xl md:text-5xl text-[#CAA154]/30 group-hover:text-[#CAA154] transition-colors block mb-6">03</span>
-          <h3 class="text-xl sm:text-2xl font-semibold text-white mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why do your tools feel like more work?</h3>
-          <p class="text-sm sm:text-base text-white/50 leading-relaxed font-light">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-10 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl group">
+          <span class="font-display text-4xl md:text-5xl text-grey/30 group-hover:text-[#CAA154] transition-colors block mb-6">03</span>
+          <h3 class="text-xl sm:text-2xl font-semibold text-ink mb-4 leading-snug group-hover:text-[#CAA154] transition-colors">Why do your tools feel like more work?</h3>
+          <p class="text-sm sm:text-base text-ink/60 leading-relaxed font-light">
             Because tools don't fix process problems — systems do. A CRM no one uses, an automation that keeps breaking, a dashboard no one checks — these are symptoms of a business that was never properly architected.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Contact Form (Qualify Form) -->
-    <section id="inquiry-form" class="container-page py-24 md:py-32 border-t border-white/10 relative z-10">
-      <div class="max-w-4xl mx-auto bg-[#141416] border border-white/10 rounded-2xl p-8 md:p-16 shadow-2xl relative overflow-hidden">
-        
-        <!-- Form Background Accent -->
-        <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-[#CAA154]/5 blur-[80px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+    <!-- NEW: "Your Future State" Section -->
+    <section class="container-page py-24 md:py-32 border-t border-grey/10 bg-[#fcfcfc] relative z-10">
+      <div class="flex flex-col items-center text-center mb-16 md:mb-24">
+        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8 bg-[#CAA154]/5">
+          Your Future State
+        </div>
+        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-ink max-w-4xl mb-6">
+          Imagine Running a Business Where the System Does the Heavy Lifting.
+        </h2>
+        <p class="text-base md:text-lg text-ink/60 max-w-3xl leading-relaxed font-light">
+          This is what Pinnacle Route is built to deliver: practical digital systems, intelligent automation, and polished user experiences that make the business easier to run and easier to scale.
+        </p>
+      </div>
 
-        <div class="mb-14 text-center relative z-10">
-          <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-medium text-white mb-6">Ready to Architect Your Business?</h2>
-          <p class="text-white/60 text-lg font-light">Fill out the application below. If we're a fit, we'll schedule a deep-dive strategy session.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <!-- Card 1 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-10 h-10 rounded flex items-center justify-center bg-grey/5 text-[#CAA154] font-display text-lg mb-6 border border-grey/10">01</div>
+          <h3 class="text-lg font-semibold text-ink mb-3 leading-snug">Every lead is captured, scored, and followed up — automatically.</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            The moment a prospect interacts with your business, they enter an intelligent system that qualifies, nurtures, and routes them to your team — ready to close.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-10 h-10 rounded flex items-center justify-center bg-grey/5 text-[#CAA154] font-display text-lg mb-6 border border-grey/10">02</div>
+          <h3 class="text-lg font-semibold text-ink mb-3 leading-snug">Your team works on what only humans can do.</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            Repetitive tasks — CRM updates, reports, reminders, data entry — are handled by automation. Your people focus on relationships, decisions, and growth.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-10 h-10 rounded flex items-center justify-center bg-grey/5 text-[#CAA154] font-display text-lg mb-6 border border-grey/10">03</div>
+          <h3 class="text-lg font-semibold text-ink mb-3 leading-snug">Your website or eCommerce platform becomes a revenue asset.</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            Conversion-focused UX, lead capture, product journeys, checkout flows, and automation turn your digital presence into a system that supports sales every day.
+          </p>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-10 h-10 rounded flex items-center justify-center bg-grey/5 text-[#CAA154] font-display text-lg mb-6 border border-grey/10">04</div>
+          <h3 class="text-lg font-semibold text-ink mb-3 leading-snug">Your CRM, ERP, dashboard, or internal software gives you one source of truth.</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            Revenue, pipeline, team performance, marketing ROI, inventory, operations, and KPIs become visible in one place, updated around how your business actually works.
+          </p>
+        </div>
+        <!-- Card 5 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-10 h-10 rounded flex items-center justify-center bg-grey/5 text-[#CAA154] font-display text-lg mb-6 border border-grey/10">05</div>
+          <h3 class="text-lg font-semibold text-ink mb-3 leading-snug">Your app, SaaS product, or custom platform is built with scale in mind.</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            From MVP to production, your product has clean user journeys, secure architecture, admin systems, analytics, and workflows designed for real adoption.
+          </p>
+        </div>
+        <!-- Card 6 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-10 h-10 rounded flex items-center justify-center bg-grey/5 text-[#CAA154] font-display text-lg mb-6 border border-grey/10">06</div>
+          <h3 class="text-lg font-semibold text-ink mb-3 leading-snug">You have a technology partner, not just a vendor.</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            A dedicated team that understands automation, software, product design, and digital growth — and continues building as your needs evolve.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: Testimonial Section -->
+    <section class="container-page py-24 md:py-32 border-t border-grey/10 bg-white relative z-10">
+      <div class="max-w-5xl mx-auto flex flex-col items-center">
+        <!-- Testimonial Image -->
+        <div class="w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl shadow-ink/10 mb-12 border border-grey/10">
+          <img src="/assets/client-proof/designer-club.png" alt="The Designer Club Testimonial" class="w-full h-auto object-cover" />
         </div>
         
-        <form class="flex flex-col gap-10 relative z-10">
-          <!-- Row 1 -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="flex flex-col gap-3 group">
-              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">First Name</label>
-              <input 
-                type="text" 
-                placeholder="Enter first name"
-                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
-              />
-            </div>
-            <div class="flex flex-col gap-3 group">
-              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Last Name</label>
-              <input 
-                type="text" 
-                placeholder="Enter last name"
-                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
-              />
-            </div>
-          </div>
+        <!-- Quote -->
+        <blockquote class="text-center">
+          <p class="font-serif italic text-2xl md:text-3xl lg:text-4xl text-ink leading-relaxed max-w-4xl mx-auto">
+            "Pinnacle Route replaced our scattered manual workflows with a clean automated system that gave our team visibility, speed, and control we didn't think was possible without hiring 5 more people."
+          </p>
+          <footer class="mt-8">
+            <p class="text-sm font-semibold tracking-widest uppercase text-ink/60">
+              — Maddie Davies, Founder, The Designer Club
+            </p>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
 
-          <!-- Row 2 -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="flex flex-col gap-3 group">
-              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Email</label>
-              <input 
-                type="email" 
-                placeholder="Enter business email"
-                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
-              />
-            </div>
-            <div class="flex flex-col gap-3 group">
-              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Company Name / URL</label>
-              <input 
-                type="text" 
-                placeholder="Company name or website"
-                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
-              />
-            </div>
-          </div>
+    <!-- NEW: The Pinnacle Route Method -->
+    <section class="container-page py-24 md:py-32 border-t border-grey/10 bg-[#fcfcfc] relative z-10">
+      <div class="flex flex-col items-center text-center mb-16 md:mb-24">
+        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8 bg-[#CAA154]/5">
+          The Pinnacle Route Method
+        </div>
+        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-ink max-w-4xl mb-6">
+          We Don't Sell Generic Software. <br class="hidden sm:block" />
+          We Build the Digital Systems Your Business Actually Needs.
+        </h2>
+        <p class="text-base md:text-lg text-ink/60 max-w-4xl leading-relaxed font-light mx-auto">
+          Across AI automation, eCommerce, mobile apps, custom software, CRM/ERP systems, SaaS platforms, and UI/UX design, our methodology connects strategy, architecture, build quality, and post-launch optimisation.
+        </p>
+      </div>
 
-          <!-- Row 3 -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="flex flex-col gap-3 group">
-              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Phone Number</label>
-              <input 
-                type="tel" 
-                placeholder="124-456-7890"
-                class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors font-light"
-              />
-            </div>
-            <div class="flex flex-col gap-3 group">
-              <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">Monthly Revenue (Optional)</label>
-              <div class="relative">
-                <select class="w-full bg-transparent border-b border-white/20 text-white pb-3 focus:outline-none focus:border-[#CAA154] transition-colors appearance-none pr-8 cursor-pointer [&>option]:bg-[#141416] [&>option]:text-white font-light">
-                  <option value="" disabled selected class="text-white/20">Please select...</option>
-                  <option value="under_10k">Under $10,000</option>
-                  <option value="10k_50k">$10,000 - $50,000</option>
-                  <option value="50k_100k">$50,000 - $100,000</option>
-                  <option value="over_100k">$100,000+</option>
-                </select>
-                <svg class="absolute right-0 bottom-4 text-white/40 pointer-events-none" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      <!-- 4 Step Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
+        <!-- Step 1 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#CAA154] text-white font-display text-xl mb-6 shadow-lg shadow-[#CAA154]/20">1</div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Diagnose</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            We map every broken workflow, revenue leak, and manual process in your business before we recommend a single solution.
+          </p>
+        </div>
+        <!-- Step 2 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#CAA154] text-white font-display text-xl mb-6 shadow-lg shadow-[#CAA154]/20">2</div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Architect</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            We design the exact solution — automation flows, integrations, data architecture, product roadmap, UX structure, and technical stack — before development begins.
+          </p>
+        </div>
+        <!-- Step 3 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#CAA154] text-white font-display text-xl mb-6 shadow-lg shadow-[#CAA154]/20">3</div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Build & Deploy</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            Our team designs, develops, tests, and deploys your automation system, website, app, software platform, CRM/ERP, SaaS product, or dashboard with clean execution.
+          </p>
+        </div>
+        <!-- Step 4 -->
+        <div class="bg-white border border-grey/10 shadow-sm rounded-2xl p-8 hover:border-[#CAA154]/30 transition-all duration-300 hover:shadow-xl">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center bg-[#CAA154] text-white font-display text-xl mb-6 shadow-lg shadow-[#CAA154]/20">4</div>
+          <h3 class="text-xl font-semibold text-ink mb-3">Optimise & Scale</h3>
+          <p class="text-sm text-ink/60 leading-relaxed font-light">
+            Post-launch, we refine conversion, workflows, usability, reporting, integrations, and performance so the system keeps improving as the business grows.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pill Tags -->
+      <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">AI Automation</span>
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">eCommerce Development</span>
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">Mobile Apps</span>
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">Custom Software</span>
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">CRM Systems</span>
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">ERP Systems</span>
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">SaaS Platforms</span>
+        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-ink/70 hover:bg-grey/5 transition-colors">UI/UX Design</span>
+      </div>
+    </section>
+
+    <!-- NEW: Next Step / Booking Form -->
+    <section id="inquiry-form" class="container-page py-24 md:py-32 border-t border-grey/10 bg-white relative z-10">
+      
+      <!-- Top Titles -->
+      <div class="flex flex-col items-center text-center mb-16">
+        <div class="px-5 py-2 rounded-full border border-[#CAA154]/30 text-[#CAA154] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-8 bg-[#CAA154]/5">
+          Next Step
+        </div>
+        <h2 class="font-display font-medium text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.1] tracking-[-0.02em] text-ink mb-6">
+          Book Your Free Strategy Session.
+        </h2>
+        <p class="text-base md:text-lg text-ink/60 max-w-3xl leading-relaxed font-light mx-auto">
+          This is a focused 45-minute call where we analyse your current operations, identify your biggest automation and growth opportunities, and outline exactly what we would build for your business — at no cost and no obligation.
+        </p>
+      </div>
+
+      <!-- Timeline Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+        <div class="bg-white border border-grey/10 shadow-sm rounded-xl p-6">
+          <p class="text-sm text-ink/70 leading-relaxed"><strong class="text-ink font-semibold"><span class="text-[#CAA154] pr-1">✦</span> Before the call:</strong> You'll complete a short intake form so we arrive prepared with relevant insights for your industry and business model.</p>
+        </div>
+        <div class="bg-white border border-grey/10 shadow-sm rounded-xl p-6">
+          <p class="text-sm text-ink/70 leading-relaxed"><strong class="text-ink font-semibold"><span class="text-[#CAA154] pr-1">✦</span> On the call:</strong> We map your current workflows, identify 3-5 high-impact automation opportunities, and walk you through a custom solution concept.</p>
+        </div>
+        <div class="bg-white border border-grey/10 shadow-sm rounded-xl p-6">
+          <p class="text-sm text-ink/70 leading-relaxed"><strong class="text-ink font-semibold"><span class="text-[#CAA154] pr-1">✦</span> After the call:</strong> You receive a written summary of our recommendations — regardless of whether you choose to work with us.</p>
+        </div>
+      </div>
+
+      <!-- Booking Dual Block -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
+        
+        <!-- Left: Direct Route -->
+        <div class="lg:col-span-5 bg-[#fcfcfc] border border-grey/10 shadow-sm rounded-2xl p-8 sm:p-10 flex flex-col">
+          <h3 class="font-display text-2xl sm:text-3xl font-medium text-ink mb-4">Prefer a direct route?</h3>
+          <p class="text-sm text-ink/60 leading-relaxed mb-8">Use whichever channel is easiest. The form gives us the best context before the session.</p>
+          
+          <div class="flex flex-col gap-4">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/447470940502" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 border border-grey/10 rounded-xl hover:border-[#25D366]/50 hover:bg-[#25D366]/5 transition-all group">
+              <div class="w-10 h-10 rounded bg-[#25D366]/10 text-[#25D366] flex items-center justify-center">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.711.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
               </div>
-            </div>
-          </div>
+              <div class="flex flex-col">
+                <span class="text-[9px] uppercase tracking-widest text-ink/40 font-semibold mb-0.5">WhatsApp</span>
+                <span class="text-sm font-semibold text-ink group-hover:text-[#25D366] transition-colors">Chat with us directly</span>
+              </div>
+            </a>
+            
+            <!-- Email -->
+            <a href="mailto:info@pinnacleroute.com" class="flex items-center gap-4 p-4 border border-grey/10 rounded-xl hover:border-[#0066cc]/50 hover:bg-[#0066cc]/5 transition-all group">
+              <div class="w-10 h-10 rounded bg-[#0066cc]/10 text-[#0066cc] flex items-center justify-center">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[9px] uppercase tracking-widest text-ink/40 font-semibold mb-0.5">Email</span>
+                <span class="text-sm font-semibold text-ink group-hover:text-[#0066cc] transition-colors">info@pinnacleroute.com</span>
+              </div>
+            </a>
 
-          <!-- Row 4 -->
-          <div class="flex flex-col gap-3 mt-4 group">
-            <label class="text-[11px] font-semibold tracking-wider uppercase text-white/50 group-focus-within:text-[#CAA154] transition-colors">What is the biggest operational bottleneck holding your business back right now?</label>
-            <textarea 
-              placeholder="Be as specific as possible..."
-              rows="3"
-              class="w-full bg-transparent border-b border-white/20 text-white placeholder-white/20 pb-3 focus:outline-none focus:border-[#CAA154] transition-colors resize-y min-h-[40px] font-light pt-2"
-            ></textarea>
+            <!-- Calendly -->
+            <a href="#" class="flex items-center gap-4 p-4 border border-grey/10 rounded-xl hover:border-[#CAA154]/50 hover:bg-[#CAA154]/5 transition-all group">
+              <div class="w-10 h-10 rounded bg-ink/5 text-ink flex items-center justify-center group-hover:bg-[#CAA154]/10 group-hover:text-[#CAA154] transition-colors">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-[9px] uppercase tracking-widest text-ink/40 font-semibold mb-0.5">Book A Call</span>
+                <span class="text-sm font-semibold text-ink group-hover:text-[#CAA154] transition-colors">Schedule via Calendly</span>
+              </div>
+            </a>
           </div>
+        </div>
 
-          <!-- Footer -->
-          <div class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
-            <button type="button" class="bg-[#CAA154] text-black px-12 py-5 rounded font-bold hover:bg-white transition-colors w-full md:w-auto text-center tracking-widest uppercase text-xs">
-              Submit Application
-            </button>
+        <!-- Right: Request Session Form -->
+        <div class="lg:col-span-7 bg-white border border-grey/10 shadow-xl rounded-2xl p-8 sm:p-12 relative overflow-hidden">
+          
+          <div class="mb-8 border-b border-grey/10 pb-4 flex items-center gap-4">
+            <h3 class="font-display text-2xl sm:text-3xl font-medium text-ink">Request your session</h3>
+            <div class="h-0.5 flex-1 bg-gradient-to-r from-[#CAA154] to-transparent"></div>
           </div>
           
-        </form>
+          <form class="flex flex-col gap-8">
+            <div class="flex flex-col gap-2 group">
+              <label class="text-xs font-semibold text-ink/70">Full Name *</label>
+              <input 
+                type="text" 
+                class="w-full bg-[#f8f9fa] border border-grey/10 rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all"
+                required
+              />
+            </div>
+            
+            <div class="flex flex-col gap-2 group">
+              <label class="text-xs font-semibold text-ink/70">Email Address *</label>
+              <input 
+                type="email" 
+                class="w-full bg-[#f8f9fa] border border-grey/10 rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all"
+                required
+              />
+            </div>
+
+            <div class="flex flex-col gap-2 group">
+              <label class="text-xs font-semibold text-ink/70">Project Type *</label>
+              <div class="relative">
+                <select class="w-full bg-[#f8f9fa] border border-grey/10 rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-[#CAA154] focus:ring-1 focus:ring-[#CAA154] transition-all appearance-none cursor-pointer" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="ai">AI Automation</option>
+                  <option value="ecommerce">eCommerce</option>
+                  <option value="saas">SaaS Platform</option>
+                  <option value="crm">CRM / ERP System</option>
+                  <option value="other">Other / Multiple</option>
+                </select>
+                <svg class="absolute right-4 top-1/2 -translate-y-1/2 text-ink/40 pointer-events-none" style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+
+            <button type="button" class="mt-4 bg-[#CAA154] text-white px-8 py-4 rounded-lg font-bold hover:bg-ink transition-colors w-full text-center tracking-widest uppercase text-xs shadow-lg shadow-[#CAA154]/20 flex justify-center items-center gap-2">
+              Continue <span>→</span>
+            </button>
+            
+          </form>
+        </div>
       </div>
     </section>
 
