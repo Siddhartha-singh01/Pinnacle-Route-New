@@ -1,77 +1,69 @@
 ---
 /**
- * Footer — Redesigned layout with gradient text and rounded bottom card.
+ * Footer — 5-column layout with giant watermark, link columns, socials, and back-to-top.
+ * Data is imported from @/data/navigation (single source of truth).
  * Back-to-top script is handled by @/scripts/index.ts.
  */
+import { footerColumns, socials } from "@/data/navigation";
 
 const year = new Date().getFullYear();
-
-// Hardcoded industries from the design
-const industries1 = ["Dental", "Education", "Energy", "Enterprise", "Federal Gov", "Financial", "Healthcare"];
-const industries2 = ["IT Services", "Legal", "Local Gov", "Logistics", "Machinery", "Manufacturing", "Medical"];
-const industries3 = ["Public Relations", "Real Estate", "Retail", "Special Districts", "State Gov", "Transportation", "Travel"];
 ---
 
-<footer class="theme-dark bg-[#1c1c1c] pt-24 pb-0 px-4 sm:px-6 relative overflow-hidden">
-  <div class="max-w-[1400px] mx-auto">
-    
-    <!-- Top Section -->
-    <div class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-24 lg:mb-32">
-      <!-- Left: Gradient Text -->
-      <div class="max-w-[800px]">
-        <h2 class="text-4xl md:text-5xl lg:text-[4.5rem] font-bold tracking-tight leading-[1.05] bg-gradient-to-r from-[#4A72E8] via-[#A2529E] to-[#E14E5D] bg-clip-text text-transparent">
-          Artificial Intelligence<br />
-          Digital Marketing Solutions
-        </h2>
-      </div>
+<footer class="theme-dark relative overflow-hidden bg-ink border-t border-line-soft">
+  <!-- giant watermark -->
+  <div class="container-page relative z-10 pt-16 sm:pt-20 text-center">
+    <h2 class="footer-mark"><span>Pinnacle</span><span class="gold">Route</span></h2>
+  </div>
 
-      <!-- Right: Columns -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-8 md:gap-x-16 gap-y-8 w-full lg:w-auto pr-4 lg:pr-8">
-        <ul class="space-y-3.5">
-          {industries1.map(i => (
-            <li><a href={`/industries/${i.toLowerCase().replace(/\s+/g, '-')}`} class="text-[0.95rem] text-white/90 hover:text-white transition-colors">{i}</a></li>
-          ))}
-        </ul>
-        <ul class="space-y-3.5">
-          {industries2.map(i => (
-            <li><a href={`/industries/${i.toLowerCase().replace(/\s+/g, '-')}`} class="text-[0.95rem] text-white/90 hover:text-white transition-colors">{i}</a></li>
-          ))}
-        </ul>
-        <ul class="space-y-3.5">
-          {industries3.map(i => (
-            <li><a href={`/industries/${i.toLowerCase().replace(/\s+/g, '-')}`} class="text-[0.95rem] text-white/90 hover:text-white transition-colors">{i}</a></li>
-          ))}
+  <!-- columns -->
+  <div class="container-page relative z-10 pt-12 pb-14">
+    <div class="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-3 lg:grid-cols-5">
+      {
+        footerColumns.map((col) => (
+          <div>
+            <h4 class="text-sm font-medium text-white mb-5">
+              {col.title === "Pinnacle Route" ? (
+                <Fragment>Pinnacle <span class="text-gold">Route</span></Fragment>
+              ) : (
+                col.title
+              )}
+            </h4>
+            <ul class="space-y-3 border-t border-line-soft pt-5">
+              {col.links.map((l) => (
+                <li>
+                  <a href={l.href} class="text-[0.95rem] text-grey-2 hover:text-gold transition-colors duration-300">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      <div>
+        <h4 class="text-sm font-medium text-white mb-5">Socials</h4>
+        <ul class="space-y-3 border-t border-line-soft pt-5">
+          {
+            socials.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener" class="group inline-flex items-center gap-1.5 text-[0.95rem] text-grey-2 hover:text-gold transition-colors duration-300">
+                  {s.label}
+                  <span class="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- Bottom White Card Section -->
-  <div class="relative w-full max-w-[1400px] mx-auto">
-    <!-- Floating Back to Top Button -->
-    <button id="back-to-top" type="button" aria-label="Back to top" class="absolute -top-12 right-6 md:right-16 w-12 h-20 bg-[#e8e8e8] hover:bg-[#d1d1d1] transition-colors rounded-[30px] flex items-center justify-center shadow-md z-20 overflow-hidden">
-      <span class="sr-only">Back to top</span>
-      <svg class="w-4 h-4 text-ink absolute top-6" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M2.5 7.5 6 4l3.5 3.5"/>
-      </svg>
+  <!-- bottom bar -->
+  <div class="container-page relative z-10 py-8 border-t border-line-soft flex items-center justify-between text-sm text-grey-3">
+    <p>© {year} Pinnacle <span class="text-gold">Route</span></p>
+    <button id="back-to-top" type="button" class="inline-flex items-center gap-2 hover:text-gold transition-colors duration-300">
+      <span>↑</span> Back to top
     </button>
-
-    <div class="theme-light bg-surface rounded-t-[32px] md:rounded-t-[40px] px-8 md:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-6 z-10 relative shadow-2xl">
-      <p class="text-sm text-grey-2 text-center md:text-left">
-        Copyright &copy; {year}. Pinnacle Route, Inc. All Rights Reserved.
-      </p>
-
-      <div class="flex flex-wrap items-center justify-center md:justify-end gap-x-2.5 gap-y-2 text-sm text-grey-2 md:pr-24">
-        <a href="/sitemap" class="hover:text-ink transition-colors">Sitemap</a>
-        <span class="text-grey-3/40">|</span>
-        <a href="/recruitment-fraud" class="hover:text-ink transition-colors">Recruitment Fraud</a>
-        <span class="text-grey-3/40">|</span>
-        <a href="/deia" class="hover:text-ink transition-colors">DEIA</a>
-        <span class="text-grey-3/40">|</span>
-        <a href="/terms" class="hover:text-ink transition-colors">Terms of Use</a>
-        <span class="text-grey-3/40">|</span>
-        <a href="/privacy" class="hover:text-ink transition-colors">Privacy Policy</a>
-      </div>
-    </div>
   </div>
 </footer>
