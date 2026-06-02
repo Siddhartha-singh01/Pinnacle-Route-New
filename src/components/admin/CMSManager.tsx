@@ -13,7 +13,7 @@ export default function CMSManager() {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/admin/content?type=${activeTab}`);
+      const res = await fetch(`/api/admin/content?type=${activeTab}`, { credentials: 'same-origin' });
       const data = await res.json();
       if (activeTab === 'settings' && data.length > 0) {
         setSettings(data[0]);
@@ -36,6 +36,7 @@ export default function CMSManager() {
       await fetch('/api/admin/content?type=settings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
         body: JSON.stringify(settings),
       });
       alert('Settings saved successfully!');

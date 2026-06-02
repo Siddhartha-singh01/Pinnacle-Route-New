@@ -1,8 +1,14 @@
+export const prerender = false;
 import type { APIRoute } from 'astro';
 import { db, SiteSettings, Navigation, TechStack, ExpertiseCategory, eq } from 'astro:db';
+import { verifySessionToken, SESSION_COOKIE } from '@/lib/auth';
 
-export const GET: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ request, cookies }) => {
   try {
+    if (!verifySessionToken(cookies.get(SESSION_COOKIE)?.value)) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+    }
+
     const url = new URL(request.url);
     const type = url.searchParams.get('type');
 
@@ -32,8 +38,12 @@ export const GET: APIRoute = async ({ request }) => {
   }
 };
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, cookies }) => {
   try {
+    if (!verifySessionToken(cookies.get(SESSION_COOKIE)?.value)) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+    }
+
     const url = new URL(request.url);
     const type = url.searchParams.get('type');
     const body = await request.json();
