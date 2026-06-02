@@ -22,4 +22,5 @@ Thumbs.db
 # Large media files
 *.zip
 *.mp4
+!public/assets/videos/*.mp4
 *.mov
