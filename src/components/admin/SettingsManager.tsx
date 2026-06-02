@@ -44,14 +44,14 @@ export default function SettingsManager() {
       const userData = await userRes.json();
 
       if (!featRes.ok || !Array.isArray(featData)) {
-        console.error('Failed to load settings:', featData);
+
         setFeatures([]);
       } else {
         setFeatures(featData);
       }
 
       if (!userRes.ok || !Array.isArray(userData)) {
-        console.error('Failed to load users:', userData);
+
         setUsers([]);
       } else {
         setUsers(userData);
@@ -59,7 +59,7 @@ export default function SettingsManager() {
       
       setLoading(false);
     } catch (e) {
-      console.error('Network error loading settings', e);
+
       setLoading(false);
     }
   };
@@ -73,7 +73,7 @@ export default function SettingsManager() {
         body: JSON.stringify(updatedFeatures)
       });
     } catch (e) {
-      console.error('Failed to save settings', e);
+
     }
   };
 
@@ -86,7 +86,7 @@ export default function SettingsManager() {
         body: JSON.stringify(updatedUsers)
       });
     } catch (e) {
-      console.error('Failed to save users', e);
+
     }
   };
 

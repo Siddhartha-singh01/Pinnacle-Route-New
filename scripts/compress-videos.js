@@ -49,7 +49,7 @@ function compressVideo(video) {
     const srcPath = path.join(srcDir, video.src);
     const destPath = path.join(destDir, video.dest);
 
-    console.log(`Starting compression: ${video.src} -> ${video.dest}`);
+
 
     // ffmpeg arguments
     const args = [
@@ -69,12 +69,12 @@ function compressVideo(video) {
 
     const child = execFile(ffmpegPath, args, (error, stdout, stderr) => {
       if (error) {
-        console.error(`Error compressing ${video.src}:`, error);
+
         reject(error);
       } else {
         const srcSize = (fs.statSync(srcPath).size / (1024 * 1024)).toFixed(2);
         const destSize = (fs.statSync(destPath).size / (1024 * 1024)).toFixed(2);
-        console.log(`Successfully completed: ${video.dest} (${srcSize}MB -> ${destSize}MB)`);
+
         resolve();
       }
     });
@@ -82,15 +82,15 @@ function compressVideo(video) {
 }
 
 async function run() {
-  console.log('Using ffmpeg binary at:', ffmpegPath);
+
   for (const video of videos) {
     try {
       await compressVideo(video);
     } catch (e) {
-      console.error('Failed to process video:', video.src);
+
     }
   }
-  console.log('All videos processed!');
+
 }
 
 run();

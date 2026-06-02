@@ -63,7 +63,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
   } catch (error: any) {
-    console.error("Chat API Error:", error.message);
+
     
     // Instead of showing a generic error to the user when Google blocks the API key (403),
     // we provide a graceful fallback response so the Chatbot UI continues to function perfectly.
