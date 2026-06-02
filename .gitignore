@@ -18,3 +18,8 @@ Thumbs.db
 
 
 .vercel/
+
+# Large media files
+*.zip
+*.mp4
+*.mov
