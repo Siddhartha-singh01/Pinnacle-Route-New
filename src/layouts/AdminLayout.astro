@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
+import CustomCursor from '@/components/ui/CustomCursor.astro';
 
 interface Props {
   title: string;
@@ -33,7 +34,7 @@ const menuItems = [
     <ClientRouter />
   </head>
   <body class="bg-[#050505] text-white antialiased flex h-screen overflow-hidden font-sans">
-    
+    <CustomCursor />
     <!-- Sidebar -->
     <aside class="w-64 border-r border-line-soft bg-ink flex flex-col shrink-0">
       <div class="h-16 flex items-center px-6 border-b border-line-soft">
