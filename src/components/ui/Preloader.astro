@@ -1,0 +1,87 @@
+---
+/**
+ * Preloader
+ * ---------
+ * A premium full-screen loading animation that runs once per session.
+ * Features a minimalistic typographic reveal and smooth upward slide transition.
+ */
+---
+
+<!-- 
+  We use inline styles for the absolute critical initial state to prevent FOUC.
+  The container starts visible and blocks everything.
+-->
+<div id="premium-preloader" class="fixed inset-0 z-[9999] bg-[#0a0a0a] flex items-center justify-center overflow-hidden" style="visibility: visible;">
+  <div class="preloader-text-wrapper overflow-hidden">
+    <h1 id="preloader-brand" class="text-white text-2xl md:text-4xl tracking-[0.3em] font-medium uppercase opacity-0 transform translate-y-8" style="font-family: var(--font-display);">
+      Pinnacle Route
+    </h1>
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  // Using astro:page-load ensures this plays nicely with view transitions if needed,
+  // but we strictly wrap it in a session check so it only fires on the very first true load.
+  document.addEventListener("DOMContentLoaded", () => {
+    const preloader = document.getElementById("premium-preloader");
+    const brandText = document.getElementById("preloader-brand");
+
+    if (!preloader || !brandText) return;
+
+    // Check if the user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Check if we've already shown the preloader this session
+    const hasSeenPreloader = sessionStorage.getItem("pinnacle_preloader_seen");
+
+    if (hasSeenPreloader || prefersReducedMotion) {
+      // Instantly hide the preloader
+      preloader.style.display = "none";
+      return;
+    }
+
+    // Lock scrolling
+    document.body.style.overflow = "hidden";
+    
+    // Create the GSAP timeline
+    const tl = gsap.timeline({
+      onComplete: () => {
+        // Unlock scrolling
+        document.body.style.overflow = "";
+        // Hide preloader from DOM to free up resources
+        preloader.style.display = "none";
+        // Mark as seen for this session
+        sessionStorage.setItem("pinnacle_preloader_seen", "true");
+      }
+    });
+
+    // 1. Fade in and slide up the brand text
+    tl.to(brandText, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: 0.2 // Tiny delay so it doesn't fire literally instantly before screen renders
+    });
+
+    // 2. Hold the text for a premium pause
+    tl.to({}, { duration: 0.8 }); // Empty tween as a delay
+
+    // 3. Fade out the text slightly faster
+    tl.to(brandText, {
+      opacity: 0,
+      y: -10,
+      duration: 0.6,
+      ease: "power2.inOut"
+    });
+
+    // 4. Slide the entire preloader up out of the viewport
+    tl.to(preloader, {
+      yPercent: -100,
+      duration: 1.2,
+      ease: "expo.inOut"
+    }, "-=0.2"); // Overlap the text fade out slightly with the slide up
+  });
+</script>

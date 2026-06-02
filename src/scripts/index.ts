@@ -12,10 +12,6 @@ import { initParallax } from "./parallax";
 import { initVideos } from "./videos";
 import { initNavAutoHide, initMobileMenu } from "./nav";
 import { initAccordion } from "./accordion";
-import { initPreloader } from "./preloader";
-
-// Run ONCE per real document load (reload / first visit), not on view transitions
-initPreloader();
 
 // Bind nav auto-hide ONCE (survives across view transitions)
 initNavAutoHide();
