@@ -18,7 +18,7 @@ const accordionId = `faq-group-${index}`;
 ---
 
 <div id={accordionId} class="faq-group mb-16" data-reveal>
-  <h3 class="text-3xl font-medium mb-8 text-ink dark:text-white pb-4 border-b border-line-soft">
+  <h3 class="text-3xl font-medium mb-8 text-white pb-4 border-b border-line-soft">
     {category.title}
   </h3>
   
@@ -31,7 +31,7 @@ const accordionId = `faq-group-${index}`;
             class="faq-head flex items-center justify-between w-full text-left py-5 group"
             aria-expanded="false"
           >
-            <span class="text-[1.1rem] font-medium text-ink dark:text-gray-200 group-hover:text-[#CAA154] transition-colors pr-8">
+            <span class="text-[1.1rem] font-medium text-white group-hover:text-[#CAA154] transition-colors pr-8">
               {item.question}
             </span>
             <span class="faq-icon text-[#CAA154] text-2xl leading-none transition-transform duration-300 transform shrink-0">
@@ -40,7 +40,7 @@ const accordionId = `faq-group-${index}`;
           </button>
           <div class="faq-panel overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" style="max-height: 0px; opacity: 0;">
             <div class="pb-6 pr-8">
-              <p class="text-[1.05rem] leading-relaxed text-gray-600 dark:text-gray-400">
+              <p class="text-[1.05rem] leading-relaxed text-grey">
                 {item.answer}
               </p>
             </div>
