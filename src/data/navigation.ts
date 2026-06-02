@@ -22,7 +22,7 @@ export const mainMenu: MenuItem[] = [
   { label: "Work", href: "/#work" },
   // Logo goes here in the middle
   {
-    label: "Industries",
+    label: "Services",
     href: "/our-expertise",
     cols: 2,
     items: services.map((s) => ({ label: s.label, href: serviceHref(s.slug) })),
