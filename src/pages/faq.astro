@@ -1,0 +1,56 @@
+---
+/**
+ * FAQ Page
+ * --------
+ * Lists frequently asked questions using the FaqAccordion component.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaBanner from "@/components/sections/CtaBanner.astro";
+import FaqAccordion from "@/components/ui/FaqAccordion.astro";
+import { faqData } from "@/data/faq";
+
+// Title for SEO
+const title = "Frequently Asked Questions | Pinnacle Route";
+const description = "Find answers to the most common questions about our custom software development, AI automation, and engagement models.";
+---
+
+<BaseLayout layoutTheme="light" title={title} description={description}>
+  
+  <!-- Hero Section -->
+  <section class="pt-40 pb-20 relative overflow-hidden bg-surface">
+    <div class="container-page relative z-10 text-center max-w-4xl mx-auto">
+      <h1 class="display-lg mb-6" data-reveal>
+        Frequently Asked <span class="dim text-gold">Questions.</span>
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-reveal data-reveal-delay="1">
+        Everything you need to know about how we work, what we build, and how we partner with ambitious businesses.
+      </p>
+    </div>
+    
+    <!-- Subtle Background Elements -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#CAA154]/5 blur-[120px] pointer-events-none -z-10"></div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="section pt-10 pb-32">
+    <div class="container-page max-w-4xl mx-auto">
+      {
+        faqData.map((category, index) => (
+          <FaqAccordion category={category} index={index} />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <CtaBanner
+    eyebrow="Still have questions?"
+    headline="Let's talk"
+    headlineDim="strategy."
+    links={[
+      { href: "/strategy-call", label: "Request Consultation", variant: "dark" },
+      { href: "mailto:hello@thoughtmedia.com", label: "Email Us", variant: "light" },
+    ]}
+  />
+
+</BaseLayout>

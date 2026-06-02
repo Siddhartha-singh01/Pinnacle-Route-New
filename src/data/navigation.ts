@@ -28,7 +28,7 @@ export const mainMenu: MenuItem[] = [
     items: services.map((s) => ({ label: s.label, href: serviceHref(s.slug) })),
   },
   { label: "Blog", href: "/blog" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -58,6 +58,7 @@ export const footerColumns: FooterColumn[] = [
     links: [
       { label: "About Us", href: "/our-company" },
       { label: "Blog", href: "/blog" },
+      { label: "FAQ", href: "/faq" },
       { label: "Referral Program", href: "/referral" },
       { label: "Privacy Policy", href: "/privacy-policy/" },
     ],

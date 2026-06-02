@@ -10,6 +10,13 @@ const chevron =
 
 const leftMenu = mainMenu.slice(0, 3);
 const rightMenu = mainMenu.slice(3, 7);
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath === href || currentPath === href + '/' || currentPath.startsWith(href + '/');
+}
 ---
 
 <header id="site-nav" class="fixed top-0 inset-x-0 z-50 pt-6">
@@ -47,14 +54,14 @@ const rightMenu = mainMenu.slice(3, 7);
             leftMenu.map((m) =>
               m.items ? (
                 <div class="nav-group relative group">
-                  <a href={m.href} class="nav-link py-2 flex items-center gap-1 hover:text-white transition-colors">
+                  <a href={m.href} class={`nav-link py-2 flex items-center gap-1 hover:text-white transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
                     {m.label}
                     <Fragment set:html={chevron} />
                   </a>
                   <div class="nav-dropdown absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                     <div class={`bg-white rounded-2xl shadow-xl border border-gray-100 p-2 grid gap-1 ${m.cols === 2 ? "grid-cols-2 min-w-[26rem]" : "min-w-[13rem]"}`}>
                       {m.items.map((it) => (
-                        <a href={it.href} class="block rounded-xl px-4 py-2.5 text-sm text-gray-500 hover:text-black hover:bg-gray-50 transition-colors duration-200 capitalize">
+                        <a href={it.href} class={`block rounded-xl px-4 py-2.5 text-sm transition-colors duration-200 capitalize ${isActive(it.href) ? 'text-[#CAA154] bg-gray-50' : 'text-gray-500 hover:text-black hover:bg-gray-50'}`}>
                           {it.label}
                         </a>
                       ))}
@@ -62,7 +69,7 @@ const rightMenu = mainMenu.slice(3, 7);
                   </div>
                 </div>
               ) : (
-                <a href={m.href} class="nav-link py-2 hover:text-white transition-colors">
+                <a href={m.href} class={`nav-link py-2 hover:text-white transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
                   {m.label}
                 </a>
               )
@@ -85,14 +92,14 @@ const rightMenu = mainMenu.slice(3, 7);
             rightMenu.map((m) =>
               m.items ? (
                 <div class="nav-group relative group">
-                  <a href={m.href} class="nav-link py-2 flex items-center gap-1 hover:text-white transition-colors">
+                  <a href={m.href} class={`nav-link py-2 flex items-center gap-1 hover:text-white transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
                     {m.label}
                     <Fragment set:html={chevron} />
                   </a>
                   <div class="nav-dropdown absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                     <div class={`bg-white rounded-2xl shadow-xl border border-gray-100 p-2 grid gap-1 ${m.cols === 2 ? "grid-cols-2 min-w-[26rem]" : "min-w-[13rem]"}`}>
                       {m.items.map((it) => (
-                        <a href={it.href} class="block rounded-xl px-4 py-2.5 text-sm text-gray-500 hover:text-black hover:bg-gray-50 transition-colors duration-200 capitalize">
+                        <a href={it.href} class={`block rounded-xl px-4 py-2.5 text-sm transition-colors duration-200 capitalize ${isActive(it.href) ? 'text-[#CAA154] bg-gray-50' : 'text-gray-500 hover:text-black hover:bg-gray-50'}`}>
                           {it.label}
                         </a>
                       ))}
@@ -100,7 +107,7 @@ const rightMenu = mainMenu.slice(3, 7);
                   </div>
                 </div>
               ) : (
-                <a href={m.href} class="nav-link py-2 hover:text-white transition-colors">
+                <a href={m.href} class={`nav-link py-2 hover:text-white transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
                   {m.label}
                 </a>
               )
@@ -136,11 +143,11 @@ const rightMenu = mainMenu.slice(3, 7);
       {
         mainMenu.map((m) => (
           <div>
-            <a href={m.href} class="display-sm !text-3xl text-ink uppercase">{m.label}</a>
+            <a href={m.href} class={`display-sm !text-3xl uppercase ${isActive(m.href) ? 'text-[#CAA154]' : 'text-ink'}`}>{m.label}</a>
             {m.items && (
               <div class="mt-3 grid grid-cols-2 gap-x-6 gap-y-2">
                 {m.items.map((it) => (
-                  <a href={it.href} class="text-sm text-gray-500 hover:text-ink transition-colors py-1 capitalize">
+                  <a href={it.href} class={`text-sm transition-colors py-1 capitalize ${isActive(it.href) ? 'text-[#CAA154]' : 'text-gray-500 hover:text-ink'}`}>
                     {it.label}
                   </a>
                 ))}

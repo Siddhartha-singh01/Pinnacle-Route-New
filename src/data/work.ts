@@ -12,5 +12,5 @@ export const workItems: WorkItem[] = [
   { title: "Borrowed Luxe", tag: "Ecommerce · Brand", img: "/assets/client-proof/borrowed-luxe.webp", href: "https://www.borrowedluxehire.com.au/" },
   { title: "Designer Club", tag: "Membership Platform", img: "/assets/client-proof/designer-club.png", href: "https://www.thedesignerclub.com.au/" },
   { title: "Mandaean App", tag: "Mobile · Community", img: "/assets/client-proof/mandaean-app.jpg", href: "https://mandaeanapp.com.au/" },
-  { title: "Elite Folks", tag: "Digital Community", img: "/assets/client-proof/elite-folks.png", href: "https://elitefolks.com/" },
+  { title: "Elite Folks", tag: "Digital Community", img: "/assets/client-proof/elite-folks-new.jpeg", href: "https://elitefolks.com/" },
 ];

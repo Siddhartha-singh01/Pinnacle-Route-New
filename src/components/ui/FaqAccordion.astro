@@ -1,0 +1,109 @@
+---
+/**
+ * FAQ Accordion
+ * -------------
+ * A standalone, reusable accordion block for displaying FAQ categories.
+ */
+
+import type { FaqCategory } from "@/data/faq";
+
+interface Props {
+  category: FaqCategory;
+  index: number;
+}
+
+const { category, index } = Astro.props;
+// Use index to ensure unique IDs for multiple accordions on the same page
+const accordionId = `faq-group-${index}`;
+---
+
+<div id={accordionId} class="faq-group mb-16" data-reveal>
+  <h3 class="text-3xl font-medium mb-8 text-ink dark:text-white pb-4 border-b border-line-soft">
+    {category.title}
+  </h3>
+  
+  <div class="flex flex-col">
+    {
+      category.items.map((item, i) => (
+        <div class="faq-item border-b border-line-soft">
+          <button 
+            type="button" 
+            class="faq-head flex items-center justify-between w-full text-left py-5 group"
+            aria-expanded="false"
+          >
+            <span class="text-[1.1rem] font-medium text-ink dark:text-gray-200 group-hover:text-[#CAA154] transition-colors pr-8">
+              {item.question}
+            </span>
+            <span class="faq-icon text-[#CAA154] text-2xl leading-none transition-transform duration-300 transform shrink-0">
+              +
+            </span>
+          </button>
+          <div class="faq-panel overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]" style="max-height: 0px; opacity: 0;">
+            <div class="pb-6 pr-8">
+              <p class="text-[1.05rem] leading-relaxed text-gray-600 dark:text-gray-400">
+                {item.answer}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  // Reusable script for all FAQ accordions. Runs once on page load.
+  document.addEventListener("astro:page-load", () => {
+    const faqGroups = document.querySelectorAll('.faq-group');
+    
+    faqGroups.forEach(group => {
+      const items = group.querySelectorAll('.faq-item');
+      
+      items.forEach(item => {
+        const head = item.querySelector('.faq-head') as HTMLButtonElement;
+        const panel = item.querySelector('.faq-panel') as HTMLElement;
+        const icon = item.querySelector('.faq-icon') as HTMLElement;
+        
+        if (!head || !panel) return;
+        
+        head.addEventListener('click', () => {
+          const isOpen = head.getAttribute('aria-expanded') === 'true';
+          
+          // Optional: close other items within the same group (Accordion style)
+          // To enable independent toggling, remove this block
+          items.forEach(otherItem => {
+            if (otherItem !== item) {
+              const otherHead = otherItem.querySelector('.faq-head');
+              const otherPanel = otherItem.querySelector('.faq-panel') as HTMLElement;
+              const otherIcon = otherItem.querySelector('.faq-icon') as HTMLElement;
+              
+              otherHead?.setAttribute('aria-expanded', 'false');
+              if (otherPanel) {
+                otherPanel.style.maxHeight = '0px';
+                otherPanel.style.opacity = '0';
+              }
+              if (otherIcon) {
+                otherIcon.style.transform = 'rotate(0deg)';
+                otherIcon.textContent = '+';
+              }
+            }
+          });
+          
+          // Toggle current
+          if (!isOpen) {
+            head.setAttribute('aria-expanded', 'true');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            panel.style.opacity = '1';
+            icon.style.transform = 'rotate(45deg)';
+            icon.textContent = '+'; // Optional: could change to '-' but rotate + looks like an x
+          } else {
+            head.setAttribute('aria-expanded', 'false');
+            panel.style.maxHeight = '0px';
+            panel.style.opacity = '0';
+            icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+    });
+  });
+</script>
