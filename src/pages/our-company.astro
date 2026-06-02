@@ -87,8 +87,14 @@ import { careStats, partnerStats, whatWeDo } from "@/data/company";
         </div>
 
         <div class="relative h-[460px] lg:h-[560px]" data-reveal data-reveal-delay="1">
-          <div class="absolute inset-0 overflow-hidden mask-bl border border-line-soft">
-            <img src="/assets/client-proof/mandaean-app.png" alt="The Pinnacle Route team at work" data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]" />
+          <div class="absolute inset-0 overflow-hidden mask-bl border border-line-soft bg-ink/5">
+            <video
+              class="h-full w-full object-cover grayscale opacity-90"
+              autoplay muted loop playsinline
+              preload="metadata"
+            >
+              <source src="/assets/videos/team-portrait.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>

@@ -24,12 +24,13 @@ const masks = ["br", "tr", "bl", "arch"] as const;
   <!-- ===================== HERO ===================== -->
   <section class="relative h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-ink">
     <div class="absolute inset-0 z-0">
-      <img 
-        src="/assets/client-proof/mandaean-app.jpg" 
-        alt="Pinnacle Route team collaborating"
-        data-parallax="0.1"
-        class="h-[120%] w-full object-cover -top-[10%] opacity-40 grayscale"
-      />
+      <video
+        class="h-full w-full object-cover opacity-30 grayscale"
+        autoplay muted loop playsinline
+        preload="metadata"
+      >
+        <source src="/assets/videos/about-hero.mp4" type="video/mp4" />
+      </video>
     </div>
     
     <div class="container-page relative z-10 text-center">
