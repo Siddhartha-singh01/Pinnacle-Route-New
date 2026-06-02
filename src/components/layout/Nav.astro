@@ -13,9 +13,32 @@ const rightMenu = mainMenu.slice(3, 7);
 
 const currentPath = Astro.url.pathname;
 
-function isActive(href: string) {
-  if (href === '/') return currentPath === '/';
-  return currentPath === href || currentPath === href + '/' || currentPath.startsWith(href + '/');
+function isActive(target: any) {
+  if (!target) return false;
+  
+  if (typeof target === 'string') {
+    if (target === '/') return currentPath === '/';
+    return currentPath === target || currentPath === target + '/' || (target !== '/' && currentPath.startsWith(target + '/'));
+  }
+  
+  if (target.href === '/') return currentPath === '/';
+  
+  const isDirectMatch = target.href && (
+    currentPath === target.href || 
+    currentPath === target.href + '/' || 
+    (target.href !== '/' && currentPath.startsWith(target.href + '/'))
+  );
+  if (isDirectMatch) return true;
+
+  if (target.items) {
+    return target.items.some((sub: any) => 
+      currentPath === sub.href || 
+      currentPath === sub.href + '/' || 
+      currentPath.startsWith(sub.href + '/')
+    );
+  }
+
+  return false;
 }
 ---
 
@@ -54,7 +77,7 @@ function isActive(href: string) {
             leftMenu.map((m) =>
               m.items ? (
                 <div class="nav-group relative group">
-                  <a href={m.href} class={`nav-link py-2 flex items-center gap-1 hover:text-[#CAA154] transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
+                  <a href={m.href} class={`nav-link py-2 flex items-center gap-1 hover:text-[#CAA154] transition-colors ${isActive(m) ? 'text-[#CAA154]' : ''}`}>
                     {m.label}
                     <Fragment set:html={chevron} />
                   </a>
@@ -69,7 +92,7 @@ function isActive(href: string) {
                   </div>
                 </div>
               ) : (
-                <a href={m.href} class={`nav-link py-2 hover:text-[#CAA154] transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
+                <a href={m.href} class={`nav-link py-2 hover:text-[#CAA154] transition-colors ${isActive(m) ? 'text-[#CAA154]' : ''}`}>
                   {m.label}
                 </a>
               )
@@ -92,7 +115,7 @@ function isActive(href: string) {
             rightMenu.map((m) =>
               m.items ? (
                 <div class="nav-group relative group">
-                  <a href={m.href} class={`nav-link py-2 flex items-center gap-1 hover:text-[#CAA154] transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
+                  <a href={m.href} class={`nav-link py-2 flex items-center gap-1 hover:text-[#CAA154] transition-colors ${isActive(m) ? 'text-[#CAA154]' : ''}`}>
                     {m.label}
                     <Fragment set:html={chevron} />
                   </a>
@@ -107,7 +130,7 @@ function isActive(href: string) {
                   </div>
                 </div>
               ) : (
-                <a href={m.href} class={`nav-link py-2 hover:text-[#CAA154] transition-colors ${isActive(m.href) ? 'text-[#CAA154]' : ''}`}>
+                <a href={m.href} class={`nav-link py-2 hover:text-[#CAA154] transition-colors ${isActive(m) ? 'text-[#CAA154]' : ''}`}>
                   {m.label}
                 </a>
               )
