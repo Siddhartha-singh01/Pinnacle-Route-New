@@ -1,0 +1,20 @@
+---
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import CMSManager from '@/components/admin/CMSManager';
+---
+
+<AdminLayout title="Frontend CMS" activeTab="cms">
+  <div class="max-w-5xl">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-semibold text-white mb-2">Frontend Content Manager</h1>
+        <p class="text-sm text-grey-2">Edit global settings, navigation links, tech stack logos, and expertise data directly from this dashboard.</p>
+      </div>
+    </div>
+
+    <!-- React CMS App -->
+    <CMSManager client:load />
+    
+  </div>
+</AdminLayout>

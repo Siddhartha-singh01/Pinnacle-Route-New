@@ -7,11 +7,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --remote",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/db": "^0.21.2",
     "@astrojs/node": "^10.1.2",
     "@astrojs/react": "^5.0.6",
     "@astrojs/sitemap": "^3.7.3",
