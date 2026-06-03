@@ -4,12 +4,23 @@
  * -------------
  * Detailed breakdown of the 4 main service areas.
  */
+export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import StickySubNav from "@/components/ui/StickySubNav.astro";
 import ExpertiseSection from "@/components/sections/ExpertiseSection.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
 
-import { expertiseData } from "@/data/expertise";
+import { db, ExpertiseCategory } from "astro:db";
+
+const rawExpertiseData = await db.select().from(ExpertiseCategory);
+const expertiseData = rawExpertiseData.sort((a, b) => a.orderIndex - b.orderIndex).map(cat => ({
+  id: cat.id,
+  titleLine1: cat.titleLine1,
+  titleLine2: cat.titleLine2,
+  description: cat.description,
+  mediaUrl: cat.mediaUrl,
+  services: cat.servicesJson as any[]
+}));
 
 // Alternate masks for visual variety
 const masks = ["br", "tr", "bl", "arch"] as const;

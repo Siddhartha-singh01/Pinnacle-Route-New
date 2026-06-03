@@ -5,6 +5,7 @@
  * Composes section components with data from the data layer.
  * All content is imported — this file is purely a composition.
  */
+export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/sections/Hero.astro";
 import ExpertiseGrid from "@/components/sections/ExpertiseGrid.astro";
@@ -16,8 +17,11 @@ import CtaBanner from "@/components/sections/CtaBanner.astro";
 import Chatbot from "@/components/ui/Chatbot";
 
 import { services } from "@/data/services";
-import { workItems } from "@/data/work";
 import { tools, marqueeWords } from "@/data/tools";
+import { db, WorkItem } from "astro:db";
+
+const rawWorkItems = await db.select().from(WorkItem);
+const workItems = rawWorkItems.sort((a, b) => a.orderIndex - b.orderIndex);
 ---
 
 <BaseLayout layoutTheme="light">

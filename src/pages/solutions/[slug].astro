@@ -5,25 +5,47 @@
  * One template, prerendered per solution — but the layout varies per page
  * (hero / overview / features / process) so no two pages look alike.
  */
+export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ArrowMotif from "@/components/ui/ArrowMotif.astro";
 import ImageTextSplit from "@/components/sections/ImageTextSplit.astro";
 import StatsRow from "@/components/sections/StatsRow.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
-import { solutionDetails, solutionLayouts, defaultSolutionLayout } from "@/data/solution-details";
+import { solutionLayouts, defaultSolutionLayout } from "@/data/solution-details";
 import type { SolutionDetail } from "@/types";
+import { db, SolutionDetails, eq } from "astro:db";
 
-export function getStaticPaths() {
-  return Object.values(solutionDetails).map((sol) => ({
-    params: { slug: sol.slug },
-    props: { sol },
-  }));
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
 }
 
-interface Props {
-  sol: SolutionDetail;
+const dbResult = await db.select().from(SolutionDetails).where(eq(SolutionDetails.slug, slug));
+if (dbResult.length === 0) {
+  return Astro.redirect('/404');
 }
-const { sol } = Astro.props;
+
+const rawSol = dbResult[0];
+const sol: SolutionDetail = {
+  slug: rawSol.slug,
+  label: rawSol.label,
+  eyebrow: rawSol.eyebrow,
+  title: rawSol.title,
+  titleDim: rawSol.titleDim,
+  tagline: rawSol.tagline,
+  image: rawSol.image,
+  overviewHeading: rawSol.overviewHeading,
+  overviewHeadingDim: rawSol.overviewHeadingDim,
+  overviewBody: rawSol.overviewBody,
+  featuresHeading: rawSol.featuresHeading,
+  features: rawSol.featuresJson as any,
+  processHeading: rawSol.processHeading,
+  steps: rawSol.stepsJson as any,
+  stats: rawSol.statsJson as any,
+  ctaHeadline: rawSol.ctaHeadline,
+  ctaHeadlineDim: rawSol.ctaHeadlineDim,
+};
 const L = solutionLayouts[sol.slug] ?? defaultSolutionLayout;
 
 // Precomputed light/dark classes for the features section.

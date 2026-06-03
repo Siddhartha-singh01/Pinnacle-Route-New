@@ -43,11 +43,78 @@ const ExpertiseCategory = defineTable({
   }
 });
 
+const FAQCategory = defineTable({
+  columns: {
+    id: column.text({ primaryKey: true }),
+    title: column.text(),
+    itemsJson: column.json(), // Array of {question, answer}
+    orderIndex: column.number(),
+  }
+});
+
+const WorkItem = defineTable({
+  columns: {
+    id: column.text({ primaryKey: true }),
+    title: column.text(),
+    tag: column.text(),
+    img: column.text(),
+    href: column.text(),
+    orderIndex: column.number(),
+  }
+});
+
+const CompanyInfo = defineTable({
+  columns: {
+    id: column.text({ primaryKey: true }),
+    careStatsJson: column.json(),
+    partnerStatsJson: column.json(),
+    whatWeDoJson: column.json(),
+  }
+});
+
+const ServiceDetails = defineTable({
+  columns: {
+    slug: column.text({ primaryKey: true }),
+    label: column.text(),
+    category: column.text(),
+    intro: column.text(),
+    image: column.text(),
+    subItemsJson: column.json(),
+  }
+});
+
+const SolutionDetails = defineTable({
+  columns: {
+    slug: column.text({ primaryKey: true }),
+    label: column.text(),
+    eyebrow: column.text(),
+    title: column.text(),
+    titleDim: column.text(),
+    tagline: column.text(),
+    image: column.text(),
+    overviewHeading: column.text(),
+    overviewHeadingDim: column.text(),
+    overviewBody: column.text(),
+    featuresHeading: column.text(),
+    featuresJson: column.json(),
+    processHeading: column.text(),
+    stepsJson: column.json(),
+    statsJson: column.json(),
+    ctaHeadline: column.text(),
+    ctaHeadlineDim: column.text(),
+  }
+});
+
 export default defineDb({
   tables: {
     SiteSettings,
     Navigation,
     TechStack,
     ExpertiseCategory,
+    FAQCategory,
+    WorkItem,
+    CompanyInfo,
+    ServiceDetails,
+    SolutionDetails
   }
 });

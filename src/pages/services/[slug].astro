@@ -7,23 +7,33 @@
  * then detailed sub-service sections with a left rail and "related" cards.
  * Light / paper theme.
  */
+export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
-import { serviceDetails } from "@/data/service-details";
 import { services, serviceHref } from "@/data/services";
 import type { ServiceDetail } from "@/types";
+import { db, ServiceDetails, eq } from "astro:db";
 
-export function getStaticPaths() {
-  return Object.values(serviceDetails).map((svc) => ({
-    params: { slug: svc.slug },
-    props: { svc },
-  }));
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
 }
 
-interface Props {
-  svc: ServiceDetail;
+const dbResult = await db.select().from(ServiceDetails).where(eq(ServiceDetails.slug, slug));
+if (dbResult.length === 0) {
+  return Astro.redirect('/404');
 }
-const { svc } = Astro.props;
+
+const rawSvc = dbResult[0];
+const svc: ServiceDetail = {
+  slug: rawSvc.slug,
+  label: rawSvc.label,
+  category: rawSvc.category,
+  intro: rawSvc.intro,
+  image: rawSvc.image,
+  subItems: rawSvc.subItemsJson as any
+};
 
 const chevron =
   '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';

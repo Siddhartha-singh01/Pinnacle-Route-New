@@ -5,13 +5,17 @@
  * Composes section components with data from the data layer.
  * All content is imported — this file is purely a composition.
  */
+export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Accordion from "@/components/sections/Accordion.astro";
 import ImageTextSplit from "@/components/sections/ImageTextSplit.astro";
 import StatsRow from "@/components/sections/StatsRow.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
 
-import { careStats, partnerStats, whatWeDo } from "@/data/company";
+import { db, CompanyInfo, eq } from "astro:db";
+
+const companyData = await db.select().from(CompanyInfo).where(eq(CompanyInfo.id, 'company-stats'));
+const { careStatsJson: careStats = [], partnerStatsJson: partnerStats = [], whatWeDoJson: whatWeDo = [] } = companyData[0] || {};
 ---
 
 <BaseLayout

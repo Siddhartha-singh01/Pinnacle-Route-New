@@ -4,10 +4,17 @@
  * --------
  * Lists frequently asked questions using the FaqAccordion component.
  */
+export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
 import FaqAccordion from "@/components/ui/FaqAccordion.astro";
-import { faqData } from "@/data/faq";
+import { db, FAQCategory } from "astro:db";
+
+const rawFaqData = await db.select().from(FAQCategory);
+const faqData = rawFaqData.sort((a, b) => a.orderIndex - b.orderIndex).map(cat => ({
+  title: cat.title,
+  items: cat.itemsJson
+}));
 
 // Title for SEO
 const title = "Frequently Asked Questions | Pinnacle Route";

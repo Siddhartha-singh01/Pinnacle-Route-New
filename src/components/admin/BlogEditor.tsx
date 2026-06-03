@@ -22,6 +22,7 @@ export default function BlogEditor() {
     try {
       const response = await fetch('/api/admin/blog', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
         },
