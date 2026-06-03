@@ -105,6 +105,24 @@ const SolutionDetails = defineTable({
   }
 });
 
+const Inquiries = defineTable({
+  columns: {
+    id: column.text({ primaryKey: true }), // UUID
+    type: column.text(), // 'contact' or 'strategy_call'
+    firstName: column.text(),
+    lastName: column.text(),
+    email: column.text(),
+    phone: column.text({ optional: true }),
+    company: column.text({ optional: true }),
+    budget: column.text({ optional: true }),
+    projectType: column.text({ optional: true }),
+    message: column.text({ optional: true }),
+    newsletter: column.boolean({ default: false }),
+    status: column.text({ default: 'new' }), // 'new', 'contacted', 'closed'
+    createdAt: column.date(),
+  }
+});
+
 export default defineDb({
   tables: {
     SiteSettings,
@@ -115,6 +133,7 @@ export default defineDb({
     WorkItem,
     CompanyInfo,
     ServiceDetails,
-    SolutionDetails
+    SolutionDetails,
+    Inquiries
   }
 });

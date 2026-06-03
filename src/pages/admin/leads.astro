@@ -1,0 +1,110 @@
+---
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import { db, Inquiries, desc } from 'astro:db';
+
+// Ensure user is authenticated
+const sessionCookie = Astro.cookies.get('admin_session');
+if (!sessionCookie || sessionCookie.value !== 'authenticated') {
+  return Astro.redirect('/admin/login');
+}
+
+// Fetch all inquiries from the database
+const allInquiries = await db.select().from(Inquiries).orderBy(desc(Inquiries.createdAt));
+
+// Format date helper
+const formatDate = (dateString: Date) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+};
+---
+
+<AdminLayout title="Leads & Inquiries" activeTab="leads">
+  <div class="max-w-6xl">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-2xl font-semibold text-white">Leads & Inquiries</h1>
+        <p class="text-sm text-grey-2 mt-1">Manage contact requests and strategy call bookings.</p>
+      </div>
+      <div class="bg-surface border border-line-soft rounded-lg px-4 py-2 flex items-center gap-2">
+        <span class="text-sm text-grey-2">Total Leads:</span>
+        <span class="text-lg font-semibold text-white">{allInquiries.length}</span>
+      </div>
+    </div>
+
+    <div class="bg-surface border border-line-soft rounded-xl overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-grey-2">
+          <thead class="text-xs uppercase bg-ink/50 border-b border-line-soft text-grey-2">
+            <tr>
+              <th scope="col" class="px-6 py-4 font-medium tracking-wider">Date</th>
+              <th scope="col" class="px-6 py-4 font-medium tracking-wider">Name</th>
+              <th scope="col" class="px-6 py-4 font-medium tracking-wider">Type</th>
+              <th scope="col" class="px-6 py-4 font-medium tracking-wider">Contact Info</th>
+              <th scope="col" class="px-6 py-4 font-medium tracking-wider">Details</th>
+              <th scope="col" class="px-6 py-4 font-medium tracking-wider">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-line-soft">
+            {allInquiries.length === 0 ? (
+              <tr>
+                <td colspan="6" class="px-6 py-8 text-center text-grey-2">
+                  No inquiries found yet.
+                </td>
+              </tr>
+            ) : (
+              allInquiries.map((inquiry) => (
+                <tr class="hover:bg-ink/30 transition-colors">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {formatDate(inquiry.createdAt)}
+                  </td>
+                  <td class="px-6 py-4 font-medium text-white">
+                    {inquiry.firstName} {inquiry.lastName}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class={`px-2.5 py-1 text-xs rounded-full border ${
+                      inquiry.type === 'strategy_call' 
+                        ? 'bg-gold/10 text-gold border-gold/20' 
+                        : 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                    }`}>
+                      {inquiry.type === 'strategy_call' ? 'Strategy Call' : 'Contact'}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex flex-col gap-1">
+                      <a href={`mailto:${inquiry.email}`} class="text-white hover:text-gold transition-colors">{inquiry.email}</a>
+                      {inquiry.phone && <span class="text-xs">{inquiry.phone}</span>}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 max-w-xs">
+                    <div class="flex flex-col gap-1">
+                      {inquiry.projectType && (
+                        <span class="text-xs font-medium text-white/80">Project: {inquiry.projectType}</span>
+                      )}
+                      {inquiry.budget && (
+                        <span class="text-xs">Budget: {inquiry.budget.replace('_', ' ')}</span>
+                      )}
+                      {inquiry.message && (
+                        <p class="text-xs truncate" title={inquiry.message}>{inquiry.message}</p>
+                      )}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2.5 py-1 text-xs rounded-full border bg-green-500/10 text-green-400 border-green-500/20 capitalize">
+                      {inquiry.status}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

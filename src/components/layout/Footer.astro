@@ -1,10 +1,51 @@
 ---
 /**
  * Footer — 5-column layout with giant watermark, link columns, socials, and back-to-top.
- * Data is imported from @/data/navigation (single source of truth).
+ * Data is dynamically fetched from Astro DB.
  * Back-to-top script is handled by @/scripts/index.ts.
  */
-import { footerColumns, socials } from "@/data/navigation";
+import { db, ServiceDetails, SolutionDetails } from 'astro:db';
+
+const dbServices = await db.select({ slug: ServiceDetails.slug, label: ServiceDetails.label }).from(ServiceDetails);
+const dbSolutions = await db.select({ slug: SolutionDetails.slug, label: SolutionDetails.label }).from(SolutionDetails);
+
+const footerColumns = [
+  {
+    title: "Pinnacle Route",
+    links: [
+      { label: "Our Work", href: "/#work" },
+      { label: "Our Expertise", href: "/our-expertise" },
+      { label: "Blog", href: "/blog" },
+      { label: "Referral", href: "/referral" },
+      { label: "Strategy Call", href: "/strategy-call" },
+    ],
+  },
+  {
+    title: "Services",
+    links: dbServices.slice(0, 6).map((s) => ({ label: s.label, href: `/services/${s.slug}` })),
+  },
+  {
+    title: "Solutions",
+    links: dbSolutions.slice(0, 6).map((s) => ({ label: s.label, href: `/solutions/${s.slug}` })),
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/our-company" },
+      { label: "Blog", href: "/blog" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Referral Program", href: "/referral" },
+      { label: "Privacy Policy", href: "/privacy-policy/" },
+    ],
+  },
+];
+
+const socials = [
+  { label: "WhatsApp", href: "https://api.whatsapp.com/send/?phone=919621391943&text=Hi+Pinnacle+Route%2C+I+would+like+to+book+a+free+strategy+session.&type=phone_number&app_absent=0" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/pinnacle-route" },
+  { label: "Twitter / X", href: "https://x.com/PinnacleRoute" },
+  { label: "Instagram", href: "https://www.instagram.com/pinnacle_route/" },
+];
 
 const year = new Date().getFullYear();
 ---

@@ -33,24 +33,33 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         </div>
         
         <div class="lg:col-span-8">
-          <form class="flex flex-col gap-8 md:gap-12">
+          <form id="contact-form" class="flex flex-col gap-8 md:gap-12">
+            <!-- Form Status Banner -->
+            <div id="form-status" class="hidden rounded-lg p-4 mb-4 text-sm font-medium border"></div>
+
             <!-- Google reCAPTCHA API -->
             <script src="https://www.google.com/recaptcha/api.js" async defer is:inline></script>
             
             <!-- Row 1 -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">First Name</label>
+                <label class="text-sm font-semibold text-ink">First Name *</label>
                 <input 
                   type="text" 
+                  id="firstName"
+                  name="firstName"
+                  required
                   placeholder="Enter first name"
                   class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
                 />
               </div>
               <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">Last Name</label>
+                <label class="text-sm font-semibold text-ink">Last Name *</label>
                 <input 
                   type="text" 
+                  id="lastName"
+                  name="lastName"
+                  required
                   placeholder="Enter last name"
                   class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
                 />
@@ -60,9 +69,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             <!-- Row 2 -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               <div class="flex flex-col gap-3">
-                <label class="text-sm font-semibold text-ink">Email</label>
+                <label class="text-sm font-semibold text-ink">Email *</label>
                 <input 
                   type="email" 
+                  id="email"
+                  name="email"
+                  required
                   placeholder="Enter email"
                   class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
                 />
@@ -71,6 +83,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
                 <label class="text-sm font-semibold text-ink">Company</label>
                 <input 
                   type="text" 
+                  id="company"
+                  name="company"
                   placeholder="Company name or website"
                   class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
                 />
@@ -83,6 +97,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
                 <label class="text-sm font-semibold text-ink">Phone Number</label>
                 <input 
                   type="tel" 
+                  id="phone"
+                  name="phone"
                   placeholder="124-456-7890"
                   class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors"
                 />
@@ -90,7 +106,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
               <div class="flex flex-col gap-3">
                 <label class="text-sm font-semibold text-ink">Budget Range</label>
                 <div class="relative">
-                  <select class="w-full bg-transparent border-b border-grey/20 text-ink pb-3 focus:outline-none focus:border-gold transition-colors appearance-none pr-8">
+                  <select id="budget" name="budget" class="w-full bg-transparent border-b border-grey/20 text-ink pb-3 focus:outline-none focus:border-gold transition-colors appearance-none pr-8">
                     <option value="" disabled selected class="bg-white text-ink/40">Please select...</option>
                     <option value="under_10k" class="bg-white text-ink">Under $10,000</option>
                     <option value="10k_50k" class="bg-white text-ink">$10,000 - $50,000</option>
@@ -106,6 +122,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             <div class="flex flex-col gap-3 mt-4">
               <label class="text-sm font-semibold text-ink">Message</label>
               <textarea 
+                id="message"
+                name="message"
                 placeholder="Tell us about your project. What problems can we help you solve?"
                 rows="1"
                 class="w-full bg-transparent border-b border-grey/20 text-ink placeholder-ink/40 pb-3 focus:outline-none focus:border-gold transition-colors resize-y min-h-[40px]"
@@ -118,7 +136,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
               <div class="flex flex-col md:flex-row items-start justify-between gap-6">
                 <label class="flex items-center gap-3 cursor-pointer group pt-2">
                   <div class="relative flex items-center justify-center w-5 h-5 border border-grey/20 rounded bg-transparent group-hover:border-gold transition-colors">
-                    <input type="checkbox" class="peer sr-only" />
+                    <input type="checkbox" id="newsletter" name="newsletter" class="peer sr-only" />
                     <svg class="w-3 h-3 text-gold opacity-0 peer-checked:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                   </div>
                   <span class="text-sm text-ink/60 group-hover:text-ink transition-colors">Subscribe to newsletter</span>
@@ -126,19 +144,106 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
                 <!-- reCAPTCHA Widget -->
                 <div class="w-full md:w-auto flex md:justify-end overflow-hidden rounded-md border border-grey/10 shadow-sm">
-                  <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-theme="light"></div>
+                  <div class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'} data-theme="light"></div>
                 </div>
               </div>
 
               <!-- Submit Button -->
               <div class="flex justify-end border-t border-grey/10 pt-8">
-                <button type="button" class="pill pill-dark w-full md:w-auto text-center justify-center" data-magnetic="0.3">
-                  Submit Inquiry <span class="arrow">↗</span>
+                <button type="submit" id="submit-btn" class="pill pill-dark w-full md:w-auto text-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                  <span id="btn-text">Submit Inquiry</span>
+                  <span id="btn-arrow" class="arrow">↗</span>
+                  <div id="btn-loader" class="hidden ml-2 w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
                 </button>
               </div>
             </div>
             
           </form>
+
+          <script>
+            document.addEventListener("astro:page-load", () => {
+              const form = document.getElementById('contact-form') as HTMLFormElement;
+              const statusBanner = document.getElementById('form-status');
+              const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+              const btnText = document.getElementById('btn-text');
+              const btnArrow = document.getElementById('btn-arrow');
+              const btnLoader = document.getElementById('btn-loader');
+
+              if (form) {
+                form.addEventListener('submit', async (e) => {
+                  e.preventDefault();
+                  
+                  // @ts-ignore
+                  const recaptchaResponse = grecaptcha.getResponse();
+                  if (!recaptchaResponse) {
+                    if (statusBanner) {
+                      statusBanner.textContent = 'Please complete the reCAPTCHA to verify you are human.';
+                      statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
+                    }
+                    return;
+                  }
+
+                  // UI Loading State
+                  if (submitBtn) submitBtn.disabled = true;
+                  if (btnText) btnText.textContent = 'Sending...';
+                  if (btnArrow) btnArrow.classList.add('hidden');
+                  if (btnLoader) btnLoader.classList.remove('hidden');
+                  if (statusBanner) statusBanner.classList.add('hidden');
+
+                  const formData = new FormData(form);
+                  const data = {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    company: formData.get('company'),
+                    phone: formData.get('phone'),
+                    budget: formData.get('budget'),
+                    message: formData.get('message'),
+                    newsletter: formData.get('newsletter') === 'on',
+                    recaptchaToken: recaptchaResponse
+                  };
+
+                  try {
+                    const res = await fetch('/api/public/contact', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(data)
+                    });
+                    
+                    const result = await res.json();
+                    
+                    if (statusBanner) {
+                      statusBanner.classList.remove('hidden');
+                      statusBanner.textContent = result.message;
+                      
+                      if (result.success) {
+                        statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-green-500/20 bg-green-500/10 text-green-700 block';
+                        form.reset();
+                        // @ts-ignore
+                        grecaptcha.reset();
+                        if (btnText) btnText.textContent = 'Sent Successfully';
+                      } else {
+                        statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
+                        if (submitBtn) submitBtn.disabled = false;
+                        if (btnText) btnText.textContent = 'Submit Inquiry';
+                        if (btnArrow) btnArrow.classList.remove('hidden');
+                      }
+                    }
+                  } catch (error) {
+                    if (statusBanner) {
+                      statusBanner.textContent = 'A network error occurred. Please try again.';
+                      statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
+                    }
+                    if (submitBtn) submitBtn.disabled = false;
+                    if (btnText) btnText.textContent = 'Submit Inquiry';
+                    if (btnArrow) btnArrow.classList.remove('hidden');
+                  } finally {
+                    if (btnLoader) btnLoader.classList.add('hidden');
+                  }
+                });
+              }
+            });
+          </script>
         </div>
       </section>
 

@@ -1,9 +1,40 @@
 ---
 /**
  * Nav — Redesigned floating pill navbar
- * Data is imported from @/data/navigation
+ * Data is dynamically fetched from Astro DB
  */
-import { mainMenu } from "@/data/navigation";
+import { db, Navigation, ServiceDetails, SolutionDetails } from 'astro:db';
+
+// Fetch base nav links
+const navLinks = await db.select().from(Navigation).orderBy(Navigation.orderIndex);
+
+// Fetch dropdown data
+const dbServices = await db.select({ slug: ServiceDetails.slug, label: ServiceDetails.label }).from(ServiceDetails);
+const dbSolutions = await db.select({ slug: SolutionDetails.slug, label: SolutionDetails.label }).from(SolutionDetails);
+
+// Reconstruct mainMenu dynamically
+const mainMenu = navLinks.map(link => {
+  if (link.id === 'nav-solutions') {
+    return {
+      label: link.label,
+      href: link.href,
+      cols: 2,
+      items: dbSolutions.map(s => ({ label: s.label, href: `/solutions/${s.slug}` }))
+    };
+  }
+  if (link.id === 'nav-services') {
+    return {
+      label: link.label,
+      href: link.href,
+      cols: 2,
+      items: dbServices.map(s => ({ label: s.label, href: `/services/${s.slug}` }))
+    };
+  }
+  return {
+    label: link.label,
+    href: link.href
+  };
+});
 
 const chevron =
   '<svg class="nav-chevron" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>';
