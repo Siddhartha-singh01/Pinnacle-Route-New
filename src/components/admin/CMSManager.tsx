@@ -4,7 +4,8 @@ import FaqEditor from './cms/FaqEditor';
 import PortfolioEditor from './cms/PortfolioEditor';
 import ServicesEditor from './cms/ServicesEditor';
 import SolutionsEditor from './cms/SolutionsEditor';
-
+import NavigationEditor from './cms/NavigationEditor';
+import TechStackEditor from './cms/TechStackEditor';
 type Tab = 'settings' | 'navigation' | 'tech' | 'faq' | 'portfolio' | 'company' | 'services' | 'solutions';
 
 /** Map UI tab IDs to their correct API query parameter values. */
@@ -110,8 +111,8 @@ export default function CMSManager() {
     { id: 'portfolio', label: 'Portfolio / Work', icon: '🎨' },
     { id: 'services', label: 'Services Details', icon: '💻' },
     { id: 'solutions', label: 'Solutions Details', icon: '🚀' },
-    { id: 'navigation', label: 'Navigation (WIP)', icon: '🧭' },
-    { id: 'tech', label: 'Tech Stack (WIP)', icon: '🛠️' },
+    { id: 'navigation', label: 'Navigation Data', icon: '🧭' },
+    { id: 'tech', label: 'Tech Stack', icon: '🛠️' },
   ];
 
   return (
@@ -212,11 +213,12 @@ export default function CMSManager() {
               <SolutionsEditor data={data || []} onChange={setData} />
             )}
 
-            {(activeTab === 'navigation' || activeTab === 'tech') && (
-              <div className="text-grey-2 p-8 text-center border border-dashed border-line-soft rounded-lg">
-                <h3 className="text-white font-medium mb-2">{activeTab.toUpperCase()} Manager</h3>
-                <p className="text-sm">This specific UI module is currently being built. Please use the database CLI to modify this table for now.</p>
-              </div>
+            {activeTab === 'navigation' && (
+              <NavigationEditor data={data || []} onChange={setData} />
+            )}
+
+            {activeTab === 'tech' && (
+              <TechStackEditor data={data || []} onChange={setData} />
             )}
 
           </form>

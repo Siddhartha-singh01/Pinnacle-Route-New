@@ -272,6 +272,54 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       return new Response(JSON.stringify({ success: true }), { status: 200 });
     }
     
+    // ── Navigation (safe sync) ─────────────────────────────
+    if (type === 'navigation') {
+      const oldRows = await db.select({ id: Navigation.id }).from(Navigation);
+      const oldIds = new Set(oldRows.map(r => r.id));
+      const newIds = new Set<string>();
+
+      for (let i = 0; i < body.length; i++) {
+        const item = { ...body[i], orderIndex: i };
+        newIds.add(item.id);
+        const existing = await db.select().from(Navigation).where(eq(Navigation.id, item.id));
+        if (existing.length > 0) {
+          await db.update(Navigation).set(item).where(eq(Navigation.id, item.id));
+        } else {
+          await db.insert(Navigation).values(item);
+        }
+      }
+      for (const oldId of oldIds) {
+        if (!newIds.has(oldId)) {
+          await db.delete(Navigation).where(eq(Navigation.id, oldId));
+        }
+      }
+      return new Response(JSON.stringify({ success: true }), { status: 200 });
+    }
+
+    // ── Tech Stack (safe sync) ─────────────────────────────
+    if (type === 'techstack') {
+      const oldRows = await db.select({ id: TechStack.id }).from(TechStack);
+      const oldIds = new Set(oldRows.map(r => r.id));
+      const newIds = new Set<number>();
+
+      for (let i = 0; i < body.length; i++) {
+        const item = { ...body[i], orderIndex: i };
+        newIds.add(item.id);
+        const existing = await db.select().from(TechStack).where(eq(TechStack.id, item.id));
+        if (existing.length > 0) {
+          await db.update(TechStack).set(item).where(eq(TechStack.id, item.id));
+        } else {
+          await db.insert(TechStack).values(item);
+        }
+      }
+      for (const oldId of oldIds) {
+        if (!newIds.has(oldId)) {
+          await db.delete(TechStack).where(eq(TechStack.id, oldId));
+        }
+      }
+      return new Response(JSON.stringify({ success: true }), { status: 200 });
+    }
+    
     return new Response(JSON.stringify({ error: 'Not implemented' }), { status: 501 });
   } catch (e: any) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });
