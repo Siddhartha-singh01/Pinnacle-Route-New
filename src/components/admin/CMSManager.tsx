@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import CompanyEditor from './cms/CompanyEditor';
+import FaqEditor from './cms/FaqEditor';
+import PortfolioEditor from './cms/PortfolioEditor';
+import ServicesEditor from './cms/ServicesEditor';
+import SolutionsEditor from './cms/SolutionsEditor';
 
 type Tab = 'settings' | 'navigation' | 'tech' | 'faq' | 'portfolio' | 'company' | 'services' | 'solutions';
 
@@ -188,37 +193,23 @@ export default function CMSManager() {
             )}
 
             {activeTab === 'company' && (
-              <div className="flex flex-col gap-5 h-full">
-                <label className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold text-grey-2 uppercase tracking-widest">Care Stats (JSON)</span>
-                  <textarea value={typeof data?.careStatsJson === 'string' ? data.careStatsJson : JSON.stringify(data?.careStatsJson, null, 2)} onChange={(e) => setData({ ...data, careStatsJson: e.target.value })} className="bg-ink border border-line-soft rounded-md px-4 py-2 text-white h-32 font-mono text-sm" />
-                </label>
-                <label className="flex flex-col gap-2">
-                  <span className="text-xs font-semibold text-grey-2 uppercase tracking-widest">Partner Stats (JSON)</span>
-                  <textarea value={typeof data?.partnerStatsJson === 'string' ? data.partnerStatsJson : JSON.stringify(data?.partnerStatsJson, null, 2)} onChange={(e) => setData({ ...data, partnerStatsJson: e.target.value })} className="bg-ink border border-line-soft rounded-md px-4 py-2 text-white h-32 font-mono text-sm" />
-                </label>
-                <label className="flex flex-col gap-2 flex-1">
-                  <span className="text-xs font-semibold text-grey-2 uppercase tracking-widest">What We Do Accordion (JSON)</span>
-                  <textarea value={typeof data?.whatWeDoJson === 'string' ? data.whatWeDoJson : JSON.stringify(data?.whatWeDoJson, null, 2)} onChange={(e) => setData({ ...data, whatWeDoJson: e.target.value })} className="bg-ink border border-line-soft rounded-md px-4 py-2 text-white h-full min-h-[200px] font-mono text-sm" />
-                </label>
-              </div>
+              <CompanyEditor data={data} onChange={setData} />
             )}
 
-            {(activeTab === 'faq' || activeTab === 'portfolio' || activeTab === 'services' || activeTab === 'solutions') && (
-              <div className="flex flex-col gap-2 h-full">
-                <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg text-blue-400 text-sm mb-2">
-                  <strong>Advanced JSON Editor:</strong> This collection contains deeply nested arrays. For maximum flexibility, edit the raw JSON array below. Ensure the JSON is strictly valid before clicking deploy.
-                </div>
-                <label className="flex flex-col gap-2 flex-1">
-                  <span className="text-xs font-semibold text-grey-2 uppercase tracking-widest">Raw Data Payload</span>
-                  <textarea 
-                    value={typeof data === 'string' ? data : JSON.stringify(data, null, 2)} 
-                    onChange={(e) => setData(e.target.value)} 
-                    className="bg-[#050505] border border-line-soft rounded-md p-4 text-green-400 font-mono text-xs w-full h-full min-h-[400px] focus:outline-none focus:border-gold" 
-                    spellCheck="false"
-                  />
-                </label>
-              </div>
+            {activeTab === 'faq' && (
+              <FaqEditor data={data || []} onChange={setData} />
+            )}
+
+            {activeTab === 'portfolio' && (
+              <PortfolioEditor data={data || []} onChange={setData} />
+            )}
+
+            {activeTab === 'services' && (
+              <ServicesEditor data={data || []} onChange={setData} />
+            )}
+
+            {activeTab === 'solutions' && (
+              <SolutionsEditor data={data || []} onChange={setData} />
             )}
 
             {(activeTab === 'navigation' || activeTab === 'tech') && (
