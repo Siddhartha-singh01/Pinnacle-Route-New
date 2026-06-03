@@ -31,13 +31,15 @@ export default function FaqEditor({ data, onChange }: FaqEditorProps) {
     { key: 'answer', label: 'Answer', type: 'textarea' }
   ];
 
+  const [expandedIndex, setExpandedIndex] = React.useState<number | null>(0);
+
   return (
-    <div className="flex flex-col gap-8 h-full">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col gap-4 h-full">
+      <div className="flex items-center justify-between mb-2">
         <h3 className="text-sm font-semibold text-white uppercase tracking-widest">FAQ Categories</h3>
       </div>
       {safeData.map((category, index) => {
-        // Handle parsing if itemsJson comes back as string from DB
+        const isExpanded = expandedIndex === index;
         let items = [];
         try {
           items = typeof category.itemsJson === 'string' ? JSON.parse(category.itemsJson || '[]') : (category.itemsJson || []);
@@ -46,25 +48,39 @@ export default function FaqEditor({ data, onChange }: FaqEditorProps) {
         }
 
         return (
-          <div key={category.id || index} className="bg-[#111] border border-line-soft rounded-xl p-6 relative">
-            <button type="button" onClick={() => handleRemoveCategory(index)} className="absolute right-6 top-6 text-red-500 text-sm hover:text-red-400">Remove Category</button>
-            <div className="mb-6 flex flex-col gap-2 max-w-md">
-              <label className="text-[11px] font-bold text-grey-2 uppercase tracking-wider">Category Title</label>
-              <input
-                type="text"
-                value={category.title || ''}
-                onChange={(e) => handleCategoryChange(index, 'title', e.target.value)}
-                className="bg-[#050505] border border-line-soft rounded-md px-3 py-2 text-white text-sm focus:border-gold focus:outline-none"
-              />
+          <div key={category.id || index} className={`bg-[#111] border rounded-xl overflow-hidden transition-colors ${isExpanded ? 'border-gold' : 'border-line-soft hover:border-grey-2'}`}>
+            <div 
+              className="p-4 flex items-center justify-between cursor-pointer bg-ink"
+              onClick={() => setExpandedIndex(isExpanded ? null : index)}
+            >
+              <h4 className="font-bold text-white text-sm">{category.title || 'Untitled Category'}</h4>
+              <span className="text-xs text-grey-2 uppercase tracking-widest font-semibold">
+                {isExpanded ? 'Collapse ⏶' : 'Expand ⏷'}
+              </span>
             </div>
             
-            <JsonArrayEditor
-              title="Questions & Answers"
-              items={items}
-              fields={itemFields}
-              emptyItem={{ question: '', answer: '' }}
-              onChange={(newItems) => handleCategoryChange(index, 'itemsJson', newItems)}
-            />
+            {isExpanded && (
+              <div className="p-6 border-t border-line-soft relative">
+                <button type="button" onClick={() => handleRemoveCategory(index)} className="absolute right-6 top-6 text-red-500 text-sm hover:text-red-400">Remove Category</button>
+                <div className="mb-6 flex flex-col gap-2 max-w-md">
+                  <label className="text-[11px] font-bold text-grey-2 uppercase tracking-wider">Category Title</label>
+                  <input
+                    type="text"
+                    value={category.title || ''}
+                    onChange={(e) => handleCategoryChange(index, 'title', e.target.value)}
+                    className="bg-[#050505] border border-line-soft rounded-md px-3 py-2 text-white text-sm focus:border-gold focus:outline-none"
+                  />
+                </div>
+                
+                <JsonArrayEditor
+                  title="Questions & Answers"
+                  items={items}
+                  fields={itemFields}
+                  emptyItem={{ question: '', answer: '' }}
+                  onChange={(newItems) => handleCategoryChange(index, 'itemsJson', newItems)}
+                />
+              </div>
+            )}
           </div>
         );
       })}
