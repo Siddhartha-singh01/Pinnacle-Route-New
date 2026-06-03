@@ -46,11 +46,11 @@ export default async function seed() {
       titleLine1: 'Software',
       titleLine2: 'Engineering',
       description: 'Custom platforms built for scale, performance, and reliability.',
-      mediaUrl: '/assets/videos/compressed/engineering.mp4',
+      mediaUrl: '/assets/videos/tech.mp4',
       servicesJson: [
-        { label: "Custom Software", icon: "code" },
-        { label: "Mobile Apps", icon: "smartphone" },
-        { label: "AI Integration", icon: "cpu" }
+        { label: "Custom Software", icon: "M16 18l6-6-6-6M8 6l-6 6 6 6" },
+        { label: "Mobile Apps", icon: "M5 4a2 2 0 012-2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4z" },
+        { label: "AI Integration", icon: "M4 4h16v16H4zm0 4h16m-16 4h16m-16 4h16M8 4v16m4-16v16m4-16v16" }
       ],
       orderIndex: 0
     }
