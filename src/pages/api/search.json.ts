@@ -52,7 +52,7 @@ export const GET: APIRoute = async () => {
     index.push({
       title: post.data.title,
       description: post.data.description,
-      url: `/blog/${post.slug}`,
+      url: `/blog/${post.id}`,
       category: "Article"
     });
   }

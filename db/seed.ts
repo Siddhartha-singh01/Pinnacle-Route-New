@@ -75,7 +75,7 @@ export default async function seed() {
       title: work.title,
       tag: work.tag,
       img: work.img,
-      href: work.href,
+      href: work.href || '#',
       orderIndex: i,
     }))
   );

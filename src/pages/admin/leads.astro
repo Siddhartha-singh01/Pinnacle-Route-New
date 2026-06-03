@@ -2,10 +2,11 @@
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
 import { db, Inquiries, desc } from 'astro:db';
+import { verifySessionToken } from '@/lib/auth';
 
 // Ensure user is authenticated
 const sessionCookie = Astro.cookies.get('admin_session');
-if (!sessionCookie || sessionCookie.value !== 'authenticated') {
+if (!verifySessionToken(sessionCookie?.value)) {
   return Astro.redirect('/admin/login');
 }
 

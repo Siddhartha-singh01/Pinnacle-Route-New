@@ -13,8 +13,8 @@ import { db, FAQCategory } from "astro:db";
 const rawFaqData = await db.select().from(FAQCategory);
 const faqData = rawFaqData.sort((a, b) => a.orderIndex - b.orderIndex).map(cat => ({
   title: cat.title,
-  items: cat.itemsJson
-}));
+  items: cat.itemsJson as any
+})) as import("@/data/faq").FaqCategory[];
 
 // Title for SEO
 const title = "Frequently Asked Questions | Pinnacle Route";

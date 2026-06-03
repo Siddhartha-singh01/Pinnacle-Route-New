@@ -13,8 +13,6 @@ interface SettingPayload {
   active: boolean;
 }
 
-const ALLOWED_SETTING_IDS = ['maintenance', 'blog_public', 'strategy_booking', 'analytics'];
-
 function validateSettings(body: unknown): string | null {
   if (!Array.isArray(body)) return 'Body must be an array of settings';
   if (body.length > 20) return 'Cannot exceed 20 settings';

@@ -109,12 +109,12 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const { data: emailResponse, error } = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: 'Pinnacle Route Forms <onboarding@resend.dev>', // Update this when you have a verified domain
       to: adminEmail || 'admin@pinnacleroute.com',
       subject: subject,
       html: htmlBody,
-      reply_to: data.email
+      replyTo: data.email
     });
 
     if (error) {

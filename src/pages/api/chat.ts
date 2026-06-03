@@ -137,7 +137,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     });
 
     const result = await chat.sendMessage(lastMessage);
-    const response = await result.response;
+    const response = result.response;
     const text = response.text();
 
     return new Response(JSON.stringify({ response: text }), {

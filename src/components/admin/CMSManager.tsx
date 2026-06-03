@@ -55,7 +55,7 @@ export default function CMSManager() {
     setIsLoading(false);
   };
 
-  const saveData = async (e: React.FormEvent) => {
+  const saveData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSaving(true);
     try {

@@ -25,9 +25,8 @@ export default function SettingsManager() {
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [inviteForm, setInviteForm] = useState({ name: '', email: '', role: 'Author' });
   
-  // Loading & Saving states
+  // Loading state
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -98,7 +97,7 @@ export default function SettingsManager() {
     saveFeatures(updatedFeatures);
   };
 
-  const handleInvite = (e: React.FormEvent) => {
+  const handleInvite = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newUser: User = {
       id: Date.now(),
@@ -115,7 +114,7 @@ export default function SettingsManager() {
     setInviteForm({ name: '', email: '', role: 'Author' });
   };
 
-  const handleEditSave = (e: React.FormEvent) => {
+  const handleEditSave = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!editingUser) return;
     const updatedUsers = users.map(u => u.id === editingUser.id ? editingUser : u);

@@ -15,7 +15,10 @@ import CtaBanner from "@/components/sections/CtaBanner.astro";
 import { db, CompanyInfo, eq } from "astro:db";
 
 const companyData = await db.select().from(CompanyInfo).where(eq(CompanyInfo.id, 'company-stats'));
-const { careStatsJson: careStats = [], partnerStatsJson: partnerStats = [], whatWeDoJson: whatWeDo = [] } = companyData[0] || {};
+const { careStatsJson = [], partnerStatsJson = [], whatWeDoJson = [] } = companyData[0] || {};
+const careStats = careStatsJson as any[];
+const partnerStats = partnerStatsJson as any[];
+const whatWeDo = whatWeDoJson as any[];
 ---
 
 <BaseLayout
