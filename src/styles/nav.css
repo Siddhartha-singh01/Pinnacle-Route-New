@@ -66,6 +66,20 @@
 }
 .nav-bar { background: #ffffff; } /* hamburger lines on the dark pill */
 
+/* ── Phones: split the single pill into two separate pills ──── */
+/* The logo and the hamburger become their own black pills with a
+   transparent gap between them — no large empty black bar. Tablet and
+   desktop keep the single pill unchanged. */
+@media (max-width: 639px) {
+  .nav-pill {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    height: auto;
+  }
+}
+
 /* ── Mobile menu accordion (Solutions / Services) ──────────── */
 .mobile-acc-panel {
   max-height: 0;
