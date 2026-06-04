@@ -5,8 +5,22 @@ import { careStats, partnerStats, whatWeDo } from '../src/data/company';
 import { serviceDetails } from '../src/data/service-details';
 import { solutionDetails } from '../src/data/solution-details';
 import { tools } from '../src/data/tools';
+import { expertiseData } from '../src/data/expertise';
 
 export default async function seed() {
+  // Reset content tables first so this seed is safe to re-run (idempotent).
+  // IMPORTANT: `Inquiries` is intentionally NOT cleared — it holds real
+  // contact/strategy-call submissions and must survive a re-seed.
+  await db.delete(SiteSettings);
+  await db.delete(Navigation);
+  await db.delete(TechStack);
+  await db.delete(ExpertiseCategory);
+  await db.delete(FAQCategory);
+  await db.delete(WorkItem);
+  await db.delete(CompanyInfo);
+  await db.delete(ServiceDetails);
+  await db.delete(SolutionDetails);
+
   // 1. Site Settings
   await db.insert(SiteSettings).values([{
     id: 'global-settings',
@@ -39,22 +53,18 @@ export default async function seed() {
     }))
   );
 
-  // 4. Expertise Category
-  await db.insert(ExpertiseCategory).values([
-    {
-      id: 'engineering',
-      titleLine1: 'Software',
-      titleLine2: 'Engineering',
-      description: 'Custom platforms built for scale, performance, and reliability.',
-      mediaUrl: '/assets/videos/tech.mp4',
-      servicesJson: [
-        { label: "Custom Software", icon: "M16 18l6-6-6-6M8 6l-6 6 6 6" },
-        { label: "Mobile Apps", icon: "M5 4a2 2 0 012-2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4z" },
-        { label: "AI Integration", icon: "M4 4h16v16H4zm0 4h16m-16 4h16m-16 4h16M8 4v16m4-16v16m4-16v16" }
-      ],
-      orderIndex: 0
-    }
-  ]);
+  // 4. Expertise Category — all categories from the data layer
+  await db.insert(ExpertiseCategory).values(
+    expertiseData.map((cat, i) => ({
+      id: cat.id,
+      titleLine1: cat.titleLine1,
+      titleLine2: cat.titleLine2,
+      description: cat.description,
+      mediaUrl: cat.image, // `image` in the data layer maps to the `mediaUrl` column
+      servicesJson: cat.services, // Array of { label, icon }
+      orderIndex: i,
+    }))
+  );
 
   // 5. FAQ
   let faqId = 1;

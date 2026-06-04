@@ -13,16 +13,19 @@ import CtaBanner from "@/components/sections/CtaBanner.astro";
 import { db, ExpertiseCategory } from "astro:db";
 
 const rawExpertiseData = await db.select().from(ExpertiseCategory);
-const expertiseData = rawExpertiseData.sort((a, b) => a.orderIndex - b.orderIndex).map((cat, index) => ({
-  number: String(index + 1).padStart(2, '0'),
+const expertiseData = rawExpertiseData.sort((a, b) => a.orderIndex - b.orderIndex).map((cat, index) => {
+  const number = String(index + 1).padStart(2, '0');
+  return {
+  number,
   id: cat.id,
-  navLabel: `0${cat.orderIndex + 1} ${cat.id.charAt(0).toUpperCase() + cat.id.slice(1)}`, // E.g., '01 Technology'
+  navLabel: `${number} ${cat.id.charAt(0).toUpperCase() + cat.id.slice(1)}`, // E.g., '01 Technology'
   titleLine1: cat.titleLine1,
   titleLine2: cat.titleLine2,
   description: cat.description,
   image: cat.mediaUrl,
   services: cat.servicesJson as any[]
-}));
+  };
+});
 
 // Alternate masks for visual variety
 const masks = ["br", "tr", "bl", "arch"] as const;

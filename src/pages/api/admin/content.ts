@@ -84,6 +84,30 @@ function validateSolutionDetails(body: unknown): string | null {
   return null;
 }
 
+function validateNavigation(body: unknown): string | null {
+  if (!Array.isArray(body)) return 'Body must be an array of navigation items';
+  for (let i = 0; i < body.length; i++) {
+    const item = body[i];
+    if (!isObject(item)) return `Item ${i}: must be an object`;
+    if (!isNonEmptyString(item.id)) return `Item ${i}: id is required`;
+    if (!isNonEmptyString(item.label)) return `Item ${i}: label is required`;
+    if (!isNonEmptyString(item.href)) return `Item ${i}: href is required`;
+  }
+  return null;
+}
+
+function validateTechStack(body: unknown): string | null {
+  if (!Array.isArray(body)) return 'Body must be an array of tech stack items';
+  for (let i = 0; i < body.length; i++) {
+    const item = body[i];
+    if (!isObject(item)) return `Item ${i}: must be an object`;
+    if (typeof item.id !== 'number') return `Item ${i}: id must be a number`;
+    if (!isNonEmptyString(item.name)) return `Item ${i}: name is required`;
+    if (!isNonEmptyString(item.iconUrl)) return `Item ${i}: iconUrl is required`;
+  }
+  return null;
+}
+
 // ── GET handler ────────────────────────────────────────────
 
 export const GET: APIRoute = async ({ request, cookies }) => {
@@ -274,6 +298,9 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     
     // ── Navigation (safe sync) ─────────────────────────────
     if (type === 'navigation') {
+      const err = validateNavigation(body);
+      if (err) return new Response(JSON.stringify({ error: err }), { status: 400 });
+
       const oldRows = await db.select({ id: Navigation.id }).from(Navigation);
       const oldIds = new Set(oldRows.map(r => r.id));
       const newIds = new Set<string>();
@@ -298,6 +325,9 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
     // ── Tech Stack (safe sync) ─────────────────────────────
     if (type === 'techstack') {
+      const err = validateTechStack(body);
+      if (err) return new Response(JSON.stringify({ error: err }), { status: 400 });
+
       const oldRows = await db.select({ id: TechStack.id }).from(TechStack);
       const oldIds = new Set(oldRows.map(r => r.id));
       const newIds = new Set<number>();
