@@ -65,3 +65,16 @@
   box-shadow: 0 28px 64px -26px rgba(0, 0, 0, 0.9);
 }
 .nav-bar { background: #ffffff; } /* hamburger lines on the dark pill */
+
+/* ── Mobile menu accordion (Solutions / Services) ──────────── */
+.mobile-acc-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s var(--ease-out-expo);
+}
+.mobile-acc.is-open .mobile-acc-panel { max-height: 28rem; }
+.mobile-acc-chev { transition: transform 0.35s var(--ease-out-expo); }
+.mobile-acc.is-open .mobile-acc-chev {
+  transform: rotate(180deg);
+  color: #CAA154;
+}
