@@ -12,6 +12,16 @@
     padding-inline: clamp(1.25rem, 4vw, 4rem);
   }
 
+  /* Ultra-wide displays (27"/QHD and up): widen the content shell so the
+     layout isn't lost in empty side margins. Content stays centered. */
+  @media (min-width: 2000px) {
+    :root { --container-page: 1760px; }
+    .container-page { padding-inline: clamp(4rem, 5vw, 7rem); }
+  }
+  @media (min-width: 3000px) {
+    :root { --container-page: 2200px; }
+  }
+
   .section { padding-block: clamp(5rem, 10vw, 9rem); position: relative; }
 
   /* White / inverted section — flips the ink scale */

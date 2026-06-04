@@ -1,4 +1,13 @@
 @import "tailwindcss";
+/* Component partials are imported here (not as separate <link>s) so the whole
+   stylesheet is processed as ONE sheet with a single, deterministic cascade-layer
+   order. Importing them as separate sheets let production builds emit `.display`
+   etc. both layered and unlayered, which made the cascade non-deterministic and
+   could drop `.container-page` / `.display` styling in prod. */
+@import "./components.css";
+@import "./nav.css";
+@import "./motion.css";
+@import "./accordion.css";
 @plugin "@tailwindcss/typography";
 
 /* ============================================================
@@ -57,6 +66,10 @@
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* `clip` contains stray horizontal overflow (decorative arcs, off-canvas
+       panels) without creating a scroll container — so content can never be
+       pushed/clipped sideways on any viewport. */
+    overflow-x: clip;
   }
 
   body {
@@ -64,7 +77,8 @@
     color: var(--color-white);
     font-family: var(--font-body);
     line-height: 1.6;
-    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
