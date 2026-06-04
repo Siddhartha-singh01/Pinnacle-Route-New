@@ -123,6 +123,15 @@ export default function SettingsManager() {
     setEditingUser(null);
   };
 
+  const handleDelete = (user: User) => {
+    if (!window.confirm(`Delete ${user.name} (${user.email})? This cannot be undone.`)) return;
+    const updatedUsers = users.filter(u => u.id !== user.id);
+    setUsers(updatedUsers);
+    saveUsers(updatedUsers);
+    // Close the edit modal if we just deleted the user being edited.
+    if (editingUser?.id === user.id) setEditingUser(null);
+  };
+
   if (loading) {
     return <div className="text-grey-2 py-20 text-center animate-pulse">Loading secure settings...</div>;
   }
@@ -211,12 +220,21 @@ export default function SettingsManager() {
                   </td>
                   <td className="px-6 py-4 text-grey-2">{user.lastLogin}</td>
                   <td className="px-6 py-4 text-right">
-                    <button 
-                      onClick={() => setEditingUser(user)}
-                      className="text-xs font-medium px-3 py-1.5 bg-ink border border-line-soft rounded text-gold hover:text-white hover:border-gold/50 transition-colors"
-                    >
-                      Edit
-                    </button>
+                    <div className="flex items-center justify-end gap-2">
+                      <button
+                        onClick={() => setEditingUser(user)}
+                        className="text-xs font-medium px-3 py-1.5 bg-ink border border-line-soft rounded text-gold hover:text-white hover:border-gold/50 transition-colors"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(user)}
+                        className="text-xs font-medium px-3 py-1.5 bg-ink border border-line-soft rounded text-red-400 hover:text-white hover:bg-red-500/80 hover:border-red-500/50 transition-colors"
+                        aria-label={`Delete ${user.name}`}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -284,6 +302,13 @@ export default function SettingsManager() {
                 <button type="button" onClick={() => setEditingUser(null)} className="flex-1 px-4 py-2 bg-ink border border-line-soft rounded-lg text-white hover:bg-surface-2 transition-colors">Cancel</button>
                 <button type="submit" className="flex-1 px-4 py-2 bg-gold text-ink font-semibold rounded-lg hover:bg-white transition-colors">Save Changes</button>
               </div>
+              <button
+                type="button"
+                onClick={() => editingUser && handleDelete(editingUser)}
+                className="mt-2 w-full px-4 py-2 text-sm text-red-400 border border-red-500/20 rounded-lg hover:bg-red-500/10 transition-colors"
+              >
+                Delete this user
+              </button>
             </form>
           </div>
         </div>
