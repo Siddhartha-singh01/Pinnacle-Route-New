@@ -8,9 +8,9 @@ import { db, Navigation, ServiceDetails, SolutionDetails } from 'astro:db';
 // Fetch base nav links
 const navLinks = await db.select().from(Navigation).orderBy(Navigation.orderIndex);
 
-// Fetch dropdown data
-const dbServices = await db.select({ slug: ServiceDetails.slug, label: ServiceDetails.label }).from(ServiceDetails);
-const dbSolutions = await db.select({ slug: SolutionDetails.slug, label: SolutionDetails.label }).from(SolutionDetails);
+// Fetch dropdown data (include a short description for the mega-menu)
+const dbServices = await db.select({ slug: ServiceDetails.slug, label: ServiceDetails.label, intro: ServiceDetails.intro }).from(ServiceDetails);
+const dbSolutions = await db.select({ slug: SolutionDetails.slug, label: SolutionDetails.label, tagline: SolutionDetails.tagline }).from(SolutionDetails);
 
 // Reconstruct mainMenu dynamically
 const mainMenu = navLinks.map(link => {
@@ -19,7 +19,7 @@ const mainMenu = navLinks.map(link => {
       label: link.label,
       href: link.href,
       cols: 2,
-      items: dbSolutions.map(s => ({ label: s.label, href: `/solutions/${s.slug}` }))
+      items: dbSolutions.map(s => ({ label: s.label, href: `/solutions/${s.slug}`, desc: s.tagline }))
     };
   }
   if (link.id === 'nav-services') {
@@ -27,7 +27,7 @@ const mainMenu = navLinks.map(link => {
       label: link.label,
       href: link.href,
       cols: 2,
-      items: dbServices.map(s => ({ label: s.label, href: `/services/${s.slug}` }))
+      items: dbServices.map(s => ({ label: s.label, href: `/services/${s.slug}`, desc: s.intro }))
     };
   }
   return {
@@ -117,13 +117,29 @@ function isActive(target: any) {
                     {m.label}
                     <Fragment set:html={chevron} />
                   </a>
-                  <div class="nav-dropdown absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <div class={`bg-white rounded-2xl shadow-xl border border-gray-100 p-2 grid gap-1 ${m.cols === 2 ? "grid-cols-2 min-w-[26rem]" : "min-w-[13rem]"}`}>
-                      {m.items.map((it) => (
-                        <a href={it.href} class={`block rounded-xl px-4 py-2.5 text-sm transition-colors duration-200 capitalize ${isActive(it.href) ? 'text-[#CAA154] bg-gray-50' : 'text-gray-500 hover:text-[#CAA154] hover:bg-gray-50'}`}>
-                          {it.label}
-                        </a>
-                      ))}
+                  <div class="nav-dropdown absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
+                    <div class="nav-mega grid grid-cols-[1fr_13rem] w-[42rem] max-w-[calc(100vw-2rem)] rounded-2xl bg-[#ffffff] border border-black/[0.06] shadow-[0_30px_70px_-25px_rgba(0,0,0,0.45)] overflow-hidden">
+                      <div class="p-3 grid grid-cols-2 gap-1">
+                        {m.items.map((it) => (
+                          <a href={it.href} class={`group/i flex items-start gap-3 rounded-xl p-3 transition-colors ${isActive(it.href) ? 'bg-[#faf7f0]' : 'hover:bg-[#faf7f0]'}`}>
+                            <span class="mt-0.5 grid place-items-center h-9 w-9 rounded-lg bg-[#CAA154]/12 text-[#CAA154] shrink-0">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                            </span>
+                            <span class="min-w-0 normal-case">
+                              <span class={`block text-sm font-semibold ${isActive(it.href) ? 'text-[#CAA154]' : 'text-[#0a0a0a] group-hover/i:text-[#CAA154]'} transition-colors`}>{it.label}</span>
+                              {it.desc && <span class="block text-xs leading-snug mt-0.5 text-black/45 line-clamp-2">{it.desc}</span>}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                      <a href={m.href} class="relative flex flex-col justify-between overflow-hidden bg-[#0a0a0a] p-6 normal-case">
+                        <span class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#CAA154]/25 blur-2xl"></span>
+                        <span class="relative">
+                          <span class="block text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#CAA154]">{m.label}</span>
+                          <span class="mt-3 block text-lg font-display leading-snug text-[#ffffff]">Explore all {m.label.toLowerCase()}</span>
+                        </span>
+                        <span class="relative mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#ffffff]/90">View all <span aria-hidden="true">→</span></span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -155,13 +171,29 @@ function isActive(target: any) {
                     {m.label}
                     <Fragment set:html={chevron} />
                   </a>
-                  <div class="nav-dropdown absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <div class={`bg-white rounded-2xl shadow-xl border border-gray-100 p-2 grid gap-1 ${m.cols === 2 ? "grid-cols-2 min-w-[26rem]" : "min-w-[13rem]"}`}>
-                      {m.items.map((it) => (
-                        <a href={it.href} class={`block rounded-xl px-4 py-2.5 text-sm transition-colors duration-200 capitalize ${isActive(it.href) ? 'text-[#CAA154] bg-gray-50' : 'text-gray-500 hover:text-[#CAA154] hover:bg-gray-50'}`}>
-                          {it.label}
-                        </a>
-                      ))}
+                  <div class="nav-dropdown absolute right-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
+                    <div class="nav-mega grid grid-cols-[1fr_13rem] w-[42rem] max-w-[calc(100vw-2rem)] rounded-2xl bg-[#ffffff] border border-black/[0.06] shadow-[0_30px_70px_-25px_rgba(0,0,0,0.45)] overflow-hidden">
+                      <div class="p-3 grid grid-cols-2 gap-1">
+                        {m.items.map((it) => (
+                          <a href={it.href} class={`group/i flex items-start gap-3 rounded-xl p-3 transition-colors ${isActive(it.href) ? 'bg-[#faf7f0]' : 'hover:bg-[#faf7f0]'}`}>
+                            <span class="mt-0.5 grid place-items-center h-9 w-9 rounded-lg bg-[#CAA154]/12 text-[#CAA154] shrink-0">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                            </span>
+                            <span class="min-w-0 normal-case">
+                              <span class={`block text-sm font-semibold ${isActive(it.href) ? 'text-[#CAA154]' : 'text-[#0a0a0a] group-hover/i:text-[#CAA154]'} transition-colors`}>{it.label}</span>
+                              {it.desc && <span class="block text-xs leading-snug mt-0.5 text-black/45 line-clamp-2">{it.desc}</span>}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                      <a href={m.href} class="relative flex flex-col justify-between overflow-hidden bg-[#0a0a0a] p-6 normal-case">
+                        <span class="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#CAA154]/25 blur-2xl"></span>
+                        <span class="relative">
+                          <span class="block text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#CAA154]">{m.label}</span>
+                          <span class="mt-3 block text-lg font-display leading-snug text-[#ffffff]">Explore all {m.label.toLowerCase()}</span>
+                        </span>
+                        <span class="relative mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#ffffff]/90">View all <span aria-hidden="true">→</span></span>
+                      </a>
                     </div>
                   </div>
                 </div>
