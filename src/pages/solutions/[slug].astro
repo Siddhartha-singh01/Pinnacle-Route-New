@@ -90,7 +90,7 @@ const ctas = [
           </div>
           <div class="relative h-[380px] lg:h-[520px]" data-reveal data-reveal-delay="2">
             <div class={`absolute inset-0 overflow-hidden mask-${L.overviewMask} border border-line-soft`}>
-              <img src={sol.image} alt={sol.label} data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%] grayscale" />
+              <img src={sol.image} alt={sol.label} data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]" />
             </div>
           </div>
         </div>
@@ -160,7 +160,7 @@ const ctas = [
         heading={sol.overviewHeading}
         headingDim={sol.overviewHeadingDim}
         body={sol.overviewBody}
-        grayscale={true}
+        grayscale={false}
         ctaHref="/strategy-call"
         ctaLabel="Discuss your build"
       />
