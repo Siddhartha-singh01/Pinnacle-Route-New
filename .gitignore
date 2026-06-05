@@ -21,9 +21,10 @@ Thumbs.db
 
 # Large media files
 *.zip
-*.mp4
-!public/assets/videos/*.mp4
 *.mov
+# Ignore stray .mp4 anywhere EXCEPT inside public/assets (those ship with the site)
+*.mp4
+!public/assets/**/*.mp4
 
 # Client feedback package + generated audit (local only — never committed)
 Pinnacle Route Feedback/

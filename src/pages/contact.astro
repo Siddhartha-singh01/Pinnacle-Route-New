@@ -175,8 +175,16 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
                 form.addEventListener('submit', async (e) => {
                   e.preventDefault();
                   
-                  // @ts-ignore
-                  const recaptchaResponse = grecaptcha.getResponse();
+                  // Guard against reCAPTCHA failing to load (domain error, network, blocker)
+                  const gre = (window as any).grecaptcha;
+                  if (!gre || typeof gre.getResponse !== 'function') {
+                    if (statusBanner) {
+                      statusBanner.textContent = 'Security check could not load. Please disable any ad/script blockers, refresh the page, and try again.';
+                      statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
+                    }
+                    return;
+                  }
+                  const recaptchaResponse = gre.getResponse();
                   if (!recaptchaResponse) {
                     if (statusBanner) {
                       statusBanner.textContent = 'Please complete the reCAPTCHA to verify you are human.';
@@ -221,8 +229,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
                       if (result.success) {
                         statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-green-500/20 bg-green-500/10 text-green-700 block';
                         form.reset();
-                        // @ts-ignore
-                        grecaptcha.reset();
+                        gre.reset();
                         if (btnText) btnText.textContent = 'Sent Successfully';
                       } else {
                         statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
