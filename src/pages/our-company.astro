@@ -11,6 +11,7 @@ import Accordion from "@/components/sections/Accordion.astro";
 import ImageTextSplit from "@/components/sections/ImageTextSplit.astro";
 import StatsRow from "@/components/sections/StatsRow.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
+import Breadcrumb from "@/components/ui/Breadcrumb.astro";
 
 import { db, CompanyInfo, eq } from "astro:db";
 
@@ -29,6 +30,7 @@ const whatWeDo = whatWeDoJson as any[];
   <!-- ===================== HERO (light) ===================== -->
   <section class="section section-light pt-32 lg:pt-40">
     <div class="container-page">
+      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Our Company" }]} tone="light" class="mb-8" />
       <p class="eyebrow mb-8" data-reveal>Our Company</p>
       <h1 class="display max-w-[15ch]" data-reveal data-reveal-delay="1">
         Obsessed with Impact <span class="dim">and Results</span>

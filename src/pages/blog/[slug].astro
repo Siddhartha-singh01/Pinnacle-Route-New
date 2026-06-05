@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleToc from '@/components/blog/ArticleToc.astro';
 import ArticleSidebar from '@/components/blog/ArticleSidebar.astro';
+import Breadcrumb from '@/components/ui/Breadcrumb.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -40,13 +41,15 @@ const highlightTitle = (title: string) => {
       <!-- Article Header -->
       <div class="max-w-4xl mb-16">
         <!-- Breadcrumbs -->
-        <div class="flex items-center gap-2 text-sm text-grey-2 mb-8">
-          <a href="/" class="hover:text-white transition-colors">Home</a>
-          <span>›</span>
-          <a href="/blog" class="hover:text-white transition-colors">Insights & Strategy</a>
-          <span>›</span>
-          <span class="text-white">{post.data.category}</span>
-        </div>
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Insights & Strategy", href: "/blog" },
+            { label: post.data.category },
+          ]}
+          tone="dark"
+          class="mb-8"
+        />
 
         <!-- Meta -->
         <div class="flex flex-wrap items-center gap-4 mb-8">

@@ -8,6 +8,7 @@
 export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ArrowMotif from "@/components/ui/ArrowMotif.astro";
+import Breadcrumb from "@/components/ui/Breadcrumb.astro";
 import ImageTextSplit from "@/components/sections/ImageTextSplit.astro";
 import StatsRow from "@/components/sections/StatsRow.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
@@ -73,6 +74,7 @@ const ctas = [
       <section class="relative overflow-hidden pt-40 pb-20 lg:pt-44 lg:pb-28">
         <div class="container-page relative z-10 grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
+            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="dark" class="mb-7" />
             <p class="eyebrow mb-7" data-reveal>{sol.eyebrow}</p>
             <h1 class="display-sm !text-[clamp(2.8rem,6vw,5rem)] max-w-[14ch]" data-reveal data-reveal-delay="1">
               {sol.title} <span class="dim">{sol.titleDim}</span>
@@ -97,7 +99,8 @@ const ctas = [
       <section class="relative overflow-hidden pt-44 pb-24 lg:pt-52 lg:pb-32 text-center">
         <ArrowMotif class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46vw] max-w-2xl text-white/[0.035] pointer-events-none" />
         <div class="container-page relative z-10">
-          <p class="eyebrow justify-center mb-7" data-reveal>{sol.eyebrow}</p>
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="dark" class="mb-7 flex justify-center" />
+            <p class="eyebrow justify-center mb-7" data-reveal>{sol.eyebrow}</p>
           <h1 class="display max-w-[16ch] mx-auto" data-reveal data-reveal-delay="1">
             {sol.title} <span class="dim">{sol.titleDim}</span>
           </h1>
@@ -116,7 +119,8 @@ const ctas = [
         <ArrowMotif class="absolute right-[3vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-xl text-white/[0.04] pointer-events-none hidden md:block" />
         <div class="hair-arc hidden md:block" style="width:1000px;height:1000px;right:-320px;top:-220px;" />
         <div class="container-page relative z-10">
-          <p class="eyebrow mb-7" data-reveal>{sol.eyebrow}</p>
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="dark" class="mb-7" />
+            <p class="eyebrow mb-7" data-reveal>{sol.eyebrow}</p>
           <h1 class="display max-w-[16ch]" data-reveal data-reveal-delay="1">
             {sol.title} <span class="dim">{sol.titleDim}</span>
           </h1>

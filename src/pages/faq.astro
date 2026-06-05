@@ -8,6 +8,7 @@ export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
 import FaqAccordion from "@/components/ui/FaqAccordion.astro";
+import Breadcrumb from "@/components/ui/Breadcrumb.astro";
 import { db, FAQCategory } from "astro:db";
 
 const rawFaqData = await db.select().from(FAQCategory);
@@ -26,6 +27,7 @@ const description = "Find answers to the most common questions about our custom 
   <!-- Hero Section -->
   <section class="pt-40 pb-20 relative overflow-hidden bg-surface">
     <div class="container-page relative z-10 text-center max-w-4xl mx-auto">
+      <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "FAQ" }]} tone="light" class="mb-6 flex justify-center" />
       <h1 class="display-lg mb-6" data-reveal>
         Frequently Asked <span class="dim text-gold">Questions.</span>
       </h1>

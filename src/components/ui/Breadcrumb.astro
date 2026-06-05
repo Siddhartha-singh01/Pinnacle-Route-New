@@ -1,0 +1,54 @@
+---
+/**
+ * Breadcrumb
+ * ----------
+ * Accessible breadcrumb trail with Schema.org BreadcrumbList markup.
+ * `tone` selects text colours for dark vs light backgrounds. Uses fixed
+ * colours so it is unaffected by the page light/dark theme tokens.
+ */
+interface Crumb {
+  label: string;
+  href?: string;
+}
+interface Props {
+  items: Crumb[];
+  tone?: "dark" | "light";
+  class?: string;
+}
+const { items, tone = "dark", class: cls = "" } = Astro.props;
+
+const base = tone === "light" ? "text-black/50" : "text-[#ffffff]/55";
+const linkHover = tone === "light" ? "hover:text-[#0a0a0a]" : "hover:text-[#ffffff]";
+const current = tone === "light" ? "text-[#0a0a0a]" : "text-[#ffffff]";
+const sep = tone === "light" ? "text-black/25" : "text-[#ffffff]/30";
+
+const site = Astro.site?.href?.replace(/\/$/, "") ?? "";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.label,
+    ...(c.href ? { item: site + c.href } : {}),
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class={cls}>
+  <ol class="flex flex-wrap items-center gap-2 text-[0.8rem] font-medium">
+    {
+      items.map((c, i) => (
+        <li class="flex items-center gap-2">
+          {c.href && i < items.length - 1 ? (
+            <a href={c.href} class={`${base} ${linkHover} transition-colors`}>{c.label}</a>
+          ) : (
+            <span class={current} aria-current="page">{c.label}</span>
+          )}
+          {i < items.length - 1 && <span class={sep} aria-hidden="true">/</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

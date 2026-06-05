@@ -10,6 +10,7 @@
 export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
+import Breadcrumb from "@/components/ui/Breadcrumb.astro";
 import { services, serviceHref } from "@/data/services";
 import type { ServiceDetail } from "@/types";
 import { db, ServiceDetails, eq } from "astro:db";
@@ -48,9 +49,15 @@ const chevron =
   <div class="bg-paper text-ink">
     {/* ===================== HERO ===================== */}
     <section id="svc-hero" class="container-page pt-32 lg:pt-36 pb-8">
-      <a href="/our-expertise" class="inline-flex items-center gap-2 text-sm font-medium text-ink/60 hover:text-ink transition-colors mb-7">
-        <span class="text-base">←</span> {svc.category}
-      </a>
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Our Expertise", href: "/our-expertise" },
+          { label: svc.label },
+        ]}
+        tone="light"
+        class="mb-7"
+      />
 
       <div class="svc-switcher relative inline-block">
         <button type="button" class="svc-toggle flex items-center gap-4 text-left" aria-expanded="false" aria-haspopup="true">
