@@ -24,3 +24,7 @@ Thumbs.db
 *.mp4
 !public/assets/videos/*.mp4
 *.mov
+
+# Client feedback package + generated audit (local only — never committed)
+Pinnacle Route Feedback/
+FEEDBACK_AUDIT_REPORT.md
