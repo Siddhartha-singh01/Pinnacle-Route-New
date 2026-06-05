@@ -30,7 +30,7 @@ export const expertiseData: ExpertiseCategory[] = [
     titleLine1: "Tech &",
     titleLine2: "Innovation",
     description: "We are a leader in building cutting-edge, AI-driven, and intuitive digital solutions. We push boundaries, solve complex challenges, and create future-proof, scalable mobile and web products that drive real impact.",
-    image: "/assets/videos/tech.mp4",
+    image: "/assets/expertise/technology.jpg",
     services: [
       { label: "Mobile App Development", icon: ICONS.mobile },
       { label: "Web Development", icon: ICONS.monitor },
@@ -46,7 +46,7 @@ export const expertiseData: ExpertiseCategory[] = [
     titleLine1: "Experience",
     titleLine2: "& Design",
     description: "Our best in class Product Designers and Strategists collaborate to create smart, clear product experiences that keeps people engaged. Through carefully crafted UX, UI and interaction design, our goal is to turn complex ideas into seamless, engaging digital experiences.",
-    image: "/assets/videos/design.mp4",
+    image: "/assets/expertise/design.jpg",
     services: [
       { label: "Product Discovery", icon: ICONS.compass },
       { label: "User Research", icon: ICONS.message },
@@ -62,7 +62,7 @@ export const expertiseData: ExpertiseCategory[] = [
     titleLine1: "Strategy &",
     titleLine2: "Consulting",
     description: "We bring together expert minds to work with clients to define business strategies through possible digital product solutions. We surround our clients with leaders from product, design, data, and engineering departments, with a relentless focus on product-market fit, growth potential, monetization strategies, and technical opportunities.",
-    image: "/assets/videos/strategy.mp4",
+    image: "/assets/expertise/strategy.jpg",
     services: [
       { label: "Digital Transformation", icon: ICONS.rocket },
       { label: "Product Validation", icon: ICONS.check },
@@ -78,7 +78,7 @@ export const expertiseData: ExpertiseCategory[] = [
     titleLine1: "Product",
     titleLine2: "Growth",
     description: "Launching a digital product is not the finish line; it's only the beginning of the Growth journey. Our Product Managers, Data Scientists and Growth Marketers partner with clients to focus on the evolution and adoption of the product, prioritizing business goals through rapid releases, user feedback cycles, and data-driven growth marketing experimentation.",
-    image: "/assets/videos/growth.mp4",
+    image: "/assets/expertise/growth.jpg",
     services: [
       { label: "Ongoing Management", icon: ICONS.activity },
       { label: "Data & Experimentation", icon: ICONS.flask },

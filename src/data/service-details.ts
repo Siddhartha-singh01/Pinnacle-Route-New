@@ -41,7 +41,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Tech & Innovation",
     intro:
       "Custom Software Development is at the core of what we do, building bespoke platforms engineered around your exact workflows. We craft scalable, secure, and future ready systems that grow with your business.",
-    image: "/assets/client-proof/designer-club.png",
+    image: "/assets/services/custom-software-development.jpg",
     subItems: [
       {
         id: "bespoke-web-applications",
@@ -92,7 +92,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Tech & Innovation",
     intro:
       "AI & Automation is where strategy meets leverage. We build intelligent systems that handle the repetitive work, surface insight from your data, and let your team focus on what only people can do.",
-    image: "/assets/client-proof/mandaean-app.png",
+    image: "/assets/services/ai-automation.jpg",
     subItems: [
       {
         id: "ai-assistants-agents",
@@ -143,7 +143,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Tech & Innovation",
     intro:
       "Mobile App Development is one of our core strengths, crafting elegant, future ready experiences across iOS, Android, and cross platform. We build apps that feel native, perform flawlessly, and keep users coming back.",
-    image: "/assets/client-proof/mandaean-app.png",
+    image: "/assets/services/mobile-app-development.jpg",
     subItems: [
       {
         id: "custom-app-development",
@@ -204,7 +204,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Strategy & Systems",
     intro:
       "CRM Development gives your team a system they actually use. We build and configure CRMs around how you really sell, with visual pipelines, automated follow ups, and reporting that shows what closes.",
-    image: "/assets/client-proof/borrowed-luxe.webp",
+    image: "/assets/services/crm-development.jpg",
     subItems: [
       {
         id: "custom-crm-build",
@@ -255,7 +255,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Strategy & Systems",
     intro:
       "ERP Systems unify your operations, inventory, and finance into one core. We build ERP platforms that give you real time control over the whole business, replacing scattered spreadsheets with a single source of truth.",
-    image: "/assets/client-proof/designer-club.png",
+    image: "/assets/services/erp-development.jpg",
     subItems: [
       {
         id: "custom-erp-build",
@@ -306,7 +306,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Experience & Design",
     intro:
       "UI/UX Design gives your product the polish of a luxury experience. Our designers and strategists turn complex ideas into seamless, engaging interfaces that keep people coming back.",
-    image: "/assets/client-proof/borrowed-luxe.webp",
+    image: "/assets/services/ui-ux-design.jpg",
     subItems: [
       {
         id: "product-discovery",
@@ -357,7 +357,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Platforms & Commerce",
     intro:
       "Ecommerce Development builds storefronts that convert. We craft fast, beautiful, and reliable commerce experiences, from custom storefronts to headless architecture, engineered to grow revenue.",
-    image: "/assets/client-proof/borrowed-luxe.webp",
+    image: "/assets/services/ecommerce-development.jpg",
     subItems: [
       {
         id: "custom-storefronts",
@@ -408,7 +408,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     category: "Platforms & Commerce",
     intro:
       "SaaS Development takes your idea from MVP to scalable product. We build multi tenant platforms with subscriptions, analytics, and the architecture to grow, so you can focus on customers, not infrastructure.",
-    image: "/assets/client-proof/mandaean-app.png",
+    image: "/assets/services/saas-development.jpg",
     subItems: [
       {
         id: "mvp-product-build",
