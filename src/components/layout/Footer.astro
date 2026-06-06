@@ -15,27 +15,27 @@ const footerColumns = [
     links: [
       { label: "Our Work", href: "/#work" },
       { label: "Our Expertise", href: "/our-expertise" },
-      { label: "Blog", href: "/blog" },
+      { label: "About Us", href: "/our-company" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Privacy Policy", href: "/privacy-policy/" },
       { label: "Referral", href: "/referral" },
       { label: "Strategy Call", href: "/strategy-call" },
     ],
   },
   {
     title: "Services",
-    links: dbServices.slice(0, 6).map((s) => ({ label: s.label, href: `/services/${s.slug}` })),
+    links: dbServices.map((s) => ({ label: s.label, href: `/services/${s.slug}` })),
   },
   {
     title: "Solutions",
-    links: dbSolutions.slice(0, 6).map((s) => ({ label: s.label, href: `/solutions/${s.slug}` })),
+    links: dbSolutions.map((s) => ({ label: s.label, href: `/solutions/${s.slug}` })),
   },
   {
-    title: "Company",
+    title: "Contact",
     links: [
-      { label: "About Us", href: "/our-company" },
-      { label: "Blog", href: "/blog" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Referral Program", href: "/referral" },
-      { label: "Privacy Policy", href: "/privacy-policy/" },
+      { label: "Media: info@pinnacleroute.com", href: "mailto:info@pinnacleroute.com" },
+      { label: "Careers: careers@pinnacleroute.com", href: "mailto:careers@pinnacleroute.com" },
+      { label: "Sales: sales@pinnacleroute.com", href: "mailto:sales@pinnacleroute.com" },
     ],
   },
 ];
@@ -45,6 +45,7 @@ const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/pinnacle-route" },
   { label: "Twitter / X", href: "https://x.com/PinnacleRoute" },
   { label: "Instagram", href: "https://www.instagram.com/pinnacle_route/" },
+  { label: "Threads", href: "https://www.threads.net/@pinnacle_route" },
 ];
 
 const year = new Date().getFullYear();

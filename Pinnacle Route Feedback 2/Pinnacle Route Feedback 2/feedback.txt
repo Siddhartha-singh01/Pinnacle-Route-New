@@ -1,0 +1,56 @@
+lists here. The design looks good though. 
+Need to remove the description from the sub menus here and showcase all the 8 service 
+ 
+Solution button, it redirects to the homepage itself. Remove the View all icon from here. 
+page is required for the Solution. Currently, when clicking on the View all or Explore all 
+The design looks good on the menu. Remove the description from the sub menus and a new 
+ 
+ 
+the brand. 
+Need to remove the search icon from here and replace the current logo with the full logo of 
+ 
+----------------Page (0) Break----------------
+Replace the brand image for the Mandaean client with the above image. 
+ 
+ 
+The div for all the listings here should be in one format that is rectangle in vertical shape. 
+ 
+ 
+----------------Page (1) Break----------------
+ 
+Need to show the other two client’s testimonials from the old site on the Strategy Call page. 
+ 
+ 
+Need to show the brand image too of the relevant platforms here. 
+----------------Page (2) Break----------------
+Media: info@ pinnacleroute.com 
+Careers: careers@ pinnacleroute.com 
+Sales: sales@ pinnacleroute.com 
+ 
+ 
+footer. Also, add the Threads link under Socials. 
+should come under the Pinnacle Route row. List all the 8 services and solutions links in the 
+Remove the Company row from here. The menu such as About Us, FAQ, and Privacy Policy 
+ 
+ 
+mentioned on the site 50+ project, replace it to 55+ Projects Delivered. 
+Keep all the service listings in one single line on the Strategy page. And wherever it is 
+ 
+----------------Page (3) Break----------------
+ 
+Strategy page. 
+Clicking on Request Quote should navigate to the Contact Us page and Schedule Call to the 
+ 
+ 
+ 
+Add the Thread link here on the Contact Us page. 
+ 
+----------------Page (4) Break----------------
+ 
+ 
+be replaced with the new logo here. 
+navigate to the Strategy page. Remove the View All link from here. Also, the old logo need to 
+Consultation should navigate to the Contact Us page. Clicking on the Request Quote should 
+Clicking on the Partners link should navigate to the Referrals page. Clicking on the Request 
+ 
+----------------Page (5) Break----------------
