@@ -1,7 +1,6 @@
 export const prerender = false;
 import type { APIRoute } from 'astro';
-import fs from 'fs/promises';
-import path from 'path';
+import { db, Users } from 'astro:db';
 import { verifySessionToken, SESSION_COOKIE } from '@/lib/auth';
 
 // ── Validation ─────────────────────────────────────────────
@@ -58,14 +57,15 @@ export const GET: APIRoute = async ({ cookies }) => {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
   }
 
-  const filePath = path.join(process.cwd(), 'src/data/users.json');
   try {
-    const data = await fs.readFile(filePath, 'utf-8');
-    return new Response(data, {
+    const rows = await db.select().from(Users);
+    rows.sort((a, b) => a.id - b.id);
+    return new Response(JSON.stringify(rows), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('Users GET error:', error);
     return new Response(JSON.stringify([]), { status: 200 });
   }
 };
@@ -84,14 +84,20 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
 
     const sanitized = sanitizeUsers(body);
-    const filePath = path.join(process.cwd(), 'src/data/users.json');
-    await fs.writeFile(filePath, JSON.stringify(sanitized, null, 2), 'utf-8');
-    
+
+    // Replace the whole set (the client always sends the full list). Persisted
+    // in Astro DB so it works on read-only/serverless hosts like Vercel.
+    await db.delete(Users);
+    if (sanitized.length > 0) {
+      await db.insert(Users).values(sanitized);
+    }
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('Users POST error:', error);
     return new Response(JSON.stringify({ error: 'Failed to save users' }), { status: 500 });
   }
 };

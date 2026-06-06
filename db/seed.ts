@@ -1,4 +1,4 @@
-import { db, SiteSettings, Navigation, TechStack, ExpertiseCategory, FAQCategory, WorkItem, CompanyInfo, ServiceDetails, SolutionDetails } from 'astro:db';
+import { db, SiteSettings, Navigation, TechStack, ExpertiseCategory, FAQCategory, WorkItem, CompanyInfo, ServiceDetails, SolutionDetails, Users } from 'astro:db';
 import { faqData } from '../src/data/faq';
 import { workItems } from '../src/data/work';
 import { careStats, partnerStats, whatWeDo } from '../src/data/company';
@@ -131,6 +131,18 @@ export default async function seed() {
       ctaHeadline: details.ctaHeadline,
       ctaHeadlineDim: details.ctaHeadlineDim,
     });
+  }
+
+  // 10. Admin users — seed defaults ONLY if the table is empty so that
+  // users added/edited via the admin panel survive a re-seed.
+  const existingUsers = await db.select().from(Users);
+  if (existingUsers.length === 0) {
+    await db.insert(Users).values([
+      { id: 1, name: 'Aman Admin', email: 'aman@admin', role: 'Super Admin', status: 'Active', lastLogin: 'Just now' },
+      { id: 2, name: 'John Doe', email: 'john@pinnacleroute.com', role: 'Editor', status: 'Active', lastLogin: '2 hours ago' },
+      { id: 3, name: 'Sarah Smith', email: 'sarah@pinnacleroute.com', role: 'Author', status: 'Offline', lastLogin: '1 day ago' },
+      { id: 4, name: 'Alex Johnson', email: 'alex@pinnacleroute.com', role: 'Guest', status: 'Suspended', lastLogin: '1 week ago' },
+    ]);
   }
 
   console.log('All static data successfully migrated to Astro DB schema!');

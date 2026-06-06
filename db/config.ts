@@ -123,6 +123,17 @@ const Inquiries = defineTable({
   }
 });
 
+const Users = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    name: column.text(),
+    email: column.text(),
+    role: column.text(),
+    status: column.text(),
+    lastLogin: column.text(),
+  }
+});
+
 export default defineDb({
   tables: {
     SiteSettings,
@@ -134,6 +145,7 @@ export default defineDb({
     CompanyInfo,
     ServiceDetails,
     SolutionDetails,
-    Inquiries
+    Inquiries,
+    Users
   }
 });
