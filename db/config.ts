@@ -134,6 +134,22 @@ const Users = defineTable({
   }
 });
 
+const BlogPosts = defineTable({
+  columns: {
+    slug: column.text({ primaryKey: true }),
+    title: column.text(),
+    description: column.text(),
+    pubDate: column.date(),
+    category: column.text(),
+    readTime: column.number(),
+    author: column.text({ default: 'Pinnacle Route Team' }),
+    featured: column.boolean({ default: false }),
+    views: column.number({ default: 0 }),
+    image: column.text({ optional: true }),
+    content: column.text(), // markdown body
+  }
+});
+
 export default defineDb({
   tables: {
     SiteSettings,
@@ -146,6 +162,7 @@ export default defineDb({
     ServiceDetails,
     SolutionDetails,
     Inquiries,
-    Users
+    Users,
+    BlogPosts
   }
 });

@@ -1,7 +1,7 @@
 ---
 export const prerender = false;
 import AdminLayout from '@/layouts/AdminLayout.astro';
-import { getCollection } from 'astro:content';
+import { getBlogPosts } from '@/lib/blog';
 import { db, Inquiries } from 'astro:db';
 import { verifySessionToken } from '@/lib/auth';
 
@@ -11,7 +11,7 @@ if (!verifySessionToken(sessionCookie?.value)) {
   return Astro.redirect('/admin/login');
 }
 
-const posts = await getCollection('blog');
+const posts = await getBlogPosts();
 const totalViews = posts.reduce((sum, post) => sum + (post.data.views || 0), 0);
 
 // Get Real Lead Count from DB

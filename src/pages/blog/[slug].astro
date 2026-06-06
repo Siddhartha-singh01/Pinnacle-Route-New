@@ -1,20 +1,18 @@
 ---
-import { getCollection, render } from 'astro:content';
+export const prerender = false;
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ArticleToc from '@/components/blog/ArticleToc.astro';
 import ArticleSidebar from '@/components/blog/ArticleSidebar.astro';
 import Breadcrumb from '@/components/ui/Breadcrumb.astro';
+import { getBlogPost, renderMarkdown } from '@/lib/blog';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
-}
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/404');
 
-const { post } = Astro.props;
-const { Content, headings } = await render(post);
+const post = await getBlogPost(slug);
+if (!post) return Astro.redirect('/404');
+
+const { html, headings } = await renderMarkdown(post.content);
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('en-GB', {
@@ -85,7 +83,7 @@ const highlightTitle = (title: string) => {
 
         <!-- Main Content (Markdown) -->
         <article class="flex-1 max-w-3xl prose prose-invert prose-lg prose-headings:font-display prose-headings:font-medium prose-a:text-gold hover:prose-a:text-gold/80 prose-blockquote:border-gold prose-blockquote:bg-surface prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-white prose-li:text-grey-2 prose-p:text-grey-2">
-          <Content />
+          <Fragment set:html={html} />
         </article>
 
         <!-- Right Sidebar (Reading Progress + CTAs) -->

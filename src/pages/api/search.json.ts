@@ -1,5 +1,6 @@
+export const prerender = false;
 import type { APIRoute } from "astro";
-import { getCollection } from "astro:content";
+import { getBlogPosts } from "@/lib/blog";
 import { services, serviceHref } from "@/data/services";
 import { solutions, solutionHref } from "@/data/solutions";
 
@@ -46,8 +47,8 @@ export const GET: APIRoute = async () => {
     });
   }
 
-  // 4. Add Blog Posts
-  const blogPosts = await getCollection("blog");
+  // 4. Add Blog Posts (from the DB)
+  const blogPosts = await getBlogPosts();
   for (const post of blogPosts) {
     index.push({
       title: post.data.title,

@@ -243,7 +243,7 @@ export default function BlogEditor() {
 
             <div className="mt-4 pt-4 border-t border-line-soft">
               <p className="text-xs text-grey-2">
-                This post will be saved immediately to the local filesystem as a .md file.
+                This post is saved to the database and goes live immediately — no redeploy needed.
               </p>
             </div>
 

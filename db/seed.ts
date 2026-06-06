@@ -1,4 +1,7 @@
-import { db, SiteSettings, Navigation, TechStack, ExpertiseCategory, FAQCategory, WorkItem, CompanyInfo, ServiceDetails, SolutionDetails, Users } from 'astro:db';
+import { db, SiteSettings, Navigation, TechStack, ExpertiseCategory, FAQCategory, WorkItem, CompanyInfo, ServiceDetails, SolutionDetails, Users, BlogPosts } from 'astro:db';
+import fs from 'node:fs';
+import path from 'node:path';
+import { parseFrontmatter } from '@astrojs/internal-helpers/frontmatter';
 import { faqData } from '../src/data/faq';
 import { workItems } from '../src/data/work';
 import { careStats, partnerStats, whatWeDo } from '../src/data/company';
@@ -143,6 +146,34 @@ export default async function seed() {
       { id: 3, name: 'Sarah Smith', email: 'sarah@pinnacleroute.com', role: 'Author', status: 'Offline', lastLogin: '1 day ago' },
       { id: 4, name: 'Alex Johnson', email: 'alex@pinnacleroute.com', role: 'Guest', status: 'Suspended', lastLogin: '1 week ago' },
     ]);
+  }
+
+  // 11. Blog posts — migrate the markdown files in src/content/blog into the DB,
+  // but ONLY if the table is empty so admin-authored posts survive a re-seed.
+  const existingPosts = await db.select().from(BlogPosts);
+  if (existingPosts.length === 0) {
+    const blogDir = path.join(process.cwd(), 'src/content/blog');
+    if (fs.existsSync(blogDir)) {
+      const files = fs.readdirSync(blogDir).filter((f) => f.endsWith('.md') && !f.startsWith('_'));
+      for (const file of files) {
+        const raw = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+        const { frontmatter, content } = parseFrontmatter(raw);
+        const fm = frontmatter as Record<string, any>;
+        await db.insert(BlogPosts).values({
+          slug: file.replace(/\.md$/, ''),
+          title: String(fm.title ?? 'Untitled'),
+          description: String(fm.description ?? ''),
+          pubDate: fm.pubDate ? new Date(fm.pubDate) : new Date(),
+          category: String(fm.category ?? 'Strategy'),
+          readTime: Number(fm.readTime) || 5,
+          author: String(fm.author ?? 'Pinnacle Route Team'),
+          featured: Boolean(fm.featured),
+          views: Number(fm.views) || 0,
+          image: fm.image ? String(fm.image) : null,
+          content: content ?? '',
+        });
+      }
+    }
   }
 
   console.log('All static data successfully migrated to Astro DB schema!');

@@ -1,18 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
+export const prerender = false;
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import BlogFilterBar from '@/components/blog/BlogFilterBar.astro';
 import FeaturedArticle from '@/components/blog/FeaturedArticle.astro';
 import BlogCard from '@/components/blog/BlogCard.astro';
 import CtaBanner from '@/components/sections/CtaBanner.astro';
+import { getBlogPosts } from '@/lib/blog';
 
-// Fetch and sort posts by date
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// Posts come from the DB (admin-managed), already sorted newest first.
+const sortedPosts = await getBlogPosts();
 
 // Separate featured post
 const featuredPost = sortedPosts.find(post => post.data.featured) || sortedPosts[0];
-const gridPosts = sortedPosts.filter(post => post.id !== featuredPost.id);
+const gridPosts = sortedPosts.filter(post => post.id !== featuredPost?.id);
 ---
 
 <BaseLayout 
