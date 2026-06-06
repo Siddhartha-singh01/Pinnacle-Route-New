@@ -29,3 +29,4 @@ Thumbs.db
 # Client feedback package + generated audit (local only — never committed)
 Pinnacle Route Feedback/
 FEEDBACK_AUDIT_REPORT.md
+bug_report.md

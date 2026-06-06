@@ -56,7 +56,7 @@ const { category, mask = "tr" } = Astro.props;
       </p>
 
       <div>
-        <a href="/strategy-call" class="pill pill-dark !py-2.5 !px-5 !text-[0.85rem]" data-magnetic="0.2">
+        <a href={category.id === "technology" ? "/services/custom-software-development" : category.id === "design" ? "/services/ui-ux-design" : category.id === "growth" ? "/services/ecommerce-development" : "/strategy-call"} class="pill pill-dark !py-2.5 !px-5 !text-[0.85rem]" data-magnetic="0.2">
           Learn More <span class="arrow">↗</span>
         </a>
       </div>
@@ -68,17 +68,26 @@ const { category, mask = "tr" } = Astro.props;
         </div>
 
         <ul class="border-t border-line-ink">
-          {category.services.map((service) => (
-            <li class="border-b border-line-ink group">
-              <a href="/strategy-call" class="flex items-center gap-4 py-5 hover:bg-ink/[0.02] transition-colors">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-grey-2 shrink-0">
-                  <path d={service.icon} />
-                </svg>
-                <span class="text-[0.95rem] font-medium text-ink/70 group-hover:text-ink transition-colors">{service.label}</span>
-                <span class="ml-auto text-grey-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">↗</span>
-              </a>
-            </li>
-          ))}
+          {category.services.map((service) => {
+            let slug = "/strategy-call";
+            const label = service.label.toLowerCase();
+            if (label.includes("mobile")) slug = "/services/mobile-app-development";
+            else if (label.includes("web") || label.includes("backend")) slug = "/services/custom-software-development";
+            else if (label.includes("ai")) slug = "/services/ai-automation";
+            else if (label.includes("ui") || label.includes("ux")) slug = "/services/ui-ux-design";
+            
+            return (
+              <li class="border-b border-line-ink group">
+                <a href={slug} class="flex items-center gap-4 py-5 hover:bg-ink/[0.02] transition-colors">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-grey-2 shrink-0">
+                    <path d={service.icon} />
+                  </svg>
+                  <span class="text-[0.95rem] font-medium text-ink/70 group-hover:text-ink transition-colors">{service.label}</span>
+                  <span class="ml-auto text-grey-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">↗</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

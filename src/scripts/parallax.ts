@@ -3,8 +3,14 @@
  * Elements with `[data-parallax]` receive a subtle vertical offset on scroll.
  */
 
+let scrollListener: (() => void) | null = null;
+
 export function initParallax(): void {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  if (scrollListener) {
+    window.removeEventListener("scroll", scrollListener);
+  }
 
   const items = [...document.querySelectorAll<HTMLElement>("[data-parallax]")];
   if (!items.length) return;
@@ -19,6 +25,14 @@ export function initParallax(): void {
     }
   };
 
+  scrollListener = onScroll;
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 }
+
+document.addEventListener("astro:before-swap", () => {
+  if (scrollListener) {
+    window.removeEventListener("scroll", scrollListener);
+    scrollListener = null;
+  }
+});

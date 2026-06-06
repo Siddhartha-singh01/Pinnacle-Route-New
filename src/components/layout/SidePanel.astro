@@ -41,7 +41,7 @@
       <div class="mb-12">
         <h3 class="text-2xl font-medium text-[#ffffff] mb-6 tracking-tight">Quick Links</h3>
         <ul class="flex flex-col gap-4">
-          <li><a href="#" class="text-gray-400 hover:text-[#CAA154] transition-colors text-[1.05rem]">Partners</a></li>
+          <li><a href="/our-expertise" class="text-gray-400 hover:text-[#CAA154] transition-colors text-[1.05rem]">Partners</a></li>
           <li><a href="/strategy-call" class="text-gray-400 hover:text-[#CAA154] transition-colors text-[1.05rem]">Request Consultation</a></li>
         </ul>
       </div>
@@ -59,7 +59,7 @@
         <p class="text-[#e2e8f0] text-[1.05rem] mt-2 leading-relaxed">
           USA
         </p>
-        <a href="#" class="text-[#e2e8f0] hover:text-[#CAA154] transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-[#CAA154] text-[1.05rem] mt-2">View All</a>
+        <a href="/contact" class="text-[#e2e8f0] hover:text-[#CAA154] transition-colors underline underline-offset-4 decoration-white/20 hover:decoration-[#CAA154] text-[1.05rem] mt-2">View All</a>
       </div>
     </div>
 
@@ -91,7 +91,10 @@
     wrapper.classList.remove('invisible', 'pointer-events-none');
     wrapper.classList.add('visible');
     wrapper.style.opacity = '1';
-    if(overlay) overlay.style.pointerEvents = 'auto';
+    if(overlay) {
+      overlay.style.pointerEvents = 'auto';
+      overlay.classList.remove('pointer-events-none');
+    }
     panel.classList.remove('-translate-x-full');
     panel.classList.add('translate-x-0');
     document.body.style.overflow = 'hidden';
@@ -105,7 +108,10 @@
 
     panel.classList.remove('translate-x-0');
     panel.classList.add('-translate-x-full');
-    if(overlay) overlay.style.pointerEvents = 'none';
+    if(overlay) {
+      overlay.style.pointerEvents = 'none';
+      overlay.classList.add('pointer-events-none');
+    }
     
     setTimeout(() => {
       wrapper.style.opacity = '0';

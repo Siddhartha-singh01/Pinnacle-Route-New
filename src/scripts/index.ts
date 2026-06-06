@@ -27,6 +27,14 @@ document.addEventListener("astro:page-load", () => {
   initAccordion();
 });
 
+document.addEventListener("astro:before-swap", () => {
+  const w = window as any;
+  if (w.__lenis) {
+    w.__lenis.destroy();
+    w.__lenis = null;
+  }
+});
+
 // Back-to-top button (Footer)
 document.addEventListener("astro:page-load", () => {
   document.getElementById("back-to-top")?.addEventListener("click", () => {

@@ -5,18 +5,8 @@ type Message = {
   content: string;
 };
 
-const LANGUAGES = [
-  { code: 'en', label: 'English', flag: '🇺🇸' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'pl', label: 'Polski', flag: '🇵🇱' },
-  { code: 'ar', label: 'العربية', flag: '🇦🇪' },
-];
-
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [lang, setLang] = useState(LANGUAGES[0]);
-  const [langOpen, setLangOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +34,7 @@ export default function Chatbot() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: [...messages, { role: 'user', content: userMsg }],
-          language: lang.label
+          messages: [...messages, { role: 'user', content: userMsg }]
         }),
       });
 
@@ -84,41 +73,11 @@ export default function Chatbot() {
       {isOpen && (
         <div className="mb-4 w-[350px] sm:w-[380px] h-[550px] max-h-[80vh] bg-surface/95 backdrop-blur-xl rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden border border-line-soft">
           
-          {/* Header - Language Selector */}
-          <div className="flex justify-end p-4 relative z-20 bg-ink/30 border-b border-line-soft">
-            <div className="relative">
-              <button 
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center gap-2 bg-ink border border-line-soft rounded-full px-4 py-2 text-sm text-grey hover:text-white transition-colors"
-              >
-                <span>{lang.flag}</span>
-                <span className="font-medium">{lang.label}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-transform ${langOpen ? 'rotate-180' : ''}`}>
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-
-              {langOpen && (
-                <div className="absolute right-0 top-full mt-2 w-40 bg-surface-2 border border-line-soft rounded-2xl shadow-xl overflow-hidden py-2 z-30">
-                  {LANGUAGES.map(l => (
-                    <button
-                      key={l.code}
-                      onClick={() => { setLang(l); setLangOpen(false); }}
-                      className="w-full flex items-center justify-between px-4 py-2 text-sm hover:bg-ink transition-colors"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span>{l.flag}</span>
-                        <span className={lang.code === l.code ? 'font-medium text-gold' : 'text-grey'}>{l.label}</span>
-                      </span>
-                      {lang.code === l.code && (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gold">
-                          <path d="M6 9l6 6 6-6" />
-                        </svg>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
+          {/* Header */}
+          <div className="flex justify-between items-center p-4 relative z-20 bg-ink/30 border-b border-line-soft">
+            <div className="flex items-center gap-2">
+              <AbstractAvatar size={24} />
+              <span className="font-medium text-sm text-white">AI Assistant</span>
             </div>
             
             <button 

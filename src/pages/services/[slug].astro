@@ -67,7 +67,7 @@ const chevron =
           </span>
         </button>
         <div class="svc-panel">
-          <div class="svc-panel-inner grid grid-cols-2 gap-1">
+          <div class="svc-panel-inner grid grid-cols-1 sm:grid-cols-2 gap-1">
             {services.map((s) => (
               <a href={serviceHref(s.slug)} class:list={["svc-panel-link", { "is-current": s.slug === svc.slug }]}>
                 {s.label}
@@ -88,7 +88,7 @@ const chevron =
             <Fragment set:html={chevron} />
           </button>
           <div class="svc-panel">
-            <div class="svc-panel-inner grid grid-cols-2 gap-1">
+            <div class="svc-panel-inner grid grid-cols-1 sm:grid-cols-2 gap-1">
               {services.map((s) => (
                 <a href={serviceHref(s.slug)} class:list={["svc-panel-link", { "is-current": s.slug === svc.slug }]}>
                   {s.label}
@@ -209,7 +209,8 @@ const chevron =
     border: 1px solid var(--color-line-soft);
     border-radius: 1.1rem;
     padding: 0.5rem;
-    min-width: 21rem;
+    width: max-content;
+    max-width: calc(100vw - 2rem);
     box-shadow: 0 28px 64px -26px rgba(0, 0, 0, 0.55);
   }
   @media (min-width: 640px) {
