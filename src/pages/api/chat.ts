@@ -147,7 +147,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       }
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
 
     
     // Instead of showing a generic error to the user when Google blocks the API key (403),

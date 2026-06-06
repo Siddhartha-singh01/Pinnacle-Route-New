@@ -165,8 +165,9 @@ export const GET: APIRoute = async ({ request, cookies }) => {
     }
 
     return new Response(JSON.stringify({ error: 'Invalid type parameter' }), { status: 400 });
-  } catch (e: any) {
-    return new Response(JSON.stringify({ error: e.message }), { status: 500 });
+  } catch (e: unknown) {
+    console.error('Admin content API error:', e);
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
   }
 };
 
@@ -351,7 +352,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
     
     return new Response(JSON.stringify({ error: 'Not implemented' }), { status: 501 });
-  } catch (e: any) {
-    return new Response(JSON.stringify({ error: e.message }), { status: 500 });
+  } catch (e: unknown) {
+    console.error('Admin content API error:', e);
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 });
   }
 };

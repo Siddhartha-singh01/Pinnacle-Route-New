@@ -21,8 +21,8 @@ const { tools, label = "The modern stack we orchestrate" } = Astro.props;
       {
         [...tools, ...tools].map((t) => (
           <img
-            src={t.startsWith('http') ? t : `/assets/tech-logos/optimized/${t}.jpg`}
-            alt={t.split('/').pop() || t}
+            src={t}
+            alt={(t.split('/').pop() || 'logo').replace(/\.svg$/, '')}
             loading="lazy"
             class="h-14 md:h-16 w-auto max-w-[200px] md:max-w-[260px] object-contain transition-transform duration-300 flex-shrink-0 px-4"
           />

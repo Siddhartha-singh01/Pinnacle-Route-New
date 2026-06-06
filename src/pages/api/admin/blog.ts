@@ -98,8 +98,9 @@ ${content}
       headers: { 'Content-Type': 'application/json' }
     });
 
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message || 'Internal server error' }), {
+  } catch (error: unknown) {
+    console.error('Admin blog API error:', error);
+    return new Response(JSON.stringify({ error: 'Internal server error' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
