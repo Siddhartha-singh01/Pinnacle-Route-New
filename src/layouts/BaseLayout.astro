@@ -117,12 +117,7 @@ const ogImage = new URL(image, Astro.site).href;
     <Nav theme={navTheme} />
     <SidePanel />
     
-    <!-- Global Sticky Action Buttons (hidden on phones — they overlap hero text;
-         CTAs remain available in the nav and side panel) -->
-    <div class="fixed left-0 top-[60%] z-[45] origin-top-left -rotate-90 hidden sm:flex items-center gap-1">
-      <a href="/strategy-call" class="bg-black text-[#ffffff] px-6 py-2.5 rounded-b-xl font-bold text-[11px] tracking-[0.15em] uppercase hover:bg-gray-900 transition-colors shadow-2xl border-b border-[#333] whitespace-nowrap flex items-center">Schedule Call</a>
-      <a href="/strategy-call" class="bg-[#CAA154] text-[#ffffff] px-6 py-2.5 rounded-b-xl font-bold text-[11px] tracking-[0.15em] uppercase hover:bg-[#b08d45] transition-colors shadow-2xl border-b border-[#e6c17a]/50 whitespace-nowrap flex items-center">Request Quote</a>
-    </div>
+
 
     <main id="top">
       <slot />
