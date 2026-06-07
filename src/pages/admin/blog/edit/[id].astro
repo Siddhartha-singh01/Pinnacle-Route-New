@@ -1,0 +1,22 @@
+---
+export const prerender = false;
+import AdminLayout from '@/layouts/AdminLayout.astro';
+import BlogEditor from '@/components/admin/BlogEditor';
+import { db, BlogPosts, eq } from 'astro:db';
+
+const { id } = Astro.params;
+
+let post = null;
+if (id) {
+  const posts = await db.select().from(BlogPosts).where(eq(BlogPosts.slug, id));
+  post = posts[0];
+}
+
+if (!post) {
+  return Astro.redirect('/admin/blog');
+}
+---
+
+<AdminLayout title="Edit Post" activeTab="blog">
+  <BlogEditor initialData={post} client:load />
+</AdminLayout>

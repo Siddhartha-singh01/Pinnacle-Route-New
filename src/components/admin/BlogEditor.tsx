@@ -1,16 +1,16 @@
 import React, { useState, useRef } from 'react';
 
-export default function BlogEditor() {
+export default function BlogEditor({ initialData }: { initialData?: any }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    category: 'AI Automation',
-    readTime: '5',
-    content: ''
+    title: initialData?.title || '',
+    description: initialData?.description || '',
+    category: initialData?.category || 'AI Automation',
+    readTime: initialData?.readTime?.toString() || '5',
+    content: initialData?.content || ''
   });
 
   // ── Image insertion (Markdown by URL — works without a storage backend) ──
@@ -50,8 +50,11 @@ export default function BlogEditor() {
     setSuccess(false);
 
     try {
-      const response = await fetch('/api/admin/blog', {
-        method: 'POST',
+      const url = initialData ? `/api/admin/blog/${initialData.slug}` : '/api/admin/blog';
+      const method = initialData ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method,
         credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
@@ -65,14 +68,16 @@ export default function BlogEditor() {
       }
 
       setSuccess(true);
-      // Reset form on success
-      setFormData({
-        title: '',
-        description: '',
-        category: 'AI Automation',
-        readTime: '5',
-        content: ''
-      });
+      // Reset form on success only if creating new
+      if (!initialData) {
+        setFormData({
+          title: '',
+          description: '',
+          category: 'AI Automation',
+          readTime: '5',
+          content: ''
+        });
+      }
 
       // Redirect after 2 seconds
       setTimeout(() => {
@@ -96,14 +101,23 @@ export default function BlogEditor() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-8 max-w-4xl">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-white">Create New Post</h1>
-        <button 
-          type="submit" 
-          disabled={loading}
-          className="px-6 py-2 bg-gold text-black font-medium text-sm rounded-lg hover:bg-white transition-colors disabled:opacity-50"
-        >
-          {loading ? 'Publishing...' : 'Publish Post'}
-        </button>
+        <h1 className="text-2xl font-semibold text-white">{initialData ? 'Edit Post' : 'Create New Post'}</h1>
+        <div className="flex items-center gap-3">
+          <button 
+            type="button" 
+            onClick={() => window.location.href = '/admin/blog'}
+            className="px-6 py-2 bg-transparent border border-line-soft text-grey-2 font-medium text-sm rounded-lg hover:text-white hover:bg-surface-2 transition-colors"
+          >
+            Cancel
+          </button>
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="px-6 py-2 bg-gold text-black font-medium text-sm rounded-lg hover:bg-white transition-colors disabled:opacity-50"
+          >
+            {loading ? (initialData ? 'Updating...' : 'Publishing...') : (initialData ? 'Update Post' : 'Publish Post')}
+          </button>
+        </div>
       </div>
 
       {error && (
