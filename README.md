@@ -1,6 +1,6 @@
 # Pinnacle Route - Premium Digital Studio Platform
 
-![Pinnacle Route Banner](public/assets/client-proof/designer-club.png)
+![Pinnacle Route Banner](public/assets/client-proof/designer-club.png)     
 
 Pinnacle Route is a state-of-the-art, premium digital studio portfolio and corporate platform. Designed with performance, modern aesthetics, and liquid-smooth animations in mind, this codebase serves as a comprehensive marketing site, headless CMS, and secure admin dashboard.
 
