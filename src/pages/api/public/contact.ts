@@ -26,7 +26,16 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Verify reCAPTCHA token
-    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || import.meta.env.RECAPTCHA_SECRET_KEY;
+    let recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || import.meta.env.RECAPTCHA_SECRET_KEY;
+    
+    // Auto-detect localhost environment to use Google's test secret key
+    const referer = request.headers.get('referer') || '';
+    const origin = request.headers.get('origin') || '';
+    const isLocal = referer.includes('localhost') || referer.includes('127.0.0.1') || origin.includes('localhost') || origin.includes('127.0.0.1');
+    if (isLocal) {
+      recaptchaSecret = '6LeIxAcTAAAAAGG-vFI1TnwpLLWDtQM39M5893oc';
+    }
+
     if (recaptchaSecret) {
       const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${data.recaptchaToken}`;
       const recaptchaResponse = await fetch(verifyUrl, { method: 'POST' });

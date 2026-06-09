@@ -141,7 +141,7 @@ export default async function seed() {
   const existingUsers = await db.select().from(Users);
   if (existingUsers.length === 0) {
     await db.insert(Users).values([
-      { id: 1, name: 'Aman Admin', email: 'aman@admin', role: 'Super Admin', status: 'Active', lastLogin: 'Just now' },
+      { id: 1, name: 'Administrator', email: 'admin@pinnacleroute.com', role: 'Super Admin', status: 'Active', lastLogin: 'Just now' },
       { id: 2, name: 'John Doe', email: 'john@pinnacleroute.com', role: 'Editor', status: 'Active', lastLogin: '2 hours ago' },
       { id: 3, name: 'Sarah Smith', email: 'sarah@pinnacleroute.com', role: 'Author', status: 'Offline', lastLogin: '1 day ago' },
       { id: 4, name: 'Alex Johnson', email: 'alex@pinnacleroute.com', role: 'Guest', status: 'Suspended', lastLogin: '1 week ago' },

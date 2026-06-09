@@ -40,7 +40,27 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
             <div id="form-status" class="hidden rounded-lg p-4 mb-4 text-sm font-medium border"></div>
 
             <!-- Google reCAPTCHA API -->
-            <script src="https://www.google.com/recaptcha/api.js" async defer is:inline></script>
+            <script is:inline>
+              (function() {
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const initRecaptcha = () => {
+                  if (isLocal) {
+                    const widgets = document.querySelectorAll('.g-recaptcha');
+                    widgets.forEach(w => w.setAttribute('data-sitekey', '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'));
+                  }
+                  const script = document.createElement('script');
+                  script.src = "https://www.google.com/recaptcha/api.js";
+                  script.async = true;
+                  script.defer = true;
+                  document.head.appendChild(script);
+                };
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', initRecaptcha);
+                } else {
+                  initRecaptcha();
+                }
+              })();
+            </script>
             
             <!-- Row 1 -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -146,7 +166,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
 
                 <!-- reCAPTCHA Widget -->
                 <div class="w-full md:w-auto flex md:justify-end overflow-hidden rounded-md border border-grey/10 shadow-sm">
-                  <div class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'} data-theme="light"></div>
+                  <div id="contact-recaptcha" class="g-recaptcha" data-sitekey={import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'} data-theme="light"></div>
                 </div>
               </div>
 
