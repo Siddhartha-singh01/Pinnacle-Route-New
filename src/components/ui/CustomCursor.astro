@@ -8,11 +8,11 @@
 ---
 
 <div id="custom-cursor" class="hidden lg:block pointer-events-none fixed inset-0 z-[9999]">
-  <!-- Trailing Ring -->
-  <div id="cursor-ring" class="absolute top-0 left-0 w-8 h-8 -ml-4 -mt-4 rounded-full border border-ink/40 dark:border-white/40 will-change-transform"></div>
+  <!-- Trailing Ring: Thicker and higher opacity for a darker, more defined look -->
+  <div id="cursor-ring" class="absolute top-0 left-0 w-8 h-8 -ml-4 -mt-4 rounded-full border-[1.5px] border-ink/75 dark:border-white/75 will-change-transform"></div>
   
-  <!-- Solid Gold Dot -->
-  <div id="cursor-dot" class="absolute top-0 left-0 w-2 h-2 -ml-1 -mt-1 rounded-full bg-[#CAA154] will-change-transform"></div>
+  <!-- Solid Gold Dot: Slightly larger and richer/darker gold -->
+  <div id="cursor-dot" class="absolute top-0 left-0 w-2.5 h-2.5 -ml-1.25 -mt-1.25 rounded-full bg-[#B58C37] will-change-transform"></div>
 </div>
 
 <style>
@@ -24,8 +24,8 @@
   
   /* Hover state scale adjustments via classes managed by JS */
   #cursor-ring.is-hovering {
-    background-color: rgba(202, 161, 84, 0.1);
-    border-color: rgba(202, 161, 84, 0.8);
+    background-color: rgba(181, 140, 55, 0.12);
+    border-color: rgba(181, 140, 55, 0.95);
     transform-origin: center center;
   }
   
@@ -46,11 +46,11 @@
     
     if (!ring || !dot) return;
 
-    // Use GSAP quickTo for maximum performance
-    const xSetRing = gsap.quickTo(ring, "x", { duration: 0.5, ease: "power3" });
-    const ySetRing = gsap.quickTo(ring, "y", { duration: 0.5, ease: "power3" });
-    const xSetDot = gsap.quickTo(dot, "x", { duration: 0.05, ease: "power3.out" });
-    const ySetDot = gsap.quickTo(dot, "y", { duration: 0.05, ease: "power3.out" });
+    // Use GSAP quickTo for maximum performance and adjust durations/easing for a smoother glide
+    const xSetRing = gsap.quickTo(ring, "x", { duration: 0.4, ease: "power2.out" });
+    const ySetRing = gsap.quickTo(ring, "y", { duration: 0.4, ease: "power2.out" });
+    const xSetDot = gsap.quickTo(dot, "x", { duration: 0.1, ease: "power2.out" });
+    const ySetDot = gsap.quickTo(dot, "y", { duration: 0.1, ease: "power2.out" });
 
     // Ensure the cursor follows the mouse
     window.addEventListener("mousemove", (e) => {
@@ -87,3 +87,4 @@
     });
   });
 </script>
+
