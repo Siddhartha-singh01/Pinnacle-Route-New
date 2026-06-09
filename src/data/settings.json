@@ -3,7 +3,7 @@
     "id": "maintenance",
     "name": "Maintenance Mode",
     "description": "Take the public website offline for updates. Only admins can access.",
-    "active": true
+    "active": false
   },
   {
     "id": "blog_public",
