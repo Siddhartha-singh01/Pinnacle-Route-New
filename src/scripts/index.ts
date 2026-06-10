@@ -41,6 +41,18 @@ document.addEventListener("astro:before-swap", () => {
     w.__lenis.destroy();
     w.__lenis = null;
   }
+  if (w.__wwdScrollHandler) {
+    window.removeEventListener("scroll", w.__wwdScrollHandler);
+    w.__wwdScrollHandler = null;
+  }
+  if (w.__wwdWheelHandler) {
+    window.removeEventListener("wheel", w.__wwdWheelHandler);
+    w.__wwdWheelHandler = null;
+  }
+  if (w.__wwdTouchMoveHandler) {
+    window.removeEventListener("touchmove", w.__wwdTouchMoveHandler);
+    w.__wwdTouchMoveHandler = null;
+  }
 });
 
 // Back-to-top button (Footer)

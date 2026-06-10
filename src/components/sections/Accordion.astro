@@ -26,8 +26,8 @@ const {
 } = Astro.props;
 ---
 
-<section class="section relative overflow-hidden border-t border-line-soft">
-  <div class="container-page grid gap-16 lg:grid-cols-2">
+<section class="section wwd-scroll-section relative overflow-hidden border-t border-line-soft lg:min-h-screen lg:flex lg:items-center">
+  <div class="container-page grid gap-16 lg:grid-cols-2 items-center w-full">
     <!-- left: heading + accordion -->
     <div>
       {eyebrow && <p class="eyebrow mb-7" data-reveal>{eyebrow}</p>}
@@ -39,13 +39,13 @@ const {
         {
           items.map((item, i) => (
             <div class="wwd-item pl-6">
-              <button type="button" class="wwd-head flex items-center gap-4 w-full text-left py-4" aria-expanded={i === 0 ? "true" : "false"}>
+              <button type="button" class="wwd-head flex items-center gap-4 w-full text-left py-4 lg:py-3" aria-expanded={i === 0 ? "true" : "false"}>
                 <span class="text-xs text-grey-3 tabular-nums">0{i + 1}</span>
                 <span class="wwd-label display-sm !text-[clamp(1.5rem,3vw,2.25rem)] leading-none">{item.label}</span>
                 <span class="wwd-arrow ml-2 text-xl">↗</span>
               </button>
               <div class="wwd-panel">
-                <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6 pb-8 pl-9">
+                <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6 lg:gap-y-4 pb-8 lg:pb-5 pl-9">
                   <p class="text-sm leading-relaxed text-grey-2">{item.desc}</p>
                   <ul class="space-y-2.5">
                     {item.tags.map((t) => (
@@ -61,9 +61,9 @@ const {
     </div>
 
     <!-- right: image -->
-    <div class="relative h-[350px] sm:h-[480px] lg:h-full lg:min-h-[620px]" data-reveal data-reveal-delay="1">
+    <div class="relative h-[350px] sm:h-[480px] lg:h-[60vh] lg:min-h-[500px]" data-reveal data-reveal-delay="1">
       <div class="absolute inset-0 overflow-hidden rounded-2xl border border-line-soft bg-surface">
-        <img src={image} alt={imageAlt} data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%] grayscale" />
+        <img src={image} alt={imageAlt} data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]" />
       </div>
       <a href="/#services" class="pill pill-dark absolute bottom-6 left-6" data-magnetic="0.25">
         Services <span class="arrow">↗</span>
@@ -71,3 +71,12 @@ const {
     </div>
   </div>
 </section>
+
+<style>
+  @media (min-width: 1024px) {
+    .wwd-scroll-section {
+      padding-top: 3.5rem !important;
+      padding-bottom: 3.5rem !important;
+    }
+  }
+</style>
