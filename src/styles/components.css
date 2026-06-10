@@ -152,5 +152,5 @@
     font-size: clamp(1.9rem, 8.4vw, 8rem);
     user-select: none;
   }
-  .footer-mark .gold { color: var(--color-gold); margin-left: 0.4em; }
+  .footer-mark .gold { color: var(--color-gold); margin-left: 0.25em; }
 }
