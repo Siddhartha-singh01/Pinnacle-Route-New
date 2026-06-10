@@ -73,4 +73,13 @@ if (Astro.request.method === "POST") {
       </div>
     </div>
   </main>
+
+  <style is:global>
+    body, a, button, input, textarea, select, .cursor-pointer {
+      cursor: auto !important;
+    }
+    #custom-cursor {
+      display: none !important;
+    }
+  </style>
 </BaseLayout>

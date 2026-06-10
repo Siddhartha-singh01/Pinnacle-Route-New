@@ -43,6 +43,39 @@
 
     const ring = document.getElementById("cursor-ring");
     const dot = document.getElementById("cursor-dot");
+    const container = document.getElementById("custom-cursor");
+
+    // Check if we are in the admin area
+    const isAdmin = window.location.pathname.startsWith('/admin');
+
+    if (isAdmin) {
+      if (container) {
+        container.style.display = 'none';
+      }
+      
+      // Inject style to restore default cursor
+      let styleTag = document.getElementById('admin-cursor-style');
+      if (!styleTag) {
+        styleTag = document.createElement('style');
+        styleTag.id = 'admin-cursor-style';
+        styleTag.innerHTML = `
+          body, a, button, input, textarea, select, .cursor-pointer, [role="button"] {
+            cursor: auto !important;
+          }
+        `;
+        document.head.appendChild(styleTag);
+      }
+      return;
+    } else {
+      // Remove admin style override if returning to frontend
+      const styleTag = document.getElementById('admin-cursor-style');
+      if (styleTag) {
+        styleTag.remove();
+      }
+      if (container) {
+        container.style.display = '';
+      }
+    }
     
     if (!ring || !dot) return;
 

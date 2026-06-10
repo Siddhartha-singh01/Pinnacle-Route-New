@@ -1,6 +1,5 @@
 ---
 import '@/styles/global.css';
-import CustomCursor from '@/components/ui/CustomCursor.astro';
 
 interface Props {
   title: string;
@@ -32,7 +31,6 @@ const menuItems = [
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
   <body class="admin-panel-theme bg-[#ffffff] text-black antialiased flex h-screen overflow-hidden font-sans">
-    <CustomCursor />
     <!-- Sidebar -->
     <aside class="w-64 border-r border-line-soft bg-ink flex flex-col shrink-0">
       <div class="h-16 flex items-center px-6 border-b border-line-soft">
@@ -107,6 +105,17 @@ const menuItems = [
       }
 
       /* Base layout overrides */
+      body.admin-panel-theme,
+      .admin-panel-theme a,
+      .admin-panel-theme button,
+      .admin-panel-theme select,
+      .admin-panel-theme input,
+      .admin-panel-theme textarea,
+      .admin-panel-theme .cursor-pointer,
+      .admin-panel-theme [role="button"] {
+        cursor: auto !important;
+      }
+
       body.admin-panel-theme {
         background-color: #fafafb !important;
         color: #0a0a0c !important;
