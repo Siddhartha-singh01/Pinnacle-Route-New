@@ -31,7 +31,7 @@ const menuItems = [
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-[#050505] text-white antialiased flex h-screen overflow-hidden font-sans">
+  <body class="admin-panel-theme bg-[#ffffff] text-black antialiased flex h-screen overflow-hidden font-sans">
     <CustomCursor />
     <!-- Sidebar -->
     <aside class="w-64 border-r border-line-soft bg-ink flex flex-col shrink-0">
@@ -67,7 +67,7 @@ const menuItems = [
     </aside>
 
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col min-w-0 bg-[#0a0a0a]">
+    <div class="flex-1 flex flex-col min-w-0 bg-[#fafafb]">
       <!-- Topbar -->
       <header class="h-16 border-b border-line-soft bg-ink/50 backdrop-blur flex items-center justify-between px-8 shrink-0 z-10">
         <div class="flex items-center gap-2 text-sm font-medium text-grey-2">
@@ -89,5 +89,134 @@ const menuItems = [
       </main>
     </div>
 
+    <style is:global>
+      /* Light theme overrides for Pinnacle Route Admin Panel */
+      .admin-panel-theme {
+        --color-ink: #ffffff !important;
+        --color-ink-2: #fafafb !important;
+        --color-surface: #ffffff !important;
+        --color-surface-2: #f4f4f5 !important;
+        --color-line: rgba(10, 10, 10, 0.08) !important;
+        --color-line-soft: rgba(10, 10, 10, 0.06) !important;
+        
+        /* Text color overrides */
+        --color-white: #0a0a0c !important; /* Text that was text-white becomes black */
+        --color-grey: #4b5563 !important;   /* Text that was grey becomes darker */
+        --color-grey-2: #71717a !important; /* Text that was grey-2 becomes darker gray */
+        --color-grey-3: #a1a1aa !important; /* Text that was grey-3 becomes medium gray */
+      }
+
+      /* Base layout overrides */
+      body.admin-panel-theme {
+        background-color: #fafafb !important;
+        color: #0a0a0c !important;
+      }
+
+      /* Inputs, Textareas and Select fields */
+      .admin-panel-theme input,
+      .admin-panel-theme textarea,
+      .admin-panel-theme select {
+        background-color: #ffffff !important;
+        color: #0a0a0c !important;
+        border-color: rgba(10, 10, 10, 0.12) !important;
+      }
+      .admin-panel-theme input:focus,
+      .admin-panel-theme textarea:focus,
+      .admin-panel-theme select:focus {
+        border-color: #c9a24b !important;
+        outline: none !important;
+      }
+      .admin-panel-theme label {
+        color: #4b5563 !important;
+      }
+
+      /* Sidebar & nav links styling overrides */
+      aside.bg-ink {
+        background-color: #ffffff !important;
+      }
+      aside a {
+        color: #71717a !important;
+      }
+      aside a svg {
+        color: #71717a !important;
+      }
+      aside a:hover {
+        background-color: #f4f4f5 !important;
+        color: #0a0a0c !important;
+      }
+      aside a:hover svg {
+        color: #0a0a0c !important;
+      }
+
+      /* Topbar header logo & items */
+      header .text-white {
+        color: #0a0a0c !important;
+      }
+      header .text-grey-2 {
+        color: #71717a !important;
+      }
+
+      /* Hardcoded background overrides for CMS elements & cards */
+      .admin-panel-theme .bg-\[\#050505\],
+      .admin-panel-theme .bg-\[\#0a0a0a\],
+      .admin-panel-theme .bg-\[\#0f0f0f\],
+      .admin-panel-theme .bg-\[\#111\],
+      .admin-panel-theme .bg-\[\#111111\] {
+        background-color: #ffffff !important;
+        color: #0a0a0c !important;
+        border-color: rgba(10, 10, 10, 0.08) !important;
+      }
+
+      /* Specific adjustment for CMS layout container */
+      .admin-panel-theme .bg-\[\#0f0f0f\] {
+        background-color: #f4f4f5 !important;
+      }
+      .admin-panel-theme .bg-\[\#0a0a0a\] {
+        background-color: #ffffff !important;
+      }
+
+      /* General components overrides */
+      .admin-panel-theme button.bg-white {
+        background-color: #0a0a0c !important;
+        color: #ffffff !important;
+      }
+      .admin-panel-theme button.bg-white:hover {
+        background-color: #c9a24b !important;
+        color: #ffffff !important;
+      }
+
+      /* Table overrides */
+      .admin-panel-theme table th {
+        background-color: #f4f4f5 !important;
+        color: #4b5563 !important;
+        border-bottom-color: rgba(10, 10, 10, 0.08) !important;
+      }
+      .admin-panel-theme table tr {
+        border-bottom-color: rgba(10, 10, 10, 0.06) !important;
+      }
+      .admin-panel-theme table tr:hover {
+        background-color: #f9f9fb !important;
+      }
+
+      /* SVGs & Icons color */
+      .admin-panel-theme svg {
+        stroke: currentColor !important;
+      }
+
+      /* Headings color */
+      .admin-panel-theme h1,
+      .admin-panel-theme h2,
+      .admin-panel-theme h3,
+      .admin-panel-theme h4,
+      .admin-panel-theme h5,
+      .admin-panel-theme h6 {
+        color: #0a0a0c !important;
+      }
+
+      /* CMS Navigation lists and drag states */
+      .admin-panel-theme .border-line-soft {
+        border-color: rgba(10, 10, 10, 0.06) !important;
+      }
+    </style>
   </body>
 </html>
