@@ -25,6 +25,12 @@ const { eyebrow, headline, headlineDim, links } = Astro.props;
 <section class="section relative overflow-hidden">
   <div class="hair-arc hidden md:block" style="width:900px;height:900px;left:-300px;bottom:-380px;"></div>
 
+  <!-- 3D wireframe torus knot, scroll reactive, same weight as the hairline arcs -->
+  <canvas
+    data-three-scene="cta"
+    class="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
+    aria-hidden="true"></canvas>
+
   <div class="container-page relative z-10 text-center">
     {eyebrow && (
       <p class="eyebrow justify-center mb-8" data-reveal>{eyebrow}</p>

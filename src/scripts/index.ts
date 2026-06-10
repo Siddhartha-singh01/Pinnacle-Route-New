@@ -16,6 +16,13 @@ import { initAccordion } from "./accordion";
 // Bind nav auto-hide ONCE (survives across view transitions)
 initNavAutoHide();
 
+// Three.js is heavy — load it only on pages that declare a 3D scene canvas,
+// and only after the page is interactive. The module handles its own cleanup.
+function initThreeScenesLazy() {
+  if (!document.querySelector("canvas[data-three-scene]")) return;
+  import("./three").then((m) => m.initThreeScenes());
+}
+
 // Re-init everything on each page load (handles view transitions)
 document.addEventListener("astro:page-load", () => {
   initLenis();
@@ -25,6 +32,7 @@ document.addEventListener("astro:page-load", () => {
   initVideos();
   initMobileMenu();
   initAccordion();
+  initThreeScenesLazy();
 });
 
 document.addEventListener("astro:before-swap", () => {

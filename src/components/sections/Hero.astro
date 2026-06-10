@@ -31,6 +31,11 @@ const {
   <div class="hair-arc hidden md:block" style="width:1100px;height:1100px;right:-340px;top:-200px;"></div>
   <ArrowMotif class="absolute right-[4vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-xl text-white/[0.05] pointer-events-none hidden md:block" />
 
+  <!-- 3D wireframe sculpture (scroll + pointer reactive) -->
+  <div class="absolute right-[2vw] top-1/2 -translate-y-1/2 w-[38vw] max-w-[620px] aspect-square pointer-events-none hidden md:block z-[1]">
+    <canvas data-three-scene="hero" class="w-full h-full" aria-hidden="true"></canvas>
+  </div>
+
   <div class="container-page relative z-10 w-full">
     <p class="eyebrow mb-8" data-reveal>{eyebrow}</p>
 
