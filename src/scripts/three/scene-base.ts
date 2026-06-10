@@ -11,6 +11,7 @@ import * as THREE from "three";
 export interface SceneContext {
   scene: THREE.Scene;
   camera: THREE.PerspectiveCamera;
+  canvas: HTMLCanvasElement;
 }
 
 export interface FrameState {
@@ -28,9 +29,9 @@ export interface SceneHandle {
   destroy(): void;
 }
 
-/** Reads the design tokens off <body> so scenes adapt to light/dark pages. */
-export function themeColors(): { ink: string; gold: string } {
-  const styles = getComputedStyle(document.body);
+/** Reads the design tokens off the canvas or <body> so scenes adapt to light/dark pages. */
+export function themeColors(element?: HTMLElement): { ink: string; gold: string } {
+  const styles = getComputedStyle(element || document.body);
   return {
     // `--color-white` is the current foreground (flips to near-black on light pages)
     ink: styles.getPropertyValue("--color-white").trim() || "#0a0a0a",
@@ -65,7 +66,7 @@ export function createScene(
     mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
   };
 
-  const update = build({ scene, camera });
+  const update = build({ scene, camera, canvas });
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const start = performance.now();

@@ -17,12 +17,13 @@ interface Props {
   /** HTML allowed for the dim span trick. */
   headlineDim?: string;
   links: CtaLink[];
+  light?: boolean;
 }
 
-const { eyebrow, headline, headlineDim, links } = Astro.props;
+const { eyebrow, headline, headlineDim, links, light = false } = Astro.props;
 ---
 
-<section class="section relative overflow-hidden">
+<section class={`section relative overflow-hidden ${light ? "section-light" : ""}`}>
   <div class="hair-arc hidden md:block" style="width:900px;height:900px;left:-300px;bottom:-380px;"></div>
 
   <!-- 3D wireframe torus knot, scroll reactive, same weight as the hairline arcs -->

@@ -27,9 +27,9 @@ function uniqueVertices(geometry: THREE.BufferGeometry): Float32Array {
   return new Float32Array(out);
 }
 
-export function buildHeroScene({ scene, camera }: SceneContext): SceneUpdate {
+export function buildHeroScene({ scene, camera, canvas }: SceneContext): SceneUpdate {
   camera.position.z = 7;
-  const { ink, gold } = themeColors();
+  const { ink, gold } = themeColors(canvas);
 
   const group = new THREE.Group();
   scene.add(group);

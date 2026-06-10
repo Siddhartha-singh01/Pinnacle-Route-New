@@ -26,15 +26,27 @@
 
   /* White / inverted section — flips the ink scale */
   .section-light {
+    --color-white: #0a0a0a;
+    --color-line: rgba(10, 10, 10, 0.12);
+    --color-line-soft: rgba(10, 10, 10, 0.06);
+    --color-grey: #545454;
+    --color-grey-2: #2a2a2a;
+    --color-grey-3: #a8a8a6;
     background: var(--color-paper);
-    color: var(--color-ink);
+    color: var(--color-white);
   }
   .section-light h1,
   .section-light h2,
-  .section-light h3 { color: var(--color-ink); }
+  .section-light h3 { color: var(--color-white); }
 
   /* In light theme, .section-light should use normal text color since ink is white */
   .theme-light .section-light {
+    --color-white: #ffffff;
+    --color-line: rgba(255, 255, 255, 0.12);
+    --color-line-soft: rgba(255, 255, 255, 0.06);
+    --color-grey: #a1a1aa;
+    --color-grey-2: #71717a;
+    --color-grey-3: #52525b;
     background: var(--color-surface);
     color: var(--color-white);
   }

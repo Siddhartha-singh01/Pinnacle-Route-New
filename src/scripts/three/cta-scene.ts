@@ -27,9 +27,9 @@ function knotPoint(t: number, target: THREE.Vector3): THREE.Vector3 {
   );
 }
 
-export function buildCtaScene({ scene, camera }: SceneContext): SceneUpdate {
+export function buildCtaScene({ scene, camera, canvas }: SceneContext): SceneUpdate {
   camera.position.z = 6;
-  const { ink, gold } = themeColors();
+  const { ink, gold } = themeColors(canvas);
 
   const group = new THREE.Group();
   // Sit slightly right of the centred copy so the headline stays clean
