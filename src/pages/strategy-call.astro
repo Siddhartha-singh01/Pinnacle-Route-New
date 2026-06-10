@@ -56,9 +56,9 @@ const marqueePills = [
           </button>
         </div>
 
-        <!-- Right Dashboard UI (Light Mode) -->
-        <div class="relative w-full aspect-[4/3] max-w-[600px] mx-auto lg:ml-auto perspective-1000">
-          <div class="absolute inset-0 bg-ink rounded-xl border border-grey/20 shadow-2xl overflow-hidden flex flex-col transform md:rotate-y-[-5deg] md:rotate-x-[2deg] shadow-[0_30px_60px_rgba(0,0,0,0.1)]">
+        <!-- Right Video Container (Browser Mockup Style) -->
+        <div class="relative w-full aspect-[4/3] max-w-[600px] mx-auto lg:ml-auto" data-reveal data-reveal-delay="1">
+          <div class="absolute inset-0 bg-ink rounded-xl border border-grey/20 shadow-2xl overflow-hidden flex flex-col">
             <!-- Top Bar -->
             <div class="flex items-center gap-2 px-4 py-3 border-b border-grey/10 bg-ink">
               <div class="flex gap-1.5">
@@ -69,72 +69,20 @@ const marqueePills = [
               <span class="ml-2 text-[9px] uppercase tracking-widest text-white/40 font-semibold">Pinnacle Ops Command</span>
             </div>
             
-            <!-- Dashboard Body -->
-            <div class="flex-1 p-5 sm:p-8 flex flex-col gap-6 sm:gap-8 bg-ink">
-              <!-- Top Stats Grid -->
-              <div class="grid grid-cols-3 gap-3 sm:gap-5">
-                <div class="bg-ink border border-grey/10 shadow-sm rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
-                  <div class="absolute inset-0 bg-gradient-to-b from-grey/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">Pipeline</span>
-                  <span class="text-xl sm:text-3xl font-display font-medium text-white">$90k</span>
-                  <span class="text-[10px] sm:text-xs text-[#27c93f] font-medium">+28%</span>
-                </div>
-                <div class="bg-ink border border-grey/10 shadow-sm rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
-                  <div class="absolute inset-0 bg-gradient-to-b from-grey/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">Response</span>
-                  <span class="text-xl sm:text-3xl font-display font-medium text-[#0066cc]">4m</span>
-                  <span class="text-[10px] sm:text-xs text-[#0066cc] font-medium">-91%</span>
-                </div>
-                <div class="bg-ink border border-grey/10 shadow-sm rounded-lg p-3 sm:p-5 flex flex-col gap-1 sm:gap-2 relative overflow-hidden group">
-                  <div class="absolute inset-0 bg-[#CAA154]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span class="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold">ROI</span>
-                  <span class="text-xl sm:text-3xl font-display font-medium text-[#CAA154]">3.8x</span>
-                  <span class="text-[10px] sm:text-xs text-[#27c93f] font-medium">90 days</span>
-                </div>
-              </div>
-              
-              <!-- Chart Area -->
-              <div class="flex-1 bg-ink border border-grey/10 shadow-sm rounded-lg p-4 sm:p-6 flex flex-col relative overflow-hidden">
-                <span class="text-[9px] sm:text-[10px] uppercase tracking-widest text-white/40 font-semibold mb-auto relative z-10">Revenue Velocity</span>
-                <div class="flex items-end justify-between gap-1.5 sm:gap-3 h-20 sm:h-28 mt-6 relative z-10">
-                  <!-- Bars -->
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[30%] hover:brightness-90 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[45%] hover:brightness-90 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[35%] hover:brightness-90 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[55%] hover:brightness-90 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[45%] hover:brightness-90 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[70%] hover:brightness-90 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[60%] hover:brightness-90 transition-all"></div>
-                  <div class="w-full bg-gradient-to-t from-[#CAA154]/40 to-[#CAA154] rounded-sm h-[85%] shadow-[0_0_15px_rgba(202,161,84,0.3)] relative"></div>
-                  <div class="w-full bg-gradient-to-t from-[#0066cc]/10 to-[#0066cc]/80 rounded-sm h-[90%] hover:brightness-90 transition-all"></div>
-                </div>
-              </div>
-
-              <!-- Bottom Stats -->
-              <div class="grid grid-cols-4 gap-3 sm:gap-4">
-                <div class="bg-ink border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#0066cc]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Captured</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">184</span>
-                </div>
-                <div class="bg-ink border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#CAA154]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Scored</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">96</span>
-                </div>
-                <div class="bg-ink border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#a67cff]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Booked</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">31</span>
-                </div>
-                <div class="bg-ink border border-grey/10 shadow-sm rounded-lg p-3 sm:p-4 flex flex-col items-start border-l-2 border-l-[#27c93f]">
-                  <span class="text-[9px] sm:text-[10px] text-white/50 font-medium">Closed</span>
-                  <span class="text-base sm:text-lg font-display text-white mt-1 font-semibold">14</span>
-                </div>
-              </div>
+            <!-- Video Content -->
+            <div class="flex-1 bg-ink relative overflow-hidden">
+              <video
+                class="h-full w-full object-cover grayscale opacity-90"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="/assets/videos/team-portrait-poster.jpg"
+              >
+                <source src="/assets/videos/team-portrait.mp4" type="video/mp4" />
+              </video>
             </div>
-          </div>
-          <!-- Hovering small badge -->
-          <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-ink border border-grey/10 rounded-xl p-4 shadow-xl z-10 flex flex-col animate-float">
-            <span class="text-sm font-semibold text-white">12.4 hrs saved today</span>
-            <span class="text-[11px] text-white/50 mt-1">Ops tasks automated</span>
           </div>
         </div>
       </div>
