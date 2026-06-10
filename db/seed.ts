@@ -37,7 +37,7 @@ export default async function seed() {
 
   // 2. Navigation
   await db.insert(Navigation).values([
-    { id: 'nav-about', label: 'About', href: '/our-company', orderIndex: 0 },
+    { id: 'nav-about', label: 'About Us', href: '/our-company', orderIndex: 0 },
     { id: 'nav-solutions', label: 'Solutions', href: '/#solutions', orderIndex: 1 },
     { id: 'nav-work', label: 'Work', href: '/#work', orderIndex: 2 },
     { id: 'nav-services', label: 'Services', href: '/our-expertise', orderIndex: 3 },

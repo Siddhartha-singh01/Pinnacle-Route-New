@@ -12,7 +12,7 @@ import { solutions, solutionHref } from "./solutions";
 /* ── Main menu (header nav) ─────────────────────────────── */
 
 export const mainMenu: MenuItem[] = [
-  { label: "About", href: "/our-company" },
+  { label: "About Us", href: "/our-company" },
   {
     label: "Solutions",
     href: "/#solutions",
