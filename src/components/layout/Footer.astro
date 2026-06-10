@@ -59,11 +59,11 @@ const year = new Date().getFullYear();
 
   <!-- columns -->
   <div class="container-page relative z-10 pt-12 pb-14">
-    <div class="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-3 lg:grid-cols-5">
+    <div class="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-3 lg:grid-cols-[1.2fr_1.3fr_1.3fr_1.7fr_0.8fr]">
       {
         footerColumns.map((col) => (
           <div>
-            <h4 class="text-sm font-medium text-white mb-5">
+            <h4 class="h-[80px] flex items-end text-sm font-medium text-white mb-5">
               {col.title === "Pinnacle Route" ? (
                 <img src="/assets/brand/logo-full.png" alt="Pinnacle Route" class="h-[80px] w-auto block" />
               ) : (
@@ -84,7 +84,7 @@ const year = new Date().getFullYear();
       }
 
       <div>
-        <h4 class="text-sm font-medium text-white mb-5">Socials</h4>
+        <h4 class="h-[80px] flex items-end text-sm font-medium text-white mb-5">Socials</h4>
         <ul class="space-y-3 border-t border-line-soft pt-5">
           {
             socials.map((s) => (
