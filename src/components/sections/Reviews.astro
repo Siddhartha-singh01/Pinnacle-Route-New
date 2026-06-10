@@ -37,7 +37,10 @@ import { reviewRatings, pressMentions } from "@/data/reviews";
             data-reveal-delay={(i % 3) + 1}
           >
             <div class="flex items-center justify-between">
-              <span class="text-lg font-semibold text-[#0a0a0a]">{r.firm}</span>
+              <div class="flex items-center gap-3">
+                <img src={r.logo} alt={`${r.firm} Logo`} class="w-6 h-6 object-contain" />
+                <span class="text-lg font-semibold text-[#0a0a0a]">{r.firm}</span>
+              </div>
               <span class="text-2xl font-display font-semibold text-[#CAA154]">{r.score}</span>
             </div>
             <div class="mt-3 flex items-center gap-1 text-[#CAA154]" aria-label={`${r.score} out of 5 stars`}>
