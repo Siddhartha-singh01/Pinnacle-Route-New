@@ -341,20 +341,20 @@ export const solutionSlugs = Object.keys(solutionDetails);
  * process) is unique, so each of the 8 pages reads differently.
  */
 export const solutionLayouts: Record<string, SolutionLayout> = {
-  "ai-powered-sales-funnels": { hero: "left", overviewReverse: false, overviewMask: "arch", features: "cards", featuresLight: true, process: "grid" },
-  "executive-dashboards": { hero: "split", overviewReverse: true, overviewMask: "tr", features: "rows", featuresLight: false, process: "timeline" },
-  "automated-customer-support": { hero: "center", overviewReverse: false, overviewMask: "blob", features: "cards", featuresLight: false, process: "grid" },
-  "multi-vendor-marketplaces": { hero: "left", overviewReverse: true, overviewMask: "bl", features: "rows", featuresLight: true, process: "timeline" },
+  "ai-powered-sales-funnels": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
+  "executive-dashboards": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
+  "automated-customer-support": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
+  "multi-vendor-marketplaces": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
   "booking-rental-platforms": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
-  "inventory-management-platforms": { hero: "center", overviewReverse: true, overviewMask: "arch", features: "rows", featuresLight: false, process: "timeline" },
-  "crm-sales-pipeline-systems": { hero: "left", overviewReverse: false, overviewMask: "tr", features: "cards", featuresLight: false, process: "grid" },
-  "internal-workflow-automation": { hero: "split", overviewReverse: true, overviewMask: "blob", features: "rows", featuresLight: true, process: "timeline" },
+  "inventory-management-platforms": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
+  "crm-sales-pipeline-systems": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
+  "internal-workflow-automation": { hero: "split", overviewReverse: false, overviewMask: "tl", features: "cards", featuresLight: true, process: "grid" },
 };
 
 export const defaultSolutionLayout: SolutionLayout = {
-  hero: "left",
+  hero: "split",
   overviewReverse: false,
-  overviewMask: "arch",
+  overviewMask: "tl",
   features: "cards",
   featuresLight: true,
   process: "grid",

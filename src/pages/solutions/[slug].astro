@@ -72,7 +72,7 @@ const ctas = [
   {
     L.hero === "split" ? (
       <section class="relative overflow-hidden pt-40 pb-20 lg:pt-44 lg:pb-28">
-        <div class="container-page relative z-10 grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div class="container-page relative z-10 grid gap-12 lg:grid-cols-2">
           <div>
             <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="dark" class="mb-7" />
             <p class="eyebrow mb-7" data-reveal>{sol.eyebrow}</p>
@@ -88,8 +88,8 @@ const ctas = [
               ))}
             </div>
           </div>
-          <div class="relative h-[380px] lg:h-[520px]" data-reveal data-reveal-delay="2">
-            <div class={`absolute inset-0 overflow-hidden mask-${L.overviewMask} border border-line-soft`}>
+          <div class="relative h-[350px] sm:h-[450px] lg:h-full lg:min-h-[520px]" data-reveal data-reveal-delay="2">
+            <div class="absolute inset-0 overflow-hidden rounded-2xl border border-line-soft">
               <img src={sol.image} alt={sol.label} data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]" />
             </div>
           </div>
