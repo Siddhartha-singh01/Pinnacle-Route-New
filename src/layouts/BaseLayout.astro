@@ -110,7 +110,7 @@ const ogImage = new URL(image, Astro.site).href;
     </script>
   </head>
 
-  <body class={layoutTheme === "light" ? "theme-light" : ""} data-strict-nav={strictNav ? "true" : undefined}>
+  <body class={`${layoutTheme === "light" ? "theme-light" : ""} ${Astro.url.pathname.startsWith('/admin') ? "admin-panel-theme" : ""}`} data-strict-nav={strictNav ? "true" : undefined}>
     <CustomCursor />
     <Preloader />
 

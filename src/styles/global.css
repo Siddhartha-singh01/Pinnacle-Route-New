@@ -189,7 +189,13 @@ html.preloading { overflow: hidden; }
    CUSTOM CURSOR
 ============================================================ */
 @media (pointer: fine) {
-  body, a, button, input[type="button"], input[type="submit"], select, .cursor-pointer {
+  body:not(.admin-panel-theme),
+  body:not(.admin-panel-theme) a,
+  body:not(.admin-panel-theme) button,
+  body:not(.admin-panel-theme) input[type="button"],
+  body:not(.admin-panel-theme) input[type="submit"],
+  body:not(.admin-panel-theme) select,
+  body:not(.admin-panel-theme) .cursor-pointer {
     cursor: none !important;
   }
 }
