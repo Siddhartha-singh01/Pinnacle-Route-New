@@ -1,6 +1,17 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumb from "@/components/ui/Breadcrumb.astro";
+
+const marqueePills = [
+  "AI Automation",
+  "eCommerce Development",
+  "Mobile Apps",
+  "Custom Software",
+  "CRM Systems",
+  "ERP Systems",
+  "SaaS Platforms",
+  "UI/UX Design"
+];
 ---
 
 <BaseLayout title="Book a Strategy Session · Pinnacle Route" navTheme="light" layoutTheme="light">
@@ -401,15 +412,16 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
       </div>
 
       <!-- Pill Tags -->
-      <div class="flex flex-nowrap overflow-x-auto scrollbar-hide gap-3 max-w-5xl mx-auto pb-4 px-4 mask-edges" style="-webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);">
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">AI Automation</span>
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">eCommerce Development</span>
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">Mobile Apps</span>
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">Custom Software</span>
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">CRM Systems</span>
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">ERP Systems</span>
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">SaaS Platforms</span>
-        <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">UI/UX Design</span>
+      <div class="relative w-full overflow-hidden mask-edges py-4 max-w-5xl mx-auto">
+        <div class="flex w-max items-center gap-3 animate-marquee-pills">
+          {
+            [...marqueePills, ...marqueePills].map((pill) => (
+              <span class="border border-grey/20 rounded-full px-5 py-2 text-xs font-medium text-white/70 hover:bg-ink transition-colors shrink-0 whitespace-nowrap">
+                {pill}
+              </span>
+            ))
+          }
+        </div>
       </div>
 
       <!-- Statistics Block -->
@@ -712,6 +724,28 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
     }
     .animate-float {
       animation: float 6s ease-in-out infinite;
+    }
+
+    .mask-edges {
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .animate-marquee-pills {
+      animation: marquee-pills-scroll 25s linear infinite;
+    }
+
+    .animate-marquee-pills:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-pills-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-50% - 0.375rem));
+      }
     }
   </style>
 </BaseLayout>
