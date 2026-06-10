@@ -12,11 +12,18 @@ import { reviewRatings, pressMentions } from "@/data/reviews";
 <section class="section section-light relative overflow-hidden">
   <div class="container-page relative z-10">
     <div class="max-w-2xl mb-14" data-reveal>
+      <img src="/assets/brand/logo.png" alt="Pinnacle Route Logo" class="h-8 mb-6 logo-feedback" />
       <p class="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#CAA154]">Trusted &amp; top-rated</p>
       <h2 class="text-[clamp(2rem,4vw,3.25rem)] font-display font-semibold tracking-tight text-[#0a0a0a] mt-5 leading-[1.05]">
         Rated by the world's best <span class="text-[#0a0a0a]/35">review platforms.</span>
       </h2>
     </div>
+
+<style>
+  .logo-feedback {
+    filter: invert(1) hue-rotate(180deg);
+  }
+</style>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
