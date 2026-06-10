@@ -14,6 +14,14 @@ interface Props {
 }
 
 const { category, mask = "tr" } = Astro.props;
+
+const getPosterUrl = (videoUrl: string) => {
+  if (videoUrl.includes("tech")) return "/assets/expertise/technology.jpg";
+  if (videoUrl.includes("design")) return "/assets/expertise/design.jpg";
+  if (videoUrl.includes("strategy")) return "/assets/expertise/strategy.jpg";
+  if (videoUrl.includes("growth")) return "/assets/expertise/growth.jpg";
+  return "";
+};
 ---
 
 <section id={category.id} class="section section-light border-b border-line-ink last:border-0 pt-24 pb-32">
@@ -34,6 +42,7 @@ const { category, mask = "tr" } = Astro.props;
             <video 
               class="h-full w-full object-cover grayscale opacity-90"
               autoplay muted loop playsinline preload="metadata"
+              poster={getPosterUrl(category.image)}
             >
               <source src={category.image} type="video/mp4" />
             </video>
