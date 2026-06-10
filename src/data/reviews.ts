@@ -22,7 +22,7 @@ export const reviewRatings: ReviewRating[] = [
   { firm: "Trustpilot", score: "4.8", reviews: "40+ reviews", href: "https://www.trustpilot.com/", logo: "/assets/logos/trustpilot.png" },
   { firm: "Yelp", score: "5.0", reviews: "15+ reviews", href: "https://www.yelp.com/", logo: "/assets/logos/yelp.png" },
   { firm: "DesignRush", score: "4.9", reviews: "Top agency", href: "https://www.designrush.com/", logo: "/assets/logos/designrush.png" },
-  { firm: "TopDevelopers", score: "5.0", reviews: "Verified", href: "https://www.topdevelopers.co/", logo: "/assets/logos/topdevelopers.png" },
+  { firm: "TopDevelopers", score: "5.0", reviews: "Verified", href: "https://www.topdevelopers.co/", logo: "/assets/logos/topdevelopers.avif" },
 ];
 
 /** Press / media mentions shown in the "as featured in" row. */
