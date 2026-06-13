@@ -12,7 +12,7 @@ import { reviewRatings, pressMentions } from "@/data/reviews";
 <section class="section section-light relative overflow-hidden">
   <div class="container-page relative z-10">
     <div class="max-w-2xl mb-14" data-reveal>
-      <img src="/assets/brand/logo.png" alt="Pinnacle Route Logo" loading="lazy" decoding="async" class="h-8 mb-6 logo-feedback" />
+      <img src="/assets/brand/logo-gold-transparent.png" alt="Pinnacle Route Logo" loading="lazy" decoding="async" class="h-14 mb-6 logo-feedback" />
       <p class="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-[#CAA154]">Trusted &amp; top-rated</p>
       <h2 class="text-[clamp(2rem,4vw,3.25rem)] font-display font-semibold tracking-tight text-[#0a0a0a] mt-5 leading-[1.05]">
         Rated by the world's best <span class="text-[#0a0a0a]/35">review platforms.</span>
@@ -21,7 +21,10 @@ import { reviewRatings, pressMentions } from "@/data/reviews";
 
 <style>
   .logo-feedback {
-    filter: invert(1) hue-rotate(180deg);
+    /* mix-blend-mode: multiply makes the white background of the PNG
+       transparent against the cream section background — immersive effect. */
+    mix-blend-mode: multiply;
+    opacity: 0.9;
   }
 </style>
 
