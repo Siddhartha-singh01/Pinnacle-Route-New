@@ -10,6 +10,7 @@ export function initVideos(): void {
     v.setAttribute("muted", "");
     v.playsInline = true;
     v.setAttribute("playsinline", "");
+    v.setAttribute("webkit-playsinline", "");
 
     // 2. Apply custom playback rate if data-speed is present
     if (v.dataset.speed) {
@@ -35,5 +36,22 @@ export function initVideos(): void {
       v.removeEventListener("canplay", play);
       v.addEventListener("canplay", play, { once: true });
     }
+
+    // 4. Fallback: trigger playback on first user interaction if blocked by initial browser policies
+    const playOnInteraction = () => {
+      if (v.paused) {
+        v.play().then(() => {
+          cleanupInteraction();
+        }).catch(() => {});
+      } else {
+        cleanupInteraction();
+      }
+    };
+    const cleanupInteraction = () => {
+      window.removeEventListener("touchstart", playOnInteraction);
+      window.removeEventListener("click", playOnInteraction);
+    };
+    window.addEventListener("touchstart", playOnInteraction, { passive: true });
+    window.addEventListener("click", playOnInteraction, { passive: true });
   });
 }

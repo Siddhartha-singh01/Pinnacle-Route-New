@@ -94,10 +94,12 @@ const ctas = [
               {sol.video ? (
                 <video
                   class="absolute inset-0 h-full w-full object-cover"
+                  src={sol.video}
                   autoplay
                   muted
                   loop
                   playsinline
+                  webkit-playsinline
                   preload="metadata"
                   poster={sol.image}
                 >
