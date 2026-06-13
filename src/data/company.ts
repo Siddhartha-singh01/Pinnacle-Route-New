@@ -16,8 +16,8 @@ export const careStats: Stat[] = [
 /* ── Partner stats row ──────────────────────────────────── */
 
 export const partnerStats: Stat[] = [
-  { value: "8", label: "Years of craft" },
-  { value: "40+", label: "Brands partnered" },
+  { value: "2", label: "Years of craft" },
+  { value: "15+", label: "Partners" },
   { value: "1", label: "Obsessive standard" },
 ];
 
