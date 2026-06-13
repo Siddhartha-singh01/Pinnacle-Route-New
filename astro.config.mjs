@@ -18,6 +18,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
+      // Three.js + GSAP in the SSR entry is expected to exceed 500KB.
+      // These libs are already lazy-imported on the client, so this warning
+      // is a false positive from the server bundle, not the client bundle.
+      chunkSizeWarningLimit: 1500,
       rollupOptions: {
         output: {
           manualChunks(id) {
