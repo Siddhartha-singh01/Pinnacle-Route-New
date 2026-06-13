@@ -9,8 +9,8 @@ import type { Stat, AccordionItem } from "@/types";
 /* ── "We care" stats ────────────────────────────────────── */
 
 export const careStats: Stat[] = [
-  { value: "120+", label: "Projects Delivered", sub: "2024 to 2026" },
-  { value: "30+", label: "Team Specialists", sub: "Remote first · Worldwide" },
+  { value: "75+", label: "Projects Delivered", sub: "2024 to 2026" },
+  { value: "45+", label: "Team Specialists", sub: "Remote first · Worldwide" },
 ];
 
 /* ── Partner stats row ──────────────────────────────────── */
