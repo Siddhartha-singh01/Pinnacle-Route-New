@@ -138,6 +138,7 @@ export default async function seed() {
       titleDim: details.titleDim,
       tagline: details.tagline,
       image: details.image,
+      video: details.video || null,
       overviewHeading: details.overviewHeading,
       overviewHeadingDim: details.overviewHeadingDim,
       overviewBody: details.overviewBody,

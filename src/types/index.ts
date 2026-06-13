@@ -65,6 +65,7 @@ export interface SolutionDetail {
   titleDim: string;
   tagline: string;
   image: string;
+  video?: string;
   overviewHeading: string;
   overviewHeadingDim: string;
   overviewBody: string;

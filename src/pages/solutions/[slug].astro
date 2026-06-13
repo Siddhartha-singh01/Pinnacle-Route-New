@@ -36,6 +36,7 @@ const sol: SolutionDetail = {
   titleDim: rawSol.titleDim,
   tagline: rawSol.tagline,
   image: rawSol.image,
+  video: rawSol.video ?? undefined,
   overviewHeading: rawSol.overviewHeading,
   overviewHeadingDim: rawSol.overviewHeadingDim,
   overviewBody: rawSol.overviewBody,
@@ -89,8 +90,22 @@ const ctas = [
             </div>
           </div>
           <div class="relative h-[350px] sm:h-[450px] lg:h-full lg:min-h-[520px]" data-reveal data-reveal-delay="2">
-            <div class="absolute inset-0 overflow-hidden rounded-2xl border border-line-soft">
-              <img src={sol.image} alt={sol.label} loading="lazy" decoding="async" data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]" />
+            <div class="absolute inset-0 overflow-hidden rounded-2xl border border-line-soft bg-ink/50">
+              {sol.video ? (
+                <video
+                  class="absolute inset-0 h-full w-full object-cover"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster={sol.image}
+                >
+                  <source src={sol.video} type="video/mp4" />
+                </video>
+              ) : (
+                <img src={sol.image} alt={sol.label} loading="lazy" decoding="async" data-parallax="0.06" class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]" />
+              )}
             </div>
           </div>
         </div>

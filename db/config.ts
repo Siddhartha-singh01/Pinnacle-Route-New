@@ -104,6 +104,7 @@ const SolutionDetails = defineTable({
     titleDim: column.text(),
     tagline: column.text(),
     image: column.text(),
+    video: column.text({ optional: true }),
     overviewHeading: column.text(),
     overviewHeadingDim: column.text(),
     overviewBody: column.text(),

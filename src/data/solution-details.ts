@@ -38,6 +38,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "Turn cold traffic into booked calls with intelligent funnels that qualify, nurture, and convert on autopilot.",
     image: "/assets/solutions/ai-powered-sales-funnels.jpg",
+    video: "/assets/solutions/ai-powered-sales-funnels.mp4",
     overviewHeading: "Every lead, scored and",
     overviewHeadingDim: "nurtured automatically",
     overviewBody:
@@ -76,6 +77,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "One source of truth for your whole business. Real time metrics that turn scattered data into confident decisions.",
     image: "/assets/solutions/executive-dashboards.jpg",
+    video: "/assets/solutions/executive-dashboards.mp4",
     overviewHeading: "Your entire business at",
     overviewHeadingDim: "a single glance",
     overviewBody:
@@ -114,6 +116,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "Answer every customer instantly with AI support that resolves the routine and routes the rest to your team.",
     image: "/assets/solutions/automated-customer-support.jpg",
+    video: "/assets/solutions/automated-customer-support.mp4",
     overviewHeading: "Instant answers,",
     overviewHeadingDim: "happier customers",
     overviewBody:
@@ -152,6 +155,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "Launch a marketplace where vendors list, customers buy, and payments split automatically. Built to scale from day one.",
     image: "/assets/solutions/multi-vendor-marketplaces.jpg",
+    video: "/assets/solutions/multi-vendor-marketplaces.mp4",
     overviewHeading: "A marketplace built to",
     overviewHeadingDim: "scale",
     overviewBody:
@@ -190,6 +194,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "Let customers book, reserve, and pay in seconds. Real time availability, zero double bookings, fully automated.",
     image: "/assets/solutions/booking-rental-platforms.jpg",
+    video: "/assets/solutions/booking-rental-platforms.mp4",
     overviewHeading: "Reservations that run",
     overviewHeadingDim: "themselves",
     overviewBody:
@@ -228,6 +233,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "Always know what you have, where it is, and when to reorder. Real time inventory across every location.",
     image: "/assets/solutions/inventory-management-platforms.jpg",
+    video: "/assets/solutions/inventory-management-platforms.mp4",
     overviewHeading: "Never run out, never",
     overviewHeadingDim: "over order",
     overviewBody:
@@ -266,6 +272,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "A CRM your team actually uses. Visual pipelines, automated follow ups, and never a dropped lead again.",
     image: "/assets/solutions/crm-sales-pipeline-systems.jpg",
+    video: "/assets/solutions/crm-sales-pipeline-systems.mp4",
     overviewHeading: "Every deal, moving",
     overviewHeadingDim: "forward",
     overviewBody:
@@ -304,6 +311,7 @@ export const solutionDetails: Record<string, SolutionDetail> = {
     tagline:
       "Automate the busywork. Connect your tools and let repetitive tasks run themselves, so your team does work that matters.",
     image: "/assets/solutions/internal-workflow-automation.jpg",
+    video: "/assets/solutions/internal-workflow-automation.mp4",
     overviewHeading: "Let the busywork",
     overviewHeadingDim: "run itself",
     overviewBody:
