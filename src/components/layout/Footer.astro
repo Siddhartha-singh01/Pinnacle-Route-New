@@ -65,7 +65,10 @@ const year = new Date().getFullYear();
           <div>
             <h4 class="h-[80px] flex items-end text-sm font-medium text-white mb-5">
               {col.title === "Pinnacle Route" ? (
-                <img src="/assets/brand/logo-full.png" alt="Pinnacle Route" loading="lazy" decoding="async" class="h-[80px] w-auto block" />
+                <picture>
+                  <source srcset="/assets/brand/logo-full.webp" type="image/webp" />
+                  <img src="/assets/brand/logo-full.png" alt="Pinnacle Route" loading="lazy" decoding="async" class="h-[80px] w-auto block" />
+                </picture>
               ) : (
                 col.title
               )}
