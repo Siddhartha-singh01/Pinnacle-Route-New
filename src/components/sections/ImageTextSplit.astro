@@ -43,6 +43,8 @@ const {
         <img
           src={image}
           alt={imageAlt}
+          loading="lazy"
+          decoding="async"
           data-parallax="0.06"
           class={`absolute inset-0 h-[115%] w-full object-cover -top-[7%] ${grayscale ? "grayscale" : ""}`}
         />

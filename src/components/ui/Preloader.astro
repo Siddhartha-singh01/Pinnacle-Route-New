@@ -16,6 +16,13 @@
   </div>
 </div>
 
+<style is:global>
+  /* Without JS the GSAP exit never runs — never let the overlay trap the page. */
+  html:not(.js) #premium-preloader {
+    display: none !important;
+  }
+</style>
+
 <script>
   import { gsap } from "gsap";
 

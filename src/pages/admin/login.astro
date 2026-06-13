@@ -2,15 +2,20 @@
 export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { verifyCredentials, createSessionToken, SESSION_COOKIE } from "@/lib/auth";
+import { loginLimiter } from "@/lib/login-limiter";
 
 let error = "";
 
 if (Astro.request.method === "POST") {
+  const ip = Astro.clientAddress || Astro.request.headers.get("x-forwarded-for") || "unknown";
+
   const data = await Astro.request.formData();
   const username = data.get("username");
   const password = data.get("password");
 
-  if (verifyCredentials(username, password)) {
+  if (loginLimiter.isLimited(ip)) {
+    error = "Too many failed attempts. Please wait 15 minutes and try again.";
+  } else if (verifyCredentials(username, password)) {
     Astro.cookies.set(SESSION_COOKIE, createSessionToken(String(username)), {
       path: "/",
       httpOnly: true,
@@ -26,7 +31,7 @@ if (Astro.request.method === "POST") {
 ---
 
 <BaseLayout title="Admin Login · Pinnacle Route" navTheme="light" strictNav={true}>
-  <main class="min-h-screen bg-[#fafafb] flex items-center justify-center pt-24 px-4 text-black">
+  <main class="min-h-svh bg-[#fafafb] flex items-center justify-center pt-24 px-4 text-black">
     <div class="w-full max-w-md bg-white border border-line-soft rounded-2xl p-8 relative overflow-hidden shadow-xl">
       
       <div class="relative z-10">

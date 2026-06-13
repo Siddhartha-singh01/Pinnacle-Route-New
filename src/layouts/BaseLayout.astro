@@ -50,6 +50,9 @@ const ogImage = new URL(image, Astro.site).href;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <title>{title}</title>
+    <!-- Marks JS as available ASAP — scroll-reveal hiding (motion.css) is
+         scoped to html.js so content stays visible if scripts ever fail. -->
+    <script is:inline>document.documentElement.classList.add("js");</script>
     <!-- Maintenance Mode Check -->
     <script is:inline>
       fetch('/api/public/settings')

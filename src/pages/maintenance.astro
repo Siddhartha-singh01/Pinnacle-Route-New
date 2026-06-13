@@ -4,17 +4,12 @@ import '@/styles/global.css';
 
 // Small security check: if maintenance mode was turned off, redirect back to home.
 // (So users aren't stuck here if they directly navigate here).
-import fs from 'fs/promises';
-import path from 'path';
+import { db, FeatureFlags, eq } from 'astro:db';
 
 let isMaintenance = false;
 try {
-  const data = await fs.readFile(path.join(process.cwd(), 'src/data/settings.json'), 'utf-8');
-  const settings = JSON.parse(data);
-  const maintenanceSetting = settings.find((s: any) => s.id === 'maintenance');
-  if (maintenanceSetting?.active) {
-    isMaintenance = true;
-  }
+  const rows = await db.select().from(FeatureFlags).where(eq(FeatureFlags.id, 'maintenance'));
+  isMaintenance = rows[0]?.active === true;
 } catch (e) {
   // Assume false
 }
@@ -36,7 +31,7 @@ if (!isMaintenance) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-[#050505] text-white antialiased flex flex-col items-center justify-center min-h-screen p-8 text-center relative overflow-hidden font-sans">
+  <body class="bg-[#050505] text-white antialiased flex flex-col items-center justify-center min-h-svh p-8 text-center relative overflow-hidden font-sans">
     
     <!-- Background Glows -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>

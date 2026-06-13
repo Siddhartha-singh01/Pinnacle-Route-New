@@ -1,4 +1,4 @@
-import { db, SiteSettings, Navigation, TechStack, ExpertiseCategory, FAQCategory, WorkItem, CompanyInfo, ServiceDetails, SolutionDetails, Users, BlogPosts } from 'astro:db';
+import { db, FeatureFlags, SiteSettings, Navigation, TechStack, ExpertiseCategory, FAQCategory, WorkItem, CompanyInfo, ServiceDetails, SolutionDetails, Users, BlogPosts } from 'astro:db';
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseFrontmatter } from '@astrojs/internal-helpers/frontmatter';
@@ -23,6 +23,21 @@ export default async function seed() {
   await db.delete(CompanyInfo);
   await db.delete(ServiceDetails);
   await db.delete(SolutionDetails);
+
+  // 0. Feature flags — insert defaults only when missing, like Inquiries:
+  // these are admin-controlled state (e.g. maintenance mode) and must
+  // survive a re-seed.
+  const existingFlags = await db.select({ id: FeatureFlags.id }).from(FeatureFlags);
+  const existingFlagIds = new Set(existingFlags.map((f) => f.id));
+  const defaultFlags = [
+    { id: 'maintenance', name: 'Maintenance Mode', description: 'Take the public website offline for updates. Only admins can access.', active: false, orderIndex: 0 },
+    { id: 'blog_public', name: 'Public Blog Visibility', description: 'Show the blog section to public visitors on the main website.', active: true, orderIndex: 1 },
+    { id: 'strategy_booking', name: 'Strategy Call Booking', description: 'Enable the contact and referral forms across the site.', active: true, orderIndex: 2 },
+    { id: 'analytics', name: 'Analytics Tracking', description: 'Enable Google Analytics and tracking scripts on public pages.', active: true, orderIndex: 3 },
+  ].filter((f) => !existingFlagIds.has(f.id));
+  if (defaultFlags.length > 0) {
+    await db.insert(FeatureFlags).values(defaultFlags);
+  }
 
   // 1. Site Settings
   await db.insert(SiteSettings).values([{

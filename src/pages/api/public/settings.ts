@@ -1,18 +1,25 @@
 export const prerender = false;
 import type { APIRoute } from 'astro';
-import fs from 'fs/promises';
-import path from 'path';
+import { db, FeatureFlags } from 'astro:db';
 
+/**
+ * Public feature-flag state (read-only). Exposes only ids + active so the
+ * frontend can react (e.g. maintenance redirect) without leaking admin copy.
+ */
 export const GET: APIRoute = async () => {
-  const filePath = path.join(process.cwd(), 'src/data/settings.json');
   try {
-    const data = await fs.readFile(filePath, 'utf-8');
-    // Only return public flags, not sensitive data if we ever add any
-    return new Response(data, {
+    const rows = await db.select({ id: FeatureFlags.id, active: FeatureFlags.active }).from(FeatureFlags);
+    return new Response(JSON.stringify(rows), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        // Short CDN cache keeps this endpoint cheap while staying responsive
+        // to admin toggles.
+        'Cache-Control': 'public, max-age=0, s-maxage=30',
+      }
     });
   } catch (error) {
+    console.error('Public settings GET error:', error);
     return new Response(JSON.stringify([]), { status: 200 });
   }
 };

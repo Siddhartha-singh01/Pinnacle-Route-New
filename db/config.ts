@@ -1,5 +1,17 @@
 import { defineDb, defineTable, column } from 'astro:db';
 
+// Admin feature toggles (maintenance mode, blog visibility, …). Stored in the
+// DB — NOT a JSON file — because serverless hosts have a read-only filesystem.
+const FeatureFlags = defineTable({
+  columns: {
+    id: column.text({ primaryKey: true }),
+    name: column.text(),
+    description: column.text(),
+    active: column.boolean({ default: false }),
+    orderIndex: column.number({ default: 0 }),
+  }
+});
+
 const SiteSettings = defineTable({
   columns: {
     id: column.text({ primaryKey: true }),
@@ -152,6 +164,7 @@ const BlogPosts = defineTable({
 
 export default defineDb({
   tables: {
+    FeatureFlags,
     SiteSettings,
     Navigation,
     TechStack,

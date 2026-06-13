@@ -1,7 +1,6 @@
 export const prerender = false;
 import type { APIRoute } from 'astro';
-import fs from 'fs/promises';
-import path from 'path';
+import { db, FeatureFlags } from 'astro:db';
 import { verifySessionToken, SESSION_COOKIE } from '@/lib/auth';
 
 // ── Validation ─────────────────────────────────────────────
@@ -38,20 +37,24 @@ function sanitizeSettings(settings: SettingPayload[]): SettingPayload[] {
 }
 
 // ── Handlers ───────────────────────────────────────────────
+// Flags live in Astro DB (FeatureFlags table) — a JSON file is not writable
+// on serverless hosts like Vercel, and wouldn't be shared between instances.
 
 export const GET: APIRoute = async ({ cookies }) => {
   if (!verifySessionToken(cookies.get(SESSION_COOKIE)?.value)) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
   }
 
-  const filePath = path.join(process.cwd(), 'src/data/settings.json');
   try {
-    const data = await fs.readFile(filePath, 'utf-8');
-    return new Response(data, {
+    const rows = await db.select().from(FeatureFlags);
+    rows.sort((a, b) => a.orderIndex - b.orderIndex);
+    const flags = rows.map(({ id, name, description, active }) => ({ id, name, description, active }));
+    return new Response(JSON.stringify(flags), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('Settings GET error:', error);
     return new Response(JSON.stringify([]), { status: 200 });
   }
 };
@@ -70,14 +73,20 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
 
     const sanitized = sanitizeSettings(body);
-    const filePath = path.join(process.cwd(), 'src/data/settings.json');
-    await fs.writeFile(filePath, JSON.stringify(sanitized, null, 2), 'utf-8');
-    
+
+    // The client always sends the full list — replace the whole set,
+    // preserving display order from the submitted array.
+    await db.delete(FeatureFlags);
+    if (sanitized.length > 0) {
+      await db.insert(FeatureFlags).values(sanitized.map((s, i) => ({ ...s, orderIndex: i })));
+    }
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('Settings POST error:', error);
     return new Response(JSON.stringify({ error: 'Failed to save settings' }), { status: 500 });
   }
 };

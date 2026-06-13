@@ -18,12 +18,14 @@ const solutions = await db.select().from(SolutionDetails);
   navTheme="light"
   strictNav={true}
 >
-  <section class="relative h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-ink">
+  <section class="relative h-[65svh] min-h-[500px] flex items-center justify-center overflow-hidden bg-ink">
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-ink/80 mix-blend-multiply z-10"></div>
       <img
         src="/assets/solutions/ai-powered-sales-funnels.jpg"
         alt="Solutions"
+        fetchpriority="high"
+        decoding="async"
         class="h-full w-full object-cover opacity-30 grayscale"
       />
     </div>

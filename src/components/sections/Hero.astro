@@ -23,7 +23,9 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16">
+<!-- min-h-svh: stable small-viewport unit so iOS Safari's collapsing URL bar
+     never pushes the hero CTA out of view (100vh = large viewport on iOS) -->
+<section class="relative min-h-svh flex flex-col justify-center overflow-hidden pt-28 pb-16">
   <!-- Interactive particle network background -->
   <NetworkParticles />
 

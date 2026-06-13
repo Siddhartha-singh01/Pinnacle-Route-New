@@ -50,6 +50,8 @@ const getPosterUrl = (videoUrl: string) => {
             <img
               src={category.image}
               alt={`${category.titleLine1} ${category.titleLine2}`}
+              loading="lazy"
+              decoding="async"
               data-parallax="0.05"
               class="absolute inset-0 h-[115%] w-full object-cover -top-[7%]"
             />
