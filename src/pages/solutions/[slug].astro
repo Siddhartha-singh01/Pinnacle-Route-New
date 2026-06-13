@@ -72,15 +72,15 @@ const ctas = [
   {/* ============================ HERO ============================ */}
   {
     L.hero === "split" ? (
-      <section class="relative overflow-hidden pt-40 pb-20 lg:pt-44 lg:pb-28">
+      <section class="relative overflow-hidden pt-40 pb-20 lg:pt-44 lg:pb-28 bg-white theme-light text-ink">
         <div class="container-page relative z-10 grid gap-12 lg:grid-cols-2">
           <div>
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="dark" class="mb-7" />
-            <p class="eyebrow mb-7" data-reveal>{sol.eyebrow}</p>
-            <h1 class="display-sm !text-[clamp(2.8rem,6vw,5rem)] max-w-[14ch]" data-reveal data-reveal-delay="1">
-              {sol.title} <span class="dim">{sol.titleDim}</span>
+            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="light" class="mb-7" />
+            <p class="eyebrow mb-7 text-ink/60" data-reveal>{sol.eyebrow}</p>
+            <h1 class="display-sm !text-[clamp(2.8rem,6vw,5rem)] max-w-[14ch] text-ink" data-reveal data-reveal-delay="1">
+              {sol.title} <span class="text-ink/40">{sol.titleDim}</span>
             </h1>
-            <p class="mt-7 max-w-md text-lg text-grey-2" data-reveal data-reveal-delay="2">{sol.tagline}</p>
+            <p class="mt-7 max-w-md text-lg text-ink/70" data-reveal data-reveal-delay="2">{sol.tagline}</p>
             <div class="mt-9 flex flex-wrap gap-4" data-reveal data-reveal-delay="3">
               {ctas.map((c) => (
                 <a href={c.href} class={`pill pill-${c.variant}`} data-magnetic="0.25">
@@ -90,7 +90,7 @@ const ctas = [
             </div>
           </div>
           <div class="relative h-[350px] sm:h-[450px] lg:h-full lg:min-h-[520px]" data-reveal data-reveal-delay="2">
-            <div class="absolute inset-0 overflow-hidden rounded-2xl border border-line-soft bg-ink/50">
+            <div class="absolute inset-0 overflow-hidden rounded-2xl border border-line-soft bg-ink/5">
               {sol.video ? (
                 <video
                   class="absolute inset-0 h-full w-full object-cover"
@@ -111,15 +111,15 @@ const ctas = [
         </div>
       </section>
     ) : L.hero === "center" ? (
-      <section class="relative overflow-hidden pt-44 pb-24 lg:pt-52 lg:pb-32 text-center">
-        <ArrowMotif class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46vw] max-w-2xl text-white/[0.035] pointer-events-none" />
+      <section class="relative overflow-hidden pt-44 pb-24 lg:pt-52 lg:pb-32 text-center bg-white theme-light text-ink">
+        <ArrowMotif class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46vw] max-w-2xl text-ink/[0.025] pointer-events-none" />
         <div class="container-page relative z-10">
-          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="dark" class="mb-7 flex justify-center" />
-            <p class="eyebrow justify-center mb-7" data-reveal>{sol.eyebrow}</p>
-          <h1 class="display max-w-[16ch] mx-auto" data-reveal data-reveal-delay="1">
-            {sol.title} <span class="dim">{sol.titleDim}</span>
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="light" class="mb-7 flex justify-center" />
+            <p class="eyebrow justify-center mb-7 text-ink/60" data-reveal>{sol.eyebrow}</p>
+          <h1 class="display max-w-[16ch] mx-auto text-ink" data-reveal data-reveal-delay="1">
+            {sol.title} <span class="text-ink/40">{sol.titleDim}</span>
           </h1>
-          <p class="mt-8 max-w-xl mx-auto text-lg text-grey-2" data-reveal data-reveal-delay="2">{sol.tagline}</p>
+          <p class="mt-8 max-w-xl mx-auto text-lg text-ink/70" data-reveal data-reveal-delay="2">{sol.tagline}</p>
           <div class="mt-10 flex flex-wrap justify-center gap-4" data-reveal data-reveal-delay="3">
             {ctas.map((c) => (
               <a href={c.href} class={`pill pill-${c.variant}`} data-magnetic="0.3">
@@ -130,16 +130,16 @@ const ctas = [
         </div>
       </section>
     ) : (
-      <section class="relative overflow-hidden pt-40 pb-24 lg:pt-48 lg:pb-32">
-        <ArrowMotif class="absolute right-[3vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-xl text-white/[0.04] pointer-events-none hidden md:block" />
+      <section class="relative overflow-hidden pt-40 pb-24 lg:pt-48 lg:pb-32 bg-white theme-light text-ink">
+        <ArrowMotif class="absolute right-[3vw] top-1/2 -translate-y-1/2 w-[34vw] max-w-xl text-ink/[0.025] pointer-events-none hidden md:block" />
         <div class="hair-arc hidden md:block" style="width:1000px;height:1000px;right:-320px;top:-220px;" />
         <div class="container-page relative z-10">
-          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="dark" class="mb-7" />
-            <p class="eyebrow mb-7" data-reveal>{sol.eyebrow}</p>
-          <h1 class="display max-w-[16ch]" data-reveal data-reveal-delay="1">
-            {sol.title} <span class="dim">{sol.titleDim}</span>
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Solutions", href: "/#solutions" }, { label: sol.label }]} tone="light" class="mb-7" />
+            <p class="eyebrow mb-7 text-ink/60" data-reveal>{sol.eyebrow}</p>
+          <h1 class="display max-w-[16ch] text-ink" data-reveal data-reveal-delay="1">
+            {sol.title} <span class="text-ink/40">{sol.titleDim}</span>
           </h1>
-          <p class="mt-8 max-w-xl text-lg text-grey-2" data-reveal data-reveal-delay="2">{sol.tagline}</p>
+          <p class="mt-8 max-w-xl text-lg text-ink/70" data-reveal data-reveal-delay="2">{sol.tagline}</p>
           <div class="mt-10 flex flex-wrap gap-4" data-reveal data-reveal-delay="3">
             {ctas.map((c) => (
               <a href={c.href} class={`pill pill-${c.variant}`} data-magnetic="0.3">
