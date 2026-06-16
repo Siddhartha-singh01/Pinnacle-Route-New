@@ -8,8 +8,9 @@ import { createRateLimiter, escapeHtml } from '@/lib/rate-limit';
 const resendApiKey = process.env.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
 const resend = new Resend(resendApiKey);
 
-// Admin email to receive inquiries
-const adminEmail = process.env.ADMIN_EMAIL || import.meta.env.ADMIN_EMAIL;
+// Admin emails to receive inquiries
+const adminEmail = process.env.ADMIN_EMAIL || import.meta.env.ADMIN_EMAIL || 'info@pinnacleroute.com';
+const salesEmail = process.env.SALES_EMAIL || import.meta.env.SALES_EMAIL || 'sales@pinnacleroute.com';
 
 // 5 submissions per 10 minutes per IP is plenty for a human filling a form.
 const limiter = createRateLimiter({ windowMs: 10 * 60_000, max: 5 });
@@ -57,18 +58,28 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     }
 
     // Verify reCAPTCHA token
-    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || import.meta.env.RECAPTCHA_SECRET_KEY;
+    const recaptchaSecretRaw = process.env.RECAPTCHA_SECRET_KEY || import.meta.env.RECAPTCHA_SECRET_KEY;
+    const recaptchaSecret = recaptchaSecretRaw?.trim();
+    const recaptchaToken = (data.recaptchaToken || '').trim();
+
+    console.log('[CAPTCHA] Secret length:', recaptchaSecret?.length, '| Token length:', recaptchaToken.length);
+    console.log('[CAPTCHA] Secret last 3 chars hex:', recaptchaSecret ? [...recaptchaSecret.slice(-3)].map(c => c.charCodeAt(0).toString(16)).join(' ') : 'N/A');
 
     if (recaptchaSecret) {
       const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ secret: recaptchaSecret, response: data.recaptchaToken }),
+        body: new URLSearchParams({ secret: recaptchaSecret, response: recaptchaToken }),
       });
       const recaptchaResult = await recaptchaResponse.json();
 
       if (!recaptchaResult.success) {
+        console.error('[CAPTCHA] FAILED. Google response:', JSON.stringify(recaptchaResult));
+        console.error('[CAPTCHA] Secret used:', recaptchaSecret);
+        console.error('[CAPTCHA] Token first 30:', recaptchaToken.substring(0, 30));
         return json({ success: false, message: 'reCAPTCHA verification failed. Please try again.' }, 400);
+      } else {
+        console.log('[CAPTCHA] SUCCESS! Verified OK.');
       }
     } else {
       console.warn('RECAPTCHA_SECRET_KEY is not set. Skipping verification.');
@@ -133,9 +144,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       return json({ success: true, message: 'Dev mode: Email logged but not sent (missing API key)' }, 200);
     }
 
+    // Determine the recipient email
+    const targetEmail = isStrategyCall ? salesEmail : adminEmail;
+
     const { error } = await resend.emails.send({
       from: 'Pinnacle Route Forms <onboarding@resend.dev>', // Update this when you have a verified domain
-      to: adminEmail || 'admin@pinnacleroute.com',
+      to: targetEmail,
       subject: subject,
       html: htmlBody,
       replyTo: email,
@@ -143,7 +157,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     if (error) {
       console.error('Resend error:', error);
-      return json({ success: false, message: 'Failed to send email. Please try again later.' }, 500);
+      // Email failed but inquiry is already saved to database — don't block the user
+      console.log('Note: Inquiry saved to database but email notification failed. Verify your domain at resend.com/domains.');
+      return json({ success: true, message: 'Your inquiry has been received! Our team will get back to you shortly.' }, 200);
     }
 
     return json({ success: true, message: 'Your inquiry has been sent successfully!' }, 200);

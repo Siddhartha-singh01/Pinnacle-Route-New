@@ -12,6 +12,7 @@ import Footer from "@/components/layout/Footer.astro";
 import SearchModal from "@/components/ui/SearchModal.astro";
 import CustomCursor from "@/components/ui/CustomCursor.astro";
 import Preloader from "@/components/ui/Preloader.astro";
+import Chatbot from "@/components/ui/Chatbot";
 import { SEO_DEFAULTS, GA_ID } from "@/data/site";
 
 /* ── Styles ──────────────────────────────────────────────── */
@@ -133,6 +134,7 @@ const ogImage = new URL(image, Astro.site).href;
     </main>
     <Footer />
     <SearchModal />
+    <Chatbot client:idle />
 
     <!-- Single script import — all interactions orchestrated from here -->
     <script>

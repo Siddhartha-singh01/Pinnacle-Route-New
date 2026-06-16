@@ -67,6 +67,8 @@ export default function Chatbot() {
     </div>
   );
 
+  const CustomAvatarImg = "/assets/brand/chatbot-avatar.png";
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end font-body">
       {/* Chat Window (Open State) */}
@@ -77,6 +79,11 @@ export default function Chatbot() {
           <div className="flex justify-between items-center p-4 relative z-20 bg-ink/30 border-b border-line-soft">
             <div className="flex items-center gap-2">
               <AbstractAvatar size={24} />
+              <img 
+                src={CustomAvatarImg} 
+                alt="AI Assistant"
+                className="w-6 h-6 rounded-full object-cover"
+              />
               <span className="font-medium text-sm text-white">AI Assistant</span>
             </div>
             
@@ -95,7 +102,16 @@ export default function Chatbot() {
             {messages.length === 0 ? (
               /* Empty State Layout (No call button) */
               <div className="absolute inset-0 flex flex-col items-center justify-center -mt-10">
-                <AbstractAvatar size={140} />
+                <div 
+                  className="rounded-full flex items-center justify-center flex-shrink-0 relative overflow-hidden shadow-[0_0_20px_rgba(201,162,75,0.15)]"
+                  style={{ width: 140, height: 140 }}
+                >
+                  <img 
+                    src={CustomAvatarImg} 
+                    alt="AI Assistant"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
             ) : (
               /* Chat Messages */

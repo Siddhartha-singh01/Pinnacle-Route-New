@@ -15,7 +15,6 @@ import WorkShowcase from "@/components/sections/WorkShowcase.astro";
 import ToolStrip from "@/components/sections/ToolStrip.astro";
 import CtaBanner from "@/components/sections/CtaBanner.astro";
 import Reviews from "@/components/sections/Reviews.astro";
-import Chatbot from "@/components/ui/Chatbot";
 
 import { services } from "@/data/services";
 import { tools, marqueeWords } from "@/data/tools";
@@ -54,6 +53,4 @@ const workItems = rawWorkItems.sort((a, b) => a.orderIndex - b.orderIndex);
       { href: "/our-expertise", label: "Explore expertise", variant: "dark" },
     ]}
   />
-
-  <Chatbot client:idle />
 </BaseLayout>

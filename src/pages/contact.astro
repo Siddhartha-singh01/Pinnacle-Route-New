@@ -57,21 +57,17 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
             <div id="form-status" class="hidden rounded-lg p-4 mb-4 text-sm font-medium border"></div>
 
             <!-- Google reCAPTCHA API -->
+            <script is:inline src="https://www.google.com/recaptcha/api.js?onload=onContactRecaptchaLoad&render=explicit" async defer></script>
             <script is:inline>
-              (function() {
-                const initRecaptcha = () => {
-                  const script = document.createElement('script');
-                  script.src = "https://www.google.com/recaptcha/api.js";
-                  script.async = true;
-                  script.defer = true;
-                  document.head.appendChild(script);
-                };
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', initRecaptcha);
-                } else {
-                  initRecaptcha();
+              var __contactWidgetId = -1;
+              function onContactRecaptchaLoad() {
+                var el = document.getElementById('contact-recaptcha');
+                if (el && el.innerHTML.trim() === '') {
+                  __contactWidgetId = grecaptcha.render('contact-recaptcha', {
+                    'sitekey': el.getAttribute('data-sitekey')
+                  });
                 }
-              })();
+              }
             </script>
             
             <!-- Row 1 -->
@@ -188,6 +184,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
                   <span id="btn-text">Submit Inquiry</span>
                   <span id="btn-arrow" class="arrow">↗</span>
                   <div id="btn-loader" class="hidden ml-2 w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                  <svg id="btn-success" class="hidden ml-2 w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                 </button>
               </div>
             </div>
@@ -202,6 +199,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
               const btnText = document.getElementById('btn-text');
               const btnArrow = document.getElementById('btn-arrow');
               const btnLoader = document.getElementById('btn-loader');
+              const btnSuccess = document.getElementById('btn-success');
 
               if (form) {
                 form.addEventListener('submit', async (e) => {
@@ -213,14 +211,25 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
                     if (statusBanner) {
                       statusBanner.textContent = 'Security check could not load. Please disable any ad/script blockers, refresh the page, and try again.';
                       statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
+                      statusBanner.classList.remove('hidden');
                     }
                     return;
                   }
-                  const recaptchaResponse = gre.getResponse();
+                  
+                  let recaptchaResponse = "";
+                  try { 
+                    if (typeof __contactWidgetId !== 'undefined' && __contactWidgetId >= 0) {
+                      recaptchaResponse = gre.getResponse(__contactWidgetId);
+                    } else {
+                      recaptchaResponse = gre.getResponse();
+                    }
+                  } catch(e) { console.error('getResponse error:', e); }
+                  
                   if (!recaptchaResponse) {
                     if (statusBanner) {
                       statusBanner.textContent = 'Please complete the reCAPTCHA to verify you are human.';
                       statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
+                      statusBanner.classList.remove('hidden');
                     }
                     return;
                   }
@@ -261,8 +270,13 @@ import Breadcrumb from "@/components/ui/Breadcrumb.astro";
                       if (result.success) {
                         statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-green-500/20 bg-green-500/10 text-green-700 block';
                         form.reset();
-                        gre.reset();
-                        if (btnText) btnText.textContent = 'Sent Successfully';
+                        if (window.grecaptcha) window.grecaptcha.reset();
+                        if (btnText) btnText.textContent = 'Submitted';
+                        if (btnSuccess) btnSuccess.classList.remove('hidden');
+                        if (submitBtn) {
+                           submitBtn.classList.remove('pill-dark');
+                           submitBtn.classList.add('bg-green-600', 'text-white', 'border-green-600', 'hover:bg-green-700');
+                        }
                       } else {
                         statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-600 block';
                         if (submitBtn) submitBtn.disabled = false;

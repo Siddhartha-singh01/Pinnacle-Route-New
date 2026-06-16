@@ -476,20 +476,44 @@ const marqueePills = [
 
             <!-- Google reCAPTCHA API -->
             <script is:inline>
-              (function() {
-                const initRecaptcha = () => {
-                  const script = document.createElement('script');
-                  script.src = "https://www.google.com/recaptcha/api.js";
-                  script.async = true;
-                  script.defer = true;
-                  document.head.appendChild(script);
+              document.addEventListener("astro:page-load", () => {
+                const el = document.getElementById('strategy-recaptcha');
+                if (!el) return;
+                
+                const siteKey = el.getAttribute('data-sitekey');
+                if (!siteKey) return;
+                
+                const renderWidget = () => {
+                  if (window.grecaptcha && window.grecaptcha.render && el.innerHTML === "") {
+                    try { 
+                      const widgetId = window.grecaptcha.render(el, { sitekey: siteKey }); 
+                      el.dataset.widgetId = widgetId;
+                    } catch(e) {}
+                  }
                 };
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', initRecaptcha);
+
+                if (window.grecaptcha && window.grecaptcha.render) {
+                  renderWidget();
                 } else {
-                  initRecaptcha();
+                  if (!window.recaptchaLoading) {
+                    window.recaptchaLoading = true;
+                    const script = document.createElement('script');
+                    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
+                    script.async = true;
+                    script.defer = true;
+                    window.onRecaptchaLoadCallback = renderWidget;
+                    script.src += "&onload=onRecaptchaLoadCallback";
+                    document.head.appendChild(script);
+                  } else {
+                    const check = setInterval(() => {
+                      if (window.grecaptcha && window.grecaptcha.render) {
+                        clearInterval(check);
+                        renderWidget();
+                      }
+                    }, 100);
+                  }
                 }
-              })();
+              });
             </script>
             
             <div class="flex flex-col gap-2 group">
@@ -554,6 +578,7 @@ const marqueePills = [
                 <span id="btn-text">Continue</span>
                 <span id="btn-arrow">→</span>
                 <div id="btn-loader" class="hidden ml-2 w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
+                <svg id="btn-success" class="hidden ml-2 w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
               </button>
             </div>
             
@@ -567,6 +592,7 @@ const marqueePills = [
               const btnText = document.getElementById('btn-text');
               const btnArrow = document.getElementById('btn-arrow');
               const btnLoader = document.getElementById('btn-loader');
+              const btnSuccess = document.getElementById('btn-success');
 
               if (form) {
                 form.addEventListener('submit', async (e) => {
@@ -578,14 +604,27 @@ const marqueePills = [
                     if (statusBanner) {
                       statusBanner.textContent = 'Security check could not load. Please disable any ad/script blockers, refresh the page, and try again.';
                       statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-400 block';
+                      statusBanner.classList.remove('hidden');
                     }
                     return;
                   }
-                  const recaptchaResponse = gre.getResponse();
+                  
+                  let recaptchaResponse = "";
+                  try { 
+                    const recaptchaEl = document.getElementById('strategy-recaptcha');
+                    const widgetId = recaptchaEl ? recaptchaEl.dataset.widgetId : undefined;
+                    if (widgetId !== undefined) {
+                      recaptchaResponse = gre.getResponse(widgetId);
+                    } else {
+                      recaptchaResponse = gre.getResponse(); 
+                    }
+                  } catch(e) {}
+                  
                   if (!recaptchaResponse) {
                     if (statusBanner) {
                       statusBanner.textContent = 'Please complete the reCAPTCHA to verify you are human.';
                       statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-400 block';
+                      statusBanner.classList.remove('hidden');
                     }
                     return;
                   }
@@ -629,8 +668,13 @@ const marqueePills = [
                       if (result.success) {
                         statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-green-500/20 bg-green-500/10 text-green-400 block';
                         form.reset();
-                        gre.reset();
-                        if (btnText) btnText.textContent = 'Request Sent';
+                        if (window.grecaptcha) window.grecaptcha.reset();
+                        if (btnText) btnText.textContent = 'Submitted';
+                        if (btnSuccess) btnSuccess.classList.remove('hidden');
+                        if (submitBtn) {
+                           submitBtn.classList.remove('bg-[#CAA154]', 'hover:bg-[#0a0a0a]', 'shadow-[#CAA154]/20');
+                           submitBtn.classList.add('bg-green-600', 'text-white', 'hover:bg-green-700', 'shadow-green-600/20');
+                        }
                       } else {
                         statusBanner.className = 'rounded-lg p-4 mb-4 text-sm font-medium border border-red-500/20 bg-red-500/10 text-red-400 block';
                         if (submitBtn) submitBtn.disabled = false;
