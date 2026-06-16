@@ -67,8 +67,8 @@ const getPosterUrl = (videoUrl: string) => {
       </p>
 
       <div>
-        <a href={category.id === "technology" ? "/services/custom-software-development" : category.id === "design" ? "/services/ui-ux-design" : category.id === "growth" ? "/services/ecommerce-development" : "/strategy-call"} class="pill pill-dark !py-2.5 !px-5 !text-[0.85rem]" data-magnetic="0.2">
-          Learn More <span class="arrow">↗</span>
+        <a href={category.ctaHref || (category.id === "technology" ? "/services/custom-software-development" : category.id === "design" ? "/services/ui-ux-design" : category.id === "growth" ? "/services/ecommerce-development" : "/strategy-call")} class="pill pill-dark !py-2.5 !px-5 !text-[0.85rem]" data-magnetic="0.2">
+          {category.ctaLabel || "Learn More"} <span class="arrow">↗</span>
         </a>
       </div>
 

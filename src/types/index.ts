@@ -95,6 +95,8 @@ export interface ServiceSubItem {
   icon: string;
   /** One or more paragraphs of detail copy. */
   body: string[];
+  /** Optional image for the right rail. */
+  image?: string;
   related?: ServiceRelated;
 }
 
@@ -154,6 +156,8 @@ export interface ExpertiseCategory {
   description: string;
   image: string;
   services: ExpertiseService[];
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
 /* ── Footer Column ──────────────────────────────────────── */

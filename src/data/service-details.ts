@@ -452,6 +452,93 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
     ],
   },
+  "digital-marketing": {
+    slug: "digital-marketing",
+    label: "Digital Marketing",
+    category: "Growth",
+    intro:
+      "We help businesses build and manage digital marketing systems that attract the right audience, generate qualified leads, improve conversions, and support measurable growth across search, social, paid campaigns, content, automation, and analytics.",
+    image: "/assets/services/digital-marketing.png",
+    subItems: [
+      {
+        id: "digital-marketing-strategy",
+        title: "Digital Marketing Strategy",
+        icon: I.compass,
+        body: [
+          "Market research, competitor analysis, audience mapping, positioning, offer clarity, channel planning, and campaign roadmap.",
+          "We define the right channels, messaging, content direction, campaign structure, and growth roadmap."
+        ],
+        related: { prompt: "Connect the tools you already use.", label: "Workflow Automation", href: "/solutions/internal-workflow-automation/", icon: I.bolt },
+      },
+      {
+        id: "search-engine-optimization",
+        title: "Search Engine Optimization",
+        icon: I.search,
+        body: [
+          "Technical SEO, keyword research, on-page SEO, local SEO, service page optimization, blog strategy, internal linking, and performance tracking.",
+          "We build sustainable search visibility that brings high intent traffic directly to your business."
+        ]
+      },
+      {
+        id: "social-media-marketing",
+        title: "Social Media Marketing",
+        icon: I.users,
+        body: [
+          "Content planning, post themes, caption direction, brand messaging, LinkedIn content, Instagram content, campaign ideas, and social presence management.",
+          "We turn social channels into actual lead drivers rather than just engagement metrics."
+        ]
+      },
+      {
+        id: "paid-advertising",
+        title: "Paid Advertising",
+        icon: I.coins,
+        body: [
+          "Google Ads, Meta Ads, LinkedIn Ads, campaign setup, audience targeting, conversion tracking, landing page alignment, and performance optimization.",
+          "Performance-focused paid campaigns engineered to deliver measurable ROI."
+        ]
+      },
+      {
+        id: "lead-generation-campaigns",
+        title: "Lead Generation Campaigns",
+        icon: I.funnel,
+        body: [
+          "Landing pages, lead magnets, form optimization, CRM integration, automated lead routing, and follow-up workflows.",
+          "We convert visitors into qualified leads with high-converting pages and clear offers."
+        ],
+        image: "/assets/expertise/digital-marketing.png",
+        related: { prompt: "See our AI lead routing funnels.", label: "AI Sales Funnels", href: "/solutions/ai-powered-sales-funnels/", icon: I.funnel },
+      },
+      {
+        id: "content-marketing",
+        title: "Content Marketing",
+        icon: I.pen,
+        body: [
+          "Blog content, service page content, case studies, thought leadership posts, sales enablement content, and educational content funnels."
+        ]
+      },
+      {
+        id: "email-marketing-nurture",
+        title: "Email Marketing & Nurture",
+        icon: I.bot,
+        body: [
+          "Email campaigns, newsletters, drip sequences, abandoned lead follow-ups, reactivation campaigns, and automated nurture flows.",
+          "Keep prospects engaged automatically until they are ready to convert."
+        ],
+        related: { prompt: "Capture and convert more leads automatically.", label: "AI & Automation", href: "/services/ai-automation/", icon: I.bot },
+      },
+      {
+        id: "analytics-reporting",
+        title: "Analytics & Reporting",
+        icon: I.chart,
+        body: [
+          "Google Analytics, Search Console, campaign dashboards, conversion tracking, lead source reporting, performance insights, and monthly growth reports.",
+          "Dashboards and analytics show what is working and where improvements are needed."
+        ],
+        image: "/assets/services/analytics-dashboard.png",
+        related: { prompt: "Get complete visibility over your metrics.", label: "Executive Dashboards", href: "/solutions/executive-dashboards/", icon: I.dashboard },
+      }
+    ],
+  },
 };
 
 export const serviceDetailSlugs = Object.keys(serviceDetails);

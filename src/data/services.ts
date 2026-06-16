@@ -10,6 +10,7 @@ import type { Service } from "@/types";
 export const services: Service[] = [
   { label: "Custom Software", slug: "custom-software-development", glyph: "M8 9l-3 3 3 3M16 9l3 3-3 3" },
   { label: "AI & Automation", slug: "ai-automation", glyph: "M12 4v3M12 17v3M4 12h3M17 12h3M7 7l2 2M15 15l2 2" },
+  { label: "Digital Marketing", slug: "digital-marketing", glyph: "M23 6l-9.5 9.5-5-5L1 18M17 6h6v6" },
   { label: "Mobile Apps", slug: "mobile-app-development", glyph: "M8 3h8v18H8zM11 18h2" },
   { label: "CRM Development", slug: "crm-development", glyph: "M4 7h16v10H4zM4 11h16" },
   { label: "ERP Systems", slug: "erp-development", glyph: "M4 6h16v12H4zM4 10h16M10 6v12" },
