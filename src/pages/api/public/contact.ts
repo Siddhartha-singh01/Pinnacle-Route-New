@@ -56,11 +56,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       return json({ success: false, message: 'Please enter a valid email address.' }, 400);
     }
 
-    // Verify reCAPTCHA token. Google's universal test secret is used ONLY in
-    // dev builds — never based on request headers, which an attacker controls.
-    const recaptchaSecret = import.meta.env.DEV
-      ? '6LeIxAcTAAAAAGG-vFI1TnwpLLWDtQM39M5893oc'
-      : process.env.RECAPTCHA_SECRET_KEY || import.meta.env.RECAPTCHA_SECRET_KEY;
+    // Verify reCAPTCHA token
+    const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY || import.meta.env.RECAPTCHA_SECRET_KEY;
 
     if (recaptchaSecret) {
       const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {

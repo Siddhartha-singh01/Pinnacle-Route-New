@@ -477,12 +477,7 @@ const marqueePills = [
             <!-- Google reCAPTCHA API -->
             <script is:inline>
               (function() {
-                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
                 const initRecaptcha = () => {
-                  if (isLocal) {
-                    const widgets = document.querySelectorAll('.g-recaptcha');
-                    widgets.forEach(w => w.setAttribute('data-sitekey', '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'));
-                  }
                   const script = document.createElement('script');
                   script.src = "https://www.google.com/recaptcha/api.js";
                   script.async = true;
